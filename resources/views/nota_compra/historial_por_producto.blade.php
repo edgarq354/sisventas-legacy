@@ -55,7 +55,7 @@ $message=Session::get('message');
 @if($message=='store')
 <div class="alert alert-success alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert" arial-label="Close"><span aria-hidden="true">$times;</span></button>
-	Pago registrado con Exito.
+	{{ __('nota_compra.pago_registrado') }}
 </div>
 @endif
 @include('partials.dashboard_style')
@@ -87,20 +87,20 @@ $message=Session::get('message');
     <div class="dash-hero" style="margin-bottom:14px;">
         <div class="dash-hero__icon"><i class="fa fa-cube"></i></div>
         <div>
-            <h3 class="dash-hero__title">Compras por producto</h3>
-            <p class="dash-hero__sub">Del {{ $fechaInicio }} al {{ $fechaFinal }} &middot; {{ count($nota_compra) }} productos</p>
+            <h3 class="dash-hero__title">{{ __('nota_compra.compras_por_producto') }}</h3>
+            <p class="dash-hero__sub">{!! __('nota_compra.del_al_productos', ['desde' => $fechaInicio, 'hasta' => $fechaFinal, 'count' => count($nota_compra)]) !!}</p>
         </div>
     </div>
 
     <div class="dash-card dash-card--overflow">
         <div class="dash-card__body">
             <div class="pp-filtros">
-                <div class="fld"><label>Desde</label><input type="text" value="{{ $fechaInicio }}" id="calendario1" onmouseover="buscarEnlace();" autocomplete="off"></div>
-                <div class="fld"><label>Hasta</label><input type="text" value="{{ $fechaFinal }}" id="calendario2" onmouseover="buscarEnlace();" autocomplete="off"></div>
+                <div class="fld"><label>{{ __('nota_compra.desde') }}</label><input type="text" value="{{ $fechaInicio }}" id="calendario1" onmouseover="buscarEnlace();" autocomplete="off"></div>
+                <div class="fld"><label>{{ __('nota_compra.hasta') }}</label><input type="text" value="{{ $fechaFinal }}" id="calendario2" onmouseover="buscarEnlace();" autocomplete="off"></div>
                 <div class="fld">
-                    <label>Producto</label>
+                    <label>{{ __('nota_compra.producto_label') }}</label>
                     <select name="id_producto" id="idProducto" class="selectpicker" data-live-search="true" onchange="buscarEnlace();">
-                        <option value="0">Todos los productos</option>
+                        <option value="0">{{ __('nota_compra.todos_los_productos') }}</option>
                         @foreach($producto as $mov)
                             <option value="{{ $mov->id }}">{{ $mov->nombre }}</option>
                         @endforeach
@@ -108,8 +108,8 @@ $message=Session::get('message');
                 </div>
                 <div class="fld"><label>&nbsp;</label>
                     <div>
-                        <a class="pp-btn pp-btn--buscar" href="../../nota_compra_historial_por_producto/{{ $fechaInicio }}/{{ $fechaFinal }}/0" id="buscar" onmouseover="buscarEnlace();"><i class="fa fa-search"></i> Buscar</a>
-                        <a class="pp-btn pp-btn--print" href="../../nota_compra_historial_por_producto_imprimir/{{ $fechaInicio }}/{{ $fechaFinal }}/0" id="imprimir" onmouseover="buscarEnlace();"><i class="fa fa-print"></i> Imprimir</a>
+                        <a class="pp-btn pp-btn--buscar" href="../../nota_compra_historial_por_producto/{{ $fechaInicio }}/{{ $fechaFinal }}/0" id="buscar" onmouseover="buscarEnlace();"><i class="fa fa-search"></i> {{ __('nota_compra.buscar') }}</a>
+                        <a class="pp-btn pp-btn--print" href="../../nota_compra_historial_por_producto_imprimir/{{ $fechaInicio }}/{{ $fechaFinal }}/0" id="imprimir" onmouseover="buscarEnlace();"><i class="fa fa-print"></i> {{ __('nota_compra.imprimir') }}</a>
                     </div>
                 </div>
             </div>
@@ -117,18 +117,18 @@ $message=Session::get('message');
     </div>
 
     <div class="dash-card">
-        <div class="dash-card__head"><i class="fa fa-list"></i> Productos comprados</div>
+        <div class="dash-card__head"><i class="fa fa-list"></i> {{ __('nota_compra.productos_comprados') }}</div>
         <div class="dash-card__body dash-card__body--flush">
             <div class="table-responsive" style="overflow-x:auto;">
                 <table class="table table-striped table-hover" id="tabla_sin_imprimir" style="background:white;margin:0;">
                     <thead>
-                        <th style="width:55px;"><center>ID</center></th>
-                        <th>Tipo</th>
-                        <th>Producto</th>
-                        <th style="text-align:right;">Precio</th>
-                        <th style="text-align:right;">Stock</th>
-                        <th style="text-align:right;">Comprado</th>
-                        <th style="text-align:right;">Total</th>
+                        <th style="width:55px;"><center>{{ __('nota_compra.col_id') }}</center></th>
+                        <th>{{ __('nota_compra.col_tipo') }}</th>
+                        <th>{{ __('nota_compra.col_producto') }}</th>
+                        <th style="text-align:right;">{{ __('nota_compra.col_precio') }}</th>
+                        <th style="text-align:right;">{{ __('nota_compra.col_stock') }}</th>
+                        <th style="text-align:right;">{{ __('nota_compra.col_comprado') }}</th>
+                        <th style="text-align:right;">{{ __('nota_compra.col_total') }}</th>
                         <th style="text-align:center;">...</th>
                     </thead>
                     <tbody id="body_video">
@@ -149,7 +149,7 @@ $message=Session::get('message');
                                 </td>
                             </tr>
                         @empty
-                            <tr><td colspan="8" class="dash-empty">Sin compras de producto en el período</td></tr>
+                            <tr><td colspan="8" class="dash-empty">{{ __('nota_compra.sin_compras_producto_periodo') }}</td></tr>
                         @endforelse
                     </tbody>
                 </table>
@@ -167,7 +167,7 @@ $message=Session::get('message');
 	  <div class="modal-content">
   
 		<div class="modal-header" style="background: #d4463e; color: white">
-		  <h3 class="modal-title">NOTAS DE COMPRAS : <label id="idNotaVenta"></label></h3>
+		  <h3 class="modal-title">{{ __('nota_compra.modal_notas_compras_titulo') }} <label id="idNotaVenta"></label></h3>
 		</div>   
 		
   
@@ -176,12 +176,12 @@ $message=Session::get('message');
    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
 			<table class="table table-striped table-bordered table-condensed table-hover" style="background: white">
 				<thead> 
-					<th><center>ID COMPRA</center></th> 
-					<th><center>FECHA</center></th>  
-					<th><center>PROVEEDOR</center></th> 
-					<th><center>COMPRADOR</center></th>  
-					<th><center>CANTIDAD</center></th> 
-					<th><center>TOTAL</center></th> 
+					<th><center>{{ __('nota_compra.col_id_compra') }}</center></th> 
+					<th><center>{{ __('nota_compra.col_fecha_mayus') }}</center></th>  
+					<th><center>{{ __('nota_compra.col_proveedor_mayus') }}</center></th> 
+					<th><center>{{ __('nota_compra.col_comprador_mayus') }}</center></th>  
+					<th><center>{{ __('nota_compra.col_cantidad_mayus') }}</center></th> 
+					<th><center>{{ __('nota_compra.col_total_mayus') }}</center></th> 
 				</thead>
 				<tbody align="center" id="body_detalle">					
 				

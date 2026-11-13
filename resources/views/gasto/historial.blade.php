@@ -52,8 +52,8 @@ function buscarEnlace(){
     <div class="dash-hero" style="margin-bottom:16px;">
         <div class="dash-hero__icon"><i class="fa fa-history"></i></div>
         <div>
-            <h3 class="dash-hero__title">Historial de gastos</h3>
-            <p class="dash-hero__sub">Del {{ $fechaInicio }} al {{ $fechaFinal }} · {{ count($gasto) }} registros</p>
+            <h3 class="dash-hero__title">{{ __('gasto.titulo_historial_gastos') }}</h3>
+            <p class="dash-hero__sub">{!! __('gasto.del_al_registros', ['desde' => $fechaInicio, 'hasta' => $fechaFinal, 'count' => count($gasto)]) !!}</p>
         </div>
     </div>
 
@@ -61,26 +61,26 @@ function buscarEnlace(){
         <div class="dash-card__body">
             <div class="gh-filtros">
                 <div class="fld">
-                    <label>Desde</label>
+                    <label>{{ __('gasto.desde') }}</label>
                     <input type="text" value="{{ $fechaInicio }}" id="calendario1" onmouseover="buscarEnlace();">
                 </div>
                 <div class="fld">
-                    <label>Hasta</label>
+                    <label>{{ __('gasto.hasta') }}</label>
                     <input type="text" value="{{ $fechaFinal }}" id="calendario2" onmouseover="buscarEnlace();">
                 </div>
                 <div class="fld">
-                    <label>Tipo de gasto</label>
+                    <label>{{ __('gasto.tipo_de_gasto') }}</label>
                     <select id="id_tipo_gasto" class="form-control selectpicker" onchange="buscarEnlace();" data-live-search="true">
-                        <option value="0">Todos los tipos</option>
+                        <option value="0">{{ __('gasto.todos_los_tipos') }}</option>
                         @foreach ($tipo_gasto as $mov)
                             <option value="{{ $mov->id }}" @if($id_tipo_gasto == $mov->id) selected @endif>{{ $mov->nombre }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="fld">
-                    <label>Empleado</label>
+                    <label>{{ __('gasto.empleado_label') }}</label>
                     <select id="id_empleado" class="form-control selectpicker" onchange="buscarEnlace();" data-live-search="true">
-                        <option value="0">Todos los empleados</option>
+                        <option value="0">{{ __('gasto.todos_los_empleados') }}</option>
                         @foreach ($empleado as $mov)
                             <option value="{{ $mov->id }}" @if($id_empleado == $mov->id) selected @endif>{{ $mov->nombre }} {{ $mov->paterno }} {{ $mov->materno }}</option>
                         @endforeach
@@ -89,8 +89,8 @@ function buscarEnlace(){
                 <div class="fld">
                     <label>&nbsp;</label>
                     <div>
-                        <a class="gh-btn gh-btn--buscar" href="../../../../gasto_historial/{{ $fechaInicio }}/{{ $fechaFinal }}/0/0" id="buscar" onmouseover="buscarEnlace();"><i class="fa fa-search"></i> Buscar</a>
-                        <a class="gh-btn gh-btn--print" href="../../../../gasto_historial_imprimir/{{ $fechaInicio }}/{{ $fechaFinal }}/0/0" id="imprimir" onmouseover="buscarEnlace();"><i class="fa fa-print"></i> Imprimir</a>
+                        <a class="gh-btn gh-btn--buscar" href="../../../../gasto_historial/{{ $fechaInicio }}/{{ $fechaFinal }}/0/0" id="buscar" onmouseover="buscarEnlace();"><i class="fa fa-search"></i> {{ __('gasto.buscar') }}</a>
+                        <a class="gh-btn gh-btn--print" href="../../../../gasto_historial_imprimir/{{ $fechaInicio }}/{{ $fechaFinal }}/0/0" id="imprimir" onmouseover="buscarEnlace();"><i class="fa fa-print"></i> {{ __('gasto.imprimir') }}</a>
                     </div>
                 </div>
             </div>
@@ -99,19 +99,19 @@ function buscarEnlace(){
 
     <div class="dash-card">
         <div class="dash-card__head">
-            <i class="fa fa-list"></i> Gastos
-            <span class="dash-card__extra gh-total">Total: <b>Bs {{ number_format($total_gastos, 2) }}</b></span>
+            <i class="fa fa-list"></i> {{ __('gasto.gastos_header') }}
+            <span class="dash-card__extra gh-total">{{ __('gasto.total_colon') }} <b>Bs {{ number_format($total_gastos, 2) }}</b></span>
         </div>
         <div class="dash-card__body dash-card__body--flush">
             <div class="table-responsive" style="overflow-x:auto;">
                 <table class="table table-striped table-hover" id="tabla_sin_imprimir" style="background:white;margin:0;">
                     <thead>
-                        <th style="width:55px;"><center>ID</center></th>
-                        <th>Fecha</th>
-                        <th>Detalle</th>
-                        <th>Empleado</th>
-                        <th>Usuario</th>
-                        <th style="text-align:right;">Monto</th>
+                        <th style="width:55px;"><center>{{ __('gasto.col_id') }}</center></th>
+                        <th>{{ __('gasto.col_fecha') }}</th>
+                        <th>{{ __('gasto.col_detalle') }}</th>
+                        <th>{{ __('gasto.col_empleado') }}</th>
+                        <th>{{ __('gasto.col_usuario') }}</th>
+                        <th style="text-align:right;">{{ __('gasto.col_monto') }}</th>
                         <th style="text-align:center;">...</th>
                     </thead>
                     <tbody>
@@ -127,11 +127,11 @@ function buscarEnlace(){
                                 <td>{{ $pago->usuario }}</td>
                                 <td class="num">{{ number_format((float)$pago->precio_gasto, 2) }}</td>
                                 <td style="text-align:center;">
-                                    <a class='btn btn-primary btn-xs' href='../../../../gasto_imprimir/{{ $pago->id }}' title="Imprimir"><i class="fa fa-print"></i></a>
+                                    <a class='btn btn-primary btn-xs' href='../../../../gasto_imprimir/{{ $pago->id }}' title="{{ __('gasto.imprimir') }}"><i class="fa fa-print"></i></a>
                                 </td>
                             </tr>
                         @empty
-                            <tr><td colspan="7" class="dash-empty">Sin gastos en el período</td></tr>
+                            <tr><td colspan="7" class="dash-empty">{{ __('gasto.sin_gastos_periodo') }}</td></tr>
                         @endforelse
                     </tbody>
                 </table>

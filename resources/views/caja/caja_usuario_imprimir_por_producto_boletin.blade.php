@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
  <meta charset="UTF-8">
-    <title>REPORTE POR PRODUCTO BOLETIN</title>
+    <title>{{ __('caja.reporte_por_producto_titulo_boletin') }}</title>
  <!--link href="css/reporte.css" type="text/css" rel="stylesheet"  -->
 
  <style type="text/css">
@@ -71,95 +71,28 @@ $dia="";
   <tr >
     <td  >
       <center>
-      <b>REPORTE POR PRODUCTO</b><br>
-        Empresa {{$empresa[0]->razon_social}}<br>
+      <b>{{ __('caja.reporte_por_producto') }}</b><br>
+        {{ __('caja.empresa_label') }} {{$empresa[0]->razon_social}}<br>
       <?php 
-          $dia=date("j",strtotime ( $caja[0]->fecha_cierre ));
-          $dia_s=strftime("%u",strtotime ( $caja[0]->fecha_cierre ));
-          $mes=strftime("%m",strtotime ( $caja[0]->fecha_cierre ));
-          $anio=date("Y",strtotime ( $caja[0]->fecha_cierre )); 
-          
-          $mifecha=gmmktime(12,0,0,$mes,$dia,$anio);
-          
-          //dia
-
-     switch ($dia_s) {
-      case 1:
-      $dia_s="Lunes";
-      break;
-      case 2:
-      $dia_s="Martes";
-      break;
-      case 3:
-      $dia_s="Miercoles";
-      break;
-      case 4:
-      $dia_s="Jueves";
-      break;
-      case 5:
-      $dia_s="Viernes";
-      break;
-      case 6:
-      $dia_s="Sabado";
-      break;
-      case 7:
-      $dia_s="Domingo";
-      break;
-    }
-          //fin de dia
-
-
- switch ($mes) {
-      case 1:
-      $mes="Ene";
-      break;
-      case 2:
-      $mes="Feb";
-      break;
-      case 3:
-      $mes="Mar";
-      break;
-      case 4:
-      $mes="Abr";
-      break;
-      case 5:
-      $mes="May";
-      break;
-      case 6:
-      $mes="Jun";
-      break;
-      case 7:
-      $mes="Jul";
-      break;
-      case 8:
-      $mes="Ago";
-      break;
-      case 9:
-      $mes="Sep";
-      break;
-      case 10:
-      $mes="Oct";
-      break;
-      case 11:
-      $mes="Nov";
-      break;
-      case 12:
-      $mes="Dic";
-      break;
-    }
-
-
+          $diasSemana = explode(',', __('caja.dias_semana'));
+          $mesesAbr   = explode(',', __('caja.meses_abr'));
+          $ts = strtotime($caja[0]->fecha_cierre);
+          $dia_s = $diasSemana[(int) date('N', $ts) - 1];
+          $mes   = $mesesAbr[(int) date('n', $ts) - 1];
+          $dia   = date('d', $ts);
+          $anio  = date('Y', $ts);
+          $conector = __('caja.de') !== '' ? ' '.__('caja.de').' ' : ' ';
 
         echo $empresa[0]->direccion;
         echo "<br>";
-        //echo "Fecha: ".$dia."-".$mes."-".$anio;
-          echo strftime( $dia_s.", %d de ". $mes." de %Y", $mifecha );
+        echo app()->getLocale() === 'en'
+            ? "{$dia_s}, {$mes} {$dia}, {$anio}"
+            : "{$dia_s}, {$dia}{$conector}{$mes}{$conector}{$anio}";
           ?>
           <br>
-       Hora:
+       {{ __('caja.hora_label') }}
        <?php 
-          $time = strftime("%H:%M", strtotime ( $caja[0]->fecha_cierre ));
-          echo $time;
+          echo date('H:i', $ts);
           ?>  
           <br>  
         </center>
@@ -169,7 +102,7 @@ $dia="";
 
   <tr>
     <td> 
-      USUARIO: {{$caja[0]->usuario}}  
+      {{ __('caja.usuario_dp') }} {{$caja[0]->usuario}}  
     </td>
   </tr>
   <tr> 
@@ -178,8 +111,8 @@ $dia="";
         <tr>
         @foreach ( $caja as $c) 
         <td><b>#{{$c->id}} - {{$c->caja}}</b><br> 
-          Fecha Apertura: <br>
-          Fecha Cierre: 
+          {{ __('caja.fecha_apertura_dp') }} <br>
+          {{ __('caja.fecha_cierre_dp') }} 
         </td> 
         <td><br>
           {{$c->fecha_abrir}}<br>  
@@ -195,10 +128,10 @@ $dia="";
       <center>
      <table style="width: 270px; border-collapse: collapse; border: 1px solid black;">
         <tr>
-    <td align="center" style="width: 1px; border: 1px solid black; padding:2px;"><b>#</b></td> 
-    <td align="center" style="border: 1px solid black; padding:2px;"><b>FECHA</b></td> 
-    <td align="center" style="border: 1px solid black; padding:2px;"><b>DETALLE</b></td> 
-    <td style="width: 6px; border: 1px solid black; padding:2px;" align="center"><b>C.</b></td> 
+    <td align="center" style="width: 1px; border: 1px solid black; padding:2px;"><b>{{ __('caja.col_numeral') }}</b></td> 
+    <td align="center" style="border: 1px solid black; padding:2px;"><b>{{ __('caja.col_fecha_mayus') }}</b></td> 
+    <td align="center" style="border: 1px solid black; padding:2px;"><b>{{ __('caja.detalle_mayus') }}</b></td> 
+    <td style="width: 6px; border: 1px solid black; padding:2px;" align="center"><b>{{ __('caja.col_cantidad_abr') }}</b></td> 
   </tr>
       <?php $cantidad=1; ?>
       @foreach ( $detalle_venta as $d)
@@ -218,7 +151,7 @@ $dia="";
    
   <tr>
     <td colspan="2">    
-      <center><b>DESARROLLADO POR</b> ELISOFT - 75602869 </center>
+      <center><b>{{ __('caja.desarrollado_por') }}</b> ELISOFT - 75602869 </center>
     </td>
   </tr>
 

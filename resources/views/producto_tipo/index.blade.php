@@ -10,13 +10,13 @@
 	{
 		$("#id_producto").val(id_producto);
 		$("#cantidad_actual").val(cantidad);
-		$("#cantidad_actual_2").text("cantidad actual :"+cantidad);
+		$("#cantidad_actual_2").text(@json(__('producto_tipo.cantidad_actual'))+cantidad);
 	}
 function detalle_producto_2(id_producto,cantidad)
 	{
 		$("#id_producto_2").val(id_producto);
 		$("#cantidad_actual_2_menos").val(cantidad);
-		$("#cantidad_actual_2_2").text("cantidad actual :"+cantidad);
+		$("#cantidad_actual_2_2").text(@json(__('producto_tipo.cantidad_actual'))+cantidad);
 	}
 
 </script>
@@ -29,14 +29,14 @@ $message=Session::get('message');
 @if($message=='store')
 <div class="alert alert-success alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert" arial-label="Close"><span aria-hidden="true">$times;</span></button>
-	Pago registrado con Exito.
+	{{ __('producto_tipo.pago_registrado') }}
 </div>
 @endif
-	<div class="row">	
+	<div class="row">
 		<div clasrs="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<div class="table-responsive" style="overflow-x:inherit">	
+			<div class="table-responsive" style="overflow-x:inherit">
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-			<font size="6">LISTA DE PRODUCTOS</font>
+			<font size="6">{{ __('producto_tipo.lista_de_productos') }}</font>
 		</div>
 
 		
@@ -45,21 +45,21 @@ $message=Session::get('message');
 {!!Form::open(['route'=>'producto_tipo.index', 'method'=>'GET'])!!}	
 		<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12"  >
 		    <select name="id_tipo_producto" class="form-control selectpicker" id="id_tipo_producto" data-live-search="true" >
-		     <option value="">  Buscar por tipo de producto</option>
+		     <option value="">  {{ __('producto_tipo.buscar_por_tipo') }}</option>
 		        @foreach($tipo as $mov)
 		        <option value="{{$mov->id}}">{{$mov->nombre}}  </option>
 		        @endforeach
 		    </select>
 		</div>
 		 <div class=" form-group col-lg-4 col-md-4 col-sm-4 col-xs-12 " >		
-		<button class="btn-sm btn-primary" id="btn_buscar" name='btn_buscar'onclick="btn_esconder()"  data-toggle="tooltip" data-placement="top" title="Buscar"><i class="fa fa-search"  ></i></button> 
+		<button class="btn-sm btn-primary" id="btn_buscar" name='btn_buscar'onclick="btn_esconder()"  data-toggle="tooltip" data-placement="top" title="{{ __('producto_tipo.buscar') }}"><i class="fa fa-search"  ></i></button>
 
-		
-	</form>		 
 
-        
+	</form>
+
+
 		<a href="{!!URL::to('producto_tipo/create')!!}" >
-			<i class="fa fa-plus btn btn-primary"> Agregar nuevo</i>
+			<i class="fa fa-plus btn btn-primary"> {{ __('producto_tipo.agregar_nuevo') }}</i>
 		</a>
 		</div>
 
@@ -90,13 +90,13 @@ $message=Session::get('message');
 				<table class="table table-striped table-bordered table-condensed table-hover" style="background: white" id="myTable" align="center">
 					
 					<thead>
-						<th><center>ID</center></th>
-						<th><center>Imagen</center></th>
-						<th><center>Nombre</center></th>
-						<th><center>Descripción</center></th>
-						<th><center>Precio</center></th>
-						<th><center>Centidad</center></th>
-						<th><center>Nombre del Tipo</center></th>
+						<th><center>{{ __('producto_tipo.col_id') }}</center></th>
+						<th><center>{{ __('producto_tipo.col_imagen') }}</center></th>
+						<th><center>{{ __('producto_tipo.col_nombre') }}</center></th>
+						<th><center>{{ __('producto_tipo.col_descripcion') }}</center></th>
+						<th><center>{{ __('producto_tipo.col_precio') }}</center></th>
+						<th><center>{{ __('producto_tipo.col_cantidad') }}</center></th>
+						<th><center>{{ __('producto_tipo.col_nombre_tipo') }}</center></th>
 						<th><center>. . .</center></th>
 					</thead>
 					
@@ -114,7 +114,7 @@ $message=Session::get('message');
 						<td>{{ $pago->nombre_tipo}} </td>
 						<td>
 						 
-						{!!link_to_route('producto_tipo.edit','', $parameters = $pago->id, $attributes = ['class'=>'btn btn-primary fa fa-eye','data-toggle'=>'tooltip','data-placement'=>'top','title'=>'Ver y editar'])!!}
+						{!!link_to_route('producto_tipo.edit','', $parameters = $pago->id, $attributes = ['class'=>'btn btn-primary fa fa-eye','data-toggle'=>'tooltip','data-placement'=>'top','title'=>__('producto_tipo.ver_y_editar')])!!}
 						
 					 <button class="btn btn-success fa fa-plus" data-toggle="modal" data-target="#Modal_agregar_producto" onclick="detalle_producto('{{$pago->id}}','{{$pago->cantidad}}');"></button>
 					 <button class="btn btn-success fa fa-angle-down" data-toggle="modal" data-target="#Modal_agregar_producto_restar" onclick="detalle_producto_2('{{$pago->id}}','{{$pago->cantidad}}');"></button>

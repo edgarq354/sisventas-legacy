@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
  <meta charset="UTF-8">
-    <title>NOTA DE VENTA</title>
+    <title>{{ __('nota_venta.nota_de_venta_mayus') }}</title>
  <!--link href="css/reporte.css" type="text/css" rel="stylesheet"  -->
 
  <style type="text/css">
@@ -76,91 +76,6 @@ function imprimir() {
 <body onload="imprimir();">
  
 
-<?php
-setlocale(LC_TIME, 'es_ES.UTF-8');
-date_default_timezone_set ("America/La_Paz");
-
-
-$dia="";
-
-?>
- 
- <?php 
-          $dia=date("j",strtotime ( $nota_venta[0]->fecha ));
-          $dia_s=strftime("%u",strtotime ( $nota_venta[0]->fecha ));
-          $mes=strftime("%m",strtotime ( $nota_venta[0]->fecha ));
-          $anio=date("Y",strtotime ( $nota_venta[0]->fecha )); 
-          
-          $mifecha=gmmktime(12,0,0,$mes,$dia,$anio);
-          
-          //dia
-
-     switch ($dia_s) {
-      case 1:
-      $dia_s="Lunes";
-      break;
-      case 2:
-      $dia_s="Martes";
-      break;
-      case 3:
-      $dia_s="Miercoles";
-      break;
-      case 4:
-      $dia_s="Jueves";
-      break;
-      case 5:
-      $dia_s="Viernes";
-      break;
-      case 6:
-      $dia_s="Sabado";
-      break;
-      case 7:
-      $dia_s="Domingo";
-      break;
-    }
-          //fin de dia
-
-
-          switch ($mes) {
-      case 1:
-      $mes="Enero";
-      break;
-      case 2:
-      $mes="Febrero";
-      break;
-      case 3:
-      $mes="Marzo";
-      break;
-      case 4:
-      $mes="Abril";
-      break;
-      case 5:
-      $mes="Mayo";
-      break;
-      case 6:
-      $mes="Junio";
-      break;
-      case 7:
-      $mes="Julio";
-      break;
-      case 8:
-      $mes="Agosto";
-      break;
-      case 9:
-      $mes="Septiembre";
-      break;
-      case 10:
-      $mes="Octubre";
-      break;
-      case 11:
-      $mes="Noviembre";
-      break;
-      case 12:
-      $mes="Diciembre";
-      break;
-    }
-    ?>
-
  <table id=table border="0" style="padding: 0px; margin: 0px;" width="260px"  >
   <tr >
     <td  >
@@ -169,17 +84,15 @@ $dia="";
         <img src="{{$empresa[0]->direccion_baner}}" name="logo" id="foto_logo" width="200px" height="80px"     /><BR>
         @endif
         <b> {{$empresa[0]->razon_social}}</b><br>
-          <?php
-          echo strftime( $dia_s.", %d de ". $mes." de %Y", $mifecha );
-          ?>
+          {{ fecha_larga($nota_venta[0]->fecha) }}
           <br>
-       Hora:
+       {{ __('nota_venta.hora_dp') }}
        <?php 
-          $time = strftime("%H:%M", strtotime ( $nota_venta[0]->fecha ));
+          $time = date('H:i', strtotime($nota_venta[0]->fecha));
           echo $time;
           ?>  
           <br> 
-          <B>NOTA DE VENTA #{{$nota_venta[0]->id}}</B>
+          <B>{{ __('nota_venta.nota_de_venta_numero', ['id' => $nota_venta[0]->id]) }}</B>
         </center>
         <div class="line_pequenio"></div>
     </td>
@@ -187,12 +100,12 @@ $dia="";
 
   <tr>
     <td> 
-      NIT/CI: {{$nota_venta[0]->ci_nit}} 
+      {{ __('nota_venta.nit_ci_corto', ['valor' => $nota_venta[0]->ci_nit]) }} 
     </td>
   </tr>
   <tr>
     <td>
-      Cliente(es):  {{$nota_venta[0]->razon_social}} 
+      {{ __('nota_venta.clientes_label', ['valor' => $nota_venta[0]->razon_social]) }} 
       <div class="line_recta"></div>
     </td>
   </tr>
@@ -201,9 +114,9 @@ $dia="";
 
       <table  border="0" width="260px" >
         <tr>
-          <td style="width: 5px;">Cant.</td>
-          <td>Detalle</td> 
-          <td style="width: 45px;">S.Total</td>
+          <td style="width: 5px;">{{ __('nota_venta.col_cant_corta2') }}</td>
+          <td>{{ __('nota_venta.col_detalle_corta') }}</td> 
+          <td style="width: 45px;">{{ __('nota_venta.col_subtotal_corta') }}</td>
         </tr>
         <tr>
           <td colspan="3"> 
@@ -222,21 +135,21 @@ $dia="";
         </tr>
       </table>
       <center>
-      <b>TOTAL Bs {{$nota_venta[0]->monto_total}}</b><BR>
-      <b>Estado: </b> {{$nota_venta[0]->estado}}<br> 
+      <b>{{ __('nota_venta.total_bs_valor', ['monto' => $nota_venta[0]->monto_total]) }}</b><BR>
+      <b>{{ __('nota_venta.estado_dp') }} </b> {{ __('estados.'.$nota_venta[0]->estado) }}<br> 
      
     </center>
   
-      <center style="font-size: 10px;">GRACIAS POR SU COMPRA</center>
+      <center style="font-size: 10px;">{{ __('nota_venta.gracias_por_su_compra') }}</center>
       <div class="line_pequenio"></div> 
-      <center>Dirección: {{$empresa[0]->direccion}}<br>
+      <center>{{ __('nota_venta.direccion_dp', ['valor' => $empresa[0]->direccion]) }}<br>
       @if(strlen($empresa[0]->comentario_recibo)>0)
         {{$empresa[0]->comentario_recibo}}<br> 
       @endif
       </center>
 
       <div class="line_pequenio"></div>
-      <center style="font-size: 10px;"><b >DESARROLLADO POR</b> ELISOFT - 75602869 </center>
+      <center style="font-size: 10px;"><b >{{ __('nota_venta.desarrollado_por') }}</b> ELISOFT - 75602869 </center>
   
        
 

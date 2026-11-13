@@ -1,0 +1,55 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'pago_registrado' => 'Pago registrado con Exito.',
+    'lista_de_productos' => 'LISTA DE PRODUCTOS',
+    'buscar_por_tipo' => 'Buscar por tipo de producto',
+    'buscar' => 'Buscar',
+    'agregar_nuevo' => 'Agregar nuevo',
+    'col_id' => 'ID',
+    'col_imagen' => 'Imagen',
+    'col_nombre' => 'Nombre',
+    'col_descripcion' => 'Descripción',
+    'col_precio' => 'Precio',
+    'col_cantidad' => 'Centidad',
+    'col_nombre_tipo' => 'Nombre del Tipo',
+    'ver_y_editar' => 'Ver y editar',
+    'cantidad_actual' => 'cantidad actual :',
+
+    // create/edit/modal
+    'registrar_producto' => 'REGISTRAR PRODUCTO',
+    'actualizar_producto' => 'ACTUALIZAR PRODUCTO',
+    'nombre_label' => 'Nombre:',
+    'descripcion_label' => 'Descripción:',
+    'precio_label' => 'Precio:',
+    'cantidad_label' => 'Cantidad:',
+    'tipo_producto_label' => 'Tipo de Producto:',
+    'imagen_label' => 'Imagen:',
+    'guardar' => 'GUARDAR',
+    'cancelar' => 'CANCELAR',
+    'agregar_cantidad_titulo' => 'AGREGAR CANTIDAD',
+    'restar_cantidad_titulo' => 'RESTAR CANTIDAD',
+    'cantidad_a_agregar' => 'Cantidad a agregar:',
+    'cantidad_a_restar' => 'Cantidad a restar:',
+
+    // create
+    'registrar_nuevo_producto_h3' => 'Registrar un nuevo Producto:',
+    'registrar_nuevo_producto_h2' => 'Registrar un Nuevo producto',
+    'imei_label' => 'Imei:',
+    'buscar_categoria' => 'Buscar Categoria:',
+    'opt_buscar' => 'BUSCAR...',
+    'nombre_tipo_producto_label' => 'Nombre del Tipo de Producto:',
+    'placeholder_descripcion' => 'Ingrese la descripción',
+    'registrar' => 'REGISTRAR',
+    'restar_producto_titulo' => 'RESTAR PRODUCTO',
+    'agregar_btn' => 'AGREGAR',
+    'restar_btn' => 'RESTAR',
+    'editar_producto' => 'Editar Producto',
+    'imagen_agregada' => 'Imagen agregada correctamente',
+    'ha_ocurrido_error' => 'ha ocurrido un error',
+    'imagen_numero' => 'IMAGEN #1',
+    'subir_imagen' => 'Subir Imagen',
+    'buscar_puntos' => 'Buscar..',
+];

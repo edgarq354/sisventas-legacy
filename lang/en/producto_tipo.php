@@ -1,0 +1,55 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'pago_registrado' => 'Payment registered successfully.',
+    'lista_de_productos' => 'PRODUCT LIST',
+    'buscar_por_tipo' => 'Search by product type',
+    'buscar' => 'Search',
+    'agregar_nuevo' => 'Add new',
+    'col_id' => 'ID',
+    'col_imagen' => 'Image',
+    'col_nombre' => 'Name',
+    'col_descripcion' => 'Description',
+    'col_precio' => 'Price',
+    'col_cantidad' => 'Quantity',
+    'col_nombre_tipo' => 'Type Name',
+    'ver_y_editar' => 'View and edit',
+    'cantidad_actual' => 'current quantity:',
+
+    // create/edit/modal
+    'registrar_producto' => 'REGISTER PRODUCT',
+    'actualizar_producto' => 'UPDATE PRODUCT',
+    'nombre_label' => 'Name:',
+    'descripcion_label' => 'Description:',
+    'precio_label' => 'Price:',
+    'cantidad_label' => 'Quantity:',
+    'tipo_producto_label' => 'Product Type:',
+    'imagen_label' => 'Image:',
+    'guardar' => 'SAVE',
+    'cancelar' => 'CANCEL',
+    'agregar_cantidad_titulo' => 'ADD QUANTITY',
+    'restar_cantidad_titulo' => 'SUBTRACT QUANTITY',
+    'cantidad_a_agregar' => 'Quantity to add:',
+    'cantidad_a_restar' => 'Quantity to subtract:',
+
+    // create
+    'registrar_nuevo_producto_h3' => 'Register a new Product:',
+    'registrar_nuevo_producto_h2' => 'Register a New product',
+    'imei_label' => 'Imei:',
+    'buscar_categoria' => 'Search Category:',
+    'opt_buscar' => 'SEARCH...',
+    'nombre_tipo_producto_label' => 'Product Type Name:',
+    'placeholder_descripcion' => 'Enter the description',
+    'registrar' => 'REGISTER',
+    'restar_producto_titulo' => 'SUBTRACT PRODUCT',
+    'agregar_btn' => 'ADD',
+    'restar_btn' => 'SUBTRACT',
+    'editar_producto' => 'Edit Product',
+    'imagen_agregada' => 'Image added successfully',
+    'ha_ocurrido_error' => 'an error occurred',
+    'imagen_numero' => 'IMAGE #1',
+    'subir_imagen' => 'Upload Image',
+    'buscar_puntos' => 'Browse..',
+];

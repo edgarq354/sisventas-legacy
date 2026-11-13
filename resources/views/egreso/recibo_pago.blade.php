@@ -6,7 +6,7 @@
 
 <body>
     <div id="botonera">
-        <button onClick="javascript:window.print();">Imprimir</button>
+        <button onClick="javascript:window.print();">{{ __('egreso.imprimir_btn') }}</button>
     </div>
 
     <div id="page1">

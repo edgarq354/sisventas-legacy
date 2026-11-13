@@ -82,16 +82,16 @@ function changeFunc(sel) {
   <input type="hidden" name='estado' value="1" />
  
 
-  <h3 align="left" style="color: red">Registrar un nuevo Producto:</h3>
-  
+  <h3 align="left" style="color: red">{{ __('producto_tipo.registrar_nuevo_producto_h3') }}</h3>
+
 
 </div>
 
-       
 
- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 well" >  
 
- <h2>Registrar un Nuevo producto</h2>
+ <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 well" >
+
+ <h2>{{ __('producto_tipo.registrar_nuevo_producto_h2') }}</h2>
 <hr style="height: 2px; background-color: black;">
  
  
@@ -101,23 +101,23 @@ function changeFunc(sel) {
  
  
   <div class="form-group">
-    Nombre:<br>
-    <input type="text"  name="nombre" placeholder="Ingrese el nombre" class="form-control" id="nombre" value="" >
+    {{ __('producto_tipo.nombre_label') }}<br>
+    <input type="text"  name="nombre" placeholder="{{ __('producto.placeholder_nombre') }}" class="form-control" id="nombre" value="" >
   </div>
 
 <div class="form-group">
-    Imei:<br>
+    {{ __('producto_tipo.imei_label') }}<br>
     <input type="text"  name="imei"    class="form-control"   >
   </div>
- 
+
 
   <div class="form-group">
-    Precio:<br>
+    {{ __('producto_tipo.precio_label') }}<br>
     <input type="decimal"  name="precio"   value="0" class="form-control"   >
   </div>
 
    <div class="form-group">
-    Cantidad:<br>
+    {{ __('producto_tipo.cantidad_label') }}<br>
     <input type="number"  name="cantidad"   value="0" class="form-control"   >
   </div>
 
@@ -126,24 +126,24 @@ function changeFunc(sel) {
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-   Buscar Categoria:
+   {{ __('producto_tipo.buscar_categoria') }}
     <div class="form-group">
       <select name="id_tipo_producto" class="form-control selectpicker" id="id_tipo_producto" data-live-search="true"  onchange="changeFunc(this);">
-         <option value="">  BUSCAR...                                </option>
+         <option value="">  {{ __('producto_tipo.opt_buscar') }}                                </option>
             @foreach($tipo_producto as $mov)
             <option value="{{$mov->id}}" >{{$mov->nombre}} </option>
             @endforeach
         </select>
-     
+
     </div>
      <div class="form-group">
-    Nombre del Tipo de Producto:<br>
+    {{ __('producto_tipo.nombre_tipo_producto_label') }}<br>
     <input type="text"  name="nombre_tipo_producto"   id="nombre_tipo_producto"    class="form-control"   >
   </div>
 
   <div class="form-group">
-    Descripción:<br>
-    {!!Form::textarea('descripcion',null,['class'=>'form-control','placeholder'=>'Ingrese la descripción','style'=>'height:100px;' ])!!}
+    {{ __('producto_tipo.descripcion_label') }}<br>
+    {!!Form::textarea('descripcion',null,['class'=>'form-control','placeholder'=>__('producto_tipo.placeholder_descripcion'),'style'=>'height:100px;' ])!!}
   </div>
  
   
@@ -154,9 +154,9 @@ function changeFunc(sel) {
 
 		<div align="left">
 
-			{!!Form::submit('REGISTRAR',['class'=>'btn btn-primary','id'=>'btn_registrar','onclick'=>'btn_esconder()'])!!}
+			{!!Form::submit(__('producto_tipo.registrar'),['class'=>'btn btn-primary','id'=>'btn_registrar','onclick'=>'btn_esconder()'])!!}
       </form>
-			<a href="{!!URL::to('producto_tipo')!!}" class="btn btn-danger">CANCELAR</a>
+			<a href="{!!URL::to('producto_tipo')!!}" class="btn btn-danger">{{ __('producto_tipo.cancelar') }}</a>
 
 </div>
 

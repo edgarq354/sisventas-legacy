@@ -37,13 +37,13 @@
             },
             //una vez finalizado correctamente
             success: function(data){
-              alertify.success("Imagen agregada correctamente");
-              $("#"+divresul+"").html("Imagen agregada correctamente");
-                    
+              alertify.success(@json(__('tipo_producto.imagen_agregada')));
+              $("#"+divresul+"").html(@json(__('tipo_producto.imagen_agregada')));
+
             },
             //si ha ocurrido un error
             error: function(data){
-               alertify.error("ha ocurrido un error") ;
+               alertify.error(@json(__('tipo_producto.ha_ocurrido_error'))) ;
                 
             }
         });
@@ -54,9 +54,9 @@
             <br>
          
 
-         <label style="color:#FFF; background-color:#ABB6BA; text-align:center">&nbsp;&nbsp;&nbsp;Espere... &nbsp;&nbsp;&nbsp;</label>
+         <label style="color:#FFF; background-color:#ABB6BA; text-align:center">&nbsp;&nbsp;&nbsp;{{ __('tipo_producto.espere') }} &nbsp;&nbsp;&nbsp;</label>
 
-         <img src="images/cargando.gif" align="middle" alt="cargador"> &nbsp;<label style="color:#ABB6BA">Realizando tarea solicitada ...</label>
+         <img src="images/cargando.gif" align="middle" alt="cargador"> &nbsp;<label style="color:#ABB6BA">{{ __('tipo_producto.realizando_tarea') }}</label>
 
           <br>
          <hr style="color:#003" width="50%">
@@ -68,24 +68,24 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                    <font size="6">CATEGORIA</font>
+                    <font size="6">{{ __('tipo_producto.categoria_titulo') }}</font>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" align="right">
                     <a class='btn btn-primary' href='categoria_imprimir'><i class="fa fa-print"></i>
-                        Imprimir</a>
+                        {{ __('tipo_producto.imprimir') }}</a>
 
                     <a class='btn btn-success ' data-toggle="modal" data-target="#ModalCrearNuevo"> <i
-                            class="fa fa-plus"></i>Agregar</a>
+                            class="fa fa-plus"></i>{{ __('tipo_producto.agregar') }}</a>
                 </div>
 
-      
-<div class="panel-body"> 
+
+<div class="panel-body">
     <div class="table-responsive" style="overflow-x:inherit">
 				<table class="table table-striped table-bordered table-condensed table-hover" style="background: white" id="tabla_sin_imprimir">
 					<thead>
-						<th><center>ID</center></th> 
-						<th><center>NOMBRE</center></th>
-						<th><center>ESTADO</center></th> 
+						<th><center>{{ __('tipo_producto.col_id') }}</center></th>
+						<th><center>{{ __('tipo_producto.col_nombre') }}</center></th>
+						<th><center>{{ __('tipo_producto.col_estado') }}</center></th>
 						<th><center>...</center></th>
 						
 					</thead>

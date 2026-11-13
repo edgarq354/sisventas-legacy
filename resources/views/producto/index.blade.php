@@ -125,34 +125,34 @@
     <div class="dash-hero" style="margin-bottom:14px;">
         <div class="dash-hero__icon"><i class="fa fa-cubes"></i></div>
         <div>
-            <h3 class="dash-hero__title">Productos</h3>
-            <p class="dash-hero__sub">{{ count($producto) }} registrados</p>
+            <h3 class="dash-hero__title">{{ __('producto.titulo_productos') }}</h3>
+            <p class="dash-hero__sub">{{ __('producto.registrados', ['count' => count($producto)]) }}</p>
         </div>
     </div>
 
     <div class="pr-actions">
-        <a class="pr-btn pr-btn--add" data-toggle="modal" data-target="#ModalCrearNuevo"><i class="fa fa-plus"></i> Agregar producto</a>
-        <a class="pr-btn pr-btn--print" href="producto_imprimir" target="_blank"><i class="fa fa-print"></i> Imprimir</a>
-        <a class="pr-btn pr-btn--print2" href="producto_utilidad_imprimir" target="_blank"><i class="fa fa-print"></i> Con inversión</a>
+        <a class="pr-btn pr-btn--add" data-toggle="modal" data-target="#ModalCrearNuevo"><i class="fa fa-plus"></i> {{ __('producto.agregar_producto') }}</a>
+        <a class="pr-btn pr-btn--print" href="producto_imprimir" target="_blank"><i class="fa fa-print"></i> {{ __('producto.imprimir') }}</a>
+        <a class="pr-btn pr-btn--print2" href="producto_utilidad_imprimir" target="_blank"><i class="fa fa-print"></i> {{ __('producto.con_inversion') }}</a>
     </div>
 
     <div class="dash-card">
-        <div class="dash-card__head"><i class="fa fa-list"></i> Lista de productos</div>
+        <div class="dash-card__head"><i class="fa fa-list"></i> {{ __('producto.lista_productos') }}</div>
         <div class="dash-card__body dash-card__body--flush">
             <div class="table-responsive" style="overflow-x:auto;">
                 <table class="table table-striped table-hover" id="tabla_sin_imprimir" style="background:white;margin:0;">
                     <thead>
-                        <th style="width:50px;"><center>ID</center></th>
-                        <th># Serie</th>
-                        <th>Nombre</th>
-                        <th style="text-align:right;">P. venta</th>
+                        <th style="width:50px;"><center>{{ __('producto.col_id') }}</center></th>
+                        <th>{{ __('producto.col_serie') }}</th>
+                        <th>{{ __('producto.col_nombre') }}</th>
+                        <th style="text-align:right;">{{ __('producto.col_p_venta') }}</th>
                         @if (Auth::user()->tipo_empresa!="RESTAURANTE")
-                        <th style="text-align:right;">P. venta 2</th>
-                        <th style="text-align:right;">P. mayorista</th>
-                        <th style="text-align:right;">P. compra</th>
+                        <th style="text-align:right;">{{ __('producto.col_p_venta_2') }}</th>
+                        <th style="text-align:right;">{{ __('producto.col_p_mayorista') }}</th>
+                        <th style="text-align:right;">{{ __('producto.col_p_compra') }}</th>
                         @endif
-                        <th style="text-align:right;">Cantidad</th>
-                        <th>Tipo</th>
+                        <th style="text-align:right;">{{ __('producto.col_cantidad') }}</th>
+                        <th>{{ __('producto.col_tipo') }}</th>
                         <th style="text-align:center;">...</th>
                     </thead>
                     <tbody id="body_video">
@@ -196,7 +196,7 @@
             <div class="modal-content">
 
                 <div class="modal-header" style="background: #3c8dbc; color: white">
-                    <h3 class="modal-title">REGISTRAR UN NUEVO PRODUCTO</h3>
+                    <h3 class="modal-title">{{ __('producto.modal_crear_titulo') }}</h3>
                 </div>
 
 
@@ -210,31 +210,31 @@
                             <input type="hidden" name='id_lugar' value="{{ $id_empresa }}" />
 
                             <div class="form-group">
-                                Nombre:<br>
-                                <input type="text" name="nombre" placeholder="Ingrese el nombre" class="form-control"
+                                {{ __('producto.nombre_label') }}<br>
+                                <input type="text" name="nombre" placeholder="{{ __('producto.placeholder_nombre') }}" class="form-control"
                                     id="nombre" value="">
                             </div>
 
 
                             <div class="form-group has-feedback">
-                                <label for="numero_serie">Numero de Serie:</label>
+                                <label for="numero_serie">{{ __('producto.numero_serie_label') }}</label>
                                 <input
                                     type="text"
                                     name="numero_serie"
                                     id="numero_serie"
                                     class="form-control"
-                                    placeholder="Número de Serie"
+                                    placeholder="{{ __('producto.placeholder_numero_serie') }}"
                                     value="{{ old('numero_serie', '') }}"
                                     />
 
                                 <i class="fa fa-barcode form-control-feedback"></i>
                             </div>
 
-                            Buscar Categoria:
+                            {{ __('producto.buscar_categoria') }}
                             <div class="form-group">
                                 <select name="id_tipo_producto" id="id_categoria" class="form-control selectpicker"
                                     data-live-search="true">
-                                    <option value=""> BUSCAR CATEGORIA... </option>
+                                    <option value=""> {{ __('producto.opt_buscar_categoria') }} </option>
                                     @foreach ($tipo_producto as $mov)
                                         <option value="{{ $mov->id }}"
                                             @if ('' == $mov->id) selected="" @endif>{{ $mov->nombre }}
@@ -246,7 +246,7 @@
 
 
                             <div class="form-group">
-                                Descripcion:<br>
+                                {{ __('producto.descripcion_label') }}<br>
                                 <textarea
                                     name="descripcion"
                                     class="form-control"
@@ -259,7 +259,7 @@
 
                             <div hidden="">
                                 <div>
-                                    Realiza Pedidos
+                                    {{ __('producto.realiza_pedidos') }}
                                     <div class="material-switch pull-right">
                                         <input id="estado_pedido_producto" name="estado_pedido_producto" type="checkbox" />
                                         <label for="estado_pedido_producto" class="label-success"></label>
@@ -269,19 +269,19 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Precio de Compra:</label><br>
+                                <label>{{ __('producto.precio_compra_label') }}</label><br>
                                 <input type="decimal"  name="precio_compra" placeholder=" "
                                     class="form-control" id="precio_compra" value="0">
                             </div>
 
 
                             <div class="form-group">
-                                <label>Precio de Venta:</label><br>
+                                <label>{{ __('producto.precio_venta_label') }}</label><br>
                                 <input type="decimal"  name="precio" placeholder=" " class="form-control"
                                     value="0">
                             </div>
                             <div class="form-group" hidden>
-                                Cantidad:<br>
+                                {{ __('producto.cantidad_label') }}<br>
                                 <input type="number"  name="cantidad" placeholder="Cant."
                                     class="form-control" id="cantidad" value="0">
                             </div>
@@ -295,27 +295,27 @@
 
 
                             <div class="form-group" >
-                                Modelo:<br>
+                                {{ __('producto.modelo_label') }}<br>
                                 <input type="text"  name="modelo" placeholder="" class="form-control"
                                     id="modelo" value="">
                             </div>
                             <div class="form-group" >
-                                Marca:<br>
+                                {{ __('producto.marca_label') }}<br>
                                 <input type="text"  name="marca" placeholder="" class="form-control"
                                     id="marca" value="">
                             </div>
                             <div class="form-group">
-                                <label>Precio de Compra $US:</label><br>
+                                <label>{{ __('producto.precio_compra_sus_label') }}</label><br>
                                 <input type="decimal"  name="precio_compra_sus" placeholder=" " class="form-control"
                                      value="0">
                             </div>
                             <div class="form-group">
-                                <label>Precio de Venta 2:</label><br>
+                                <label>{{ __('producto.precio_venta_2_label') }}</label><br>
                                 <input type="decimal"  name="precio_venta_2" placeholder=" " class="form-control"
                                       value="0">
                             </div>
                             <div class="form-group">
-                                <label>Precio Mayorista:</label><br>
+                                <label>{{ __('producto.precio_mayorista_label') }}</label><br>
                                 <input type="decimal"  name="precio_mayorista" placeholder=" " class="form-control"
                                     id="precio_mayorista" value="0">
                             </div>
@@ -334,41 +334,41 @@
                                 <div class="btn-group">
                                     <label class="btn btn-warning">
                                         <i class="fa fa-upload" aria-hidden="true"></i>
-                                        Buscar imagen<input type="file" name="imagen1_producto" id="imagen1_producto"
+                                        {{ __('producto.buscar_imagen') }}<input type="file" name="imagen1_producto" id="imagen1_producto"
                                             onchange="loadFile(event)" accept="image/*" style="display: none;">
                                     </label>
                                 </div>
                             </div>
 			    <div class="form-group" hidden="" >
-                                Codigo de Producto:<br>
+                                {{ __('producto.codigo_producto_label') }}<br>
                                 <input type="text" min="0" name="codigo_producto" placeholder="" class="form-control"
                                     id="codigo_producto" value="">
                             </div>
 
                             <div class="form-group" hidden>
-                                Cantidad minima:<br>
+                                {{ __('producto.cantidad_minima_label') }}<br>
                                 <input type="number"   name="cantidad_minima" placeholder=" "
                                     class="form-control" id="cantidad_minima" value="0">
                             </div>
                             <div class="form-group" >
-                                Cantidad:<br>
+                                {{ __('producto.cantidad_label') }}<br>
                                 <input type="number"  name="peso" placeholder=" "
                                     class="form-control" id="peso" value="0">
                             </div>
                             <div class="form-group">
-                                Cantidad minima:<br>
+                                {{ __('producto.cantidad_minima_label') }}<br>
                                 <input type="number"   name="peso_minimo" placeholder=" "
                                     class="form-control" id="peso_minimo" value="0">
                             </div>
 
                             <div class="form-group" hidden>
-                                Fecha de vencimiento:<br>
+                                {{ __('producto.fecha_vencimiento_label') }}<br>
                                 <input type="date" name="fecha_vencimiento" placeholder=" " class="form-control"
                                     value="<?php echo date('Y-m-d'); ?>">
                             </div>
 
                             <div class="form-group" hidden>
-                                Días antes de Vencerse :<br>
+                                {{ __('producto.dias_antes_vencerse_label') }}<br>
                                 <input type="number"   name="dia_minimo_vencimiento" placeholder=" "
                                     class="form-control" id="dia_minimo_vencimiento" value="10">
                             </div>
@@ -387,12 +387,12 @@
                         type="submit"
                         class="btn btn-primary"
                         >
-                        REGISTRAR
+                        {{ __('producto.registrar') }}
                         </button>
 
                     </form>
 
-                    <button data-dismiss="modal" class="btn btn-danger">CANCELAR</button>
+                    <button data-dismiss="modal" class="btn btn-danger">{{ __('producto.cancelar') }}</button>
                 </div>
             </div>
         </div>
@@ -411,7 +411,7 @@
             <div class="modal-content">
 
                 <div class="modal-header" style="background: #3c8dbc; color: white">
-                    <h3 class="modal-title">ACTUALIZAR PRODUCTO</h3>
+                    <h3 class="modal-title">{{ __('producto.modal_actualizar_titulo') }}</h3>
                 </div>
 
                 <div class="modal-body">
@@ -425,30 +425,30 @@
                             <input type="hidden" name='id_lugar' value="{{ $id_empresa }}" />
 
                             <div class="form-group">
-                                Nombre:<br>
-                                <input type="text" name="nombre" placeholder="Ingrese el nombre"
+                                {{ __('producto.nombre_label') }}<br>
+                                <input type="text" name="nombre" placeholder="{{ __('producto.placeholder_nombre') }}"
                                     class="form-control" id="nombre_actualizar" value="">
                             </div>
 
                             <div class="form-group has-feedback">
-                                <label for="numero_serie">Numero de Serie:</label>
+                                <label for="numero_serie">{{ __('producto.numero_serie_label') }}</label>
                                 <input
                                     type="text"
                                     name="numero_serie"
                                     id="numero_serie_actualizar"
                                     class="form-control"
-                                    placeholder="Número de Serie"
+                                    placeholder="{{ __('producto.placeholder_numero_serie') }}"
                                     value="{{ old('numero_serie', $numero_serie ?? '') }}"
                                     />
 
                                 <i class="fa fa-barcode form-control-feedback"></i>
                             </div>
 
-                            Buscar Categoria:
+                            {{ __('producto.buscar_categoria') }}
                             <div class="form-group">
                                 <select name="id_tipo_producto" class="form-control" id="id_tipo_producto_actualizar"
                                     data-live-search="true">
-                                    <option value=""> BUSCAR... </option>
+                                    <option value=""> {{ __('producto.opt_buscar') }} </option>
                                     @foreach ($tipo_producto as $mov)
                                         <option value="{{ $mov->id }}">{{ $mov->nombre }} </option>
                                     @endforeach
@@ -458,7 +458,7 @@
 
 
                             <div class="form-group">
-                                Descripcion:<br>
+                                {{ __('producto.descripcion_label') }}<br>
                                 <textarea
                                     name="descripcion"
                                     id="descripcion_actualizar"
@@ -470,7 +470,7 @@
 
                             <div hidden="">
                                 <div>
-                                    Realiza Pedidos
+                                    {{ __('producto.realiza_pedidos') }}
                                     <div class="material-switch pull-right">
                                         <input id="estado_pedido_actualizar" name="estado_pedido" type="checkbox" />
                                         <label for="estado_pedido_actualizar" class="label-success"></label>
@@ -481,18 +481,18 @@
 
 
                             <div class="form-group">
-                               <label> Precio de Compra:</label><br>
+                               <label> {{ __('producto.precio_compra_label') }}</label><br>
                                 <input type="decimal" name="precio_compra" placeholder=" " class="form-control"
                                     id="precio_compra_actualizar" value="">
                             </div>
                             <div class="form-group">
-                                <label>Precio de Venta:</label><br>
+                                <label>{{ __('producto.precio_venta_label') }}</label><br>
                                 <input type="decimal" name="precio" placeholder=" " class="form-control"
                                     id="precio_actualizar" value="">
                             </div>
 
                             <div class="form-group" hidden>
-                                Cantidad:<br>
+                                {{ __('producto.cantidad_label') }}<br>
                                 <input type="number" name="cantidad" placeholder=" " class="form-control"
                                     id="cantidad_actualizar" value="0">
                             </div>
@@ -505,27 +505,27 @@
 
 
                             <div class="form-group" >
-                                Modelo:<br>
+                                {{ __('producto.modelo_label') }}<br>
                                 <input type="text" name="modelo" placeholder=" " class="form-control"
                                     id="modelo_actualizar" value="">
                             </div>
                             <div class="form-group"  >
-                                Marca:<br>
+                                {{ __('producto.marca_label') }}<br>
                                 <input type="text" name="marca" placeholder=" " class="form-control"
                                     id="marca_actualizar" value="">
                             </div>
                             <div class="form-group"  >
-                                <label>Precio de Compra $US:</label><br>
+                                <label>{{ __('producto.precio_compra_sus_label') }}</label><br>
                                 <input type="decimal" name="precio_compra_sus" placeholder=" " class="form-control"
                                     id="precio_compra_sus_actualizar" value="">
                             </div>
                             <div class="form-group"  >
-                                <label>Precio de Venta 2:</label><br>
+                                <label>{{ __('producto.precio_venta_2_label') }}</label><br>
                                 <input type="decimal" name="precio_venta_2" placeholder=" " class="form-control"
                                     id="precio_venta_2_actualizar" value="">
                             </div>
                             <div class="form-group"  >
-                                <label>Precio Mayorista:</label><br>
+                                <label>{{ __('producto.precio_mayorista_label') }}</label><br>
                                 <input type="decimal" name="precio_mayorista" placeholder=" " class="form-control"
                                     id="precio_mayorista_actualizar" value="">
                             </div>
@@ -542,7 +542,7 @@
                                 <div class="btn-group">
                                     <label class="btn btn-warning">
                                         <i class="fa fa-upload" aria-hidden="true"></i>
-                                        Buscar imagen<input type="file" name="imagen1_producto"
+                                        {{ __('producto.buscar_imagen') }}<input type="file" name="imagen1_producto"
                                             id="imagen1_producto_actualizar" onchange="loadFile_actualizar(event)"
                                             accept="image/*" style="display: none;">
                                     </label>
@@ -554,35 +554,35 @@
 
 
                            <div class="form-group" hidden="">
-                                Codigo de Producto:<br>
+                                {{ __('producto.codigo_producto_label') }}<br>
                                 <input type="text" name="codigo_producto" placeholder=" " class="form-control"
                                     id="codigo_producto_actualizar" value="">
                             </div>
                             <div class="form-group" hidden>
-                                Cantidad minima:<br>
+                                {{ __('producto.cantidad_minima_label') }}<br>
                                 <input type="decimal" name="cantidad_minima" placeholder=" " class="form-control"
                                     id="cantidad_minima_actualizar" value="">
                             </div>
                             <div class="form-group">
-                                Cantidad:<br>
+                                {{ __('producto.cantidad_label') }}<br>
                                 <input type="number"  name="peso" placeholder=" "
                                     class="form-control" id="peso_actualizar" value="0">
                             </div>
                             <div class="form-group">
-                                Cantidad minima:<br>
+                                {{ __('producto.cantidad_minima_label') }}<br>
                                 <input type="number"  name="peso_minimo" placeholder=" "
                                     class="form-control" id="peso_minimo_actualizar" value="10">
                             </div>
 
 
                             <div class="form-group" hidden>
-                                Fecha de vencimiento:<br>
+                                {{ __('producto.fecha_vencimiento_label') }}<br>
                                 <input type="date" name="fecha_vencimiento" placeholder=" " class="form-control"
                                     id="fecha_vencimiento_actualizar">
                             </div>
 
                             <div class="form-group" hidden>
-                                D�as antes de Vencerse :<br>
+                                {{ __('producto.dias_antes_vencerse_label') }}<br>
                                 <input type="number"  name="dia_minimo_vencimiento" placeholder=" "
                                     class="form-control" id="dia_minimo_vencimiento_actualizar" value="10">
                             </div>
@@ -600,12 +600,12 @@
                         <button
                             type="submit"
                             class="btn btn-primary"  >
-                            ACTUALIZAR
+                            {{ __('producto.actualizar') }}
                         </button>
 
                         </form>
 
-                        <button data-dismiss="modal" class="btn btn-danger">CANCELAR</button>
+                        <button data-dismiss="modal" class="btn btn-danger">{{ __('producto.cancelar') }}</button>
                     </div>
                 </div>
             </div>

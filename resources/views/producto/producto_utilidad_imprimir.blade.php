@@ -55,11 +55,11 @@ function imprimir() {
     </td>
     <td style="width: 80%; border: 0px solid white;">
       <center>
-      <font size="3" style="font-weight: bold;">TIENDA {{$empresa[0]->razon_social}} </font><br>
-      Telefono: {{$empresa[0]->whatsapp}}<br>
-      Dirección: {{$empresa[0]->direccion}}<br>
+      <font size="3" style="font-weight: bold;">{{ __('producto.tienda') }} {{$empresa[0]->razon_social}} </font><br>
+      {{ __('producto.telefono_label') }} {{$empresa[0]->whatsapp}}<br>
+      {{ __('producto.direccion_label') }} {{$empresa[0]->direccion}}<br>
 
-      <h2>LISTA DE PRODUCTOS CON INVERSION</h2></center>
+      <h2>{{ __('producto.lista_con_inversion_titulo') }}</h2></center>
     </td>
     <td style="width: 10%; border: 0px solid white;">
 
@@ -84,36 +84,36 @@ function imprimir() {
 ?>
 
       @foreach ($sucursal as $su)
-      <br><CENTER><B>SUCURSAL {{$su->nombre}}</B></CENTER>
+      <br><CENTER><B>{{ __('producto.sucursal_label') }} {{$su->nombre}}</B></CENTER>
         <?php $productos_filtrados = array(); ?>
 
         <table  >
           <thead >
           <tr>
             <th>
-              <center>#</center>
+              <center>{{ __('producto.col_numeral') }}</center>
           </th>
           <th>
-              <center># Codigo</center>
+              <center>{{ __('producto.col_codigo') }}</center>
           </th>
           <th>
-            <center>Tipo</center>
+            <center>{{ __('producto.col_tipo') }}</center>
         </th>
           <th>
-              <center>Nombre / Descripcion</center>
+              <center>{{ __('producto.col_nombre_descripcion') }}</center>
           </th>
           <th>
-              <center>Precio Compra</center>
+              <center>{{ __('producto.col_precio_compra') }}</center>
           </th>
           <th>
-              <center>Precio de Venta</center>
+              <center>{{ __('producto.col_precio_de_venta') }}</center>
           </th>
           <th>
-              <center>Cant</center>
+              <center>{{ __('producto.col_cant') }}</center>
           </th>
 
           <th>
-              <center>Inversion</center>
+              <center>{{ __('producto.col_inversion') }}</center>
           </th>
 
           </tr>
@@ -151,7 +151,7 @@ function imprimir() {
 
            @endforeach
            <tr>
-            <td colspan="7" align="right"> <b> TOTAL DE INVERSION: </b></td>
+            <td colspan="7" align="right"> <b> {{ __('producto.total_de_inversion') }} </b></td>
             <td>
               <hr style="border: 1px solid black; margin: 0px; ">
              {{ $inversion }}

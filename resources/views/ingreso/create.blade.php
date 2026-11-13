@@ -69,14 +69,14 @@
     @csrf
 
 
-  <h4 align="left" style="color: red">Registrar Ingreso</h4>
+  <h4 align="left" style="color: red">{{ __('ingreso.registrar_ingreso_h4') }}</h4>
   <input type="hidden" name="id_caja" value="{{$id_caja}}"/>
 
   <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-      Nombre del Cliente:
+      {{ __('ingreso.nombre_del_cliente') }}
          <div class="input-group">
            <select name="id_cliente" class="form-control selectpicker" id="id_cliente" data-live-search="true" >
-         <option value="">  BUSCAR...                                </option>
+         <option value="">  {{ __('ingreso.opt_buscar') }}                                </option>
             @foreach($buscar_cliente as $mov)
             <option value="{{$mov->id}}">{{$mov->nombre}}  {{$mov->paterno}} - {{$mov->ci_nit}} </option>
             @endforeach
@@ -84,18 +84,18 @@
 
           <span class="input-group-btn ">
             <a href="{!!URL::to('cliente/create')!!}">
-            <button class="btn btn-success" type="button"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo</button>
+            <button class="btn btn-success" type="button"><i class="fa fa-plus" aria-hidden="true"></i> {{ __('ingreso.nuevo') }}</button>
             </a>
           </span>
         </div>
 
 
-       Tipo de Ingreso:
+       {{ __('ingreso.tipo_de_ingreso') }}
 
 
         <div class="input-group">
           <select name="id_tipo" class="form-control selectpicker" id="id_tipo" data-live-search="true" >
-         <option value="">  BUSCAR...                                </option>
+         <option value="">  {{ __('ingreso.opt_buscar') }}                                </option>
             @foreach($buscar_tipo as $mov)
             <option value="{{$mov->id}}" >{{$mov->nombre}} </option>
             @endforeach
@@ -103,19 +103,19 @@
 
           <span class="input-group-btn ">
             <a href="{!!URL::to('tipo_gasto')!!}">
-            <button class="btn btn-success" type="button"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo</button>
+            <button class="btn btn-success" type="button"><i class="fa fa-plus" aria-hidden="true"></i> {{ __('ingreso.nuevo') }}</button>
             </a>
           </span>
         </div>
 
 	<div class="form-group">
-		Monto Total:<br>
-		<input type="number"  name="monto" placeholder="Ingrese el Monto" class="form-control" id="monto" value="0" >
+		{{ __('ingreso.monto_total_dp') }}<br>
+		<input type="number"  name="monto" placeholder="{{ __('ingreso.placeholder_monto') }}" class="form-control" id="monto" value="0" >
 	</div>
 
 	<div class="form-group">
-		Concepto:<br>
-		<textarea name="concepto" class="form-control" placeholder="Ingrese el concepto">{{ old('concepto') }}</textarea>
+		{{ __('ingreso.concepto_label') }}<br>
+		<textarea name="concepto" class="form-control" placeholder="{{ __('ingreso.placeholder_concepto') }}">{{ old('concepto') }}</textarea>
 
 	</div>
 
@@ -127,9 +127,9 @@
 
 		<div align="left">
 
-			<button type="submit" class="btn btn-primary" id="btn_registrar" onclick="btn_esconder()">REGISTRAR</button>
+			<button type="submit" class="btn btn-primary" id="btn_registrar" onclick="btn_esconder()">{{ __('ingreso.registrar') }}</button>
 
-			<a href="{!!URL::to('ingreso')!!}" class="btn btn-danger">CANCELAR</a>
+			<a href="{!!URL::to('ingreso')!!}" class="btn btn-danger">{{ __('ingreso.cancelar') }}</a>
 
 </div>
 

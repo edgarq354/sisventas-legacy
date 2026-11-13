@@ -31,26 +31,26 @@
     <div class="dash-hero" style="margin-bottom:14px;">
         <div class="dash-hero__icon"><i class="fa fa-users"></i></div>
         <div>
-            <h3 class="dash-hero__title">Clientes</h3>
-            <p class="dash-hero__sub">{{ count($cliente) }} registrados</p>
+            <h3 class="dash-hero__title">{{ __('cliente.titulo_clientes') }}</h3>
+            <p class="dash-hero__sub">{{ __('cliente.registrados', ['count' => count($cliente)]) }}</p>
         </div>
     </div>
 
     <div class="cl-actions">
-        <a class="cl-btn cl-btn--add" href="{!! URL::to('cliente/create') !!}"><i class="fa fa-plus"></i> Agregar cliente</a>
-        <a class="cl-btn cl-btn--print" href="cliente_imprimir" target="_blank"><i class="fa fa-print"></i> Imprimir</a>
+        <a class="cl-btn cl-btn--add" href="{!! URL::to('cliente/create') !!}"><i class="fa fa-plus"></i> {{ __('cliente.agregar_cliente') }}</a>
+        <a class="cl-btn cl-btn--print" href="cliente_imprimir" target="_blank"><i class="fa fa-print"></i> {{ __('cliente.imprimir') }}</a>
     </div>
 
     <div class="dash-card">
-        <div class="dash-card__head"><i class="fa fa-list"></i> Lista de clientes</div>
+        <div class="dash-card__head"><i class="fa fa-list"></i> {{ __('cliente.lista_clientes') }}</div>
         <div class="dash-card__body dash-card__body--flush">
             <div class="table-responsive" style="overflow-x:auto;">
                 <table class="table table-striped table-hover" id="tabla_sin_imprimir" style="background:white;margin:0;">
                     <thead>
-                        <th>CI / NIT</th>
-                        <th>Nombre</th>
-                        <th>Teléfono</th>
-                        <th>Tipo</th>
+                        <th>{{ __('cliente.col_ci_nit') }}</th>
+                        <th>{{ __('cliente.col_nombre') }}</th>
+                        <th>{{ __('cliente.col_telefono') }}</th>
+                        <th>{{ __('cliente.col_tipo') }}</th>
                         <th style="text-align:right;">...</th>
                     </thead>
                     <tbody id="body_cliente">
@@ -64,13 +64,13 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if($usr->tipo_c==1)<span class="cl-tag cl-tag--c">Cliente</span> @endif
-                                    @if($usr->tipo_p==1)<span class="cl-tag cl-tag--p">Proveedor</span> @endif
-                                    @if($usr->tipo_e==1)<span class="cl-tag cl-tag--e">Empleado</span>@endif
-                                    @if($usr->tipo_e==1 && $usr->fecha_ingreso)<br><span style="font-size:10px;color:#8d7b6f;">Ing. {{ $usr->fecha_ingreso }}</span>@endif
+                                    @if($usr->tipo_c==1)<span class="cl-tag cl-tag--c">{{ __('cliente.tag_cliente') }}</span> @endif
+                                    @if($usr->tipo_p==1)<span class="cl-tag cl-tag--p">{{ __('cliente.tag_proveedor') }}</span> @endif
+                                    @if($usr->tipo_e==1)<span class="cl-tag cl-tag--e">{{ __('cliente.tag_empleado') }}</span>@endif
+                                    @if($usr->tipo_e==1 && $usr->fecha_ingreso)<br><span style="font-size:10px;color:#8d7b6f;">{{ __('cliente.ing_fecha', ['fecha' => $usr->fecha_ingreso]) }}</span>@endif
                                 </td>
                                 <td style="text-align:right;">
-                                    <a class="btn btn-primary btn-sm" href='cliente/{{ $usr->id }}/edit' title="Ver y editar"><i class="fa fa-pencil"></i></a>
+                                    <a class="btn btn-primary btn-sm" href='cliente/{{ $usr->id }}/edit' title="{{ __('cliente.ver_y_editar') }}"><i class="fa fa-pencil"></i></a>
                                 </td>
                             </tr>
                         @endforeach

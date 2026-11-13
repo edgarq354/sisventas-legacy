@@ -69,25 +69,25 @@
     @csrf
 
      <?php //echo e(Form::open(array('url' => 'crear_empresa'))); ?>
-  <h4 align="left" style="color: red">Registrar del personal</h4>
+  <h4 align="left" style="color: red">{{ __('cliente.registrar_del_personal') }}</h4>
 
   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 	<div class="form-group">
-		CI/NIT:<br>
-		<input type="text"  name="ci_nit" placeholder="Ingrese el CI / NIT" class="form-control" id="ci_nit" maxlength="18" >
+		{{ __('cliente.ci_nit_label') }}<br>
+		<input type="text"  name="ci_nit" placeholder="{{ __('cliente.placeholder_ci_nit2') }}" class="form-control" id="ci_nit" maxlength="18" >
 	</div>
 
 	<div class="form-group">
-		NOMBRE:<br>
-		<input type="text"  name="nombre" placeholder="Ingrese el nombre" class="form-control" id="nombre"  >
+		{{ __('cliente.nombre_mayus') }}<br>
+		<input type="text"  name="nombre" placeholder="{{ __('cliente.placeholder_nombre') }}" class="form-control" id="nombre"  >
 	</div>
   <div class="form-group">
-    PATERNO:<br>
-    <input type="text"  name="paterno" placeholder="Ingrese el apellido paterno" class="form-control" id="paterno"  >
+    {{ __('cliente.paterno_mayus') }}<br>
+    <input type="text"  name="paterno" placeholder="{{ __('cliente.placeholder_paterno') }}" class="form-control" id="paterno"  >
   </div>
   <div class="form-group">
-    MATERNO:<br>
-    <input type="text"  name="materno" placeholder="Ingrese el apellido materno" class="form-control" id="materno"  >
+    {{ __('cliente.materno_mayus') }}<br>
+    <input type="text"  name="materno" placeholder="{{ __('cliente.placeholder_materno') }}" class="form-control" id="materno"  >
   </div>
 
 
@@ -96,20 +96,20 @@
 	</div>
 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 <div class="form-group">
-    TELEFONO:<br>
-    <input type="number"  name="telefono" id="telefono" class="form-control" placeholder="Ingrese el telefono" maxlength="10" >
+    {{ __('cliente.telefono_mayus') }}<br>
+    <input type="number"  name="telefono" id="telefono" class="form-control" placeholder="{{ __('cliente.placeholder_telefono2') }}" maxlength="10" >
   </div>
 
   <div class="form-group">
-    CORREO:<br>
+    {{ __('cliente.correo_mayus') }}<br>
     <input type="email"  name="correo" id="correo" class="form-control" placeholder="ejemplo@ejemplo.com" >
   </div>
 
   <div    >
-    <h4>Tipo de Personal</h4>
+    <h4>{{ __('cliente.tipo_de_personal') }}</h4>
      <div align="form-group" >
       <div class="list-group-item ">
-         Cliente:
+         {{ __('cliente.cliente_dp') }}
         <div class="material-switch pull-right">
           <input id="tipo_c" name="tipo_c" type="checkbox" value="1" checked="" />
           <label for="tipo_c" class="label-success"  ></label>
@@ -119,7 +119,7 @@
 
      <div align="form-group" >
       <div class="list-group-item ">
-         Proveedor:
+         {{ __('cliente.proveedor_dp') }}
         <div class="material-switch pull-right">
           <input id="tipo_p" name="tipo_p" type="checkbox"  value="1" />
           <label for="tipo_p" class="label-success"  ></label>
@@ -129,7 +129,7 @@
 
       <div align="form-group" >
       <div class="list-group-item ">
-         Empleado:
+         {{ __('cliente.empleado_dp') }}
         <div class="material-switch pull-right">
           <input id="tipo_e" name="tipo_e" type="checkbox" value="1" />
           <label for="tipo_e" class="label-success" onclick="categoria_empleado();" ></label>
@@ -142,13 +142,13 @@
 
  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
   <div class="form-group">
-    <label for="direccion">DIRECCION:</label><br>
-    <textarea name="direccion" id="direccion" class="form-control" placeholder="Ingrese la dirección" style="height:100px;">{{ old('direccion') }}</textarea>
+    <label for="direccion">{{ __('cliente.direccion_mayus') }}</label><br>
+    <textarea name="direccion" id="direccion" class="form-control" placeholder="{{ __('cliente.placeholder_direccion') }}" style="height:100px;">{{ old('direccion') }}</textarea>
   </div>
 
   <div class="form-group">
-    <label for="descripcion">DESCRIPCION:</label><br>
-    <textarea name="descripcion" id="descripcion" class="form-control" placeholder="Ingrese la descripcion" style="height:100px;">{{ old('descripcion') }}</textarea>
+    <label for="descripcion">{{ __('cliente.descripcion_mayus') }}</label><br>
+    <textarea name="descripcion" id="descripcion" class="form-control" placeholder="{{ __('cliente.placeholder_descripcion') }}" style="height:100px;">{{ old('descripcion') }}</textarea>
 
     <input type="hidden" name="latitud" id="latitud" value="{{ old('latitud') }}">
     <input type="hidden" name="longitud" id="longitud" value="{{ old('longitud') }}">
@@ -158,7 +158,7 @@
 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
   <div id="cat_empleado" hidden>
     <div class="form-group">
-      <label for="fecha_nacimiento">Fecha de Ingreso:</label>
+      <label for="fecha_nacimiento">{{ __('cliente.fecha_de_ingreso') }}</label>
       <div class="input-group date" id="datetimepicker10">
         <input
           type="text"
@@ -177,25 +177,25 @@
     </div>
 
     <div class="form-group">
-      <label for="sueldo">Sueldo:</label>
+      <label for="sueldo">{{ __('cliente.sueldo_label') }}</label>
       <input
         type="text"
         name="sueldo"
         id="sueldo"
         class="form-control"
-        placeholder="Ingrese su sueldo"
+        placeholder="{{ __('cliente.placeholder_sueldo') }}"
         value="{{ old('sueldo', 0) }}"
       />
     </div>
 
     <div class="form-group">
-      <label for="cargo">Cargo:</label>
+      <label for="cargo">{{ __('cliente.cargo_label') }}</label>
       <input
         type="text"
         name="cargo"
         id="cargo"
         class="form-control"
-        placeholder="Ingrese el cargo"
+        placeholder="{{ __('cliente.placeholder_cargo') }}"
         value="{{ old('cargo', '') }}"
       />
     </div>
@@ -204,7 +204,7 @@
 
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" hidden>
-  <label for="pac-input">Dirección de domicilio:</label>
+  <label for="pac-input">{{ __('cliente.direccion_domicilio') }}</label>
   <input id="pac-input" class="controls form-control" type="text" placeholder="Search Box" />
   <div id="map" style="width: 100%; height: 500px;"></div>
 </div>
@@ -213,8 +213,8 @@
 
         <div align="left">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <button type="submit" class="btn btn-primary" id="btn_registrar" onclick="btn_esconder()">REGISTRAR</button>
-            <a href="{{ url('cliente') }}" class="btn btn-danger">CANCELAR</a>
+            <button type="submit" class="btn btn-primary" id="btn_registrar" onclick="btn_esconder()">{{ __('cliente.registrar') }}</button>
+            <a href="{{ url('cliente') }}" class="btn btn-danger">{{ __('cliente.cancelar') }}</a>
         </div>
         </div>
 

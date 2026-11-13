@@ -55,7 +55,7 @@ $message=Session::get('message');
 @if($message=='store')
 <div class="alert alert-success alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert" arial-label="Close"><span aria-hidden="true">$times;</span></button>
-	Pago registrado con Exito.
+	{{ __('nota_venta.pago_registrado') }}
 </div>
 @endif
 	<div class="row">	
@@ -68,23 +68,23 @@ $message=Session::get('message');
 			<div class=" panel panel-danger  ">
 
 				<div class="panel-heading">
-					<h3>HISTORIAL DE VENTAS POR PRODUCTO</h3>
-					 Fecha de Inicio:
+					<h3>{{ __('nota_venta.historial_ventas_producto_h3') }}</h3>
+					 {{ __('nota_venta.fecha_inicio_dp') }}
 					<input type="text"  value="{{$fechaInicio}}"  id='calendario1' onmouseover ="buscarEnlace();">
-					Fecha Final:
+					{{ __('nota_venta.fecha_final_dp') }}
 					<input type="text"  value="{{$fechaFinal}}"  id='calendario2' onmouseover ="buscarEnlace();">
 					 
 					 <select name="id_producto" id="idProducto" class=" selectpicker"  data-live-search="true" onchange="seleccionarTipo();" >
-				         <option value="0"> Todos los Productos                             </option>
+				         <option value="0"> {{ __('nota_venta.todos_los_productos') }}                             </option>
 				            @foreach($producto as $mov) 
 				            <option value="{{$mov->id}}"> {{$mov->nombre}} </option>   
 				            @endforeach
 				        </select>  
 				  <a class="btn btn-warning"  href="../../nota_venta_historial_por_producto/{{$fechaInicio}}/{{$fechaInicio}}/0" id="buscar" onmouseover ="buscarEnlace();">
-				  	<i class="fa fa-search"></i> Buscar </a>
+				  	<i class="fa fa-search"></i> {{ __('nota_venta.buscar') }} </a>
 
 				  	<a class="btn btn-primary"  href="../../nota_venta_historial_por_producto_imprimir/{{$fechaInicio}}/{{$fechaInicio}}/0" id="imprimir" onmouseover ="buscarEnlace();">
-				  	<i class="fa fa-print"></i> Imprimir </a>
+				  	<i class="fa fa-print"></i> {{ __('nota_venta.imprimir') }} </a>
 			  	</div>
 			</div>
   
@@ -109,25 +109,25 @@ $message=Session::get('message');
 				<table class="table table-striped table-bordered table-condensed table-hover" style="background: white" id="tabla_sin_imprimir" align="center">
 				<thead>
                             <th>
-                                <center>ID</center>
+                                <center>{{ __('nota_venta.col_id') }}</center>
                             </th> 
                             <th>
-                                <center>TIPO DE PRODUCTO</center>
+                                <center>{{ __('nota_venta.col_tipo_producto_mayus') }}</center>
                             </th>
                             <th>
-                                <center>NOMBRE</center>
+                                <center>{{ __('nota_venta.col_nombre_mayus') }}</center>
                             </th> 
                             <th>
-                                <center>PRECIO</center>
+                                <center>{{ __('nota_venta.col_precio_mayus') }}</center>
                             </th>  
                             <th>
-                                <center>STOCK</center>
+                                <center>{{ __('nota_venta.col_stock_mayus') }}</center>
                             </th>
                             <th>
-                                <center>STOCK VENTA</center>
+                                <center>{{ __('nota_venta.col_stock_venta_mayus') }}</center>
                             </th>
                              <th>
-                                <center>TOTAL</center>
+                                <center>{{ __('nota_venta.col_total_mayus2') }}</center>
                             </th>
                             <th>
                                 <center>...</center>
@@ -192,7 +192,7 @@ $message=Session::get('message');
 	  <div class="modal-content">
   
 		<div class="modal-header" style="background: #d4463e; color: white">
-		  <h3 class="modal-title">NOTAS DE VENTAS : <label id="idNotaVenta"></label></h3>
+		  <h3 class="modal-title">{{ __('nota_venta.modal_notas_ventas_titulo') }} <label id="idNotaVenta"></label></h3>
 		</div>   
 		
   
@@ -201,12 +201,12 @@ $message=Session::get('message');
    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
 			<table class="table table-striped table-bordered table-condensed table-hover" style="background: white">
 				<thead> 
-					<th><center>ID VENTA</center></th> 
-					<th><center>FECHA</center></th>  
-					<th><center>CLIENTE</center></th> 
-					<th><center>USUARIO</center></th>  
-					<th><center>CANTIDAD</center></th> 
-					<th><center>TOTAL</center></th> 
+					<th><center>{{ __('nota_venta.col_id_venta') }}</center></th> 
+					<th><center>{{ __('nota_venta.col_fecha_mayus2') }}</center></th>  
+					<th><center>{{ __('nota_venta.col_cliente_mayus') }}</center></th> 
+					<th><center>{{ __('nota_venta.col_usuario_mayus') }}</center></th>  
+					<th><center>{{ __('nota_venta.col_cantidad_mayus') }}</center></th> 
+					<th><center>{{ __('nota_venta.col_total_mayus2') }}</center></th> 
 				</thead>
 				<tbody align="center" id="body_detalle">					
 				

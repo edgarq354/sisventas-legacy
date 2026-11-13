@@ -114,14 +114,14 @@ function changeFunc(sel) {
             },
             //una vez finalizado correctamente
             success: function(data){
-                alertify.success("Imagen agregada correctamente");
-              $("#"+divresul+"").html("Imagen agregada correctamente");
+                alertify.success(@json(__('producto_tipo.imagen_agregada')));
+              $("#"+divresul+"").html(@json(__('producto_tipo.imagen_agregada')));
               $('<li class="dropdown li"></li>').appendTo('#lista_imagen1').html('<img src="'+data+'" alt="" class="img-rounded img-thumbnail"  width="150px" />').addClass('success');
-              $("#foto_imagen1").attr('src', $("#foto_imagen1").attr('src') + '?' + Math.random() );               
+              $("#foto_imagen1").attr('src', $("#foto_imagen1").attr('src') + '?' + Math.random() );
             },
             //si ha ocurrido un error
             error: function(data){
-               alertify.error("ha ocurrido un error"+data) ;
+               alertify.error(@json(__('producto_tipo.ha_ocurrido_error'))+data) ;
                 
             }
         });
@@ -145,7 +145,7 @@ $imagen1=$value->imagen1;
 ?>
 
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  " > 
-  <h2 align="left" style="color: black">Editar Producto</h2>
+  <h2 align="left" style="color: black">{{ __('producto_tipo.editar_producto') }}</h2>
   <hr style="background-color: black; height: 1px;">
 </div>
 
@@ -157,23 +157,23 @@ $imagen1=$value->imagen1;
             <input type="hidden" name='id_producto' value="{{$value->id}}" />  
 
           	<div class="form-group">
-              Nombre:<br>
-              <input type="text"  name="nombre" placeholder="Ingrese el nombre" class="form-control" id="nombre" value="{{$value->nombre}}" >
+              {{ __('producto_tipo.nombre_label') }}<br>
+              <input type="text"  name="nombre" placeholder="{{ __('producto.placeholder_nombre') }}" class="form-control" id="nombre" value="{{$value->nombre}}" >
             </div>
 
             <div class="form-group">
-              Imei:<br>
+              {{ __('producto_tipo.imei_label') }}<br>
               <input type="text"  name="imei"    class="form-control"  value="{{$value->imei}}"  >
             </div>
-           
+
 
             <div class="form-group">
-              Precio:<br>
+              {{ __('producto_tipo.precio_label') }}<br>
               <input type="decimal"  name="precio"   value="0" class="form-control"    value="{{$value->precio}}">
             </div>
 
              <div class="form-group">
-              Cantidad:<br>
+              {{ __('producto_tipo.cantidad_label') }}<br>
               <input type="number"  name="cantidad"   value="0" class="form-control"  value="{{$value->cantidad}}"  >
             </div>
 
@@ -183,10 +183,10 @@ $imagen1=$value->imagen1;
 
       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-         Buscar Categoria:
+         {{ __('producto_tipo.buscar_categoria') }}
           <div class="form-group">
             <select name="id_tipo_producto" class="form-control selectpicker" id="id_tipo_producto" data-live-search="true"  onchange="changeFunc(this);">
-               <option value="">  BUSCAR...                                </option>
+               <option value="">  {{ __('producto_tipo.opt_buscar') }}                                </option>
                   @foreach($tipo_producto as $mov)
                   <option value="{{$mov->id}}"
                       @if($mov->id == $value->id_tipo_producto)
@@ -200,16 +200,16 @@ $imagen1=$value->imagen1;
            
           </div>
            <div class="form-group">
-          Nombre del Tipo de Producto:<br>
+          {{ __('producto_tipo.nombre_tipo_producto_label') }}<br>
           <input type="text"  name="nombre_tipo_producto"   id="nombre_tipo_producto" class="form-control"   value="{{$value->nombre_tipo}}" >
         </div>
 
         <div class="form-group">
-          Descripción:<br>
-          {!!Form::textarea('descripcion',$value->descripcion,['class'=>'form-control','placeholder'=>'Ingrese la descripción','style'=>'height:100px;'  ])!!}
+          {{ __('producto_tipo.descripcion_label') }}<br>
+          {!!Form::textarea('descripcion',$value->descripcion,['class'=>'form-control','placeholder'=>__('producto_tipo.placeholder_descripcion'),'style'=>'height:100px;'  ])!!}
         </div>
-        {!!Form::submit('ACTUALIZAR',['class'=>'btn btn-primary','id'=>'btn_registrar','onclick'=>'btn_esconder()'])!!}
-            <a href="{!!URL::to('producto_tipo')!!}" class="btn btn-danger">CANCELAR</a>
+        {!!Form::submit(__('producto_tipo.actualizar_producto'),['class'=>'btn btn-primary','id'=>'btn_registrar','onclick'=>'btn_esconder()'])!!}
+            <a href="{!!URL::to('producto_tipo')!!}" class="btn btn-danger">{{ __('producto_tipo.cancelar') }}</a>
         
       </div>
  
@@ -242,7 +242,7 @@ $imagen1=$value->imagen1;
          <input type="hidden" name="id_producto" id="id_producto" value="{{$id_empresa}}">
 
         <table class="table table-striped table-bodered  well "  >
-            <tr style="background: #000; color: white"> <td>IMAGEN #1 </td></tr>
+            <tr style="background: #000; color: white"> <td>{{ __('producto_tipo.imagen_numero') }} </td></tr>
             <tr>
                 <td>
                   
@@ -262,9 +262,9 @@ $imagen1=$value->imagen1;
             <tr>
               <td>
                  <div class="btn-group">
-                                 <button type="submit" class="btn btn-default"><i class="fa fa-upload" aria-hidden="true"></i> Subir Imagen</button>
+                                 <button type="submit" class="btn btn-default"><i class="fa fa-upload" aria-hidden="true"></i> {{ __('producto_tipo.subir_imagen') }}</button>
                                 <label class="btn btn-primary">
-                                    Buscar.. <input type="file" name="perfil_imagen1" id="perfil_imagen1" class="perfil_imagen1"   required style="display: none;">
+                                    {{ __('producto_tipo.buscar_puntos') }} <input type="file" name="perfil_imagen1" id="perfil_imagen1" class="perfil_imagen1"   required style="display: none;">
                                 </label>
                             </div>       
               </td>

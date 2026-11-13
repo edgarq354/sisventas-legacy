@@ -590,7 +590,7 @@ $(document).ready(function() {
                 html += `<a href="#" class="list-group-item list-group-item-action" data-nombre="${nombreCompleto}"  ><b>${nombreCompleto}</b></a>`;
             });
         } else {
-            html = '<div class="list-group-item disabled">No se encontraron resultados</div>';
+            html = '<div class="list-group-item disabled">' + @json(__('nota_venta.no_resultados')) + '</div>';
         }
 
         $('#sugerenciasCliente').html(html).fadeIn();
@@ -626,11 +626,11 @@ $(document).ready(function() {
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
     <div class="nv-top">
-        <i class="fa fa-shopping-cart"></i> <b>REGISTRAR NOTA DE VENTA</b>
+        <i class="fa fa-shopping-cart"></i> <b>{{ __('nota_venta.registrar_nota_venta') }}</b>
         @if(!empty($caja_abierta))
-            <span class="nv-caja"><i class="fa fa-inbox"></i> Caja {{ $caja_abierta->caja }}</span>
+            <span class="nv-caja"><i class="fa fa-inbox"></i> {{ __('nota_venta.caja_badge', ['nombre' => $caja_abierta->caja]) }}</span>
         @else
-            <span class="nv-caja" style="background:#ffd7d3;color:#a12b21;">Sin caja abierta</span>
+            <span class="nv-caja" style="background:#ffd7d3;color:#a12b21;">{{ __('nota_venta.sin_caja_abierta_corta') }}</span>
         @endif
     </div>
 
@@ -638,10 +638,10 @@ $(document).ready(function() {
         <div id="nv-nocaja">
             <div class="nv-nocaja__box">
                 <div class="nv-nocaja__ico"><i class="fa fa-inbox"></i></div>
-                <h3>No tienes una caja abierta</h3>
-                <p>Debes abrir una caja para poder registrar ventas.</p>
-                <a href="{!! URL::to('caja') !!}" class="nv-nocaja__btn"><i class="fa fa-unlock-alt"></i> Abrir caja</a>
-                <button type="button" class="nv-nocaja__x" onclick="document.getElementById('nv-nocaja').remove();" title="Cerrar">&times;</button>
+                <h3>{{ __('nota_venta.no_hay_caja_abierta') }}</h3>
+                <p>{{ __('nota_venta.debes_abrir_caja') }}</p>
+                <a href="{!! URL::to('caja') !!}" class="nv-nocaja__btn"><i class="fa fa-unlock-alt"></i> {{ __('nota_venta.abrir_caja') }}</a>
+                <button type="button" class="nv-nocaja__x" onclick="document.getElementById('nv-nocaja').remove();" title="{{ __('nota_venta.cerrar_titulo') }}">&times;</button>
             </div>
         </div>
     @endif
@@ -657,16 +657,16 @@ $(document).ready(function() {
 
         {{-- ── Productos ── --}}
         <div class="nv-box">
-            <div class="nv-box__h"><i class="fa fa-search"></i> Buscar productos</div>
+            <div class="nv-box__h"><i class="fa fa-search"></i> {{ __('nota_venta.buscar_productos') }}</div>
             <div class="nv-box__b">
                 <div class="nv-search">
                     <select name="id_tipo_producto" id="id_tipo_producto" class="selectpicker" data-live-search="true" onchange="seleccionarTipo();">
-                        <option value="">TODOS</option>
+                        <option value="">{{ __('nota_venta.todos_mayus') }}</option>
                         @foreach($tipo_producto as $mov)
                             <option value="{{ $mov->id }}">{{ $mov->nombre }}</option>
                         @endforeach
                     </select>
-                    <input type="text" placeholder="Buscar producto…" id="txtBuscar">
+                    <input type="text" placeholder="{{ __('nota_venta.buscar_producto_placeholder') }}" id="txtBuscar">
                     <button type="button" class="nv-buscar" onclick="buscarProducto();"><i class="fa fa-search"></i></button>
                 </div>
                 <div id="listaProductos"></div>
@@ -675,7 +675,7 @@ $(document).ready(function() {
 
         {{-- ── Datos de la venta ── --}}
         <div class="nv-box nv-form">
-            <div class="nv-box__h"><i class="fa fa-file-text-o"></i> Datos de la venta</div>
+            <div class="nv-box__h"><i class="fa fa-file-text-o"></i> {{ __('nota_venta.datos_de_la_venta') }}</div>
             <div class="nv-box__b">
                 <form id="form_nota_venta" action="{{ route('nota_venta.store') }}" method="POST" enctype="multipart/form-data"
                       onkeypress="if(event.keyCode == 13) event.returnValue = false;" autocomplete="off">
@@ -690,11 +690,11 @@ $(document).ready(function() {
 
                     <div class="nv-row2">
                         <div class="nv-field">
-                            <label>NIT / CI / CEX</label>
+                            <label>{{ __('nota_venta.nit_ci_cex') }}</label>
                             <input id="ciNit" name="numero_documento" value="" type="number" class="form-control" onchange="buscarNit();">
                         </div>
                         <div class="nv-field" style="position:relative;">
-                            <label>Cliente / Razón social</label>
+                            <label>{{ __('nota_venta.cliente_razon_social') }}</label>
                             <input id="nombreCliente" name="razon_social" value="" class="form-control" autocomplete="off">
                             <div id="sugerenciasCliente" class="list-group"></div>
                         </div>
@@ -702,24 +702,24 @@ $(document).ready(function() {
 
                     <div class="nv-row2">
                         <div class="nv-field">
-                            <label>Efectivo pago (Bs)</label>
+                            <label>{{ __('nota_venta.efectivo_pago') }}</label>
                             <input id="efectivoPago" name="efectivo_pago" value="0" type="number" class="form-control" onchange="calcularCambio();" min="0">
                         </div>
                         <div class="nv-field">
-                            <label>Cambio (Bs)</label>
+                            <label>{{ __('nota_venta.cambio_bs') }}</label>
                             <input id="efectivoCambio" value="0" type="number" class="form-control" readonly>
                         </div>
                     </div>
 
                     <div class="nv-field">
-                        <label>Monto total (Bs)</label>
+                        <label>{{ __('nota_venta.monto_total_bs') }}</label>
                         <input type="text" name="monto_total" value="0" class="form-control" placeholder="0.00" maxlength="10" id="monto_total" onchange="calcularCambio();">
                         <input type="text" value="0" id="monto_total_descuento" name="monto_total_descuento" hidden>
                     </div>
 
                     <div class="nv-row2">
                         <div class="nv-field">
-                            <label>Modalidad</label>
+                            <label>{{ __('nota_venta.modalidad_field') }}</label>
                             <select name="tipo">
                                 <option value="LLEVAR" selected>LLEVAR</option>
                                 <option value="AUTO">AUTO</option>
@@ -727,31 +727,31 @@ $(document).ready(function() {
                             </select>
                         </div>
                         <div class="nv-field">
-                            <label>Estado</label>
+                            <label>{{ __('nota_venta.estado_field') }}</label>
                             <select name="estado" id="estado_venta" onchange="toggleQrFie();">
-                                <option value="Procesado" selected>Procesado</option>
+                                <option value="Procesado" selected>{{ __('nota_venta.opt_procesado') }}</option>
                                 <option value="Qr">Qr</option>
-                                @if(!empty($bancofie_habilitado))<option value="QrFie">QR B. FIE</option>@endif
-                                <option value="Por cobrar">Por cobrar</option>
+                                @if(!empty($bancofie_habilitado))<option value="QrFie">{{ __('nota_venta.qr_b_fie') }}</option>@endif
+                                <option value="Por cobrar">{{ __('nota_venta.opt_por_cobrar') }}</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="nv-cart" style="border:1px solid var(--nv-line);border-radius:8px;overflow:hidden;margin-top:4px;">
                         <table class="table">
-                            <thead><tr><th>Descripción</th><th style="text-align:right;">P.U.</th><th style="text-align:center;">Cant.</th><th style="text-align:right;">Total</th><th></th></tr></thead>
-                            <tbody id="body_carrito"><tr><td colspan="5" class="nv-empty">Toque productos para agregar</td></tr></tbody>
+                            <thead><tr><th>{{ __('nota_venta.col_descripcion') }}</th><th style="text-align:right;">{{ __('nota_venta.col_pu') }}</th><th style="text-align:center;">{{ __('nota_venta.col_cant') }}</th><th style="text-align:right;">{{ __('nota_venta.col_total_corta') }}</th><th></th></tr></thead>
+                            <tbody id="body_carrito"><tr><td colspan="5" class="nv-empty">{{ __('nota_venta.toque_productos') }}</td></tr></tbody>
                         </table>
                     </div>
 
-                    <button type="submit" id="btn_guardar_venta" disabled><i class="fa fa-save"></i> GUARDAR VENTA</button>
+                    <button type="submit" id="btn_guardar_venta" disabled><i class="fa fa-save"></i> {{ __('nota_venta.guardar_venta') }}</button>
                     @if(!empty($bancofie_habilitado))
-                        <button type="button" id="btn_generar_qrfie" style="display:none;" disabled><i class="fa fa-qrcode"></i> GENERAR QR B. FIE</button>
+                        <button type="button" id="btn_generar_qrfie" style="display:none;" disabled><i class="fa fa-qrcode"></i> {{ __('nota_venta.generar_qr_fie') }}</button>
                     @endif
                 </form>
 
                 @if(Session::has('ticket_base64'))
-                    <botton id="bt_imprimir" onclick="imprimir_ticket()" class="btn btn-primary form-control" style="margin-top:8px;border-radius:10px;font-weight:700;"><i class="fa fa-print"></i> Imprimir ticket #{{ Session::get('nota_venta_id') }}</botton>
+                    <botton id="bt_imprimir" onclick="imprimir_ticket()" class="btn btn-primary form-control" style="margin-top:8px;border-radius:10px;font-weight:700;"><i class="fa fa-print"></i> {{ __('nota_venta.imprimir_ticket_n', ['id' => Session::get('nota_venta_id')]) }}</botton>
                     <input type="hidden" id="url_imprimir" value="http://localhost:80/pdf-imprimir/index.php?servidor1={{Session::get('servidor1')}}&servidor2={{Session::get('servidor2')}}&impresora1={{Session::get('impresora1')}}&impresora2={{Session::get('impresora2')}}&impresora_nota_venta={{Session::get('impresora_nota_venta')}}&impresora_factura={{Session::get('impresora_factura')}}&id_venta={{Session::get('nota_venta_id')}}"/>
                     <input type="hidden" id="ticket_base64" value="{{ Session::get('ticket_base64') }}"/>
                     <input type="hidden" id="ticket_cocina_base64" value="{{ Session::get('ticket_cocina_base64') }}"/>
@@ -777,7 +777,7 @@ $(document).ready(function() {
 	  <div class="modal-content">
 
 		<div class="modal-header" style="background: #d4463e; color: white">
-		  <h3 class="modal-title">EDITAR PRODUCTO</h3>
+		  <h3 class="modal-title">{{ __('nota_venta.editar_producto_titulo') }}</h3>
 		</div>
 
 
@@ -787,7 +787,7 @@ $(document).ready(function() {
    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
 			   <div style="margin: 15px;"  @if(Auth::user()->tipo_empresa=="RESTAURANTE") hidden="" @endif>
-					Código Producto:<br>
+					{{ __('nota_venta.codigo_producto_dp') }}<br>
 					<input type="text"  id="codigo"  class="form-control" readonly="readonly" />
 	  			</div>
 
@@ -797,20 +797,20 @@ $(document).ready(function() {
 					<input type="hidden" id='indexCarrito'  />
 
 					<div class="form-group">
-						<label>Descripción:</label><br>
+						<label>{{ __('nota_venta.descripcion_dp') }}</label><br>
 						<input type="text"  id="nombre"  class="form-control" />
 					  </div>
 
 					<div class="form-group" hidden>
-					Cantidad:<br>
+					{{ __('nota_venta.cantidad_dp') }}<br>
 					<input type="number"  readonly="readonly" class="form-control" id="cantidad" onchange="calcularTotal()"   required>
 					</div>
 					<div class="form-group">
-					Precio de compra:<br>
+					{{ __('nota_venta.precio_compra_dp') }}<br>
 					<input type="decimal"  class="form-control" id="precio_compra"  required readonly="readonly" />
 					</div>
 					<div class="form-group">
-						Descuento:<br>
+						{{ __('nota_venta.descuento_dp') }}<br>
 						<input type="decimal"  class="form-control" id="monto_descuento"  required readonly="readonly"/>
 					</div>
 
@@ -820,36 +820,36 @@ $(document).ready(function() {
 					<div class="form-group" @if(Auth::user()->tipo_empresa!="RESTAURANTE")
 						hidden=""
 					@endif>
-					<label>Presa:</label><br>
+					<label>{{ __('nota_venta.presa_dp') }}</label><br>
 					<select name="id_presa" id="id_presa" class="form-control"  onchange="seleccionarPresa();" >
-						<option value="." selected> NINGUNO</option>
-						<option value=",C/PIERNA"> PIERNA</option>
-						<option value=",C/PECHO"> PECHO</option>
-						<option value=",C/ALA"> ALA</option>
-						<option value=",C/ENTREPIERNA"> ENTREPIERNA</option>
+						<option value="." selected> {{ __('nota_venta.opt_ninguno') }}</option>
+						<option value=",C/PIERNA"> {{ __('nota_venta.opt_pierna') }}</option>
+						<option value=",C/PECHO"> {{ __('nota_venta.opt_pecho') }}</option>
+						<option value=",C/ALA"> {{ __('nota_venta.opt_ala') }}</option>
+						<option value=",C/ENTREPIERNA"> {{ __('nota_venta.opt_entrepierna') }}</option>
 					   </select>
 					</div>
 
 					<div class="form-group">
-					Precio de venta:<br>
+					{{ __('nota_venta.precio_venta_dp') }}<br>
 					<input type="decimal"   class="form-control" id="precio_venta"   required readonly="readonly">
 					</div>
 
 					<div class="form-group">
-						Precio unitario:<br>
+						{{ __('nota_venta.precio_unitario_dp') }}<br>
 						<input type="decimal"  class="form-control" id="precio"  required/>
 					</div>
 				</div>
 
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " >
 					<div class="form-group"  >
-						Cantidad:<br>
+						{{ __('nota_venta.cantidad_dp') }}<br>
 						<input type="decimal"  class="form-control" id="peso" style="border: 3px solid #f39c12;" required/>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " >
 					<div class="form-group">
-						Total:<br>
+						{{ __('nota_venta.total_dp') }}<br>
 						<input type="decimal"  class="form-control" id="total"  required/>
 					</div>
 				</div>
@@ -859,7 +859,7 @@ $(document).ready(function() {
 
 		<div class="modal-footer">
 			<button data-dismiss="modal"  class="btn btn-warning form-control" onclick="guardarProducto();">
-				<i class="fa fa-save" aria-hidden="true"></i> GUARDAR</button>
+				<i class="fa fa-save" aria-hidden="true"></i> {{ __('nota_venta.guardar_btn') }}</button>
 		</div>
 	</div>
 </div>
@@ -887,27 +887,27 @@ $(document).ready(function() {
 	<div class="modal-dialog modal-md" role="document">
 		<div class="modal-content">
 			<div class="modal-header" style="background:#c62828;color:#fff;">
-				<h4 class="modal-title" style="color:#fff;"><i class="fa fa-qrcode"></i> Cobro con QR &mdash; Banco FIE</h4>
+				<h4 class="modal-title" style="color:#fff;"><i class="fa fa-qrcode"></i> {!! __('nota_venta.cobro_qr_fie_titulo') !!}</h4>
 			</div>
 			<div class="modal-body" style="text-align:center;">
 				<div id="qrfie_monto" style="font-size:24px;font-weight:700;color:#1b5e20;margin-bottom:10px;"></div>
 				<div style="min-height:280px;display:flex;align-items:center;justify-content:center;background:#fafafa;border:1px solid #eee;border-radius:6px;position:relative;">
 					<div id="qrfie_cargando" style="text-align:center;color:#c62828;">
 						<i class="fa fa-spinner fa-spin fa-3x"></i>
-						<div style="margin-top:10px;font-size:14px;font-weight:600;">Generando QR…</div>
+						<div style="margin-top:10px;font-size:14px;font-weight:600;">{{ __('nota_venta.generando_qr') }}</div>
 					</div>
 					<img id="qrfie_img" src="" alt="Código QR" style="display:none;max-width:100%;width:280px;height:auto;">
 				</div>
 				<div id="qrfie_link" style="margin-top:8px;"></div>
 				<table style="width:100%;margin-top:10px;font-size:12px;color:#555;">
-					<tr><td style="text-align:left;font-weight:600;width:40%;">Alias:</td><td id="qrfie_alias" style="text-align:right;word-break:break-all;">—</td></tr>
-					<tr><td style="text-align:left;font-weight:600;">ID Transacción:</td><td id="qrfie_idtx" style="text-align:right;">—</td></tr>
+					<tr><td style="text-align:left;font-weight:600;width:40%;">{{ __('nota_venta.alias_dp') }}</td><td id="qrfie_alias" style="text-align:right;word-break:break-all;">—</td></tr>
+					<tr><td style="text-align:left;font-weight:600;">{{ __('nota_venta.id_transaccion_dp') }}</td><td id="qrfie_idtx" style="text-align:right;">—</td></tr>
 				</table>
-				<div id="qrfie_estado" style="margin-top:10px;font-size:13px;color:#777;">Generando QR…</div>
+				<div id="qrfie_estado" style="margin-top:10px;font-size:13px;color:#777;">{{ __('nota_venta.generando_qr') }}</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" id="btn_verificar_qrfie" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Ya pagué / Verificar</button>
-				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+				<button type="button" id="btn_verificar_qrfie" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> {{ __('nota_venta.ya_pague_verificar') }}</button>
+				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">{{ __('nota_venta.cancelar_mayus') }}</button>
 			</div>
 		</div>
 	</div>

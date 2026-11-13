@@ -88,14 +88,14 @@ window.onload=comprobante_egreso_pdf;
 
 {!!Form::open(['route'=>'egreso.store', 'method'=>'POST' , 'enctype'=>'multipart/form-data','onKeypress'=>'if(event.keyCode == 13) event.returnValue = false;'])!!} 
 
-  <h4 align="left" style="color: red">REGISTRAR EGRESOS</h4>
+  <h4 align="left" style="color: red">{{ __('egreso.registrar_egresos_h4') }}</h4>
  
       
-    He pagado a:
+    {{ __('egreso.he_pagado_a') }}
     <div class="input-group">
 
       <select name="id_cliente" class="form-control selectpicker" id="id_cliente" data-live-search="true" >
-         <option value="">  BUSCAR...                                </option>
+         <option value="">  {{ __('egreso.opt_buscar') }}                                </option>
             @foreach($buscar_cliente as $mov)
             <option value="{{$mov->id}}">{{$mov->nombre}} - {{$mov->telefono}} - {{$mov->ci_nit}} </option>
             @endforeach
@@ -103,15 +103,15 @@ window.onload=comprobante_egreso_pdf;
 
       <span class="input-group-btn ">
         <a href="{!!URL::to('cliente/create')!!}">
-        <button class="btn btn-success" type="button"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo</button>
+        <button class="btn btn-success" type="button"><i class="fa fa-plus" aria-hidden="true"></i> {{ __('egreso.nuevo') }}</button>
         </a>
       </span>
     </div>
 
-Tipo de egreso:
+{{ __('egreso.tipo_de_egreso') }}
  <div class="input-group">
        <select name="id_tipo" class="form-control selectpicker" id="id_tipo" data-live-search="true" >
-         <option value="">  BUSCAR...                                </option>
+         <option value="">  {{ __('egreso.opt_buscar') }}                                </option>
             @foreach($buscar_tipo as $mov)
             <option value="{{$mov->id}}">{{$mov->nombre}} </option>
             @endforeach
@@ -119,44 +119,44 @@ Tipo de egreso:
 
       <span class="input-group-btn ">
         <a href="{!!URL::to('tipo_ingreso_egreso/create')!!}">
-        <button class="btn btn-success" type="button"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo</button>
+        <button class="btn btn-success" type="button"><i class="fa fa-plus" aria-hidden="true"></i> {{ __('egreso.nuevo') }}</button>
         </a>
       </span>
     </div>
        
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 	<div class="form-group">
-		Monto Total:<br>
-		<input type="number"  name="monto" placeholder="Ingrese el Monto" class="form-control" id="monto" value="0" >
+		{{ __('egreso.monto_total_dp') }}<br>
+		<input type="number"  name="monto" placeholder="{{ __('egreso.placeholder_monto') }}" class="form-control" id="monto" value="0" >
 	</div>
 
   <div class="form-group">
-    Debe:<br>
-    <input type="number"  name="saldo" placeholder="Saldo" value="0" class="form-control" id="saldo" >
+    {{ __('egreso.debe_dp') }}<br>
+    <input type="number"  name="saldo" placeholder="{{ __('egreso.placeholder_saldo') }}" value="0" class="form-control" id="saldo" >
   </div>
   </div>
 
   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
   <div class="form-group">
-    Cheque Nº:<br>
-    <input type="number"  name="numero_cheque" placeholder="Ingrese el Numero de Cheque" class="form-control" id="numero_cheque" value="0" >
+    {{ __('egreso.cheque_nro_dp') }}<br>
+    <input type="number"  name="numero_cheque" placeholder="{{ __('egreso.placeholder_numero_cheque') }}" class="form-control" id="numero_cheque" value="0" >
   </div>
 
   <div class="form-group">
-    Banco:<br>
-    <input type="text"  name="banco" placeholder="Banco" value="ninguno" class="form-control" id="banco" >
+    {{ __('egreso.banco_dp') }}<br>
+    <input type="text"  name="banco" placeholder="{{ __('egreso.placeholder_banco') }}" value="ninguno" class="form-control" id="banco" >
   </div>
   </div>
 
 	<div class="form-group">
-		Por conceptp de:<br>
-		{!!Form::textarea('observaciones',null,['class'=>'form-control','placeholder'=>'Ingrese las observaciones','style'=>'height:100px' ])!!}
+		{{ __('egreso.por_concepto_de') }}<br>
+		{!!Form::textarea('observaciones',null,['class'=>'form-control','placeholder'=>__('egreso.placeholder_observaciones'),'style'=>'height:100px' ])!!}
 	</div>
 
 		<div align="left">
 
-			{!!Form::submit('REGISTRAR',['class'=>'btn btn-primary','id'=>'btn_registrar','onclick'=>'btn_esconder()'])!!}
-			<a href="{!!URL::to('egreso')!!}" class="btn btn-danger">CANCELAR</a>
+			{!!Form::submit(__('egreso.registrar'),['class'=>'btn btn-primary','id'=>'btn_registrar','onclick'=>'btn_esconder()'])!!}
+			<a href="{!!URL::to('egreso')!!}" class="btn btn-danger">{{ __('egreso.cancelar') }}</a>
 
 </div>
 
@@ -175,11 +175,11 @@ Tipo de egreso:
   <div class=" well">
 {!!Form::open(['route'=>'egreso.store', 'method'=>'POST' , 'enctype'=>'multipart/form-data','onKeypress'=>'if(event.keyCode == 13) event.returnValue = false;'])!!} 
 
-  <h4 align="left" style="color: red">Registrar pago de Sueldo</h4>
-  Nombre del empleado:
+  <h4 align="left" style="color: red">{{ __('egreso.registrar_pago_sueldo_h4') }}</h4>
+  {{ __('egreso.nombre_del_empleado') }}
     <div class="input-group">
       <select name="id_cliente" class="form-control selectpicker" id="id_cliente" data-live-search="true" >
-         <option value="">  Buscar el empleado ...</option>
+         <option value="">  {{ __('egreso.buscar_el_empleado') }}</option>
             @foreach($buscar_empleado as $mov)
             <option value="{{$mov->ci}}">{{$mov->nombre}} - {{$mov->celular}}</option>
             @endforeach
@@ -187,15 +187,15 @@ Tipo de egreso:
 
       <span class="input-group-btn ">
         <a href="{!!URL::to('empleado')!!}">
-        <button class="btn btn-success" type="button"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo</button>
+        <button class="btn btn-success" type="button"><i class="fa fa-plus" aria-hidden="true"></i> {{ __('egreso.nuevo') }}</button>
         </a>
       </span>
     </div>
 
-Tipo de egreso:
+{{ __('egreso.tipo_de_egreso') }}
  <div class="input-group">
        <select name="id_tipo" class="form-control selectpicker" id="id_tipo" data-live-search="true" >
-         <option value="">  BUSCAR...                                </option>
+         <option value="">  {{ __('egreso.opt_buscar') }}                                </option>
             @foreach($buscar_tipo as $mov)
             <option value="{{$mov->id}}">{{$mov->nombre}} </option>
             @endforeach
@@ -203,31 +203,31 @@ Tipo de egreso:
 
       <span class="input-group-btn ">
         <a href="{!!URL::to('tipo_ingreso_egreso/create')!!}">
-        <button class="btn btn-success" type="button"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo</button>
+        <button class="btn btn-success" type="button"><i class="fa fa-plus" aria-hidden="true"></i> {{ __('egreso.nuevo') }}</button>
         </a>
       </span>
     </div>
        
 
   <div class="form-group">
-    Monto Total:<br>
-    <input type="number"  name="monto" placeholder="Ingrese el Monto" class="form-control" id="monto" value="0" >
+    {{ __('egreso.monto_total_dp') }}<br>
+    <input type="number"  name="monto" placeholder="{{ __('egreso.placeholder_monto') }}" class="form-control" id="monto" value="0" >
   </div>
 
   <div class="form-group">
-    Debe:<br>
-    <input type="number"  name="saldo" placeholder="Saldo" value="0" class="form-control" id="saldo" >
+    {{ __('egreso.debe_dp') }}<br>
+    <input type="number"  name="saldo" placeholder="{{ __('egreso.placeholder_saldo') }}" value="0" class="form-control" id="saldo" >
   </div>
 
   <div class="form-group">
-    Observaciones:<br>
-    {!!Form::textarea('observaciones',null,['class'=>'form-control','placeholder'=>'Ingrese las observaciones' ])!!}
+    {{ __('egreso.observaciones_dp') }}<br>
+    {!!Form::textarea('observaciones',null,['class'=>'form-control','placeholder'=>__('egreso.placeholder_observaciones') ])!!}
   </div>
 
     <div align="left">
 
-      {!!Form::submit('REGISTRAR',['class'=>'btn btn-primary','id'=>'btn_registrar','onclick'=>'btn_esconder()'])!!}
-      <a href="{!!URL::to('egreso')!!}" class="btn btn-danger">CANCELAR</a>
+      {!!Form::submit(__('egreso.registrar'),['class'=>'btn btn-primary','id'=>'btn_registrar','onclick'=>'btn_esconder()'])!!}
+      <a href="{!!URL::to('egreso')!!}" class="btn btn-danger">{{ __('egreso.cancelar') }}</a>
 
 </div>
 

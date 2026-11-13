@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>HISTORIAL DE VENTA POR DIA RESUMIDO</title>
+    <title>{{ __('nota_venta.historial_dia_mayus') }}</title>
     <!--link href="css/reporte.css" type="text/css" rel="stylesheet"  -->
 
     <style type="text/css">
@@ -46,7 +46,7 @@
 
 </head>
 <div align="right" style="height: 10px; width: 730px;">
-    {{ date('j - F - Y, g:i a') }}
+    {{ fecha_hora_impresion() }}
 </div>
 
 <body style="height: 10px; ">
@@ -60,13 +60,13 @@
                 </td>
                 <td style="width: 80%; border: 0px solid white;">
                     <center>
-                        <font size="3" style="font-weight: bold;">TIENDA {{ $empresa[0]->razon_social }} </font>
+                        <font size="3" style="font-weight: bold;">{{ __('producto.tienda') }} {{ $empresa[0]->razon_social }} </font>
                         <br>
-                        Telefono: {{ $empresa[0]->whatsapp }}<br>
-                        Dirección: {{ $empresa[0]->direccion }}<br>
+                        {{ __('producto.telefono_label') }} {{ $empresa[0]->whatsapp }}<br>
+                        {{ __('producto.direccion_label') }} {{ $empresa[0]->direccion }}<br>
 
-                        <h1>HISTORIAL DE VENTAS POR DIA RESUMIDO</h1>
-                        ({{$fechaInicio}} - {{$fechaFinal}})
+                        <h1>{{ __('nota_venta.historial_dias_mayus') }}</h1>
+                        {{ __('nota_venta.periodo_rango', ['desde' => $fechaInicio, 'hasta' => $fechaFinal]) }}
                     </center>
                 </td>
                 <td style="width: 10%; border: 0px solid white;">
@@ -82,13 +82,13 @@
     <table>
         <tr> 
             <th>
-                <center>FECHA</center>
+                <center>{{ __('nota_venta.col_fecha_mayus') }}</center>
             </th>
             <th>
-                <center>MODALIDAD</center>
+                <center>{{ __('nota_venta.col_modalidad_mayus') }}</center>
             </th>
             <th>
-                <center>MONTO</center>
+                <center>{{ __('nota_venta.col_monto_mayus') }}</center>
             </th> 
         </tr>
         @foreach ($nota_venta as $pago)
@@ -122,7 +122,7 @@
 
     ?>
                 <td> {{ $pago->fecha }}</td>
-                <td>{{ $pago->estado }} </td> 
+                <td>{{ __('estados.'.$pago->estado) }} </td> 
                 <td align="right">{{ $pago->monto_total }} </td>
             </tr>
             <?php $total = $pago->monto_total + $total; ?>
@@ -132,7 +132,7 @@
             <?php 
                 $formateado = number_format($total, 2, '.', ''); 
                 ?>
-            <td colspan="2" align="right"> <b>TOTAL: </b></td>
+            <td colspan="2" align="right"> <b>{{ __('nota_venta.total_mayus_dp') }} </b></td>
             <td align="right"> <b>{{ $formateado }}</b> </td>
         </tr>
 

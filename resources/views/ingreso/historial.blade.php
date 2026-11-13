@@ -93,11 +93,11 @@
             success: function(data){
               alertify.success(":"+data);
               window.location.href = window.location.href;
-              $("#"+divresul+"").html("Asignacion de Taxi completado");
+              $("#"+divresul+"").html(@json(__('ingreso.asignacion_completado')));
             },
             //si ha ocurrido un error
             error: function(data){
-               alertify.error("ha ocurrido un error:"+data) ;
+               alertify.error(@json(__('ingreso.ha_ocurrido_error'))+data) ;
 
             }
         });
@@ -128,7 +128,7 @@ $message=Session::get('message');
 @if($message=='store')
 <div class="alert alert-success alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert" arial-label="Close"><span aria-hidden="true">$times;</span></button>
-	Pago registrado con Exito.
+	{{ __('ingreso.pago_registrado') }}
 </div>
 @endif
 	<div class="row">
@@ -143,17 +143,17 @@ $message=Session::get('message');
 			<div class=" panel panel-danger  ">
 
 				<div class="panel-heading">
-					<h3>HISTORIAL DE INGRESOS</h3>
-					 Fecha de Inicio:
+					<h3>{{ __('ingreso.historial_de_ingresos_mayus') }}</h3>
+					 {{ __('ingreso.fecha_de_inicio_dp') }}
 					<input type="text"  value="{{$fechaInicio}}"  id='calendario1' onmouseover ="buscarEnlace();">
-					Fecha Final:
+					{{ __('ingreso.fecha_final_dp') }}
 					<input type="text"  value="{{$fechaFinal}}"  id='calendario2' onmouseover ="buscarEnlace();">
 
 					<a class="btn btn-warning"  href="../../ingreso_historial/{{$fechaInicio}}/{{$fechaInicio}}" id="buscar" onmouseover ="buscarEnlace();">
-				  	<i class="fa fa-search"></i> Buscar </a>
+				  	<i class="fa fa-search"></i> {{ __('ingreso.buscar') }} </a>
 
 				  	 <a class="btn btn-primary"  target="_blank"  href="../../ingreso_historial_imprimir/{{$fechaInicio}}/{{$fechaInicio}}" id="imprimir" onmouseover ="buscarEnlace();">
-				  	<i class="fa fa-print"></i> Imprimir </a>
+				  	<i class="fa fa-print"></i> {{ __('ingreso.imprimir') }} </a>
 			  	</div>
 			</div>
 
@@ -172,17 +172,17 @@ $message=Session::get('message');
 				<table class="table table-striped table-bordered table-condensed table-hover" style="background: white" id="tabla_sin_imprimir" align="center">
 
 					<thead>
-						<th><center>Id</center></th>
-						<th><center>Fecha</center></th>
-						<th><center>Concepto</center></th>
-						<th><center>Descripción</center></th>
-						<th><center>Tipo</center></th>
-						<th><center>Cliente</center></th>
-						<th><center>Monto</center></th>
-						<th><center>Sucursal</center></th>
-						<th><center>Caja</center></th>
-						<th><center>Usuario</center></th>
-						<th><center>Estado</center></th>
+						<th><center>{{ __('ingreso.col_id') }}</center></th>
+						<th><center>{{ __('ingreso.col_fecha') }}</center></th>
+						<th><center>{{ __('ingreso.col_concepto') }}</center></th>
+						<th><center>{{ __('ingreso.col_descripcion') }}</center></th>
+						<th><center>{{ __('ingreso.col_tipo') }}</center></th>
+						<th><center>{{ __('ingreso.col_cliente') }}</center></th>
+						<th><center>{{ __('ingreso.col_monto') }}</center></th>
+						<th><center>{{ __('ingreso.col_sucursal') }}</center></th>
+						<th><center>{{ __('ingreso.col_caja') }}</center></th>
+						<th><center>{{ __('ingreso.col_usuario') }}</center></th>
+						<th><center>{{ __('ingreso.col_estado') }}</center></th>
 						<th><center>. . .</center></th>
 					</thead>
 
@@ -201,21 +201,21 @@ $message=Session::get('message');
 								<td>{{ $item->caja}}  </td>
 								<td>{{ $item->usuario}}</td>
 								<TD>@if($item->estado=='Procesado')
-									<span class="badge  btn-success">{{$item->estado}}</span>
+									<span class="badge  btn-success">{{ __('estados.'.$item->estado) }}</span>
 									@elseif($item->estado=='Por cobrar')
-									<span class="badge  btn-warning">{{$item->estado}}</span>
+									<span class="badge  btn-warning">{{ __('estados.'.$item->estado) }}</span>
 									@else
-									<span class="badge  btn-danger">{{$item->estado}}</span>
+									<span class="badge  btn-danger">{{ __('estados.'.$item->estado) }}</span>
 									@endif
 								</TD>
 								<td>
 									<div class="btn-group">
 									<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-									  Opción <span class="caret"></span>
+									  {{ __('ingreso.opcion') }} <span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu" role="menu">
 										<li>
-											<a target="_blank" class=' fa fa-print' href='../../ingreso_imprimir/{{$item->id}}' aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="Imprimir"> Imprimir</a>
+											<a target="_blank" class=' fa fa-print' href='../../ingreso_imprimir/{{$item->id}}' aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="{{ __('ingreso.imprimir') }}"> {{ __('ingreso.imprimir') }}</a>
 										</li>
 
 									</ul>

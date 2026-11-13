@@ -5,7 +5,7 @@
     <div class="modal-content">
 
       <div class="modal-header" style="background: #3c8dbc; color: white">
-        <h3 class="modal-title">AGREGAR CANTIDAD</h3>
+        <h3 class="modal-title">{{ __('producto_tipo.agregar_cantidad_titulo') }}</h3>
       </div>   
       
 
@@ -27,11 +27,11 @@
       <div class="modal-footer">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-          {!!Form::submit('AGREGAR',['class'=>'btn btn-primary','id'=>'btn_actualizar','onclick'=>'btn_esconder()'])!!}
+          {!!Form::submit(__('producto_tipo.agregar_btn'),['class'=>'btn btn-primary','id'=>'btn_actualizar','onclick'=>'btn_esconder()'])!!}
           </form>
 
 
-          <button data-dismiss="modal"  class="btn btn-danger">CANCELAR</button>
+          <button data-dismiss="modal"  class="btn btn-danger">{{ __('producto_tipo.cancelar') }}</button>
        </div>
       </div>
     </div>
@@ -45,7 +45,7 @@
     <div class="modal-content">
 
       <div class="modal-header" style="background: #3c8dbc; color: white">
-        <h3 class="modal-title">RESTAR PRODUCTO</h3>
+        <h3 class="modal-title">{{ __('producto_tipo.restar_producto_titulo') }}</h3>
       </div>   
       
 
@@ -67,11 +67,11 @@
       <div class="modal-footer">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-          {!!Form::submit('RESTAR',['class'=>'btn btn-primary','id'=>'btn_actualizar','onclick'=>'btn_esconder()'])!!}
+          {!!Form::submit(__('producto_tipo.restar_btn'),['class'=>'btn btn-primary','id'=>'btn_actualizar','onclick'=>'btn_esconder()'])!!}
           </form>
 
 
-          <button data-dismiss="modal"  class="btn btn-danger">CANCELAR</button>
+          <button data-dismiss="modal"  class="btn btn-danger">{{ __('producto_tipo.cancelar') }}</button>
        </div>
       </div>
     </div>

@@ -132,7 +132,7 @@ function sin_permiso(){
 function obtener_ultimo_numero(){
 
     $.get("../get_ultimo_numero_recibo", function (res) {
-    $("#numero_label").text("Nº: "+res.numero);
+    $("#numero_label").text(@json(__('nota_compra.numero_label', ['numero' => '']))+res.numero);
     $("#numero_pago").val(res.numero);
     });
 
@@ -342,18 +342,18 @@ function buscarProducto(){
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
     <div class="nc-top">
-        <i class="fa fa-truck"></i> <b>REGISTRAR NOTA DE COMPRA</b>
+        <i class="fa fa-truck"></i> <b>{{ __('nota_compra.registrar_nota_compra') }}</b>
         @if(!empty($caja_abierta))
-            <span class="nc-caja"><i class="fa fa-inbox"></i> Caja {{ $caja_abierta->caja }}</span>
+            <span class="nc-caja"><i class="fa fa-inbox"></i> {{ __('nota_compra.caja_badge', ['nombre' => $caja_abierta->caja]) }}</span>
         @else
-            <span class="nc-caja" style="background:#ffd7d3;color:#a12b21;">Sin caja abierta</span>
+            <span class="nc-caja" style="background:#ffd7d3;color:#a12b21;">{{ __('nota_compra.sin_caja_abierta_corta') }}</span>
         @endif
     </div>
 
     @if(empty($caja_abierta))
         <div style="display:flex;align-items:center;gap:10px;background:#fdecea;border:1px solid #f5c6c2;color:#a12b21;border-radius:9px;padding:8px 12px;margin-bottom:8px;font-size:12.5px;font-weight:700;">
-            <i class="fa fa-exclamation-triangle"></i> Abra una caja para registrar la compra.
-            <a href="{!! URL::to('caja') !!}" class="btn btn-danger btn-xs" style="margin-left:auto;border-radius:7px;font-weight:700;">Ir a caja</a>
+            <i class="fa fa-exclamation-triangle"></i> {{ __('nota_compra.abra_caja_compra') }}
+            <a href="{!! URL::to('caja') !!}" class="btn btn-danger btn-xs" style="margin-left:auto;border-radius:7px;font-weight:700;">{{ __('nota_compra.ir_a_caja') }}</a>
         </div>
     @endif
 
@@ -366,16 +366,16 @@ function buscarProducto(){
 
         {{-- ── Productos ── --}}
         <div class="nc-box">
-            <div class="nc-box__h"><i class="fa fa-search"></i> Buscar productos</div>
+            <div class="nc-box__h"><i class="fa fa-search"></i> {{ __('nota_compra.buscar_productos') }}</div>
             <div class="nc-box__b">
                 <div class="nc-search">
                     <select name="id_tipo_producto" id="id_tipo_producto" class="selectpicker" data-live-search="true" onchange="seleccionarTipo();">
-                        <option value="">TODOS</option>
+                        <option value="">{{ __('nota_compra.todos_mayus') }}</option>
                         @foreach($tipo_producto as $mov)
                             <option value="{{ $mov->id }}">{{ $mov->nombre }}</option>
                         @endforeach
                     </select>
-                    <input type="text" placeholder="Buscar producto…" id="txtBuscar">
+                    <input type="text" placeholder="{{ __('nota_compra.buscar_producto_placeholder') }}" id="txtBuscar">
                     <button type="button" class="nc-buscar" onclick="buscarProducto();"><i class="fa fa-search"></i></button>
                 </div>
                 <div id="listaProductos"></div>
@@ -384,7 +384,7 @@ function buscarProducto(){
 
         {{-- ── Datos de la compra ── --}}
         <div class="nc-box nc-form">
-            <div class="nc-box__h"><i class="fa fa-file-text-o"></i> Datos de la compra</div>
+            <div class="nc-box__h"><i class="fa fa-file-text-o"></i> {{ __('nota_compra.datos_de_la_compra') }}</div>
             <div class="nc-box__b">
                 <form action="{{ route('nota_compra.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off"
                       onkeypress="if(event.keyCode == 13) event.returnValue = false;">
@@ -393,9 +393,9 @@ function buscarProducto(){
                     <input type="hidden" name="id_empresa" value="{{ Auth::user()->id_empresa }}">
 
                     <div class="nc-field">
-                        <label>Comprador</label>
+                        <label>{{ __('nota_compra.comprador_field') }}</label>
                         <select name="id_comprador" id="id_comprador" class="form-control selectpicker text-uppercase" data-live-search="true">
-                            <option value="">Buscar comprador…</option>
+                            <option value="">{{ __('nota_compra.buscar_comprador_placeholder') }}</option>
                             @foreach($empleado as $mov)
                                 <option value="{{ $mov->id }}" {{ (string) old('id_comprador', $comprador_default ?? '') === (string) $mov->id ? 'selected' : '' }}>{{ $mov->nombre }} {{ $mov->paterno }} {{ $mov->materno }}</option>
                             @endforeach
@@ -403,9 +403,9 @@ function buscarProducto(){
                     </div>
 
                     <div class="nc-field">
-                        <label>Proveedor</label>
+                        <label>{{ __('nota_compra.proveedor_field') }}</label>
                         <select name="id_proveedor" id="id_proveedor" class="form-control selectpicker text-uppercase" data-live-search="true">
-                            <option value="">Buscar proveedor…</option>
+                            <option value="">{{ __('nota_compra.buscar_proveedor_placeholder') }}</option>
                             @foreach($proveedor as $mov)
                                 <option value="{{ $mov->id }}" {{ (string) old('id_proveedor') === (string) $mov->id ? 'selected' : '' }}>{{ $mov->nombre }} {{ $mov->paterno }} {{ $mov->materno }}</option>
                             @endforeach
@@ -414,26 +414,26 @@ function buscarProducto(){
 
                     <div class="nc-row2">
                         <div class="nc-field">
-                            <label>Total (Bs)</label>
+                            <label>{{ __('nota_compra.total_bs') }}</label>
                             <input type="text" name="monto_total" id="monto_total" value="{{ old('monto_total', 0) }}" class="form-control" maxlength="10">
                         </div>
                         <div class="nc-field">
-                            <label>Estado</label>
+                            <label>{{ __('nota_compra.estado_field') }}</label>
                             <select name="estado" id="estado" class="form-control">
-                                <option value="Procesado" {{ old('estado') === 'Procesado' || !old('estado') ? 'selected' : '' }}>Procesado</option>
-                                <option value="Por pagar" {{ old('estado') === 'Por pagar' ? 'selected' : '' }}>Por pagar</option>
+                                <option value="Procesado" {{ old('estado') === 'Procesado' || !old('estado') ? 'selected' : '' }}>{{ __('nota_compra.opt_procesado') }}</option>
+                                <option value="Por pagar" {{ old('estado') === 'Por pagar' ? 'selected' : '' }}>{{ __('estados.Por pagar') }}</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="nc-cart" style="border:1px solid var(--nc-line);border-radius:8px;overflow:hidden;margin-top:4px;">
                         <table class="table">
-                            <thead><tr><th>Producto</th><th style="text-align:center;">Cant.</th><th style="text-align:right;">Total</th><th></th></tr></thead>
-                            <tbody id="body_carrito"><tr><td colspan="4" class="nc-empty">Toque productos para agregar</td></tr></tbody>
+                            <thead><tr><th>{{ __('nota_compra.col_producto_corta') }}</th><th style="text-align:center;">{{ __('nota_compra.col_cant_corta') }}</th><th style="text-align:right;">{{ __('nota_compra.col_total_corta') }}</th><th></th></tr></thead>
+                            <tbody id="body_carrito"><tr><td colspan="4" class="nc-empty">{{ __('nota_compra.toque_productos') }}</td></tr></tbody>
                         </table>
                     </div>
 
-                    <button type="submit" id="btn_guardar_compra" disabled><i class="fa fa-save"></i> GUARDAR COMPRA</button>
+                    <button type="submit" id="btn_guardar_compra" disabled><i class="fa fa-save"></i> {{ __('nota_compra.guardar_compra') }}</button>
                 </form>
             </div>
         </div>
@@ -455,7 +455,7 @@ function buscarProducto(){
 	  <div class="modal-content">
   
 		<div class="modal-header" style="background: red; color: white">
-		  <h3 class="modal-title">ACTUALIZAR PRODUCTO</h3>
+		  <h3 class="modal-title">{{ __('nota_compra.actualizar_producto_titulo') }}</h3>
 		</div>   
 		
   
@@ -465,7 +465,7 @@ function buscarProducto(){
    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
   
 				<div style="margin: 15px;">
-					Nombre:<br>
+					{{ __('nota_compra.nombre_dp') }}<br>
 					<input type="text"  id="nombre"  class="form-control" readonly="readonly" />
 	  			</div>
 	 
@@ -475,30 +475,30 @@ function buscarProducto(){
 	 
     
 					<div class="form-group">
-					Precio de compra:<br>
+					{{ __('nota_compra.precio_compra_dp') }}<br>
 					<input type="decimal"  class="form-control" id="precio_compra"  required readonly="readonly" />
 					</div>
 	
 					<div class="form-group">
-						Precio:<br>
+						{{ __('nota_compra.precio_dp') }}<br>
 						<input type="decimal"  class="form-control" id="precio"  required/>
 					</div>
 				</div>
 	  
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " > 	  
 					<div class="form-group">
-					Precio de venta:<br>
+					{{ __('nota_compra.precio_venta_dp') }}<br>
 					<input type="decimal"   class="form-control" id="precio_venta"   required readonly="readonly">
 					</div>
 
 					<div class="form-group" hidden>
-					Cantidad:<br>
+					{{ __('nota_compra.cantidad_dp') }}<br>
 					<input type="number"   class="form-control" id="cantidad"   required>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " > 	  
 					<div class="form-group">
-					Cantidad :<br>
+					{{ __('nota_compra.cantidad_dp2') }}<br>
 					<input type="decimal" style="border: 3px solid #f39c12;"  class="form-control" id="peso"   required>
 					</div>
 
@@ -510,7 +510,7 @@ function buscarProducto(){
   
 		<div class="modal-footer"> 
 			<button data-dismiss="modal"  class="btn btn-danger form-control" onclick="guardarProducto();">
-				<i class="fa fa-save" aria-hidden="true"></i> GUARDAR</button>
+				<i class="fa fa-save" aria-hidden="true"></i> {{ __('nota_compra.guardar_btn') }}</button>
 		</div>
 	</div>
 </div>

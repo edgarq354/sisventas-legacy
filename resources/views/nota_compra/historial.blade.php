@@ -85,11 +85,11 @@
             success: function(data){
               alertify.success(":"+data);
               window.location.href = window.location.href;
-              $("#"+divresul+"").html("Asignacion de Taxi completado");   
+              $("#"+divresul+"").html(@json(__('nota_compra.asignacion_completado')));   
             },
             //si ha ocurrido un error
             error: function(data){
-               alertify.error("ha ocurrido un error:"+data) ;
+               alertify.error(@json(__('nota_compra.ha_ocurrido_error'))+data) ;
                 
             }
         });
@@ -120,7 +120,7 @@ $message=Session::get('message');
 @if($message=='store')
 <div class="alert alert-success alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert" arial-label="Close"><span aria-hidden="true">$times;</span></button>
-	Pago registrado con Exito.
+	{{ __('nota_compra.pago_registrado') }}
 </div>
 @endif
 @include('partials.dashboard_style')
@@ -153,20 +153,20 @@ $message=Session::get('message');
     <div class="dash-hero" style="margin-bottom:14px;">
         <div class="dash-hero__icon"><i class="fa fa-history"></i></div>
         <div>
-            <h3 class="dash-hero__title">Historial de compras</h3>
-            <p class="dash-hero__sub">Del {{ $fechaInicio }} al {{ $fechaFinal }} &middot; {{ count($nota_compra) }} registros</p>
+            <h3 class="dash-hero__title">{{ __('nota_compra.titulo_historial_compras') }}</h3>
+            <p class="dash-hero__sub">{!! __('nota_compra.del_al_registros', ['desde' => $fechaInicio, 'hasta' => $fechaFinal, 'count' => count($nota_compra)]) !!}</p>
         </div>
     </div>
 
     <div class="dash-card dash-card--overflow">
         <div class="dash-card__body">
             <div class="ch-filtros">
-                <div class="fld"><label>Desde</label><input type="text" value="{{ $fechaInicio }}" id="calendario1" onmouseover="buscarEnlace();" autocomplete="off"></div>
-                <div class="fld"><label>Hasta</label><input type="text" value="{{ $fechaFinal }}" id="calendario2" onmouseover="buscarEnlace();" autocomplete="off"></div>
+                <div class="fld"><label>{{ __('nota_compra.desde') }}</label><input type="text" value="{{ $fechaInicio }}" id="calendario1" onmouseover="buscarEnlace();" autocomplete="off"></div>
+                <div class="fld"><label>{{ __('nota_compra.hasta') }}</label><input type="text" value="{{ $fechaFinal }}" id="calendario2" onmouseover="buscarEnlace();" autocomplete="off"></div>
                 <div class="fld"><label>&nbsp;</label>
                     <div>
-                        <a class="ch-btn ch-btn--buscar" href="../../nota_compra_historial/{{ $fechaInicio }}/{{ $fechaFinal }}" id="buscar" onmouseover="buscarEnlace();"><i class="fa fa-search"></i> Buscar</a>
-                        <a class="ch-btn ch-btn--print" href="../../nota_compra_historial_imprimir/{{ $fechaInicio }}/{{ $fechaFinal }}" id="imprimir" onmouseover="buscarEnlace();"><i class="fa fa-print"></i> Imprimir</a>
+                        <a class="ch-btn ch-btn--buscar" href="../../nota_compra_historial/{{ $fechaInicio }}/{{ $fechaFinal }}" id="buscar" onmouseover="buscarEnlace();"><i class="fa fa-search"></i> {{ __('nota_compra.buscar') }}</a>
+                        <a class="ch-btn ch-btn--print" href="../../nota_compra_historial_imprimir/{{ $fechaInicio }}/{{ $fechaFinal }}" id="imprimir" onmouseover="buscarEnlace();"><i class="fa fa-print"></i> {{ __('nota_compra.imprimir') }}</a>
                     </div>
                 </div>
             </div>
@@ -175,20 +175,20 @@ $message=Session::get('message');
 
     <div class="dash-card">
         <div class="dash-card__head">
-            <i class="fa fa-list"></i> Compras
-            <span class="dash-card__extra ch-total">Total: <b>Bs {{ number_format($total_compras, 2) }}</b></span>
+            <i class="fa fa-list"></i> {{ __('nota_compra.compras_header') }}
+            <span class="dash-card__extra ch-total">{{ __('nota_compra.total_colon') }} <b>Bs {{ number_format($total_compras, 2) }}</b></span>
         </div>
         <div class="dash-card__body dash-card__body--flush">
             <div class="table-responsive" style="overflow-x:auto;">
                 <table class="table table-striped table-hover" id="tabla_sin_imprimir" style="background:white;margin:0;">
                     <thead>
-                        <th style="width:55px;"><center>ID</center></th>
-                        <th>Fecha</th>
-                        <th>Proveedor</th>
-                        <th>Comprador</th>
-                        <th style="text-align:right;">Monto</th>
-                        <th>Usuario</th>
-                        <th style="text-align:center;">Estado</th>
+                        <th style="width:55px;"><center>{{ __('nota_compra.col_id') }}</center></th>
+                        <th>{{ __('nota_compra.col_fecha') }}</th>
+                        <th>{{ __('nota_compra.col_proveedor') }}</th>
+                        <th>{{ __('nota_compra.col_comprador') }}</th>
+                        <th style="text-align:right;">{{ __('nota_compra.col_monto') }}</th>
+                        <th>{{ __('nota_compra.col_usuario') }}</th>
+                        <th style="text-align:center;">{{ __('nota_compra.col_estado') }}</th>
                         <th style="text-align:center;">...</th>
                     </thead>
                     <tbody>
@@ -202,28 +202,28 @@ $message=Session::get('message');
                                 <td>{{ $pago->usuario }}</td>
                                 <td style="text-align:center;">
                                     @if($pago->estado=='Procesado')
-                                        <span class="badge btn-success">{{ $pago->estado }}</span>
+                                        <span class="badge btn-success">{{ __('estados.'.$pago->estado) }}</span>
                                     @elseif($pago->estado=='Por pagar')
-                                        <span class="badge btn-warning">{{ $pago->estado }}</span>
+                                        <span class="badge btn-warning">{{ __('estados.'.$pago->estado) }}</span>
                                     @else
-                                        <span class="badge btn-danger">{{ $pago->estado }}</span>
+                                        <span class="badge btn-danger">{{ __('estados.'.$pago->estado) }}</span>
                                     @endif
                                 </td>
                                 <td style="text-align:center;">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">Opción <span class="caret"></span></button>
+                                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">{{ __('nota_compra.opcion') }} <span class="caret"></span></button>
                                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                            <li><a data-toggle="modal" data-target="#ModalVenta" onclick="cargarNotaVenta({{ $pago->id }});"><i class="fa fa-eye"></i> Ver detalle</a></li>
-                                            <li><a href='../../nota_compra_imprimir/{{ $pago->id }}' target="_blank"><i class="fa fa-print"></i> Imprimir</a></li>
+                                            <li><a data-toggle="modal" data-target="#ModalVenta" onclick="cargarNotaVenta({{ $pago->id }});"><i class="fa fa-eye"></i> {{ __('nota_compra.ver_detalle') }}</a></li>
+                                            <li><a href='../../nota_compra_imprimir/{{ $pago->id }}' target="_blank"><i class="fa fa-print"></i> {{ __('nota_compra.imprimir') }}</a></li>
                                             @if($pago->estado=='Por pagar')
-                                                <li><a href="" data-toggle="modal" data-target="#ModalEstado" onclick="cargarNotaActualizarEstado({{ $pago->id }})"><i class="fa fa-refresh"></i> Marcar pagado</a></li>
+                                                <li><a href="" data-toggle="modal" data-target="#ModalEstado" onclick="cargarNotaActualizarEstado({{ $pago->id }})"><i class="fa fa-refresh"></i> {{ __('nota_compra.marcar_pagado') }}</a></li>
                                             @endif
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                         @empty
-                            <tr><td colspan="8" class="dash-empty">Sin compras en el período</td></tr>
+                            <tr><td colspan="8" class="dash-empty">{{ __('nota_compra.sin_compras_periodo') }}</td></tr>
                         @endforelse
                     </tbody>
                 </table>
@@ -240,7 +240,7 @@ $message=Session::get('message');
 	  <div class="modal-content">
   
 		<div class="modal-header" style="background: #d4463e; color: white">
-		  <h3 class="modal-title">COMPRA : <label id="idNotaVenta"></label></h3>
+		  <h3 class="modal-title">{{ __('nota_compra.modal_compra_titulo') }} <label id="idNotaVenta"></label></h3>
 		</div>   
 		
   
@@ -250,12 +250,12 @@ $message=Session::get('message');
    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
   
 				<div style="margin: 15px;">
-					<label>Proveedor:</label><br>
+					<label>{{ __('nota_compra.proveedor_label') }}</label><br>
 					<input type="text"  id="proveedor"  class="form-control" readonly="" />
 	  			</div>
 
 	  			<div style="margin: 15px;">
-					<label>Comprador:</label><br>
+					<label>{{ __('nota_compra.comprador_label') }}</label><br>
 					<input type="text"  id="comprador"  class="form-control" readonly="" />
 	  			</div>
 	 
@@ -265,24 +265,24 @@ $message=Session::get('message');
 	 
     
 					<div class="form-group">
-					<label>NIT/CI:</label><br>
+					<label>{{ __('nota_compra.nit_ci_label') }}</label><br>
 					<input type="decimal"  class="form-control" id="ciNit"  readonly="" />
 					</div>
 	
 					<div class="form-group">
-						<label>Fecha:</label><br>
+						<label>{{ __('nota_compra.fecha_label') }}</label><br>
 						<input type="decimal"  class="form-control" id="fecha" readonly="" />
 					</div>
 				</div>
 	  
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " > 	  
 					<div class="form-group">
-					<label>Monto Total:</label><br>
+					<label>{{ __('nota_compra.monto_total_label') }}</label><br>
 					<input type="decimal"   class="form-control" id="montoTotal" readonly=""  >
 					</div>
 
 					<div class="form-group">
-					<label>Usuario:</label><br>
+					<label>{{ __('nota_compra.usuario_label') }}</label><br>
 					<input type="text"   class="form-control" id="usuario" readonly=""  >
 					</div>
 				</div>
@@ -293,9 +293,9 @@ $message=Session::get('message');
 			<table class="table table-striped table-bordered table-condensed table-hover" style="background: white">
 				<thead>
 					
-					<th><center>Producto</center></th>  
-					<th><center>Cantidad</center></th> 
-					<th><center>Total</center></th> 
+					<th><center>{{ __('nota_compra.col_producto') }}</center></th>  
+					<th><center>{{ __('nota_compra.col_cantidad') }}</center></th> 
+					<th><center>{{ __('nota_compra.col_total') }}</center></th> 
 				</thead>
 				<tbody align="center" id="body_detalle">					
 				
@@ -306,7 +306,7 @@ $message=Session::get('message');
   
 		<div class="modal-footer"> 
 			<button data-dismiss="modal"  class="btn btn-warning form-control" >
-				<i class="fa fa-close" aria-hidden="true"></i> CERRAR</button>
+				<i class="fa fa-close" aria-hidden="true"></i> {{ __('nota_compra.cerrar') }}</button>
 		</div>
 	</div>
 </div>
@@ -319,7 +319,7 @@ $message=Session::get('message');
 	  <div class="modal-content">
   
 		<div class="modal-header" style="background: #d4463e; color: white">
-		  <h3 class="modal-title">Cancelar la Venta </h3>
+		  <h3 class="modal-title">{{ __('nota_compra.cancelar_venta_titulo') }} </h3>
 		</div>   
 		
   
@@ -328,7 +328,7 @@ $message=Session::get('message');
    
    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
   				<input type="hidden" id="idNotaVentaCancelar">
-				 <center><h3>Al cancelar la venta, se regresaran al inventario los productos comprados.</h3></center>
+				 <center><h3>{{ __('nota_compra.cancelar_venta_aviso') }}</h3></center>
 
   			 </div>
 		</div>
@@ -338,9 +338,9 @@ $message=Session::get('message');
   
 		<div class="modal-footer"> 
 			<button data-dismiss="modal"  class="btn btn-warning "  onclick="cancelarNota();">
-				<i class="fa fa-save" aria-hidden="true"></i> ACEPTAR</button>
+				<i class="fa fa-save" aria-hidden="true"></i> {{ __('nota_compra.aceptar') }}</button>
 			<button data-dismiss="modal"  class="btn btn-danger " >
-				<i class="fa fa-save" aria-hidden="true"></i> CERRAR</button>	
+				<i class="fa fa-save" aria-hidden="true"></i> {{ __('nota_compra.cerrar') }}</button>	
 		</div>
 	</div>
 </div>
@@ -357,7 +357,7 @@ $message=Session::get('message');
         <form action="{{ url('actualizar_estado_nota_compra') }}" method="POST" enctype="multipart/form-data" onkeypress="if(event.keyCode == 13) event.returnValue = false;">
     	@csrf
         <div class="modal-header" style="background: #3984ca; color: white">
-          <h3 class="modal-title">ACTUALIZAR ESTADO DE LA COMPRA  </h3>
+          <h3 class="modal-title">{{ __('nota_compra.actualizar_estado_compra_titulo') }}</h3>
         </div>    
         <div class="modal-body">
        
@@ -366,17 +366,17 @@ $message=Session::get('message');
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " > 
               <input type="hidden" name="id_nota_compra" id='idNotaActualizarEstado'  /> 
               <div class="form-group">
-              <label>ESTADO:</label><br>
+              <label>{{ __('nota_compra.estado_label_mayus') }}</label><br>
               <select name="estado"  class="form-control">
-                <option value="Por cobrar"> Pro cobrar</option>
-                <option value="Procesado"> Procesado</option>
+                <option value="Por cobrar"> {{ __('nota_compra.opt_por_cobrar') }}</option>
+                <option value="Procesado"> {{ __('nota_compra.opt_procesado') }}</option>
               </select>
               </div>
             </div>
     
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
             <button type="submit" class="btn btn-primary" id="btn_actualizar" onclick="btn_esconder()">
-				ACTUALIZAR
+				{{ __('nota_compra.actualizar') }}
 			</button>
             </form>
             

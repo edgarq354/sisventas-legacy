@@ -82,11 +82,11 @@
             success: function(data){
               alertify.success(":"+data);
               window.location.href = window.location.href;
-              $("#"+divresul+"").html("Asignacion de Taxi completado");   
+              $("#"+divresul+"").html(@json(__('nota_venta.asignacion_completado')));   
             },
             //si ha ocurrido un error
             error: function(data){
-               alertify.error("ha ocurrido un error:"+data) ;
+               alertify.error(@json(__('nota_venta.ha_ocurrido_error'))+data) ;
                 
             }
         });
@@ -118,7 +118,7 @@ $message=Session::get('message');
 @if($message=='store')
 <div class="alert alert-success alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert" arial-label="Close"><span aria-hidden="true">$times;</span></button>
-	Pago registrado con Exito.
+	{{ __('nota_venta.pago_registrado') }}
 </div>
 @endif
 @include('partials.dashboard_style')
@@ -151,21 +151,21 @@ $message=Session::get('message');
     <div class="dash-hero" style="margin-bottom:14px;">
         <div class="dash-hero__icon"><i class="fa fa-history"></i></div>
         <div>
-            <h3 class="dash-hero__title">Historial de ventas</h3>
-            <p class="dash-hero__sub">Del {{ $fechaInicio }} al {{ $fechaFinal }} &middot; {{ count($nota_venta) }} registros</p>
+            <h3 class="dash-hero__title">{{ __('nota_venta.titulo_historial_ventas') }}</h3>
+            <p class="dash-hero__sub">{!! __('nota_venta.del_al_registros', ['desde' => $fechaInicio, 'hasta' => $fechaFinal, 'count' => count($nota_venta)]) !!}</p>
         </div>
     </div>
 
     <div class="dash-card dash-card--overflow">
         <div class="dash-card__body">
             <div class="vh-filtros">
-                <div class="fld"><label>Desde</label><input type="text" value="{{ $fechaInicio }}" id="calendario1" onmouseover="buscarEnlace();" autocomplete="off"></div>
-                <div class="fld"><label>Hasta</label><input type="text" value="{{ $fechaFinal }}" id="calendario2" onmouseover="buscarEnlace();" autocomplete="off"></div>
+                <div class="fld"><label>{{ __('nota_venta.desde') }}</label><input type="text" value="{{ $fechaInicio }}" id="calendario1" onmouseover="buscarEnlace();" autocomplete="off"></div>
+                <div class="fld"><label>{{ __('nota_venta.hasta') }}</label><input type="text" value="{{ $fechaFinal }}" id="calendario2" onmouseover="buscarEnlace();" autocomplete="off"></div>
                 <div class="fld"><label>&nbsp;</label>
                     <div>
-                        <a class="vh-btn vh-btn--buscar" href="../../nota_venta_historial/{{ $fechaInicio }}/{{ $fechaFinal }}" id="buscar" onmouseover="buscarEnlace();"><i class="fa fa-search"></i> Buscar</a>
-                        <a class="vh-btn vh-btn--print" href="../../nota_venta_historial_imprimir/{{ $fechaInicio }}/{{ $fechaFinal }}" id="imprimir" onmouseover="buscarEnlace();"><i class="fa fa-print"></i> Imprimir</a>
-                        <a class="vh-btn vh-btn--print" href="../../nota_venta_historial_por_dia_imprimir/{{ $fechaInicio }}/{{ $fechaFinal }}" id="imprimir_por_dia" onmouseover="buscarEnlace();"><i class="fa fa-calendar"></i> Resumen por día</a>
+                        <a class="vh-btn vh-btn--buscar" href="../../nota_venta_historial/{{ $fechaInicio }}/{{ $fechaFinal }}" id="buscar" onmouseover="buscarEnlace();"><i class="fa fa-search"></i> {{ __('nota_venta.buscar') }}</a>
+                        <a class="vh-btn vh-btn--print" href="../../nota_venta_historial_imprimir/{{ $fechaInicio }}/{{ $fechaFinal }}" id="imprimir" onmouseover="buscarEnlace();"><i class="fa fa-print"></i> {{ __('nota_venta.imprimir') }}</a>
+                        <a class="vh-btn vh-btn--print" href="../../nota_venta_historial_por_dia_imprimir/{{ $fechaInicio }}/{{ $fechaFinal }}" id="imprimir_por_dia" onmouseover="buscarEnlace();"><i class="fa fa-calendar"></i> {{ __('nota_venta.resumen_por_dia') }}</a>
                     </div>
                 </div>
             </div>
@@ -174,21 +174,21 @@ $message=Session::get('message');
 
     <div class="dash-card">
         <div class="dash-card__head">
-            <i class="fa fa-list"></i> Ventas
-            <span class="dash-card__extra vh-total">Total: <b>Bs {{ number_format($total_ventas, 2) }}</b></span>
+            <i class="fa fa-list"></i> {{ __('nota_venta.ventas_header') }}
+            <span class="dash-card__extra vh-total">{{ __('nota_venta.total_colon') }} <b>Bs {{ number_format($total_ventas, 2) }}</b></span>
         </div>
         <div class="dash-card__body dash-card__body--flush">
             <div class="table-responsive" style="overflow-x:auto;">
                 <table class="table table-striped table-hover" id="tabla_sin_imprimir" style="background:white;margin:0;">
                     <thead>
-                        <th style="width:55px;"><center>ID</center></th>
-                        @if(Auth::user()->tipo_empresa=="RESTAURANTE")<th style="text-align:center;">Ticket</th>@endif
-                        <th>Fecha</th>
-                        <th>Cliente</th>
-                        <th style="text-align:right;">Monto</th>
-                        <th>Modalidad</th>
-                        <th>Usuario</th>
-                        <th style="text-align:center;">Estado</th>
+                        <th style="width:55px;"><center>{{ __('nota_venta.col_id') }}</center></th>
+                        @if(Auth::user()->tipo_empresa=="RESTAURANTE")<th style="text-align:center;">{{ __('nota_venta.col_ticket') }}</th>@endif
+                        <th>{{ __('nota_venta.col_fecha') }}</th>
+                        <th>{{ __('nota_venta.col_cliente') }}</th>
+                        <th style="text-align:right;">{{ __('nota_venta.col_monto') }}</th>
+                        <th>{{ __('nota_venta.col_modalidad') }}</th>
+                        <th>{{ __('nota_venta.col_usuario') }}</th>
+                        <th style="text-align:center;">{{ __('nota_venta.col_estado') }}</th>
                         <th style="text-align:center;">...</th>
                     </thead>
                     <tbody>
@@ -202,31 +202,31 @@ $message=Session::get('message');
                                 <td>{{ $pago->tipo }}</td>
                                 <td>{{ $pago->usuario }}</td>
                                 <td style="text-align:center;">
-                                    @if($pago->estado=='Procesado')<span class="badge btn-success">{{ $pago->estado }}</span>
-                                    @elseif($pago->estado=='Por cobrar')<span class="badge btn-warning">{{ $pago->estado }}</span>
+                                    @if($pago->estado=='Procesado')<span class="badge btn-success">{{ __('estados.'.$pago->estado) }}</span>
+                                    @elseif($pago->estado=='Por cobrar')<span class="badge btn-warning">{{ __('estados.'.$pago->estado) }}</span>
                                     @elseif($pago->estado=='Qr')<span class="badge btn-warning">Qr</span>
-                                    @elseif($pago->estado=='QrFie')<span class="badge btn-info">QR B. FIE</span>
-                                    @else<span class="badge btn-danger">{{ $pago->estado }}</span>@endif
+                                    @elseif($pago->estado=='QrFie')<span class="badge btn-info">{{ __('nota_venta.qr_b_fie') }}</span>
+                                    @else<span class="badge btn-danger">{{ __('estados.'.$pago->estado) }}</span>@endif
                                 </td>
                                 <td style="text-align:center;">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">Opción <span class="caret"></span></button>
+                                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">{{ __('nota_venta.opcion') }} <span class="caret"></span></button>
                                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                            <li><a data-toggle="modal" data-target="#ModalVenta" onclick="cargarNotaVenta({{ $pago->id }});"><i class="fa fa-eye"></i> Ver detalle</a></li>
-                                            <li><a href='../../nota_venta_imprimir/{{ $pago->id }}' target="_blank"><i class="fa fa-print"></i> Imprimir</a></li>
-                                            <li><a href='../../nota_venta_imprimir_pequenio/{{ $pago->id }}' target="_blank"><i class="fa fa-print"></i> Boletín</a></li>
+                                            <li><a data-toggle="modal" data-target="#ModalVenta" onclick="cargarNotaVenta({{ $pago->id }});"><i class="fa fa-eye"></i> {{ __('nota_venta.ver_detalle') }}</a></li>
+                                            <li><a href='../../nota_venta_imprimir/{{ $pago->id }}' target="_blank"><i class="fa fa-print"></i> {{ __('nota_venta.imprimir') }}</a></li>
+                                            <li><a href='../../nota_venta_imprimir_pequenio/{{ $pago->id }}' target="_blank"><i class="fa fa-print"></i> {{ __('nota_venta.boletin') }}</a></li>
                                             @if($pago->estado!='Cancelado')
-                                                <li><a href="" data-toggle="modal" data-target="#ModalCancelarVenta" onclick="cargarNotaVentaCancelar({{ $pago->id }})"><i class="fa fa-close"></i> Cancelar venta</a></li>
+                                                <li><a href="" data-toggle="modal" data-target="#ModalCancelarVenta" onclick="cargarNotaVentaCancelar({{ $pago->id }})"><i class="fa fa-close"></i> {{ __('nota_venta.cancelar_venta') }}</a></li>
                                             @endif
                                             @if($pago->estado=='Por cobrar')
-                                                <li><a href="" data-toggle="modal" data-target="#ModalEstado" onclick="cargarNotaVentaActualizarEstado({{ $pago->id }})"><i class="fa fa-refresh"></i> Marcar cobrado</a></li>
+                                                <li><a href="" data-toggle="modal" data-target="#ModalEstado" onclick="cargarNotaVentaActualizarEstado({{ $pago->id }})"><i class="fa fa-refresh"></i> {{ __('nota_venta.marcar_cobrado') }}</a></li>
                                             @endif
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                         @empty
-                            <tr><td colspan="9" class="dash-empty">Sin ventas en el período</td></tr>
+                            <tr><td colspan="9" class="dash-empty">{{ __('nota_venta.sin_ventas_periodo') }}</td></tr>
                         @endforelse
                     </tbody>
                 </table>
@@ -244,7 +244,7 @@ $message=Session::get('message');
 	  <div class="modal-content">
   
 		<div class="modal-header" style="background: #d4463e; color: white">
-		  <h3 class="modal-title">Venta : <label id="idNotaVenta"></label></h3>
+		  <h3 class="modal-title">{{ __('nota_venta.modal_venta_titulo') }} <label id="idNotaVenta"></label></h3>
 		</div>   
 		
   
@@ -254,7 +254,7 @@ $message=Session::get('message');
    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
   
 				<div style="margin: 15px;">
-					<label>Nombre:</label><br>
+					<label>{{ __('nota_venta.nombre_label') }}</label><br>
 					<input type="text"  id="razonSocial"  class="form-control" readonly="" />
 	  			</div>
 	 
@@ -264,24 +264,24 @@ $message=Session::get('message');
 	 
     
 					<div class="form-group">
-					<label>NIT/CI:</label><br>
+					<label>{{ __('nota_venta.nit_ci_label') }}</label><br>
 					<input type="decimal"  class="form-control" id="ciNit"  readonly="" />
 					</div>
 	
 					<div class="form-group">
-						<label>Fecha:</label><br>
+						<label>{{ __('nota_venta.fecha_label') }}</label><br>
 						<input type="decimal"  class="form-control" id="fecha" readonly="" />
 					</div>
 				</div>
 	  
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " > 	  
 					<div class="form-group">
-					<label>Monto Total:</label><br>
+					<label>{{ __('nota_venta.monto_total_label') }}</label><br>
 					<input type="decimal"   class="form-control" id="montoTotal" readonly=""  >
 					</div>
 
 					<div class="form-group">
-					<label>Usuario:</label><br>
+					<label>{{ __('nota_venta.usuario_label') }}</label><br>
 					<input type="text"   class="form-control" id="usuario" readonly=""  >
 					</div>
 				</div>
@@ -292,9 +292,9 @@ $message=Session::get('message');
 			<table class="table table-striped table-bordered table-condensed table-hover" style="background: white">
 				<thead>
 					
-					<th><center>Producto</center></th>  
-					<th><center>Cantidad</center></th> 
-					<th><center>Total</center></th> 
+					<th><center>{{ __('nota_venta.col_producto') }}</center></th>  
+					<th><center>{{ __('nota_venta.col_cantidad') }}</center></th> 
+					<th><center>{{ __('nota_venta.col_total') }}</center></th> 
 				</thead>
 				<tbody align="center" id="body_detalle">					
 				
@@ -305,7 +305,7 @@ $message=Session::get('message');
   
 		<div class="modal-footer"> 
 			<button data-dismiss="modal"  class="btn btn-warning form-control" >
-				<i class="fa fa-close" aria-hidden="true"></i> CERRAR</button>
+				<i class="fa fa-close" aria-hidden="true"></i> {{ __('nota_venta.cerrar') }}</button>
 		</div>
 	</div>
 </div>
@@ -318,7 +318,7 @@ $message=Session::get('message');
 	  <div class="modal-content">
   
 		<div class="modal-header" style="background: #d4463e; color: white">
-		  <h3 class="modal-title">Cancelar la Venta </h3>
+		  <h3 class="modal-title">{{ __('nota_venta.cancelar_venta_titulo') }} </h3>
 		</div>   
 		
   
@@ -327,7 +327,7 @@ $message=Session::get('message');
    
    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
   				<input type="hidden" id="idNotaVentaCancelar">
-				 <center><h3>Al cancelar la venta, se regresaran al inventario los productos comprados.</h3></center>
+				 <center><h3>{{ __('nota_venta.cancelar_venta_aviso') }}</h3></center>
 
   			 </div>
 		</div>
@@ -337,9 +337,9 @@ $message=Session::get('message');
   
 		<div class="modal-footer"> 
 			<button data-dismiss="modal"  class="btn btn-warning "  onclick="cancelarNota();">
-				<i class="fa fa-save" aria-hidden="true"></i> ACEPTAR</button>
+				<i class="fa fa-save" aria-hidden="true"></i> {{ __('nota_venta.aceptar') }}</button>
 			<button data-dismiss="modal"  class="btn btn-danger " >
-				<i class="fa fa-save" aria-hidden="true"></i> CERRAR</button>	
+				<i class="fa fa-save" aria-hidden="true"></i> {{ __('nota_venta.cerrar') }}</button>	
 		</div>
 	</div>
 </div>
@@ -361,7 +361,7 @@ $message=Session::get('message');
 		@csrf   
 
         <div class="modal-header" style="background: #3984ca; color: white">
-          <h3 class="modal-title">ACTUALIZAR ESTADO DE LA VENTA <label id="idNotaVenta"></label></h3>
+          <h3 class="modal-title">{{ __('nota_venta.actualizar_estado_venta_titulo') }} <label id="idNotaVenta"></label></h3>
         </div>    
         <div class="modal-body">
        
@@ -370,10 +370,10 @@ $message=Session::get('message');
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " > 
               <input type="hidden" name="id_nota_venta" id='idNotaVentaActualizarEstado'  /> 
               <div class="form-group">
-              <label>ESTADO:</label><br>
+              <label>{{ __('nota_venta.estado_label_mayus') }}</label><br>
               <select name="estado"  class="form-control">
-                <option value="Por cobrar"> Pro cobrar</option>
-                <option value="Procesado"> Procesado</option>
+                <option value="Por cobrar"> {{ __('nota_venta.opt_por_cobrar') }}</option>
+                <option value="Procesado"> {{ __('nota_venta.opt_procesado') }}</option>
               </select>
               </div>
             </div>
@@ -383,7 +383,7 @@ $message=Session::get('message');
 					class="btn btn-primary" 
 					id="btn_actualizar" 
 					onclick="btn_esconder()">
-				ACTUALIZAR
+				{{ __('nota_venta.actualizar') }}
 			</button>
 
             

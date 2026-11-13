@@ -82,23 +82,23 @@
             <div class="c-bar__title">
                 <span class="dot {{ $abierta ? 'dot--on' : 'dot--off' }}"></span>
                 <i class="fa fa-inbox"></i>
-                @if($abierta) Caja "{{ $abierta->caja }}" abierta @else Sin caja abierta @endif
+                @if($abierta) {{ __('caja.caja_abierta', ['caja' => $abierta->caja]) }} @else {{ __('caja.sin_caja_abierta') }} @endif
             </div>
 
             @if($abierta)
             <div class="c-bar__stats">
-                <div class="c-fig c-fig--total"><b>Bs {{ number_format((float)$abierta->monto_venta_total, 2) }}</b><span>Total</span></div>
-                <div class="c-fig c-fig--efe"><b>Bs {{ number_format((float)$abierta->monto_venta, 2) }}</b><span>Efectivo</span></div>
+                <div class="c-fig c-fig--total"><b>Bs {{ number_format((float)$abierta->monto_venta_total, 2) }}</b><span>{{ __('caja.total') }}</span></div>
+                <div class="c-fig c-fig--efe"><b>Bs {{ number_format((float)$abierta->monto_venta, 2) }}</b><span>{{ __('caja.efectivo') }}</span></div>
                 <div class="c-fig c-fig--qr"><b>Bs {{ number_format((float)$abierta->monto_venta_qr, 2) }}</b><span>QR</span></div>
-                <div class="c-fig c-fig--pc"><b>Bs {{ number_format((float)$abierta->monto_venta_por_cobrar, 2) }}</b><span>Por cobrar</span></div>
+                <div class="c-fig c-fig--pc"><b>Bs {{ number_format((float)$abierta->monto_venta_por_cobrar, 2) }}</b><span>{{ __('caja.por_cobrar') }}</span></div>
             </div>
             @endif
 
             <div class="c-actions" style="{{ $abierta ? '' : 'margin-left:auto;' }}">
                 @if(!($id_caja>0))
-                    <a class="c-btn c-btn--abrir" data-toggle="modal" data-target="#ModalAbrirCaja" onclick="cargarCajaMonto();"><i class="fa fa-plus"></i> Abrir caja</a>
+                    <a class="c-btn c-btn--abrir" data-toggle="modal" data-target="#ModalAbrirCaja" onclick="cargarCajaMonto();"><i class="fa fa-plus"></i> {{ __('caja.abrir_caja') }}</a>
                 @endif
-                <a class="c-btn c-btn--print" href="caja_imprimir" target="_blank"><i class="fa fa-print"></i> Imprimir</a>
+                <a class="c-btn c-btn--print" href="caja_imprimir" target="_blank"><i class="fa fa-print"></i> {{ __('caja.imprimir') }}</a>
             </div>
         </div>
 
@@ -106,18 +106,18 @@
         <div class="dash-card dash-card--overflow">
             <div class="dash-card__body">
                 <form method="GET" action="{{ url('caja') }}" class="c-filtros">
-                    <div class="fld"><label>Desde</label><input type="date" name="desde" value="{{ $f_desde }}"></div>
-                    <div class="fld"><label>Hasta</label><input type="date" name="hasta" value="{{ $f_hasta }}"></div>
+                    <div class="fld"><label>{{ __('caja.desde') }}</label><input type="date" name="desde" value="{{ $f_desde }}"></div>
+                    <div class="fld"><label>{{ __('caja.hasta') }}</label><input type="date" name="hasta" value="{{ $f_hasta }}"></div>
                     <div class="fld">
-                        <label>Usuario(s)</label>
+                        <label>{{ __('caja.usuarios') }}</label>
                         <div class="c-usel" id="c-usel">
                             <button type="button" class="c-usel__btn" onclick="cUselToggle()">
-                                <span id="c-usel-label">{{ count($f_usuarios) ? count($f_usuarios).' seleccionado(s)' : 'Todos los usuarios' }}</span>
+                                <span id="c-usel-label">{{ count($f_usuarios) ? __('caja.seleccionados', ['count' => count($f_usuarios)]) : __('caja.todos_los_usuarios') }}</span>
                                 <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="c-usel__menu" id="c-usel-menu">
                                 <label class="c-usel__opt c-usel__all">
-                                    <input type="checkbox" id="c-usel-todos" {{ count($f_usuarios) ? '' : 'checked' }}> <b>Todos</b>
+                                    <input type="checkbox" id="c-usel-todos" {{ count($f_usuarios) ? '' : 'checked' }}> <b>{{ __('caja.todos') }}</b>
                                 </label>
                                 <div class="c-usel__list">
                                     @foreach($usuarios_empresa as $u)
@@ -132,8 +132,8 @@
                     </div>
                     <div class="fld"><label>&nbsp;</label>
                         <div>
-                            <button type="submit" class="c-fbtn c-fbtn--buscar"><i class="fa fa-search"></i> Filtrar</button>
-                            <a href="{{ url('caja') }}" class="c-fbtn c-fbtn--limpiar"><i class="fa fa-eraser"></i> Limpiar</a>
+                            <button type="submit" class="c-fbtn c-fbtn--buscar"><i class="fa fa-search"></i> {{ __('caja.filtrar') }}</button>
+                            <a href="{{ url('caja') }}" class="c-fbtn c-fbtn--limpiar"><i class="fa fa-eraser"></i> {{ __('caja.limpiar') }}</a>
                         </div>
                     </div>
                 </form>
@@ -143,27 +143,27 @@
 
         <div class="dash-card">
             <div class="dash-card__head">
-                <i class="fa fa-history"></i> Movimientos de caja
+                <i class="fa fa-history"></i> {{ __('caja.movimientos_caja') }}
                 @if(Auth::user()->privilegio == 0)
-                    <span class="dash-card__extra">{{ count($caja) }} cajas · {{ $f_desde }} al {{ $f_hasta }}</span>
+                    <span class="dash-card__extra">{!! __('caja.resumen_cajas', ['count' => count($caja), 'desde' => $f_desde, 'hasta' => $f_hasta]) !!}</span>
                 @endif
             </div>
             <div class="dash-card__body dash-card__body--flush">
                 <div class="table-responsive" style="overflow-x:auto;">
                     <table class="table table-striped table-hover" id="tabla_sin_imprimir" style="background:white;margin:0;">
                         <thead>
-                            <th><center>ID</center></th>
-                            <th>Usuario</th>
-                            <th>Caja</th>
-                            <th style="text-align:right;">Abrir</th>
-                            <th style="text-align:right;">Abrir QR</th>
-                            <th style="text-align:right;">Cerrado total</th>
-                            <th style="text-align:right;">Cerrado efectivo</th>
-                            <th style="text-align:right;">Cerrado QR</th>
-                            <th>Abierto</th>
-                            <th>Cerrado</th>
-                            <th style="text-align:center;">Estado</th>
-                            <th style="text-align:center;">Opción</th>
+                            <th><center>{{ __('caja.col_id') }}</center></th>
+                            <th>{{ __('caja.col_usuario') }}</th>
+                            <th>{{ __('caja.col_caja') }}</th>
+                            <th style="text-align:right;">{{ __('caja.col_abrir') }}</th>
+                            <th style="text-align:right;">{{ __('caja.col_abrir_qr') }}</th>
+                            <th style="text-align:right;">{{ __('caja.col_cerrado_total') }}</th>
+                            <th style="text-align:right;">{{ __('caja.col_cerrado_efectivo') }}</th>
+                            <th style="text-align:right;">{{ __('caja.col_cerrado_qr') }}</th>
+                            <th>{{ __('caja.col_abierto') }}</th>
+                            <th>{{ __('caja.col_cerrado') }}</th>
+                            <th style="text-align:center;">{{ __('caja.col_estado') }}</th>
+                            <th style="text-align:center;">{{ __('caja.col_opcion') }}</th>
                         </thead>
                         <tbody id="body_conductor">
                             @foreach ($caja as $usr)
@@ -180,24 +180,24 @@
                                     <td>{{ $usr->fecha_cierre }}</td>
                                     <td style="text-align:center;">
                                         @if ($usr->estado == 'Abierta')
-                                            <span class="badge btn-success">{{ $usr->estado }}</span>
+                                            <span class="badge btn-success">{{ __('caja.estado_abierta') }}</span>
                                         @else
-                                            <span class="badge btn-danger">{{ $usr->estado }}</span>
+                                            <span class="badge btn-danger">{{ __('caja.estado_cerrada') }}</span>
                                         @endif
                                     </td>
                                     <td style="text-align:center;">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                Opción <span class="caret"></span>
+                                                {{ __('caja.opcion') }} <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                <li><a href='caja/{{ $usr->id }}/edit' title="Ver"><i class='fa fa-eye'></i> Ver</a></li>
+                                                <li><a href='caja/{{ $usr->id }}/edit' title="{{ __('caja.ver') }}"><i class='fa fa-eye'></i> {{ __('caja.ver') }}</a></li>
                                                 @if ($usr->estado == 'Abierta' && $usr->id_usuario == Auth::user()->id)
-                                                    <li><a href="" data-toggle="modal" data-target="#ModalCierreCaja2" onclick="cargarCaja({{ $usr->id }})"><i class='fa fa-close'></i> Cerrar caja</a></li>
+                                                    <li><a href="" data-toggle="modal" data-target="#ModalCierreCaja2" onclick="cargarCaja({{ $usr->id }})"><i class='fa fa-close'></i> {{ __('caja.cerrar_caja') }}</a></li>
                                                 @else
-                                                    <li><a target="_blank" href='caja_usuario_imprimir/{{ $usr->id }}'><i class='fa fa-print'></i> Imprimir</a></li>
-                                                    <li><a target="_blank" href='caja_usuario_imprimir_boletin/{{ $usr->id }}'><i class='fa fa-print'></i> Imp. boletín</a></li>
-                                                    <li><a target="_blank" href='caja_usuario_imprimir_por_producto_boletin/{{ $usr->id }}'><i class='fa fa-print'></i> Rep. por producto</a></li>
+                                                    <li><a target="_blank" href='caja_usuario_imprimir/{{ $usr->id }}'><i class='fa fa-print'></i> {{ __('caja.imprimir') }}</a></li>
+                                                    <li><a target="_blank" href='caja_usuario_imprimir_boletin/{{ $usr->id }}'><i class='fa fa-print'></i> {{ __('caja.imp_boletin') }}</a></li>
+                                                    <li><a target="_blank" href='caja_usuario_imprimir_por_producto_boletin/{{ $usr->id }}'><i class='fa fa-print'></i> {{ __('caja.rep_por_producto') }}</a></li>
                                                 @endif
                                             </ul>
                                         </div>
@@ -264,9 +264,11 @@
         function cUselToggle() { $('#c-usel').toggleClass('open'); }
         (function () {
             var $todos = $('#c-usel-todos'), $chk = $('.c-usel-chk');
+            var txtTodos = @json(__('caja.todos_los_usuarios'));
+            var txtSeleccionadosTpl = @json(__('caja.seleccionados', ['count' => ':count']));
             function actualizarLabel() {
                 var n = $chk.filter(':checked').length;
-                $('#c-usel-label').text(n === 0 ? 'Todos los usuarios' : n + ' seleccionado(s)');
+                $('#c-usel-label').text(n === 0 ? txtTodos : txtSeleccionadosTpl.replace(':count', n));
                 $todos.prop('checked', n === 0);
             }
             $todos.on('change', function () { if (this.checked) { $chk.prop('checked', false); } actualizarLabel(); });

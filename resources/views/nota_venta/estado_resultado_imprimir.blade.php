@@ -81,9 +81,9 @@
                 </div>
             </td>
             <td style="width: 38%;" class="doc-box">
-                <span class="doc-title">ESTADO DE RESULTADO</span>
+                <span class="doc-title">{{ __('nota_venta.estado_resultado_mayus') }}</span>
                 <div class="doc-range">
-                    Del {{ $fecha_inicio }} al {{ $fecha_final }}
+                    {{ __('nota_venta.del_al', ['desde' => $fecha_inicio, 'hasta' => $fecha_final]) }}
                 </div>
             </td>
         </tr>
@@ -94,8 +94,8 @@
     <table class="fin">
         <thead>
             <tr>
-                <th>Concepto</th>
-                <th class="num" style="width: 130px;">Monto (Bs)</th>
+                <th>{{ __('nota_venta.concepto') }}</th>
+                <th class="num" style="width: 130px;">{{ __('nota_venta.monto_bs') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -105,7 +105,7 @@
                 $ventas_ok = array_values(array_filter($nota_venta, fn($p) => in_array($p->estado, $estados_venta_ok)));
                 $ventas_canceladas = array_sum(array_map(fn($p) => (float) $p->monto_total, array_filter($nota_venta, fn($p) => $p->estado === 'Cancelado')));
             @endphp
-            <tr class="sec"><td>Ingresos &mdash; Ventas</td><td class="num"></td></tr>
+            <tr class="sec"><td>{!! __('nota_venta.ingresos_ventas') !!}</td><td class="num"></td></tr>
             @forelse($ventas_ok as $pago)
                 <tr>
                     <td>{{ $pago->nombre }}</td>
@@ -113,16 +113,16 @@
                 </tr>
                 @php $totalVentas += (float) $pago->monto_total; @endphp
             @empty
-                <tr><td class="muted">Sin ventas en el período</td><td class="num">0.00</td></tr>
+                <tr><td class="muted">{{ __('nota_venta.sin_ventas_periodo') }}</td><td class="num">0.00</td></tr>
             @endforelse
-            <tr class="subtotal"><td>Total de ventas</td><td class="num">{{ $fmt($totalVentas) }}</td></tr>
+            <tr class="subtotal"><td>{{ __('nota_venta.total_de_ventas') }}</td><td class="num">{{ $fmt($totalVentas) }}</td></tr>
             @if($ventas_canceladas > 0)
-                <tr><td class="muted">Ventas canceladas (no computan)</td><td class="num muted">{{ $fmt($ventas_canceladas) }}</td></tr>
+                <tr><td class="muted">{{ __('nota_venta.ventas_canceladas_no_computan') }}</td><td class="num muted">{{ $fmt($ventas_canceladas) }}</td></tr>
             @endif
 
             {{-- ===== EGRESOS: COMPRAS ===== --}}
             @php $compras_ok = array_values(array_filter($nota_compra, fn($p) => $p->estado === 'Procesado')); @endphp
-            <tr class="sec"><td>Egresos &mdash; Compras</td><td class="num"></td></tr>
+            <tr class="sec"><td>{!! __('nota_venta.egresos_compras') !!}</td><td class="num"></td></tr>
             @forelse($compras_ok as $pago)
                 <tr>
                     <td>{{ $pago->nombre }}</td>
@@ -130,12 +130,12 @@
                 </tr>
                 @php $totalCompras += (float) $pago->monto_total; @endphp
             @empty
-                <tr><td class="muted">Sin compras en el período</td><td class="num">0.00</td></tr>
+                <tr><td class="muted">{{ __('nota_venta.sin_compras_periodo2') }}</td><td class="num">0.00</td></tr>
             @endforelse
-            <tr class="subtotal"><td>Total en compras</td><td class="num neg">(&minus;) {{ $fmt($totalCompras) }}</td></tr>
+            <tr class="subtotal"><td>{{ __('nota_venta.total_en_compras') }}</td><td class="num neg">(&minus;) {{ $fmt($totalCompras) }}</td></tr>
 
             {{-- ===== EGRESOS: GASTOS ===== --}}
-            <tr class="sec"><td>Egresos &mdash; Gastos</td><td class="num"></td></tr>
+            <tr class="sec"><td>{!! __('nota_venta.egresos_gastos') !!}</td><td class="num"></td></tr>
             @forelse($gasto as $pago)
                 <tr>
                     <td>{{ $pago->nombre }}</td>
@@ -143,21 +143,21 @@
                 </tr>
                 @php $totalGasto += (float) $pago->monto_total; @endphp
             @empty
-                <tr><td class="muted">Sin gastos en el período</td><td class="num">0.00</td></tr>
+                <tr><td class="muted">{{ __('nota_venta.sin_gastos_periodo') }}</td><td class="num">0.00</td></tr>
             @endforelse
-            <tr class="subtotal"><td>Total de gastos</td><td class="num neg">(&minus;) {{ $fmt($totalGasto) }}</td></tr>
+            <tr class="subtotal"><td>{{ __('nota_venta.total_de_gastos') }}</td><td class="num neg">(&minus;) {{ $fmt($totalGasto) }}</td></tr>
 
             {{-- ===== RESULTADO ===== --}}
             @php $neto = $totalVentas - $totalCompras - $totalGasto; @endphp
             <tr class="neto">
-                <td>Resultado neto del ejercicio</td>
+                <td>{{ __('nota_venta.resultado_neto') }}</td>
                 <td class="num">{{ $fmt($neto) }} Bs</td>
             </tr>
         </tbody>
     </table>
 
     <div class="foot">
-        Generado el {{ date('j') }} de {{ $meses_es[(int) date('n')] }} de {{ date('Y') }}, {{ date('H:i') }}
+        {{ fecha_hora_impresion() }}
     </div>
 
 </div>

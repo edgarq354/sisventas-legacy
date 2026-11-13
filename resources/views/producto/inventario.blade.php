@@ -38,30 +38,30 @@
         <div class="dash-hero" style="margin-bottom:16px;">
             <div class="dash-hero__icon"><i class="fa fa-cubes"></i></div>
             <div>
-                <h3 class="dash-hero__title">Inventario</h3>
-                <p class="dash-hero__sub">{{ count($producto) }} productos · {{ $bajos }} con stock bajo</p>
+                <h3 class="dash-hero__title">{{ __('producto.titulo_inventario') }}</h3>
+                <p class="dash-hero__sub">{!! __('producto.resumen_inventario', ['count' => count($producto), 'bajos' => $bajos]) !!}</p>
             </div>
             <div class="dash-hero__spacer"></div>
             <a class="btn btn-default" href="{{ URL::to('rptMinimos') }}" style="border-radius:10px;font-weight:600;">
-                <i class="fa fa-exclamation-triangle"></i> Por terminarse
+                <i class="fa fa-exclamation-triangle"></i> {{ __('producto.por_terminarse') }}
             </a>
             <a class="btn btn-warning" href="inventario_imprimir" style="border-radius:10px;font-weight:700;">
-                <i class="fa fa-print"></i> Imprimir
+                <i class="fa fa-print"></i> {{ __('producto.imprimir') }}
             </a>
         </div>
 
         <div class="dash-card">
-            <div class="dash-card__head"><i class="fa fa-list"></i> Productos</div>
+            <div class="dash-card__head"><i class="fa fa-list"></i> {{ __('producto.titulo_productos') }}</div>
             <div class="dash-card__body dash-card__body--flush">
                 <div class="table-responsive" style="overflow-x:auto;">
                     <table class="table table-striped table-hover" style="background:white;margin:0;" id="tabla_sin_imprimir">
                         <thead>
-                            <th style="width:60px;"><center>ID</center></th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Tipo</th>
-                            <th style="text-align:right;">Cantidad</th>
-                            <th style="text-align:right;">Precio</th>
+                            <th style="width:60px;"><center>{{ __('producto.col_id') }}</center></th>
+                            <th>{{ __('producto.col_nombre') }}</th>
+                            <th>{{ __('producto.col_descripcion') }}</th>
+                            <th>{{ __('producto.col_tipo') }}</th>
+                            <th style="text-align:right;">{{ __('producto.col_cantidad') }}</th>
+                            <th style="text-align:right;">{{ __('producto.col_precio') }}</th>
                         </thead>
                         <tbody id="body_video">
                             @foreach ($producto as $usr)

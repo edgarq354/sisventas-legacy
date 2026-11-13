@@ -36,7 +36,6 @@
 <body onload="window.print();">
 @php
     $fmt = fn($n) => number_format((float) $n, 2, '.', ',');
-    $meses_es = ['','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
     $tAbrir = $tEfe = $tQr = $tTotal = 0;
     foreach ($caja as $c) {
         $tAbrir += (float) $c->monto_abrir + (float) ($c->monto_abrir_qr ?? 0);
@@ -63,8 +62,8 @@
                 </div>
             </td>
             <td style="width: 38%; text-align: right;">
-                <span class="doc-title">HISTORIAL DE CAJAS</span>
-                <div class="doc-sub">{{ count($caja) }} registros</div>
+                <span class="doc-title">{{ __('caja.historial_de_cajas') }}</span>
+                <div class="doc-sub">{{ __('caja.registros', ['count' => count($caja)]) }}</div>
             </td>
         </tr>
     </table>
@@ -74,17 +73,17 @@
     <table class="grid">
         <thead>
             <tr>
-                <th style="width: 34px;">ID</th>
-                <th>Usuario</th>
-                <th>Caja</th>
-                <th class="num">Abrir</th>
-                <th class="num">Abrir QR</th>
-                <th class="num">Cierre efec.</th>
-                <th class="num">Cierre QR</th>
-                <th class="num">Cierre total</th>
-                <th>Abierto</th>
-                <th>Cerrado</th>
-                <th style="text-align:center;">Estado</th>
+                <th style="width: 34px;">{{ __('caja.col_id') }}</th>
+                <th>{{ __('caja.col_usuario') }}</th>
+                <th>{{ __('caja.col_caja') }}</th>
+                <th class="num">{{ __('caja.col_abrir') }}</th>
+                <th class="num">{{ __('caja.col_abrir_qr') }}</th>
+                <th class="num">{{ __('caja.col_cierre_efec') }}</th>
+                <th class="num">{{ __('caja.col_cierre_qr_corta') }}</th>
+                <th class="num">{{ __('caja.col_cierre_total_corta') }}</th>
+                <th>{{ __('caja.col_abierto') }}</th>
+                <th>{{ __('caja.col_cerrado') }}</th>
+                <th style="text-align:center;">{{ __('caja.col_estado') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -101,16 +100,16 @@
                     <td>{{ $usr->fecha_abrir }}</td>
                     <td>{{ $usr->fecha_cierre ?: '—' }}</td>
                     <td style="text-align:center;">
-                        <span class="pill {{ $usr->estado == 'Abierta' ? 'pill--on' : 'pill--off' }}">{{ $usr->estado }}</span>
+                        <span class="pill {{ $usr->estado == 'Abierta' ? 'pill--on' : 'pill--off' }}">{{ __('estados.'.$usr->estado) }}</span>
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="11" style="text-align:center;color:#999;padding:14px;">Sin registros de caja</td></tr>
+                <tr><td colspan="11" style="text-align:center;color:#999;padding:14px;">{{ __('caja.sin_registros_caja') }}</td></tr>
             @endforelse
 
             <tr class="tot">
-                <td colspan="3">Totales (cierres)</td>
-                <td colspan="2" class="num">Apertura: {{ $fmt($tAbrir) }}</td>
+                <td colspan="3">{{ __('caja.totales_cierres') }}</td>
+                <td colspan="2" class="num">{{ __('caja.apertura_label', ['monto' => $fmt($tAbrir)]) }}</td>
                 <td class="num">{{ $fmt($tEfe) }}</td>
                 <td class="num">{{ $fmt($tQr) }}</td>
                 <td class="num">{{ $fmt($tTotal) }}</td>
@@ -120,7 +119,7 @@
     </table>
 
     <div class="foot">
-        Generado el {{ date('j') }} de {{ $meses_es[(int) date('n')] }} de {{ date('Y') }}, {{ date('H:i') }}
+        {{ \Carbon\Carbon::now()->locale(app()->getLocale())->translatedFormat(app()->getLocale() === 'en' ? 'M j, Y, g:i A' : 'j \d\e F \d\e Y, H:i') }}
     </div>
 
 </div>

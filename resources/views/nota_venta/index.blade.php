@@ -113,11 +113,11 @@
             success: function(data){
               alertify.success(":"+data);
               window.location.href = window.location.href;
-              $("#"+divresul+"").html("Asignacion de Taxi completado");   
+              $("#"+divresul+"").html(@json(__('nota_venta.asignacion_completado')));   
             },
             //si ha ocurrido un error
             error: function(data){
-               alertify.error("ha ocurrido un error:"+data) ;
+               alertify.error(@json(__('nota_venta.ha_ocurrido_error'))+data) ;
                 
             }
         });
@@ -148,7 +148,7 @@ $fechaFinal=date('Y-m-d');
 @if($message=='store')
 <div class="alert alert-success alert-dismissible" role="alert">
 <button type="button" class="close" data-dismiss="alert" arial-label="Close"><span aria-hidden="true">$times;</span></button>
-	Pago registrado con Exito.
+	{{ __('nota_venta.pago_registrado') }}
 </div>
 @endif
 <div class="dash">
@@ -156,36 +156,36 @@ $fechaFinal=date('Y-m-d');
 	<div class="dash-hero" style="margin-bottom:16px;">
 		<div class="dash-hero__icon"><i class="fa fa-file-text-o"></i></div>
 		<div>
-			<h3 class="dash-hero__title">Notas de venta</h3>
-			<p class="dash-hero__sub">Últimos movimientos</p>
+			<h3 class="dash-hero__title">{{ __('nota_venta.titulo_notas_venta') }}</h3>
+			<p class="dash-hero__sub">{{ __('nota_venta.ultimos_movimientos') }}</p>
 		</div>
 	</div>
 
 	<div class="nv-actions" style="margin-bottom:18px;">
-		<a href="{!! URL::to('nota_venta/create') !!}" class="nv-btn nv-btn--primary"><i class="fa fa-plus"></i> Nueva venta</a>
-		<a href="{!! URL::to('caja') !!}" class="nv-btn nv-btn--ghost"><i class="fa fa-inbox"></i> Caja</a>
-		<a href="{!! URL::to('nota_venta_historial/'.date('Y-m-d').'/'.date('Y-m-d')) !!}" class="nv-btn nv-btn--ghost"><i class="fa fa-history"></i> Historial</a>
-		<a href="{!! URL::to('nota_venta_historial_por_producto/'.date('Y-m-d').'/'.date('Y-m-d').'/0') !!}" class="nv-btn nv-btn--ghost"><i class="fa fa-cube"></i> Por producto</a>
-		<a data-toggle="modal" data-target="#ModalEstadoResultado" class="nv-btn nv-btn--pdf"><i class="fa fa-file-pdf-o"></i> Estado resultado</a>
+		<a href="{!! URL::to('nota_venta/create') !!}" class="nv-btn nv-btn--primary"><i class="fa fa-plus"></i> {{ __('nota_venta.nueva_venta') }}</a>
+		<a href="{!! URL::to('caja') !!}" class="nv-btn nv-btn--ghost"><i class="fa fa-inbox"></i> {{ __('nota_venta.caja') }}</a>
+		<a href="{!! URL::to('nota_venta_historial/'.date('Y-m-d').'/'.date('Y-m-d')) !!}" class="nv-btn nv-btn--ghost"><i class="fa fa-history"></i> {{ __('nota_venta.historial') }}</a>
+		<a href="{!! URL::to('nota_venta_historial_por_producto/'.date('Y-m-d').'/'.date('Y-m-d').'/0') !!}" class="nv-btn nv-btn--ghost"><i class="fa fa-cube"></i> {{ __('nota_venta.por_producto') }}</a>
+		<a data-toggle="modal" data-target="#ModalEstadoResultado" class="nv-btn nv-btn--pdf"><i class="fa fa-file-pdf-o"></i> {{ __('nota_venta.estado_resultado') }}</a>
 	</div>
 
 	<div class="dash-card">
-		<div class="dash-card__head"><i class="fa fa-list"></i> Ventas registradas</div>
+		<div class="dash-card__head"><i class="fa fa-list"></i> {{ __('nota_venta.ventas_registradas') }}</div>
 		<div class="dash-card__body dash-card__body--flush">
 			<div class="table-responsive" style="overflow-x:auto;">
 				<table class="table table-striped table-hover" style="background:white;margin:0;" id="tabla_sin_imprimir" align="center">
 
 					<thead>
-						<th><center>Id</center></th> 
+						<th><center>{{ __('nota_venta.col_id') }}</center></th> 
 						@if(Auth::user()->tipo_empresa=="RESTAURANTE")
-						<th><center>Ticket</center></th>
+						<th><center>{{ __('nota_venta.col_ticket') }}</center></th>
 						@endif
-						<th><center>Fecha</center></th>
-						<th><center>Cliente</center></th>
-						<th><center>Monto Total</center></th>  
-						<th><center>Modalidad</center></th> 
-						<th><center>Usuario</center></th> 
-						<th><center>Estado</center></th> 
+						<th><center>{{ __('nota_venta.col_fecha') }}</center></th>
+						<th><center>{{ __('nota_venta.col_cliente') }}</center></th>
+						<th><center>{{ __('nota_venta.col_monto_total') }}</center></th>  
+						<th><center>{{ __('nota_venta.col_modalidad') }}</center></th> 
+						<th><center>{{ __('nota_venta.col_usuario') }}</center></th> 
+						<th><center>{{ __('nota_venta.col_estado') }}</center></th> 
 						<th><center>. . .</center></th>
 					</thead>
 					
@@ -204,46 +204,46 @@ $fechaFinal=date('Y-m-d');
 						<td>{{ $pago->usuario}}</td>
 						<td>
 							@if($pago->estado=='Procesado')
-							 <span class="badge  btn-success">{{$pago->estado}}</span>
+							 <span class="badge  btn-success">{{ __('estados.'.$pago->estado) }}</span>
 							 @elseif($pago->estado=='Por cobrar')
-							 <span class="badge  btn-warning">{{$pago->estado}}</span>
+							 <span class="badge  btn-warning">{{ __('estados.'.$pago->estado) }}</span>
 							 @elseif($pago->estado=='Qr')
 							 <span class="badge  btn-warning">Qr</span>
 							 @elseif($pago->estado=='QrFie')
-							 <span class="badge  btn-info">QR B. FIE</span>
+							 <span class="badge  btn-info">{{ __('nota_venta.qr_b_fie') }}</span>
 							 @else
-							 <span class="badge  btn-danger">{{$pago->estado}}</span>
+							 <span class="badge  btn-danger">{{ __('estados.'.$pago->estado) }}</span>
 							 @endif
 						</td>
 						 
 						<td>
 							<div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                              Opción <span class="caret"></span>
+                              {{ __('nota_venta.opcion') }} <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
                             	<li>
-                            		<a class='fa fa-eye'   data-toggle="modal" data-target="#ModalVenta" onclick="cargarNotaVenta({{$pago->id}});"> Ver detalle</a>
+                            		<a class='fa fa-eye'   data-toggle="modal" data-target="#ModalVenta" onclick="cargarNotaVenta({{$pago->id}});"> {{ __('nota_venta.ver_detalle') }}</a>
                             	</li>
                             	<li>
-                            		<a target="_blank" class=' fa fa-print' href='nota_venta_imprimir/{{$pago->id}}' aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="Imprimir"> Imprimir</a>
+                            		<a target="_blank" class=' fa fa-print' href='nota_venta_imprimir/{{$pago->id}}' aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="{{ __('nota_venta.imprimir') }}"> {{ __('nota_venta.imprimir') }}</a>
                             	</li>
 								<li>
-                            		<a target="_blank" class=' fa fa-print' href='nota_venta_imprimir_pequenio/{{$pago->id}}' aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="Boletin"> Boletin</a>
+                            		<a target="_blank" class=' fa fa-print' href='nota_venta_imprimir_pequenio/{{$pago->id}}' aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="{{ __('nota_venta.boletin') }}"> {{ __('nota_venta.boletin') }}</a>
                             	</li>
                             	@if($pago->estado!='Cancelado')
                             	<li>
-                            		<a class='fa fa-close' href="" data-toggle="modal" data-target="#ModalCancelarVenta"  onclick="cargarNotaVentaCancelar({{$pago->id}})" aria-hidden="true"> Cancelar venta</a>
+                            		<a class='fa fa-close' href="" data-toggle="modal" data-target="#ModalCancelarVenta"  onclick="cargarNotaVentaCancelar({{$pago->id}})" aria-hidden="true"> {{ __('nota_venta.cancelar_venta') }}</a>
                             	</li>
                             	@endif
 								@if($pago->estado=='Por cobrar')
                             	<li>
-                            		<a class='' href="" data-toggle="modal" data-target="#ModalEstado"  onclick="cargarNotaVentaActualizarEstado({{$pago->id}})" aria-hidden="true"><i class="fa-spin fa fa-refresh "></i> Act. cobrado</a>
+                            		<a class='' href="" data-toggle="modal" data-target="#ModalEstado"  onclick="cargarNotaVentaActualizarEstado({{$pago->id}})" aria-hidden="true"><i class="fa-spin fa fa-refresh "></i> {{ __('nota_venta.act_cobrado') }}</a>
                             	</li>
                             	@endif
 								@if(Auth::user()->tipo_empresa=="RESTAURANTE")
 								<li>
-                            		<a target="_blank" class=' fa fa-print' href='imprimir_ticket_pdf/{{$pago->id}}' aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="TICKET"> Ticket</a>
+                            		<a target="_blank" class=' fa fa-print' href='imprimir_ticket_pdf/{{$pago->id}}' aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="{{ __('nota_venta.ticket') }}"> {{ __('nota_venta.ticket') }}</a>
                             	</li>
 								@endif
                             	 
@@ -272,7 +272,7 @@ $fechaFinal=date('Y-m-d');
 	  <div class="modal-content">
   
 		<div class="modal-header" style="background: #d4463e; color: white">
-		  <h3 class="modal-title">Venta : <label id="idNotaVenta"></label></h3>
+		  <h3 class="modal-title">{{ __('nota_venta.modal_venta_titulo') }} <label id="idNotaVenta"></label></h3>
 		</div>   
 		
   
@@ -282,7 +282,7 @@ $fechaFinal=date('Y-m-d');
    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
   
 				<div style="margin: 15px;">
-					<label>Nombre:</label><br>
+					<label>{{ __('nota_venta.nombre_label') }}</label><br>
 					<input type="text"  id="razonSocial"  class="form-control" readonly="" />
 	  			</div>
 	 
@@ -292,24 +292,24 @@ $fechaFinal=date('Y-m-d');
 	 
     
 					<div class="form-group">
-					<label>NIT/CI:</label><br>
+					<label>{{ __('nota_venta.nit_ci_label') }}</label><br>
 					<input type="decimal"  class="form-control" id="ciNit"  readonly="" />
 					</div>
 	
 					<div class="form-group">
-						<label>Fecha:</label><br>
+						<label>{{ __('nota_venta.fecha_label') }}</label><br>
 						<input type="decimal"  class="form-control" id="fecha" readonly="" />
 					</div>
 				</div>
 	  
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " > 	  
 					<div class="form-group">
-					<label>Monto Total:</label><br>
+					<label>{{ __('nota_venta.monto_total_label') }}</label><br>
 					<input type="decimal"   class="form-control" id="montoTotal" readonly=""  >
 					</div>
 
 					<div class="form-group">
-					<label>Usuario:</label><br>
+					<label>{{ __('nota_venta.usuario_label') }}</label><br>
 					<input type="text"   class="form-control" id="usuario" readonly=""  >
 					</div>
 				</div>
@@ -320,9 +320,9 @@ $fechaFinal=date('Y-m-d');
 			<table class="table table-striped table-bordered table-condensed table-hover" style="background: white">
 				<thead>
 					
-					<th><center>Producto</center></th>  
-					<th><center>Cantidad</center></th> 
-					<th><center>Total</center></th> 
+					<th><center>{{ __('nota_venta.col_producto') }}</center></th>  
+					<th><center>{{ __('nota_venta.col_cantidad') }}</center></th> 
+					<th><center>{{ __('nota_venta.col_total') }}</center></th> 
 				</thead>
 				<tbody align="center" id="body_detalle">					
 				
@@ -333,7 +333,7 @@ $fechaFinal=date('Y-m-d');
   
 		<div class="modal-footer"> 
 			<button data-dismiss="modal"  class="btn btn-warning form-control" >
-				<i class="fa fa-close" aria-hidden="true"></i> CERRAR</button>
+				<i class="fa fa-close" aria-hidden="true"></i> {{ __('nota_venta.cerrar') }}</button>
 		</div>
 	</div>
 </div>
@@ -346,7 +346,7 @@ $fechaFinal=date('Y-m-d');
 	  <div class="modal-content">
   
 		<div class="modal-header" style="background: #d4463e; color: white">
-		  <h3 class="modal-title">Cancelar la Venta </h3>
+		  <h3 class="modal-title">{{ __('nota_venta.cancelar_venta_titulo') }} </h3>
 		</div>   
 		
   
@@ -355,7 +355,7 @@ $fechaFinal=date('Y-m-d');
    
    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
   				<input type="hidden" id="idNotaVentaCancelar">
-				 <center><h3>Al cancelar la venta, se regresaran al inventario los productos comprados.</h3></center>
+				 <center><h3>{{ __('nota_venta.cancelar_venta_aviso') }}</h3></center>
 
   			 </div>
 		</div>
@@ -365,9 +365,9 @@ $fechaFinal=date('Y-m-d');
   
 		<div class="modal-footer"> 
 			<button data-dismiss="modal"  class="btn btn-warning "  onclick="cancelarNota();">
-				<i class="fa fa-save" aria-hidden="true"></i> ACEPTAR</button>
+				<i class="fa fa-save" aria-hidden="true"></i> {{ __('nota_venta.aceptar') }}</button>
 			<button data-dismiss="modal"  class="btn btn-danger " >
-				<i class="fa fa-save" aria-hidden="true"></i> CERRAR</button>	
+				<i class="fa fa-save" aria-hidden="true"></i> {{ __('nota_venta.cerrar') }}</button>	
 		</div>
 	</div>
 </div>
@@ -383,7 +383,7 @@ $fechaFinal=date('Y-m-d');
 	  <div class="modal-content">
   
 		<div class="modal-header" style="background: #3984ca; color: white">
-		  <h3 class="modal-title">GENERAR ESTADO RESULTADO <label id="idNotaVenta"></label></h3>
+		  <h3 class="modal-title">{{ __('nota_venta.generar_estado_resultado') }} <label id="idNotaVenta"></label></h3>
 		</div>   
 		
   
@@ -398,20 +398,20 @@ $fechaFinal=date('Y-m-d');
 	 
     
 					<div class="form-group">
-					<label>FECHA INICIAL:</label><br>
+					<label>{{ __('nota_venta.fecha_inicial_label') }}</label><br>
 					<input type="decimal"  class="form-control" id="calendario1"  value="{{$fechaInicial}}"  onmouseover ="buscarEnlace();"/>
 					</div>
 				</div>
 
 				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " > 
 					<div class="form-group">
-						<label>FECHA FINAL:</label><br>
+						<label>{{ __('nota_venta.fecha_final_label') }}</label><br>
 						<input type="decimal"  class="form-control" id="calendario2" value="{{$fechaFinal}}"   onmouseover ="buscarEnlace();" />
 					</div>
 					
 				</div>
 				
-				<a id="generarEstadoResultado" class="btn btn-primary form-control"  onmouseover ="buscarEnlace();"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> GENERAR PDF</a>
+				<a id="generarEstadoResultado" class="btn btn-primary form-control"  onmouseover ="buscarEnlace();"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{ __('nota_venta.generar_pdf') }}</a>
 			 
   			 </div>
 		</div>
@@ -441,7 +441,7 @@ $fechaFinal=date('Y-m-d');
 
 
         <div class="modal-header" style="background: #3984ca; color: white">
-          <h3 class="modal-title">ACTUALIZAR ESTADO DE LA VENTA <label id="idNotaVenta"></label></h3>
+          <h3 class="modal-title">{{ __('nota_venta.actualizar_estado_venta_titulo') }} <label id="idNotaVenta"></label></h3>
         </div>    
         <div class="modal-body">
        
@@ -450,10 +450,10 @@ $fechaFinal=date('Y-m-d');
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " > 
               <input type="hidden" name="id_nota_venta" id='idNotaVentaActualizarEstado'  /> 
               <div class="form-group">
-              <label>ESTADO:</label><br>
+              <label>{{ __('nota_venta.estado_label_mayus') }}</label><br>
               <select name="estado"  class="form-control">
-                <option value="Por cobrar"> Por cobrar</option>
-                <option value="Procesado"> Procesado</option>
+                <option value="Por cobrar"> {{ __('nota_venta.opt_por_cobrar') }}</option>
+                <option value="Procesado"> {{ __('nota_venta.opt_procesado') }}</option>
               </select>
               </div>
             </div>
@@ -463,7 +463,7 @@ $fechaFinal=date('Y-m-d');
 					class="btn btn-primary" 
 					id="btn_actualizar" 
 					onclick="btn_esconder()">
-				ACTUALIZAR
+				{{ __('nota_venta.actualizar') }}
 			</button>
 
 			</form>

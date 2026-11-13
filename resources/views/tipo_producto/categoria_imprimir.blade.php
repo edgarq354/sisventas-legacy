@@ -51,11 +51,11 @@ tr{
     </td>
     <td style="width: 80%; border: 0px solid white;">
       <center>
-      <font size="3" style="font-weight: bold;">TIENDA {{$empresa[0]->razon_social}} </font><br>
-      Telefono: {{$empresa[0]->whatsapp}}<br>
-      Dirección: {{$empresa[0]->direccion}}<br>
+      <font size="3" style="font-weight: bold;">{{ __('producto.tienda') }} {{$empresa[0]->razon_social}} </font><br>
+      {{ __('producto.telefono_label') }} {{$empresa[0]->whatsapp}}<br>
+      {{ __('producto.direccion_label') }} {{$empresa[0]->direccion}}<br>
 
-      <h2>LISTA DE CATEGORIAS</h2></center>
+      <h2>{{ __('tipo_producto.lista_de_categorias') }}</h2></center>
     </td>
     <td style="width: 10%; border: 0px solid white;">
 
@@ -70,9 +70,9 @@ tr{
         <table  >
           <thead >
           <tr>
-            <th><center>ID</center></th>
-            <th><center>NOMBRE</center></th>
-            <th><center>ESTADO</center></th>
+            <th><center>{{ __('tipo_producto.col_id') }}</center></th>
+            <th><center>{{ __('tipo_producto.col_nombre') }}</center></th>
+            <th><center>{{ __('tipo_producto.col_estado') }}</center></th>
           </tr>
            </thead>
            <tbody >
@@ -81,9 +81,9 @@ tr{
              <td style="width: 10%;"  align="center">{{ $usr->id}}</td>
             <td>{{ $usr->nombre}}</td>
             <td style="width: 15%;" align="center">@if($usr->estado==1)
-              ACTIVO
+              {{ __('estados.Activo') }}
               @else
-              INACTIVO
+              {{ __('estados.Inactivo') }}
               @endif
             </td>
 

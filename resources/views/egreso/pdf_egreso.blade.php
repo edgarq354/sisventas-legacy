@@ -1,6 +1,6 @@
 <head>
  <meta charset="UTF-8">
-    <title>LISTA DE EGRESOS</title>
+    <title>{{ __('egreso.lista_de_egresos') }}</title>
  <!--link href="css/reporte.css" type="text/css" rel="stylesheet"  -->
 
 <style type="text/css">
@@ -41,35 +41,35 @@ tr{
 
 </head>
 <div align="right" style="height: 10px;">
-   {{date("j - F - Y, g:i a")}}
+   {{ fecha_hora_impresion() }}
   </div>
 <body>
 <div style="width: 100%">
-<center><font size="3">LISTA DE EGRESOS</font></center>
+<center><font size="3">{{ __('egreso.lista_de_egresos') }}</font></center>
 </div>
 <br>
 
 <?php $empresa=DB::select("SELECT *from empresa,users where empresa.id=users.id_empresa and empresa.id=".Auth::user()->id_empresa); ?>
 <br>
-Empresa:<b> {{$empresa[0]->razon_social}}.</b><br>
-Usuario:<b> {{Auth::user()->nombre}}.</b><br>
-Fecha: <b> {{$fecha_inicio}}.</b> entre <b> {{$fecha_fin}}.</b><br>
+{{ __('egreso.empresa_dp') }}<b> {{$empresa[0]->razon_social}}.</b><br>
+{{ __('egreso.usuario_dp') }}<b> {{Auth::user()->nombre}}.</b><br>
+{!! __('egreso.fecha_entre', ['inicio' => $fecha_inicio, 'fin' => $fecha_fin]) !!}<br>
 <br>
 
 @if($id_usuario!='' && $id_usuario!='no')
 <?php $empresa=DB::select("SELECT usuario from users where id=".$id_usuario); ?>
-Reporte del usuario <b>{{$empresa[0]->usuario}}.</b>
+{!! __('egreso.reporte_usuario', ['usuario' => $empresa[0]->usuario]) !!}
 @else
-Reporte de todos los usuarios.
+{{ __('egreso.reporte_todos_usuarios') }}
 @endif
 <br>
 @if($id_cliente!='' && $id_cliente!='no')
 <?php $cliente=DB::select("SELECT nombre,ci_nit from cliente where id=".$id_cliente); ?>
-Reporte del cliente:<br>
-Nombre: <b>{{$cliente[0]->nombre}}.</b><br>
-Ci/Nit: <b>{{$cliente[0]->ci_nit}}.</b><br>
+{{ __('egreso.reporte_cliente') }}<br>
+{{ __('egreso.cliente_nombre_dp') }} <b>{{$cliente[0]->nombre}}.</b><br>
+{{ __('egreso.ci_nit_dp') }} <b>{{$cliente[0]->ci_nit}}.</b><br>
 @else
-Reporte de todos los clientes.
+{{ __('egreso.reporte_todos_clientes') }}
 @endif
 
 
@@ -79,15 +79,15 @@ Reporte de todos los clientes.
 
         <table  >
           <tr>
-            <th><center>ID</center></th>
-            <th><center>FECHA</center></th>
-            <th><center>USUARIO</center></th>
-            <th><center>OBSERVACIONES</center></th>
-            <th><center>MONTO</center></th>
-            <th><center>DEBE</center></th>
-            <th><center>TIPO EGRESO</center></th>
-            <th><center>OPCION</center></th>
-            <th><center>Conductor/Cliente</center></th> 
+            <th><center>{{ __('egreso.col_id') }}</center></th>
+            <th><center>{{ __('egreso.col_fecha') }}</center></th>
+            <th><center>{{ __('egreso.col_usuario') }}</center></th>
+            <th><center>{{ __('egreso.col_observaciones') }}</center></th>
+            <th><center>{{ __('egreso.col_monto') }}</center></th>
+            <th><center>{{ __('egreso.col_debe') }}</center></th>
+            <th><center>{{ __('egreso.col_tipo_egreso') }}</center></th>
+            <th><center>{{ __('egreso.col_opcion') }}</center></th>
+            <th><center>{{ __('egreso.col_conductor_cliente') }}</center></th> 
            </tr>
 
                 
@@ -102,9 +102,9 @@ Reporte de todos los clientes.
             <td>{{$usr->tipo_egreso}}</td>
             <td> 
               @if($usr->opcion==2)
-              CONDUCTOR
+              {{ __('egreso.conductor') }}
               @elseif($usr->opcion==0)
-              CLIENTE
+              {{ __('egreso.cliente') }}
               @endif
             </td>
             <td><b>
@@ -146,13 +146,13 @@ Reporte de todos los clientes.
 <br>
 <table  style="width:250px;">
   <tr style="background-color: #F8B712;">
-    <th>Detalle</th>
-    <th>Monto</th>
+    <th>{{ __('egreso.col_detalle') }}</th>
+    <th>{{ __('egreso.col_monto_simple') }}</th>
   </tr>
     
     <tr>
-      <td>Total de egresos</td>
-      <td>{{$monto_total}} Bs</td>
+      <td>{{ __('egreso.total_de_egresos') }}</td>
+      <td>{{$monto_total}} {{ __('egreso.bs') }}</td>
     </tr>
     
 </table >

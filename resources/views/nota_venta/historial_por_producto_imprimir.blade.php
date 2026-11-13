@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>HISTORIAL DE VENTAS</title>
+    <title>{{ __('nota_venta.historial_de_ventas_mayus') }}</title>
     <!--link href="css/reporte.css" type="text/css" rel="stylesheet"  -->
 
     <style type="text/css">
@@ -46,7 +46,7 @@
 
 </head>
 <div align="right" style="height: 10px; width: 730px;">
-    {{ date('j - F - Y, g:i a') }}
+    {{ fecha_hora_impresion() }}
 </div>
 
 <body style="height: 10px; ">
@@ -60,12 +60,12 @@
                 </td>
                 <td style="width: 80%; border: 0px solid white;">
                     <center>
-                        <font size="3" style="font-weight: bold;">TIENDA {{ $empresa[0]->razon_social }} </font>
+                        <font size="3" style="font-weight: bold;">{{ __('producto.tienda') }} {{ $empresa[0]->razon_social }} </font>
                         <br>
-                        Telefono: {{ $empresa[0]->whatsapp }}<br>
-                        Dirección: {{ $empresa[0]->direccion }}<br>
+                        {{ __('producto.telefono_label') }} {{ $empresa[0]->whatsapp }}<br>
+                        {{ __('producto.direccion_label') }} {{ $empresa[0]->direccion }}<br>
 
-                        <h1>HISTORIAL DE VENTA POR PRODUCTO</h1>
+                        <h1>{{ __('nota_venta.historial_venta_producto_mayus') }}</h1>
                     </center>
                 </td>
                 <td style="width: 10%; border: 0px solid white;">
@@ -81,25 +81,25 @@
     <table>
         <tr>
           <th>
-                                <center>ID</center>
+                                <center>{{ __('nota_venta.col_id') }}</center>
                             </th> 
                             <th>
-                                <center>TIPO DE PRODUCTO</center>
+                                <center>{{ __('nota_venta.col_tipo_producto_mayus') }}</center>
                             </th>
                             <th>
-                                <center>NOMBRE</center>
+                                <center>{{ __('nota_venta.col_nombre_mayus') }}</center>
                             </th> 
                             <th>
-                                <center>PRECIO</center>
+                                <center>{{ __('nota_venta.col_precio_mayus') }}</center>
                             </th>  
                             <th>
-                                <center>STOCK</center>
+                                <center>{{ __('nota_venta.col_stock_mayus') }}</center>
                             </th>
                             <th>
-                                <center>STOCK VENTA</center>
+                                <center>{{ __('nota_venta.col_stock_venta_mayus') }}</center>
                             </th>
                              <th>
-                                <center>TOTAL</center>
+                                <center>{{ __('nota_venta.col_total_mayus2') }}</center>
                             </th>
         </tr>
         @foreach ($nota_venta as $usr)
@@ -126,7 +126,7 @@
             @endforeach
 
             <tr>
-                <td colspan="6" align="right"> <b>TOTAL: </b></td>
+                <td colspan="6" align="right"> <b>{{ __('nota_venta.total_mayus_dp') }} </b></td>
                 <td align="right"> <b>{{ $total }}</b> </td>
             </tr>
 

@@ -489,7 +489,7 @@ function buscarNit(){
 
 <div class="floating-btn">
 	<center><button class=" btn btn-success form-control" data-toggle="modal" data-target="#ModalNotaVenta" >
-	<label id="item_carrito"> 0</label> ITEM CARRITO = <label id="monto_total_label"> 0</label> <i class="fa fa-chevron-right" style="margin-left: auto;"></i> </button></center>
+	<label id="item_carrito"> 0</label> {{ __('nota_venta.item_carrito') }} <label id="monto_total_label"> 0</label> <i class="fa fa-chevron-right" style="margin-left: auto;"></i> </button></center>
 </div>
 <div class="row">
 
@@ -499,7 +499,7 @@ function buscarNit(){
 
 			<div class="table-responsive" style="overflow-x:inherit">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<label>REGISTRAR NOTA DE VENTA</label>
+			<label>{{ __('nota_venta.registrar_nota_venta') }}</label>
 
 			</div>
 
@@ -522,14 +522,14 @@ function buscarNit(){
 			<div class=" panel panel-danger  ">
 				<div class="panel-heading">
 						<div class="form-group" style="margin-bottom:0px;" >
-							TIPO DE PRODUCTO:
+							{{ __('nota_venta.tipo_de_producto_dp') }}
 						<select name="id_tipo_producto" id="id_tipo_producto" class=" selectpicker"  data-live-search="true" onchange="seleccionarTipo();" >
-							<option value=""> TODOS                              </option>
+							<option value=""> {{ __('nota_venta.todos_mayus') }}                              </option>
 								@foreach($tipo_producto as $mov)
 								<option value="{{$mov->id}}"> {{$mov->nombre}} </option>
 								@endforeach
 							</select>
-						<input type="text" placeholder="Buscar ..." id="txtBuscar"  style=" padding: 4px; color:black;"/>
+						<input type="text" placeholder="{{ __('nota_venta.buscar_puntos') }}" id="txtBuscar"  style=" padding: 4px; color:black;"/>
 
 						<a class='btn btn-warning' onclick="buscarProducto();">
 							<i class="fa fa-search"></i>
@@ -571,7 +571,7 @@ function buscarNit(){
    <div class=" panel panel-danger">
 		 <div class="panel-heading">
 		 	<i class="fa fa-close btn" data-dismiss="modal" aria-hidden="true"></i>
-			<label>Nota de Venta:</label>
+			<label>{{ __('nota_venta.nota_de_venta_dp') }}</label>
 		 </div>
 
 		 <div class="panel-body">
@@ -579,7 +579,7 @@ function buscarNit(){
 			<div class="form-group col-lg-12 col-md-12 col-sm4 col-xs-12">
 
 				<div class="form-group "  hidden>
-					<label>TIPO DOCUMENTO:</label> <br>
+					<label>{{ __('nota_venta.tipo_documento_dp') }}</label> <br>
 				<select name="tipo_documento" id='tipo_documento' style="width: 100%; padding: 5px;" >
 				@foreach ($tipo_documento as $item)
 					<option value="{{$item->id}}">{{$item->nombre}}</option>
@@ -587,9 +587,9 @@ function buscarNit(){
 				</select>
 				</div>
 				<div class="form-group " >
-				<label>NIT/CI/CEX:</label> <br>
+				<label>{{ __('nota_venta.nit_ci_cex_dp') }}</label> <br>
 					<input id="ciNit" name="numero_documento" style="border: 3px solid #f39c12;" value=""  type="number"  class="form-control" onchange="buscarNit();"   />
-					<label>Razon Social / Nombre del Cliente :</label> <br>
+					<label>{{ __('nota_venta.razon_social_nombre_cliente') }}</label> <br>
 					<input id="nombreCliente" name="razon_social" value=""   class="form-control" />
 			</div>
 
@@ -597,22 +597,22 @@ function buscarNit(){
 			<table class="form-group " style="width: 100%;">
 				<tr>
 					<td>
-						<label>Efectivo Pago (Bs):</label> <br>
+						<label>{{ __('nota_venta.efectivo_pago_dp') }}</label> <br>
 						<input id="efectivoPago" name="efectivo_pago" value="0"  type="decimal"  class="form-control" onchange="calcularCambio();"   min="0" />
 					</td>
-					<td style="padding-left: 8px;"><label>Efetivo Cambio (Bs):</label> <br>
+					<td style="padding-left: 8px;"><label>{{ __('nota_venta.efectivo_cambio_dp') }}</label> <br>
 						<input id="efectivoCambio" value="0" type="number"  class="form-control" readonly="readonly" style="font-size: 25px"   />
 					</td>
 				</tr>
 				<tr>
 					<td >
-						<label>Monto Total (Bs):</label> <br>
+						<label>{{ __('nota_venta.monto_total_dp') }}</label> <br>
 					<input
 							type="text"
 							name="monto_total"
 							value="0"
 							class="form-control"
-							placeholder="Monto Total"
+							placeholder="{{ __('nota_venta.monto_total_bs') }}"
 							maxlength="10"
 							id="monto_total"
 							style="font-weight:bold;font-size:25px;"
@@ -622,49 +622,49 @@ function buscarNit(){
 					<input type="text" value="0" id="monto_total_descuento" name="monto_total_descuento" hidden />
 					</td>
 					<td style="padding-left: 8px;" >
-						<label>Modalidad :</label> <br>
+						<label>{{ __('nota_venta.modalidad_dp') }}</label> <br>
 						<select name="tipo" style="width: 100%; padding: 5px;" >
 							<option value="LLEVAR" selected="">LLEVAR</option>
 							<option value="AUTO"> AUTO</option>
-							<option value="MESA 1"> MESA 1</option>
-							<option value="MESA 2"> MESA 2</option>
-							<option value="MESA 3"> MESA 3</option>
-							<option value="MESA 4"> MESA 4</option>
-							<option value="MESA 5"> MESA 5</option>
-							<option value="MESA 6"> MESA 6</option>
-							<option value="MESA 7"> MESA 7</option>
-							<option value="MESA 8"> MESA 8</option>
-							<option value="MESA 9"> MESA 9</option>
-							<option value="MESA 10"> MESA 10</option>
-							<option value="MESA 11"> MESA 11</option>
-							<option value="MESA 12"> MESA 12</option>
-							<option value="MESA 13"> MESA 13</option>
-							<option value="MESA 14"> MESA 14</option>
-							<option value="MESA 15"> MESA 15</option>
-							<option value="MESA 16"> MESA 16</option>
-							<option value="MESA 17"> MESA 17</option>
-							<option value="MESA 18"> MESA 18</option>
-							<option value="MESA 19"> MESA 19</option>
-							<option value="MESA 20"> MESA 20</option>
-							<option value="MESA 21"> MESA 21</option>
-							<option value="MESA 22"> MESA 22</option>
-							<option value="MESA 23"> MESA 23</option>
-							<option value="MESA 24"> MESA 24</option>
-							<option value="MESA 25"> MESA 25</option>
-							<option value="MESA 26"> MESA 26</option>
-							<option value="MESA 27"> MESA 27</option>
-							<option value="MESA 28"> MESA 28</option>
-							<option value="MESA 29"> MESA 29</option>
-							<option value="MESA 30"> MESA 30</option>
+							<option value="MESA 1"> {{ __('nota_venta.mesa') }} 1</option>
+							<option value="MESA 2"> {{ __('nota_venta.mesa') }} 2</option>
+							<option value="MESA 3"> {{ __('nota_venta.mesa') }} 3</option>
+							<option value="MESA 4"> {{ __('nota_venta.mesa') }} 4</option>
+							<option value="MESA 5"> {{ __('nota_venta.mesa') }} 5</option>
+							<option value="MESA 6"> {{ __('nota_venta.mesa') }} 6</option>
+							<option value="MESA 7"> {{ __('nota_venta.mesa') }} 7</option>
+							<option value="MESA 8"> {{ __('nota_venta.mesa') }} 8</option>
+							<option value="MESA 9"> {{ __('nota_venta.mesa') }} 9</option>
+							<option value="MESA 10"> {{ __('nota_venta.mesa') }} 10</option>
+							<option value="MESA 11"> {{ __('nota_venta.mesa') }} 11</option>
+							<option value="MESA 12"> {{ __('nota_venta.mesa') }} 12</option>
+							<option value="MESA 13"> {{ __('nota_venta.mesa') }} 13</option>
+							<option value="MESA 14"> {{ __('nota_venta.mesa') }} 14</option>
+							<option value="MESA 15"> {{ __('nota_venta.mesa') }} 15</option>
+							<option value="MESA 16"> {{ __('nota_venta.mesa') }} 16</option>
+							<option value="MESA 17"> {{ __('nota_venta.mesa') }} 17</option>
+							<option value="MESA 18"> {{ __('nota_venta.mesa') }} 18</option>
+							<option value="MESA 19"> {{ __('nota_venta.mesa') }} 19</option>
+							<option value="MESA 20"> {{ __('nota_venta.mesa') }} 20</option>
+							<option value="MESA 21"> {{ __('nota_venta.mesa') }} 21</option>
+							<option value="MESA 22"> {{ __('nota_venta.mesa') }} 22</option>
+							<option value="MESA 23"> {{ __('nota_venta.mesa') }} 23</option>
+							<option value="MESA 24"> {{ __('nota_venta.mesa') }} 24</option>
+							<option value="MESA 25"> {{ __('nota_venta.mesa') }} 25</option>
+							<option value="MESA 26"> {{ __('nota_venta.mesa') }} 26</option>
+							<option value="MESA 27"> {{ __('nota_venta.mesa') }} 27</option>
+							<option value="MESA 28"> {{ __('nota_venta.mesa') }} 28</option>
+							<option value="MESA 29"> {{ __('nota_venta.mesa') }} 29</option>
+							<option value="MESA 30"> {{ __('nota_venta.mesa') }} 30</option>
 
 							</select>
 					</td>
 					<td style="padding-left: 8px;">
-						<label>Estado :</label> <br>
+						<label>{{ __('nota_venta.estado_dp') }}</label> <br>
 						<select name="estado" style="width: 100%; padding: 5px;" >
-							<option value="Procesado" selected=""> Procesado</option>
+							<option value="Procesado" selected=""> {{ __('nota_venta.opt_procesado') }}</option>
 							<option value="Qr"> Qr</option>
-							<option value="Por cobrar"> Por cobrar</option>
+							<option value="Por cobrar"> {{ __('nota_venta.opt_por_cobrar') }}</option>
 							</select>
 					</td>
 				</tr>
@@ -674,14 +674,14 @@ function buscarNit(){
 
 
  		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			 <label>PRODUCTOS:</label>
+			 <label>{{ __('nota_venta.productos_mayus') }}</label>
 			<table class="table table-striped table-bordered table-condensed table-hover" style="background: white">
 				<thead>
 
-					<th><center>Descripción</center></th>
-					<th><center>Precio Unitario</center></th>
-					<th><center>Cantidad</center></th>
-					<th><center>Total</center></th>
+					<th><center>{{ __('nota_venta.col_descripcion') }}</center></th>
+					<th><center>{{ __('nota_venta.precio_unitario_mayus') }}</center></th>
+					<th><center>{{ __('nota_venta.col_cantidad') }}</center></th>
+					<th><center>{{ __('nota_venta.col_total') }}</center></th>
 					<th><center>...</center></th>
 				</thead>
 				<tbody align="center" id="body_carrito">
@@ -693,13 +693,13 @@ function buscarNit(){
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
 			<button type="submit" class="btn btn-warning form-control"    >
-				<i class="fa fa-save" aria-hidden="true"></i> GUARDAR VENTA
+				<i class="fa fa-save" aria-hidden="true"></i> {{ __('nota_venta.guardar_venta') }}
 			</button>
 		 </form>
 
 		 @if(Session::has('ticket_base64'))
 		 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-		  	<botton id="bt_imprimir" onclick="imprimir_ticket()" class="btn btn-primary form-control" data-dismiss="alert" aria-label="Close"   > <i class="fa fa-print" aria-hidden="true" ></i> Ticket #{{Session::get('nota_venta_id')}}</botton>
+		  	<botton id="bt_imprimir" onclick="imprimir_ticket()" class="btn btn-primary form-control" data-dismiss="alert" aria-label="Close"   > <i class="fa fa-print" aria-hidden="true" ></i> {{ __('nota_venta.ticket_n', ['id' => Session::get('nota_venta_id')]) }}</botton>
 			<input type="hidden" id="url_imprimir" value="http://localhost:80/pdf-imprimir/index.php?servidor1={{Session::get('servidor1')}}&servidor2={{Session::get('servidor2')}}&impresora1={{Session::get('impresora1')}}&impresora2={{Session::get('impresora2')}}&id_venta={{Session::get('nota_venta_id')}}"/>
 			<input type="hidden" id="id_nota_venta" value="{{Session::get('nota_venta_id')}}"/>
 			<input type="hidden" id="ticket_base64" value="{{Session::get('ticket_base64')}}"/>
@@ -720,7 +720,7 @@ function buscarNit(){
 
 		<div class="modal-header" style="background: #d4463e; color: white">
 			<i class="fa fa-close btn" data-dismiss="modal" aria-hidden="true"></i>
-		  	<label class="modal-title">EDITAR PRODUCTO</label>
+		  	<label class="modal-title">{{ __('nota_venta.editar_producto_titulo') }}</label>
 		</div>
 
 
@@ -730,7 +730,7 @@ function buscarNit(){
    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
 			   <div style="margin: 15px;"  @if(Auth::user()->tipo_empresa=="RESTAURANTE") hidden="" @endif>
-					Código Producto:<br>
+					{{ __('nota_venta.codigo_producto_dp') }}<br>
 					<input type="text"  id="codigo"  class="form-control" readonly="readonly" />
 	  			</div>
 
@@ -740,20 +740,20 @@ function buscarNit(){
 					<input type="hidden" id='indexCarrito'  />
 
 					<div class="form-group">
-						<label>Descripción:</label><br>
+						<label>{{ __('nota_venta.descripcion_dp') }}</label><br>
 						<input type="text"  id="nombre"  class="form-control" />
 					  </div>
 
 					<div class="form-group" hidden>
-					Cantidad:<br>
+					{{ __('nota_venta.cantidad_dp') }}<br>
 					<input type="number"  readonly="readonly" class="form-control" id="cantidad" onchange="calcularTotal()"   required>
 					</div>
 					<div class="form-group">
-					Precio de compra:<br>
+					{{ __('nota_venta.precio_compra_dp') }}<br>
 					<input type="decimal"  class="form-control" id="precio_compra"  required readonly="readonly" />
 					</div>
 					<div class="form-group">
-						Descuento:<br>
+						{{ __('nota_venta.descuento_dp') }}<br>
 						<input type="decimal"  class="form-control" id="monto_descuento"  required readonly="readonly"/>
 					</div>
 
@@ -763,13 +763,13 @@ function buscarNit(){
 					<div class="form-group" @if(Auth::user()->tipo_empresa!="RESTAURANTE")
 						hidden=""
 					@endif>
-					<label>Presa:</label><br>
+					<label>{{ __('nota_venta.presa_dp') }}</label><br>
 					<select name="id_presa" id="id_presa" class="form-control"  onchange="seleccionarPresa();" >
-						<option value="." selected> NINGUNO</option>
-						<option value=",C/PIERNA"> PIERNA</option>
-						<option value=",C/PECHO"> PECHO</option>
-						<option value=",C/ALA"> ALA</option>
-						<option value=",C/ENTREPIERNA"> ENTREPIERNA</option>
+						<option value="." selected> {{ __('nota_venta.opt_ninguno') }}</option>
+						<option value=",C/PIERNA"> {{ __('nota_venta.opt_pierna') }}</option>
+						<option value=",C/PECHO"> {{ __('nota_venta.opt_pecho') }}</option>
+						<option value=",C/ALA"> {{ __('nota_venta.opt_ala') }}</option>
+						<option value=",C/ENTREPIERNA"> {{ __('nota_venta.opt_entrepierna') }}</option>
 					   </select>
 					</div>
 

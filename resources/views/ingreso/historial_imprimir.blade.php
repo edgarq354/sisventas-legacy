@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>HISTORIAL DE INGRESOS</title>
+    <title>{{ __('ingreso.historial_de_ingresos_mayus') }}</title>
     <!--link href="css/reporte.css" type="text/css" rel="stylesheet"  -->
 
     <style type="text/css">
@@ -46,7 +46,7 @@
 
 </head>
 <div align="right" style="height: 10px; width: 730px;">
-    {{ date('j - F - Y, g:i a') }}
+    {{ fecha_hora_impresion() }}
 </div>
 
 <body style="height: 10px; ">
@@ -60,12 +60,12 @@
                 </td>
                 <td style="width: 80%; border: 0px solid white;">
                     <center>
-                        <font size="3" style="font-weight: bold;">TIENDA {{ $empresa[0]->razon_social }} </font>
+                        <font size="3" style="font-weight: bold;">{{ __('producto.tienda') }} {{ $empresa[0]->razon_social }} </font>
                         <br>
-                        Telefono: {{ $empresa[0]->whatsapp }}<br>
-                        Dirección: {{ $empresa[0]->direccion }}<br>
+                        {{ __('producto.telefono_label') }} {{ $empresa[0]->whatsapp }}<br>
+                        {{ __('producto.direccion_label') }} {{ $empresa[0]->direccion }}<br>
 
-                        <h3>HISTORIAL DE INGRESOS</h3>
+                        <h3>{{ __('ingreso.historial_de_ingresos_mayus') }}</h3>
                     </center>
                 </td>
                 <td style="width: 10%; border: 0px solid white;">
@@ -80,17 +80,17 @@
 
     <table>
         <TR>
-            <th><center>Id</center></th>  
-						<th><center>Fecha</center></th>
-						<th><center>Concepto</center></th>
-						<th><center>Descripción</center></th>
-						<th><center>Tipo</center></th>   
-						<th><center>Cliente</center></th>   
-						<th><center>Monto</center></th>   
-						<th><center>Sucursal</center></th>    
-						<th><center>Caja</center></th>    
-						<th><center>Usuario</center></th>   
-						<th><center>Estado</center></th>  
+            <th><center>{{ __('ingreso.col_id') }}</center></th>  
+						<th><center>{{ __('ingreso.col_fecha') }}</center></th>
+						<th><center>{{ __('ingreso.col_concepto') }}</center></th>
+						<th><center>{{ __('ingreso.col_descripcion') }}</center></th>
+						<th><center>{{ __('ingreso.col_tipo') }}</center></th>   
+						<th><center>{{ __('ingreso.col_cliente') }}</center></th>   
+						<th><center>{{ __('ingreso.col_monto') }}</center></th>   
+						<th><center>{{ __('ingreso.col_sucursal') }}</center></th>    
+						<th><center>{{ __('ingreso.col_caja') }}</center></th>    
+						<th><center>{{ __('ingreso.col_usuario') }}</center></th>   
+						<th><center>{{ __('ingreso.col_estado') }}</center></th>  
 
         </TR>
         @foreach($ingreso as $item)
@@ -106,11 +106,11 @@
             <td>{{ $item->caja}}  </td>  
             <td>{{ $item->usuario}}</td> 
             <TD>@if($item->estado=='Procesado')
-                <span class="badge  btn-success">{{$item->estado}}</span>
+                <span class="badge  btn-success">{{ __('estados.'.$item->estado) }}</span>
                 @elseif($item->estado=='Por cobrar')
-                <span class="badge  btn-warning">{{$item->estado}}</span> 
+                <span class="badge  btn-warning">{{ __('estados.'.$item->estado) }}</span> 
                 @else
-                <span class="badge  btn-danger">{{$item->estado}}</span>
+                <span class="badge  btn-danger">{{ __('estados.'.$item->estado) }}</span>
                 @endif
             </TD>
         </tr>			

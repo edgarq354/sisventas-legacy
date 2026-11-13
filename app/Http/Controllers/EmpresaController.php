@@ -1147,6 +1147,7 @@ $sumatoria=0;
     'latitud' => $request['latitud'],
     'longitud' => $request['longitud'],
     'correo' => $request['correo'],
+    'idioma' => $request['idioma'] ?: 'es',
     'mision' => $request['mision'],
     'vision' => $request['vision'],
     'facebook' => $request['facebook'],

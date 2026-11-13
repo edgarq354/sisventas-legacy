@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
  <meta charset="UTF-8">
-    <title>CIERRE DE CAJA </title>
+    <title>{{ __('caja.cierre_de_caja') }}</title>
  <!--link href="css/reporte.css" type="text/css" rel="stylesheet"  -->
 
  <style type="text/css">
@@ -71,97 +71,30 @@ $dia="";
   <tr >
     <td  >
       <center>
-      <b>CIERRE DE CAJA</b><br>
-        Empresa {{$empresa[0]->razon_social}}<br>
-      <?php 
-          $dia=date("j",strtotime ( $caja[0]->fecha_cierre ));
-          $dia_s=strftime("%u",strtotime ( $caja[0]->fecha_cierre ));
-          $mes=strftime("%m",strtotime ( $caja[0]->fecha_cierre ));
-          $anio=date("Y",strtotime ( $caja[0]->fecha_cierre )); 
-          
-          $mifecha=gmmktime(12,0,0,$mes,$dia,$anio);
-          
-          //dia
-
-     switch ($dia_s) {
-      case 1:
-      $dia_s="Lunes";
-      break;
-      case 2:
-      $dia_s="Martes";
-      break;
-      case 3:
-      $dia_s="Miercoles";
-      break;
-      case 4:
-      $dia_s="Jueves";
-      break;
-      case 5:
-      $dia_s="Viernes";
-      break;
-      case 6:
-      $dia_s="Sabado";
-      break;
-      case 7:
-      $dia_s="Domingo";
-      break;
-    }
-          //fin de dia
-
-
- switch ($mes) {
-      case 1:
-      $mes="Ene";
-      break;
-      case 2:
-      $mes="Feb";
-      break;
-      case 3:
-      $mes="Mar";
-      break;
-      case 4:
-      $mes="Abr";
-      break;
-      case 5:
-      $mes="May";
-      break;
-      case 6:
-      $mes="Jun";
-      break;
-      case 7:
-      $mes="Jul";
-      break;
-      case 8:
-      $mes="Ago";
-      break;
-      case 9:
-      $mes="Sep";
-      break;
-      case 10:
-      $mes="Oct";
-      break;
-      case 11:
-      $mes="Nov";
-      break;
-      case 12:
-      $mes="Dic";
-      break;
-    }
-
-
+      <b>{{ __('caja.cierre_de_caja') }}</b><br>
+        {{ __('caja.empresa_label') }} {{$empresa[0]->razon_social}}<br>
+      <?php
+          $diasSemana = explode(',', __('caja.dias_semana'));
+          $mesesAbr   = explode(',', __('caja.meses_abr'));
+          $ts = strtotime($caja[0]->fecha_cierre);
+          $dia_s = $diasSemana[(int) date('N', $ts) - 1];
+          $mes   = $mesesAbr[(int) date('n', $ts) - 1];
+          $dia   = date('d', $ts);
+          $anio  = date('Y', $ts);
+          $conector = __('caja.de') !== '' ? ' '.__('caja.de').' ' : ' ';
 
         echo $empresa[0]->direccion;
         echo "<br>";
-        //echo "Fecha: ".$dia."-".$mes."-".$anio;
-          echo strftime( $dia_s.", %d de ". $mes." de %Y", $mifecha );
+        echo app()->getLocale() === 'en'
+            ? "{$dia_s}, {$mes} {$dia}, {$anio}"
+            : "{$dia_s}, {$dia}{$conector}{$mes}{$conector}{$anio}";
           ?>
           <br>
-       Hora:
-       <?php 
-          $time = strftime("%H:%M", strtotime ( $caja[0]->fecha_cierre ));
-          echo $time;
-          ?>  
-          <br>  
+       {{ __('caja.hora_label') }}
+       <?php
+          echo date('H:i', $ts);
+          ?>
+          <br>
         </center>
       
     </td>
@@ -169,7 +102,7 @@ $dia="";
 
   <tr>
     <td> 
-      USUARIO: {{$caja[0]->usuario}} 
+      {{ __('caja.usuario_dp') }} {{$caja[0]->usuario}}
       <hr style="border: 1px solid black; margin: 0px; ">
     </td>
   </tr>
@@ -178,15 +111,15 @@ $dia="";
       <table border="0" style="width: 260px;">
         <tr>
         @foreach ( $caja as $c) 
-        <td><b>#{{$c->id}} - {{$c->caja}}</b><br> 
-          Fecha Apertura: <br>
-          Fecha Cierre: <br>
-          Apertura Efectivo: <br>
-          Apertura Qr: <br>
-          Cierre Efectivo: <br>
-          Cierre Qr: <br>
-          Monto Total
-        </td> 
+        <td><b>#{{$c->id}} - {{$c->caja}}</b><br>
+          {{ __('caja.fecha_apertura_dp') }} <br>
+          {{ __('caja.fecha_cierre_dp') }} <br>
+          {{ __('caja.apertura_efectivo_dp') }} <br>
+          {{ __('caja.apertura_qr_dp') }} <br>
+          {{ __('caja.cierre_efectivo_dp') }} <br>
+          {{ __('caja.cierre_qr_dp') }} <br>
+          {{ __('caja.monto_total_dp') }}
+        </td>
         <td><br>
           {{$c->fecha_abrir}}<br>  
           {{$c->fecha_cierre}}<br>
@@ -204,8 +137,8 @@ $dia="";
 
   <tr>
     <td> 
-      Nota al Abrir: <i>"{{$caja[0]->nota_abrir}}"</i><br>
-      Nota al Cerrar: <i>"{{$caja[0]->nota_cierre}}"</i>
+      {{ __('caja.nota_al_abrir_dp') }} <i>"{{$caja[0]->nota_abrir}}"</i><br>
+      {{ __('caja.nota_al_cerrar_dp') }} <i>"{{$caja[0]->nota_cierre}}"</i>
       <hr style="border: 1px solid black; margin: 0px; ">
       
     </td>
@@ -216,13 +149,13 @@ $dia="";
       <center>
       <table border="0" style="width: 260px;">
         <tr>
-          <td align="center"><b>DETALLE</b></td> 
-          <td style="width: 6px;" align="center"><b>TOTAL</b></td> 
+          <td align="center"><b>{{ __('caja.detalle_mayus') }}</b></td>
+          <td style="width: 6px;" align="center"><b>{{ __('caja.total_mayus') }}</b></td>
         </tr>
         <?php $suma=0; ?>
         @foreach ( $nota_venta as $fre)
         <tr>
-          <td  >Ventas {{$fre->estado}}</td> 
+          <td  >{{ __('caja.ventas_prefix') }} {{ __('estados.'.$fre->estado) }}</td>
           @if($fre->estado=='Cancelado')
           @php $fre->monto_total=$fre->monto_total * -1; @endphp
           @endif
@@ -237,7 +170,7 @@ $dia="";
       
         @foreach ( $nota_compra as $v)
         <tr>
-          <td  >Compras {{$v->estado}}</td> 
+          <td  >{{ __('caja.compras_prefix') }} {{ __('estados.'.$v->estado) }}</td>
           <td style="width: 6px;" align="right">{{$v->monto_total}}</td> 
         </tr>
         <?php $suma-=$v->monto_total; ?>
@@ -248,12 +181,12 @@ $dia="";
           <td > <hr style="border: 1px solid black; margin: 0px; "></td> 
         </tr>
         <tr>
-          <td align="right"><b>TOTAL VENTAS:</b></td> 
-          <td style="width: 6px;" align="center"><b>{{number_format($suma, 2, '.', '.')}}</b></td> 
+          <td align="right"><b>{{ __('caja.total_ventas_dp') }}</b></td>
+          <td style="width: 6px;" align="center"><b>{{number_format($suma, 2, '.', '.')}}</b></td>
         </tr>
 
         @if(count($gasto) > 0)
-        <tr><td colspan="2"><b>Gastos:</b></td></tr>
+        <tr><td colspan="2"><b>{{ __('caja.gastos_dp') }}</b></td></tr>
         @endif
         @foreach ( $gasto as $v)
         <tr>
@@ -265,7 +198,7 @@ $dia="";
 
         @foreach ( $ingreso as $v)
         <tr>
-          <td  >Ingreso: {{$v->tipo_gasto}}</td> 
+          <td  >{{ __('caja.ingreso_prefix') }} {{$v->tipo_gasto}}</td>
           <td style="width: 6px;" align="right">{{$v->monto}}</td> 
         </tr>
         <?php $suma+=$v->monto; ?>
@@ -275,7 +208,7 @@ $dia="";
           <td > <hr style="border: 1px solid black; margin: 0px; "></td> 
         </tr>
         <tr>
-          <td align="left"><b>TOTAL</b></td> 
+          <td align="left"><b>{{ __('caja.total_mayus') }}</b></td>
           <td style="width: 6px;" align="center"><b> {{number_format($suma, 2, '.', '.')}}</b></td> 
         </tr>
       </table>
@@ -287,7 +220,7 @@ $dia="";
   <tr>
     <td colspan="2">   
        
-      <center><b>DESARROLLADO POR</b> ELISOFT - 75602869 </center>
+      <center><b>{{ __('caja.desarrollado_por') }}</b> ELISOFT - 75602869 </center>
     </td>
   </tr>
 

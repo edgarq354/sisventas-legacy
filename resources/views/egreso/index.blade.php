@@ -10,11 +10,11 @@
 		
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-				<font size="6">EGRESO</font>
+				<font size="6">{{ __('egreso.titulo_egreso') }}</font>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 			<div class="pull-right">
-				<a class="btn btn-link fa fa-plus" href="{!!URL::to('egreso/create')!!}"> Agregar Egreso</a> 
+				<a class="btn btn-link fa fa-plus" href="{!!URL::to('egreso/create')!!}"> {{ __('egreso.agregar_egreso') }}</a> 
 			</div>
 		</div>
 		</div>
@@ -56,7 +56,7 @@
 
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
 		    <select name="id_usuario" class="form-control selectpicker" id="id_usuario" data-live-search="true" >
-		     <option value="">  Buscar por usuario . .</option>
+		     <option value="">  {{ __('egreso.buscar_por_usuario') }}</option>
 		        @foreach($buscar_usuario as $mov)
 		        <option value="{{$mov->id}}">{{$mov->nombre}} </option>
 		        @endforeach
@@ -64,7 +64,7 @@
 		</div>
 		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12" hidden="">
 		    <select name="id_cliente" class="form-control selectpicker" id="id_usuario" data-live-search="true" >
-		     <option value="">  Buscar por cliente . .</option>
+		     <option value="">  {{ __('egreso.buscar_por_cliente') }}</option>
 		        @foreach($buscar_cliente as $mov)
 		        <option value="{{$mov->id}}">{{$mov->nombre}} - {{$mov->ci_nit}}</option>
 		        @endforeach
@@ -72,11 +72,11 @@
 		</div>
 			 <table class=" form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
       <tr>
-        <td><button class="btn btn-success" id="btn_buscar" name='btn_buscar'onclick="btn_esconder()"><i class="fa fa-search"></i> Buscar</button> 
+        <td><button class="btn btn-success" id="btn_buscar" name='btn_buscar'onclick="btn_esconder()"><i class="fa fa-search"></i> {{ __('egreso.buscar') }}</button> 
         </td>
         <td class=" form-group"></td>
         <td>
-          <?php echo "<a class='btn btn-warning' target='_blank'  href='../public/pdf_egreso/$id_empresa/$id_usuario/$id_cliente/$fecha_inicio/$fecha_fin'> <i class='fa fa-print'></i> IMPRIMIR</a>";?>
+          <?php echo "<a class='btn btn-warning' target='_blank'  href='../public/pdf_egreso/$id_empresa/$id_usuario/$id_cliente/$fecha_inicio/$fecha_fin'> <i class='fa fa-print'></i> ".__('egreso.imprimir')."</a>";?>
         </td>
       </tr>
     </table> 
@@ -105,15 +105,15 @@ $monto_total=0;
 
 				<table class="table table-striped table-bordered table-condensed table-hover" style="background: white" id="myTable">
 					<thead>
-						<th><center>ID</center></th>
-						<th><center>FECHA</center></th>
-						<th><center>USUARIO</center></th>
-						<th><center>OBSERVACIONES</center></th>
-						<th><center>MONTO</center></th>
-						<th><center>DEBE</center></th>
-						<th><center>TIPO EGRESO</center></th>
-						<th><center>OPCION</center></th>
-						<th><center>Conductor/Cliente</center></th>
+						<th><center>{{ __('egreso.col_id') }}</center></th>
+						<th><center>{{ __('egreso.col_fecha') }}</center></th>
+						<th><center>{{ __('egreso.col_usuario') }}</center></th>
+						<th><center>{{ __('egreso.col_observaciones') }}</center></th>
+						<th><center>{{ __('egreso.col_monto') }}</center></th>
+						<th><center>{{ __('egreso.col_debe') }}</center></th>
+						<th><center>{{ __('egreso.col_tipo_egreso') }}</center></th>
+						<th><center>{{ __('egreso.col_opcion') }}</center></th>
+						<th><center>{{ __('egreso.col_conductor_cliente') }}</center></th>
 						<th><center>. . .</center></th>
 						
 					</thead>
@@ -130,9 +130,9 @@ $monto_total=0;
 						<td>{{$usr->tipo_egreso}}</td>
 						<td> 
 							@if($usr->opcion==2)
-							CONDUCTOR
+							{{ __('egreso.conductor') }}
 							@elseif($usr->opcion==0)
-							CLIENTE
+							{{ __('egreso.cliente') }}
 							@endif
 						</td>
 						<td><b>
@@ -161,7 +161,7 @@ $monto_total=0;
 						
 						</td>
 						<td>
-						<a class='btn btn-warning fa fa-print' href="{!!URL::to('egreso/comprobante_egreso_pdf',[$usr->id])!!}" data-toggle="tooltip" data-placement="top" title="Imprimir" target="_blanck"></a>
+						<a class='btn btn-warning fa fa-print' href="{!!URL::to('egreso/comprobante_egreso_pdf',[$usr->id])!!}" data-toggle="tooltip" data-placement="top" title="{{ __('egreso.imprimir_title') }}" target="_blanck"></a>
 						</td>
 					</tr>
 					<?php 
@@ -174,7 +174,7 @@ $monto_total=0;
 					</tbody>					
 				</table>
 
-	<div class="pull-left btn btn-success">Monto total de egreso es<b> {{$monto_total}} bs</b> </div>
+	<div class="pull-left btn btn-success">{{ __('egreso.monto_total_egreso') }}<b> {{$monto_total}} {{ __('egreso.bs') }}</b> </div>
 			</div>
 
 

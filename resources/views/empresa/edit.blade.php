@@ -968,16 +968,16 @@
             <div class="ee-header">
                 <div class="ee-header__icon"><i class="fa fa-building"></i></div>
                 <div class="ee-header__info">
-                    <h3 class="ee-header__title">Actualizar Empresa</h3>
+                    <h3 class="ee-header__title">{{ __('empresa.actualizar_empresa') }}</h3>
                     <p class="ee-header__sub">
                         {{ $empresa[0]->razon_social }}
-                        @if(!empty($empresa[0]->nit)) &nbsp;·&nbsp; NIT {{ $empresa[0]->nit }} @endif
+                        @if(!empty($empresa[0]->nit)) &nbsp;·&nbsp; {{ __('empresa.nit') }} {{ $empresa[0]->nit }} @endif
                     </p>
                 </div>
                 @if($empresa[0]->estado == 1)
-                    <span class="ee-badge ee-badge--on"><i class="fa fa-circle"></i> ACTIVO</span>
+                    <span class="ee-badge ee-badge--on"><i class="fa fa-circle"></i> {{ __('empresa.activo') }}</span>
                 @else
-                    <span class="ee-badge ee-badge--off"><i class="fa fa-circle"></i> INACTIVO</span>
+                    <span class="ee-badge ee-badge--off"><i class="fa fa-circle"></i> {{ __('empresa.inactivo') }}</span>
                 @endif
             </div>
 
@@ -993,31 +993,39 @@
 
                 {{-- ===== Datos Generales ===== --}}
                 <div class="ee-card">
-                    <div class="ee-card__head"><i class="fa fa-info-circle"></i><h4>Datos Generales</h4></div>
+                    <div class="ee-card__head"><i class="fa fa-info-circle"></i><h4>{{ __('empresa.datos_generales') }}</h4></div>
                     <div class="ee-card__body">
                         <div class="ee-fields">
                             <div class="form-group">
-                                <label for="nit">NIT</label>
-                                <input type="text" name="nit" id="nit" class="form-control" placeholder="NIT de la empresa" maxlength="50" onkeyup="controlar()" onkeypress="return bloqueo_de_punto(event)" value="{{ old('nit', $empresa[0]->nit) }}">
-                                <label id="nit_verificar" hidden style="color:#e53e3e">* Ya existe ese NIT</label>
+                                <label for="nit">{{ __('empresa.nit') }}</label>
+                                <input type="text" name="nit" id="nit" class="form-control" placeholder="{{ __('empresa.nit_placeholder') }}" maxlength="50" onkeyup="controlar()" onkeypress="return bloqueo_de_punto(event)" value="{{ old('nit', $empresa[0]->nit) }}">
+                                <label id="nit_verificar" hidden style="color:#e53e3e">{{ __('empresa.nit_existe') }}</label>
                             </div>
                             <div class="form-group">
-                                <label for="tipo">Tipo</label>
-                                <input type="text" name="tipo" id="tipo" class="form-control" placeholder="Tipo de empresa" maxlength="50" value="{{ old('tipo', $empresa[0]->tipo) }}">
+                                <label for="tipo">{{ __('empresa.tipo') }}</label>
+                                <input type="text" name="tipo" id="tipo" class="form-control" placeholder="{{ __('empresa.tipo_placeholder') }}" maxlength="50" value="{{ old('tipo', $empresa[0]->tipo) }}">
                             </div>
                             <div class="form-group ee-col-2">
-                                <label for="razon_social">Razón Social</label>
-                                <input type="text" name="razon_social" id="razon_social" class="form-control" placeholder="Razón social" maxlength="50" value="{{ old('razon_social', $empresa[0]->razon_social) }}">
+                                <label for="razon_social">{{ __('empresa.razon_social') }}</label>
+                                <input type="text" name="razon_social" id="razon_social" class="form-control" placeholder="{{ __('empresa.razon_social_placeholder') }}" maxlength="50" value="{{ old('razon_social', $empresa[0]->razon_social) }}">
                             </div>
                             <div class="form-group ee-col-2">
-                                <label for="whatsapp">Teléfono / WhatsApp</label>
-                                <input type="text" name="whatsapp" id="whatsapp" class="form-control" placeholder="Número de contacto" maxlength="15" value="{{ old('whatsapp', $empresa[0]->whatsapp) }}">
+                                <label for="whatsapp">{{ __('empresa.telefono_whatsapp') }}</label>
+                                <input type="text" name="whatsapp" id="whatsapp" class="form-control" placeholder="{{ __('empresa.telefono_whatsapp_placeholder') }}" maxlength="15" value="{{ old('whatsapp', $empresa[0]->whatsapp) }}">
                             </div>
                             <div class="form-group ee-col-2">
-                                <label for="direccion">Dirección</label>
-                                <textarea name="direccion" id="direccion" class="form-control" placeholder="Dirección de la empresa" style="height:90px;">{{ old('direccion', $empresa[0]->direccion) }}</textarea>
+                                <label for="direccion">{{ __('empresa.direccion') }}</label>
+                                <textarea name="direccion" id="direccion" class="form-control" placeholder="{{ __('empresa.direccion_placeholder') }}" style="height:90px;">{{ old('direccion', $empresa[0]->direccion) }}</textarea>
                                 <input type="hidden" name="latitud" value="{{ old('latitud') }}">
                                 <input type="hidden" name="longitud" value="{{ old('longitud') }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="idioma">{{ __('empresa.idioma_label') }}</label>
+                                @php $idiomaActual = old('idioma', $empresa[0]->idioma ?? 'es'); @endphp
+                                <select name="idioma" id="idioma" class="form-control">
+                                    <option value="es" {{ $idiomaActual == 'es' ? 'selected' : '' }}>Español</option>
+                                    <option value="en" {{ $idiomaActual == 'en' ? 'selected' : '' }}>English</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -1025,36 +1033,36 @@
 
                 {{-- ===== Impresoras ===== --}}
                 <div class="ee-card">
-                    <div class="ee-card__head"><i class="fa fa-print"></i><h4>Configuración de Impresoras</h4></div>
+                    <div class="ee-card__head"><i class="fa fa-print"></i><h4>{{ __('empresa.config_impresoras') }}</h4></div>
                     <div class="ee-card__body">
                         <div class="ee-fields">
                             <div class="form-group">
-                                <label for="servidor_impresora1">Servidor Impresora 1</label>
-                                <input type="text" name="servidor_impresora1" id="servidor_impresora1" class="form-control" placeholder="Servidor 1" value="{{ old('servidor_impresora1', $empresa[0]->servidor_impresora1) }}">
+                                <label for="servidor_impresora1">{{ __('empresa.servidor_impresora_1') }}</label>
+                                <input type="text" name="servidor_impresora1" id="servidor_impresora1" class="form-control" placeholder="{{ __('empresa.servidor_1_placeholder') }}" value="{{ old('servidor_impresora1', $empresa[0]->servidor_impresora1) }}">
                             </div>
                             <div class="form-group">
-                                <label for="impresora1">Nombre Impresora 1</label>
-                                <input type="text" name="impresora1" id="impresora1" class="form-control" placeholder="Impresora 1" value="{{ old('impresora1', $empresa[0]->impresora1) }}">
+                                <label for="impresora1">{{ __('empresa.nombre_impresora_1') }}</label>
+                                <input type="text" name="impresora1" id="impresora1" class="form-control" placeholder="{{ __('empresa.impresora_1_placeholder') }}" value="{{ old('impresora1', $empresa[0]->impresora1) }}">
                             </div>
                             <div class="form-group">
-                                <label for="servidor_impresora2">Servidor Impresora 2</label>
-                                <input type="text" name="servidor_impresora2" id="servidor_impresora2" class="form-control" placeholder="Servidor 2" value="{{ old('servidor_impresora2', $empresa[0]->servidor_impresora2) }}">
+                                <label for="servidor_impresora2">{{ __('empresa.servidor_impresora_2') }}</label>
+                                <input type="text" name="servidor_impresora2" id="servidor_impresora2" class="form-control" placeholder="{{ __('empresa.servidor_2_placeholder') }}" value="{{ old('servidor_impresora2', $empresa[0]->servidor_impresora2) }}">
                             </div>
                             <div class="form-group">
-                                <label for="impresora2">Nombre Impresora 2</label>
-                                <input type="text" name="impresora2" id="impresora2" class="form-control" placeholder="Impresora 2" value="{{ old('impresora2', $empresa[0]->impresora2) }}">
+                                <label for="impresora2">{{ __('empresa.nombre_impresora_2') }}</label>
+                                <input type="text" name="impresora2" id="impresora2" class="form-control" placeholder="{{ __('empresa.impresora_2_placeholder') }}" value="{{ old('impresora2', $empresa[0]->impresora2) }}">
                             </div>
                             <div class="form-group">
-                                <label for="impresora_nota_venta">Impresora Nota de Venta</label>
-                                <input type="text" name="impresora_nota_venta" id="impresora_nota_venta" class="form-control" placeholder="Impresora nota de venta" value="{{ old('impresora_nota_venta', $empresa[0]->impresora_nota_venta) }}">
+                                <label for="impresora_nota_venta">{{ __('empresa.impresora_nota_venta') }}</label>
+                                <input type="text" name="impresora_nota_venta" id="impresora_nota_venta" class="form-control" placeholder="{{ __('empresa.impresora_nota_venta_placeholder') }}" value="{{ old('impresora_nota_venta', $empresa[0]->impresora_nota_venta) }}">
                             </div>
                             <div class="form-group">
-                                <label for="impresora_factura">Impresora Factura</label>
-                                <input type="text" name="impresora_factura" id="impresora_factura" class="form-control" placeholder="Impresora factura" value="{{ old('impresora_factura', $empresa[0]->impresora_factura) }}">
+                                <label for="impresora_factura">{{ __('empresa.impresora_factura') }}</label>
+                                <input type="text" name="impresora_factura" id="impresora_factura" class="form-control" placeholder="{{ __('empresa.impresora_factura_placeholder') }}" value="{{ old('impresora_factura', $empresa[0]->impresora_factura) }}">
                             </div>
                             <div class="form-group ee-col-2">
-                                <label for="comentario_recibo">Comentario en el recibo</label>
-                                <input type="text" name="comentario_recibo" id="comentario_recibo" class="form-control" placeholder="Texto a mostrar en el recibo" value="{{ old('comentario_recibo', $empresa[0]->comentario_recibo) }}">
+                                <label for="comentario_recibo">{{ __('empresa.comentario_recibo') }}</label>
+                                <input type="text" name="comentario_recibo" id="comentario_recibo" class="form-control" placeholder="{{ __('empresa.comentario_recibo_placeholder') }}" value="{{ old('comentario_recibo', $empresa[0]->comentario_recibo) }}">
                             </div>
                         </div>
                     </div>
@@ -1062,40 +1070,40 @@
 
                 {{-- ===== Facturación (SIN) ===== --}}
                 <div class="ee-card" @if($empresa[0]->con_factura == 0) hidden @endif>
-                    <div class="ee-card__head"><i class="fa fa-file-text-o"></i><h4>Facturación (SIN)</h4></div>
+                    <div class="ee-card__head"><i class="fa fa-file-text-o"></i><h4>{{ __('empresa.facturacion_sin') }}</h4></div>
                     <div class="ee-card__body">
                         <div class="ee-fields">
                             <div class="form-group">
-                                <label for="actividad_economica">Actividad Económica</label>
-                                <input type="text" name="actividad_economica" id="actividad_economica" class="form-control" placeholder="Actividad económica" value="{{ old('actividad_economica') }}">
+                                <label for="actividad_economica">{{ __('empresa.actividad_economica') }}</label>
+                                <input type="text" name="actividad_economica" id="actividad_economica" class="form-control" placeholder="{{ __('empresa.actividad_economica_placeholder') }}" value="{{ old('actividad_economica') }}">
                             </div>
                             <div class="form-group">
-                                <label for="codigo_sistema">Código del Sistema</label>
-                                <input type="text" name="codigo_sistema" id="codigo_sistema" class="form-control" placeholder="Código del sistema" value="{{ old('codigo_sistema') }}">
+                                <label for="codigo_sistema">{{ __('empresa.codigo_sistema') }}</label>
+                                <input type="text" name="codigo_sistema" id="codigo_sistema" class="form-control" placeholder="{{ __('empresa.codigo_sistema_placeholder') }}" value="{{ old('codigo_sistema') }}">
                             </div>
                             <div class="form-group">
-                                <label for="modalidad_sin">Modalidad</label>
-                                <input type="text" name="modalidad_sin" id="modalidad_sin" class="form-control" placeholder="Modalidad" value="{{ old('modalidad_sin') }}">
+                                <label for="modalidad_sin">{{ __('empresa.modalidad') }}</label>
+                                <input type="text" name="modalidad_sin" id="modalidad_sin" class="form-control" placeholder="{{ __('empresa.modalidad') }}" value="{{ old('modalidad_sin') }}">
                             </div>
                             <div class="form-group">
-                                <label for="tipo_emision_sin">Tipo de Emisión</label>
-                                <input type="text" name="tipo_emision_sin" id="tipo_emision_sin" class="form-control" placeholder="Tipo de emisión" value="{{ old('tipo_emision_sin') }}">
+                                <label for="tipo_emision_sin">{{ __('empresa.tipo_emision') }}</label>
+                                <input type="text" name="tipo_emision_sin" id="tipo_emision_sin" class="form-control" placeholder="{{ __('empresa.tipo_emision_placeholder') }}" value="{{ old('tipo_emision_sin') }}">
                             </div>
                             <div class="form-group">
-                                <label for="tipo_factura_sin">Tipo de Factura</label>
-                                <input type="text" name="tipo_factura_sin" id="tipo_factura_sin" class="form-control" placeholder="Tipo de factura" value="{{ old('tipo_factura_sin') }}">
+                                <label for="tipo_factura_sin">{{ __('empresa.tipo_factura') }}</label>
+                                <input type="text" name="tipo_factura_sin" id="tipo_factura_sin" class="form-control" placeholder="{{ __('empresa.tipo_factura_placeholder') }}" value="{{ old('tipo_factura_sin') }}">
                             </div>
                             <div class="form-group">
-                                <label for="tipo_documento_sector_sin">Tipo Documento Sector</label>
-                                <input type="text" name="tipo_documento_sector_sin" id="tipo_documento_sector_sin" class="form-control" placeholder="Tipo documento sector" value="{{ old('tipo_documento_sector_sin') }}">
+                                <label for="tipo_documento_sector_sin">{{ __('empresa.tipo_documento_sector') }}</label>
+                                <input type="text" name="tipo_documento_sector_sin" id="tipo_documento_sector_sin" class="form-control" placeholder="{{ __('empresa.tipo_documento_sector_placeholder') }}" value="{{ old('tipo_documento_sector_sin') }}">
                             </div>
                             <div class="form-group">
-                                <label for="codigo_ambiente">Código Ambiente</label>
-                                <input type="text" name="codigo_ambiente" id="codigo_ambiente" class="form-control" placeholder="Código ambiente" value="{{ old('codigo_ambiente') }}">
+                                <label for="codigo_ambiente">{{ __('empresa.codigo_ambiente') }}</label>
+                                <input type="text" name="codigo_ambiente" id="codigo_ambiente" class="form-control" placeholder="{{ __('empresa.codigo_ambiente_placeholder') }}" value="{{ old('codigo_ambiente') }}">
                             </div>
                             <div class="form-group" @if(Auth::user()->tipo_empresa == "RESTAURANTE") hidden @endif>
-                                <label for="token_sin">Token del SIN</label>
-                                <textarea name="token_sin" id="token_sin" class="form-control" placeholder="Token obtenido por SIN" style="height:70px;">{{ old('token_sin') }}</textarea>
+                                <label for="token_sin">{{ __('empresa.token_sin') }}</label>
+                                <textarea name="token_sin" id="token_sin" class="form-control" placeholder="{{ __('empresa.token_sin_placeholder') }}" style="height:70px;">{{ old('token_sin') }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -1103,37 +1111,37 @@
 
                 {{-- ===== Identidad Visual ===== --}}
                 <div class="ee-card">
-                    <div class="ee-card__head"><i class="fa fa-picture-o"></i><h4>Identidad Visual</h4></div>
+                    <div class="ee-card__head"><i class="fa fa-picture-o"></i><h4>{{ __('empresa.identidad_visual') }}</h4></div>
                     <div class="ee-card__body">
                         <div class="ee-media">
                             <div class="ee-media__box">
-                                <h5>Logo</h5>
+                                <h5>{{ __('empresa.logo') }}</h5>
                                 <div class="ee-media__preview">
                                     <output id="list"></output>
                                     <img src="{{ !empty($empresa[0]->direccion_logo) ? asset($empresa[0]->direccion_logo) : asset('images/empresa_default.svg') }}" name="logo" id="foto_logo" class="img-thumbnail" style="border:0;padding:0;background:transparent;" onerror="this.onerror=null;this.src='{{ asset('images/empresa_default.svg') }}';">
                                 </div>
-                                <label class="ee-upload"><i class="fa fa-upload"></i> Cambiar logo
+                                <label class="ee-upload"><i class="fa fa-upload"></i> {{ __('empresa.cambiar_logo') }}
                                     <input type="file" name="logo" id="logo" accept="image/*">
                                 </label>
                                 <input type="hidden" name="direccion_logo" value="{{ $empresa[0]->direccion_logo }}">
-                                <div class="ee-hint">PNG o JPG, máx 900&nbsp;KB</div>
+                                <div class="ee-hint">{{ __('empresa.logo_hint') }}</div>
                             </div>
                             <div class="ee-media__box">
-                                <h5>Banner</h5>
+                                <h5>{{ __('empresa.banner') }}</h5>
                                 <div class="ee-media__preview">
                                     <output id="listBaner"></output>
                                     @if ($empresa[0]->direccion_baner != "")
                                         <img src="{{ asset($empresa[0]->direccion_baner) }}" name="baner" id="foto_baner" class="img-thumbnail" style="border:0;padding:0;background:transparent;">
                                     @else
-                                        <span style="color:#a0aec0;font-size:12px;">Sin banner</span>
+                                        <span style="color:#a0aec0;font-size:12px;">{{ __('empresa.sin_banner') }}</span>
                                         <img src="" name="baner" id="foto_baner" style="display:none;">
                                     @endif
                                 </div>
-                                <label class="ee-upload"><i class="fa fa-upload"></i> Cambiar banner
+                                <label class="ee-upload"><i class="fa fa-upload"></i> {{ __('empresa.cambiar_banner') }}
                                     <input type="file" name="baner" id="baner" accept="image/*">
                                 </label>
                                 <input type="hidden" name="direccion_baner" value="{{ $empresa[0]->direccion_baner }}">
-                                <div class="ee-hint">Formato horizontal recomendado</div>
+                                <div class="ee-hint">{{ __('empresa.banner_hint') }}</div>
                             </div>
                         </div>
                     </div>
@@ -1146,47 +1154,47 @@
                     $tokenActivo = !empty($empresa[0]->bancofie_token ?? null);
                 @endphp
                 <div class="ee-card ee-card--full">
-                    <div class="ee-card__head"><i class="fa fa-qrcode"></i><h4>Pago QR &mdash; Banco FIE</h4></div>
+                    <div class="ee-card__head"><i class="fa fa-qrcode"></i><h4>{!! __('empresa.pago_qr_bancofie') !!}</h4></div>
                     <div class="ee-card__body">
                         <label class="ee-switch">
                             <input type="hidden" name="pago_qr_bancofie" value="0">
                             <input type="checkbox" name="pago_qr_bancofie" id="pago_qr_bancofie" value="1" {{ $qrOn ? 'checked' : '' }}>
                             <span class="ee-switch__track"></span>
-                            <span class="ee-switch__label">Esta empresa cobra con QR de Banco FIE</span>
+                            <span class="ee-switch__label">{{ __('empresa.pago_qr_switch_label') }}</span>
                         </label>
 
                         <div id="bancofie_datos" class="ee-fields" style="margin-top:16px; {{ $qrOn ? '' : 'display:none;' }}">
                             <div class="form-group">
-                                <label for="bancofie_usuario">Usuario Banco FIE</label>
-                                <input type="text" name="bancofie_usuario" id="bancofie_usuario" class="form-control" autocomplete="off" placeholder="Usuario del servicio" value="{{ old('bancofie_usuario', $empresa[0]->bancofie_usuario ?? '') }}">
+                                <label for="bancofie_usuario">{{ __('empresa.bancofie_usuario') }}</label>
+                                <input type="text" name="bancofie_usuario" id="bancofie_usuario" class="form-control" autocomplete="off" placeholder="{{ __('empresa.bancofie_usuario_placeholder') }}" value="{{ old('bancofie_usuario', $empresa[0]->bancofie_usuario ?? '') }}">
                             </div>
                             <div class="form-group">
-                                <label for="bancofie_password">Contraseña Banco FIE</label>
-                                <input type="password" name="bancofie_password" id="bancofie_password" class="form-control" autocomplete="new-password" placeholder="{{ $tieneClave ? '•••••••• (dejar vacío para no cambiar)' : 'Ingrese la contraseña' }}" value="">
+                                <label for="bancofie_password">{{ __('empresa.bancofie_password') }}</label>
+                                <input type="password" name="bancofie_password" id="bancofie_password" class="form-control" autocomplete="new-password" placeholder="{{ $tieneClave ? __('empresa.bancofie_password_placeholder_existing') : __('empresa.bancofie_password_placeholder_new') }}" value="">
                                 <div class="ee-hint">
                                     <i class="fa fa-lock"></i>
-                                    Se guarda encriptada (AES-256). @if($tieneClave) Ya hay una contraseña registrada. @endif
+                                    {{ __('empresa.bancofie_password_hint') }} @if($tieneClave) {{ __('empresa.bancofie_password_already_set') }} @endif
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="bancofie_id_servicio">ID Servicio (Banco FIE)</label>
-                                <input type="number" name="bancofie_id_servicio" id="bancofie_id_servicio" class="form-control" placeholder="Ej: 50360" value="{{ old('bancofie_id_servicio', $empresa[0]->bancofie_id_servicio ?? '') }}">
-                                <div class="ee-hint">Panel sip.mc4.com.bo → Entidades → Servicios</div>
+                                <label for="bancofie_id_servicio">{{ __('empresa.bancofie_id_servicio') }}</label>
+                                <input type="number" name="bancofie_id_servicio" id="bancofie_id_servicio" class="form-control" placeholder="{{ __('empresa.bancofie_id_servicio_placeholder') }}" value="{{ old('bancofie_id_servicio', $empresa[0]->bancofie_id_servicio ?? '') }}">
+                                <div class="ee-hint">{!! __('empresa.bancofie_id_servicio_hint') !!}</div>
                             </div>
                             <div class="form-group">
-                                <label for="bancofie_callback">Callback / dominio</label>
-                                <input type="text" name="bancofie_callback" id="bancofie_callback" class="form-control" placeholder="Ej: midominio.com" value="{{ old('bancofie_callback', $empresa[0]->bancofie_callback ?? '') }}">
+                                <label for="bancofie_callback">{{ __('empresa.bancofie_callback') }}</label>
+                                <input type="text" name="bancofie_callback" id="bancofie_callback" class="form-control" placeholder="{{ __('empresa.bancofie_callback_placeholder') }}" value="{{ old('bancofie_callback', $empresa[0]->bancofie_callback ?? '') }}">
                             </div>
                             <div class="form-group ee-col-2">
                                 <div class="ee-token-status {{ $tokenActivo ? 'is-active' : '' }}">
                                     <i class="fa {{ $tokenActivo ? 'fa-check-circle' : 'fa-clock-o' }}"></i>
                                     @if($tokenActivo)
-                                        Token temporal activo
+                                        {{ __('empresa.bancofie_token_activo') }}
                                         @if(!empty($empresa[0]->bancofie_token_expira ?? null))
-                                            &middot; expira {{ $empresa[0]->bancofie_token_expira }}
+                                            &middot; {{ __('empresa.bancofie_token_expira') }} {{ $empresa[0]->bancofie_token_expira }}
                                         @endif
                                     @else
-                                        Sin token temporal &mdash; se genera automáticamente en cada transacción
+                                        {!! __('empresa.bancofie_sin_token') !!}
                                     @endif
                                 </div>
                             </div>
@@ -1279,8 +1287,8 @@
             </div>
 
             <div class="ee-actions">
-                <a href="{{ url('/') }}" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</a>
-                <button type="submit" class="btn btn-primary" id="btn_registrar" onclick="btn_esconder()"><i class="fa fa-save"></i> Guardar cambios</button>
+                <a href="{{ url('/') }}" class="btn btn-danger"><i class="fa fa-times"></i> {{ __('empresa.cancelar') }}</a>
+                <button type="submit" class="btn btn-primary" id="btn_registrar" onclick="btn_esconder()"><i class="fa fa-save"></i> {{ __('empresa.guardar_cambios') }}</button>
             </div>
 
 

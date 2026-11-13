@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>HISTORIAL DE VENTA</title>
+    <title>{{ __('nota_venta.historial_de_venta_mayus') }}</title>
     <!--link href="css/reporte.css" type="text/css" rel="stylesheet"  -->
 
     <style type="text/css">
@@ -46,7 +46,7 @@
 
 </head>
 <div align="right" style="height: 10px; width: 730px;">
-    {{ date('j - F - Y, g:i a') }}
+    {{ fecha_hora_impresion() }}
 </div>
 
 <body style="height: 10px; ">
@@ -60,12 +60,12 @@
                 </td>
                 <td style="width: 80%; border: 0px solid white;">
                     <center>
-                        <font size="3" style="font-weight: bold;">TIENDA {{ $empresa[0]->razon_social }} </font>
+                        <font size="3" style="font-weight: bold;">{{ __('producto.tienda') }} {{ $empresa[0]->razon_social }} </font>
                         <br>
-                        Telefono: {{ $empresa[0]->whatsapp }}<br>
-                        Dirección: {{ $empresa[0]->direccion }}<br>
+                        {{ __('producto.telefono_label') }} {{ $empresa[0]->whatsapp }}<br>
+                        {{ __('producto.direccion_label') }} {{ $empresa[0]->direccion }}<br>
 
-                        <h1>HISTORIAL DE VENTAS</h1>
+                        <h1>{{ __('nota_venta.historial_de_ventas_mayus') }}</h1>
                     </center>
                 </td>
                 <td style="width: 10%; border: 0px solid white;">
@@ -81,24 +81,24 @@
     <table>
         <tr>
             <th>
-                <center>Id</center>
+                <center>{{ __('nota_venta.col_id') }}</center>
             </th> 
             @if(Auth::user()->tipo_empresa=="RESTAURANTE")
             <th>
-                <center>Ticket</center>
+                <center>{{ __('nota_venta.col_ticket') }}</center>
             </th>
             @endif
             <th>
-                <center>Fecha</center>
+                <center>{{ __('nota_venta.col_fecha') }}</center>
             </th>
             <th>
-                <center>Cliente</center>
+                <center>{{ __('nota_venta.col_cliente') }}</center>
             </th>
             <th>
-                <center>Usuario</center>
+                <center>{{ __('nota_venta.col_usuario') }}</center>
             </th>
             <th>
-                <center>Monto Total</center>
+                <center>{{ __('nota_venta.col_monto_total') }}</center>
             </th>
         </tr>
         @foreach ($nota_venta as $pago)
@@ -116,7 +116,7 @@
         @endforeach
 
         <tr>
-            <td colspan="5" align="right"> <b>TOTAL: </b></td>
+            <td colspan="5" align="right"> <b>{{ __('nota_venta.total_mayus_dp') }} </b></td>
             <td align="right"> <b>{{ $total }}</b> </td>
         </tr>
 

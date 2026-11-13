@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>HISTORIAL DE COMPRAS</title>
+    <title>{{ __('nota_compra.historial_de_compras_mayus') }}</title>
     <!--link href="css/reporte.css" type="text/css" rel="stylesheet"  -->
 
     <style type="text/css">
@@ -46,7 +46,7 @@
 
 </head>
 <div align="right" style="height: 10px; width: 730px;">
-    {{ date('j - F - Y, g:i a') }}
+    {{ fecha_hora_impresion() }}
 </div>
 
 <body style="height: 10px; ">
@@ -60,12 +60,12 @@
                 </td>
                 <td style="width: 80%; border: 0px solid white;">
                     <center>
-                        <font size="3" style="font-weight: bold;">TIENDA {{ $empresa[0]->razon_social }} </font>
+                        <font size="3" style="font-weight: bold;">{{ __('producto.tienda') }} {{ $empresa[0]->razon_social }} </font>
                         <br>
-                        Telefono: {{ $empresa[0]->whatsapp }}<br>
-                        Dirección: {{ $empresa[0]->direccion }}<br>
+                        {{ __('producto.telefono_label') }} {{ $empresa[0]->whatsapp }}<br>
+                        {{ __('producto.direccion_label') }} {{ $empresa[0]->direccion }}<br>
 
-                        <h1>HISTORIAL DE COMPRAS</h1>
+                        <h1>{{ __('nota_compra.historial_de_compras_mayus') }}</h1>
                     </center>
                 </td>
                 <td style="width: 10%; border: 0px solid white;">
@@ -81,25 +81,25 @@
     <table>
         <tr>
             <th>
-                <center>Id</center>
+                <center>{{ __('nota_compra.col_id') }}</center>
             </th> 
             <th>
-                <center>Fecha</center>
+                <center>{{ __('nota_compra.col_fecha') }}</center>
             </th>
             <th>
-                <cente>Proveedor</center>
+                <center>{{ __('nota_compra.col_proveedor') }}</center>
             </th>
             <th>
-                <cente>Comprador</center>
+                <center>{{ __('nota_compra.col_comprador') }}</center>
             </th>
             <th>
-                <center>usuario</center>
+                <center>{{ __('nota_compra.col_usuario') }}</center>
             </th>
             <th>
-                <center>Estado</center>
+                <center>{{ __('nota_compra.col_estado') }}</center>
             </th>
             <th>
-                <center>Monto Total</center>
+                <center>{{ __('nota_compra.col_monto_total') }}</center>
             </th>
         </tr>
         @foreach ($nota_compra as $pago)
@@ -109,14 +109,14 @@
                     <td>{{ $pago->proveedor }} </td>
                     <td>{{ $pago->comprador }} </td>
                     <td>{{ $pago->usuario }}</td>
-                    <td>{{ $pago->estado }}</td>
+                    <td>{{ __('estados.'.$pago->estado) }}</td>
                     <td>{{ $pago->monto_total }} </td>
                 </tr>
                 <?php $total += $pago->monto_total; ?>
             @endforeach
 
             <tr>
-                <td colspan="6" align="right"> <b>TOTAL: </b></td>
+                <td colspan="6" align="right"> <b>{{ __('nota_compra.total_mayus_dp') }} </b></td>
                 <td align="right"> <b>{{ $total }}</b> </td>
             </tr>
 

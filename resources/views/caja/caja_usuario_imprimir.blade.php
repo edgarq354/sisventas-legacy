@@ -37,7 +37,7 @@ tr{
 
 </head>
 <div align="right" style="height: 10px;">
-   {{date("j - F - Y, g:i a")}}
+   {{ \Carbon\Carbon::now()->locale(app()->getLocale())->translatedFormat(app()->getLocale() === 'en' ? 'M j, Y, g:i A' : 'j \d\e F \d\e Y, H:i') }}
   </div><br>
 <body >
 
@@ -50,8 +50,8 @@ tr{
     <td style="width: 80%; border: 0px solid white;">
       <center>
       <font size="3" style="font-weight: bold;">{{$empresa[0]->razon_social}} </font><br>
-      Telefono: {{$empresa[0]->whatsapp}}<br>
-      Dirección: {{$empresa[0]->direccion}}<br> 
+      {{ __('producto.telefono_label') }} {{$empresa[0]->whatsapp}}<br>
+      {{ __('producto.direccion_label') }} {{$empresa[0]->direccion}}<br>
      
     </td>
     <td style="width: 10%; border: 0px solid white;">
@@ -67,54 +67,54 @@ tr{
 			{{$caja[0]->caja}}</th>
 		</tr> 					
 				<tr>
-					<td class="fila">Fecha y Hora de Apertura:</td>
+					<td class="fila">{{ __('caja.fecha_hora_apertura') }}:</td>
 					<td>{{$caja[0]->fecha_abrir}}</td>
-					<td>Fecha y Hora de Cierre:</td>
+					<td>{{ __('caja.fecha_hora_cierre') }}:</td>
 					<td>{{$caja[0]->fecha_cierre}}</td>
 				</tr>
 				 
 				<tr>
-					<td>Monto de Apertura:</td>
+					<td>{{ __('caja.monto_de_apertura') }}</td>
 					<td>{{$caja[0]->monto_abrir}} Bs</td> 
-					<td>Monto de Cierre(Efectivo):</td>
+					<td>{{ __('caja.monto_de_cierre_efectivo_dp') }}</td>
 					<td><b>{{$caja[0]->monto_cierre}} Bs</b></td>
 				</tr>
         <tr>
 					<td></td>
 					<td></td> 
-					<td>Monto de Cierre Qr:</td>
+					<td>{{ __('caja.monto_de_cierre_qr_dp') }}</td>
 					<td><b>{{$caja[0]->monto_cierre_qr}} Bs</b></td>
 				</tr>
         <tr>
 					<td></td>
 					<td></td> 
-					<td>Monto de Cierre Por Cobrar:</td>
+					<td>{{ __('caja.monto_de_cierre_por_cobrar') }}</td>
 					<td><b>{{$caja[0]->monto_cierre_por_cobrar}} Bs</b></td>
 				</tr>
         <tr>
 					<td></td>
 					<td></td> 
-					<td>Monto de Cierre POS/Tarjeta:</td>
+					<td>{{ __('caja.monto_de_cierre_pos') }}</td>
 					<td><b>{{$caja[0]->monto_cierre_pos_tarjeta}} Bs</b></td>
 				</tr>
 				<tr>
-					<td >Estado:</td>
-					<td> {{$caja[0]->estado}}
+					<td >{{ __('caja.estado_dp') }}</td>
+					<td> {{ __('estados.'.$caja[0]->estado) }}
 					</td>
 				</tr>  
 </table>
  <br>
         <table  >
           <thead >
-          	<tr><td colspan="7"><center> <h3>HISTORIAL DE VENTAS</h3></center></td></tr>
+          	<tr><td colspan="7"><center> <h3>{{ __('caja.historial_de_ventas') }}</h3></center></td></tr>
           <tr>
-                  <th><center>Id</center></th>
-									<th><center>Nro</center></th>
-									<th><center>Fecha</center></th>
-									<th><center>Cliente</center></th>
-									<th><center>Monto Total</center></th> 
-									<th><center>usuario</center></th> 
-									<th><center>estado</center></th>           
+                  <th><center>{{ __('caja.col_id') }}</center></th>
+									<th><center>{{ __('caja.col_nro') }}</center></th>
+									<th><center>{{ __('caja.col_fecha') }}</center></th>
+									<th><center>{{ __('caja.col_cliente') }}</center></th>
+									<th><center>{{ __('caja.col_monto_total') }}</center></th> 
+									<th><center>{{ __('caja.col_usuario') }}</center></th> 
+									<th><center>{{ __('caja.col_estado') }}</center></th>           
 								</tr>
            </thead>
            <tbody >
@@ -127,7 +127,7 @@ tr{
 									<td>{{ $pago->razon_social}} </td> 
 									<td>{{ $pago->monto_total}}  </td>
 									<td>{{ $pago->usuario}}</td>
-									<td>{{ $pago->estado}}</td>
+									<td>{{ __('estados.'.$pago->estado) }}</td>
 									 
 					</tr>
 					@endforeach
@@ -137,28 +137,28 @@ tr{
 
         <table  >
           <thead >
-          	<tr><td colspan="7"><center> <h3>HISTORIAL DE COMPRAS</h3></center></td></tr>
+          	<tr><td colspan="7"><center> <h3>{{ __('caja.historial_de_compras') }}</h3></center></td></tr>
           <tr>
             <th>
-              <center>Id</center>
+              <center>{{ __('caja.col_id') }}</center>
           </th>
           <th>
-              <center>Nro</center>
+              <center>{{ __('caja.col_nro') }}</center>
           </th>
           <th>
-              <center>Fecha</center>
+              <center>{{ __('caja.col_fecha') }}</center>
           </th>
           <th>
-              <cente>Proveedor</center>
+              <center>{{ __('caja.col_proveedor') }}</center>
           </th>
           <th>
-              <cente>Comprador</center>
+              <center>{{ __('caja.col_comprador') }}</center>
           </th>
           <th>
-              <center>Monto Total</center>
+              <center>{{ __('caja.col_monto_total') }}</center>
           </th>
           <th>
-              <center>usuario</center>
+              <center>{{ __('caja.col_usuario') }}</center>
           </th>        
 								</tr>
            </thead>
@@ -181,16 +181,16 @@ tr{
         <br>
         <table  >
           <thead >
-          	<tr><td colspan="7"><center> <h3>HISTORIAL DE GASTOS</h3></center></td></tr>
+          	<tr><td colspan="7"><center> <h3>{{ __('caja.historial_de_gastos') }}</h3></center></td></tr>
           <tr>
-            <th><center>ID</center></th>
-            <th><center>TIPO DE GASTO</center></th>
-            <th><center>DETALLE</center></th>
-            <th><center>NOTA</center></th>
-            <th><center>PRECIO</center></th>
-            <th><center>USUARIO</center></th>
-            <th><center>CAJA</center></th>
-            <th><center>FECHA</center></th>         
+            <th><center>{{ __('caja.col_id') }}</center></th>
+            <th><center>{{ __('caja.col_tipo_de_gasto') }}</center></th>
+            <th><center>{{ __('caja.col_detalle') }}</center></th>
+            <th><center>{{ __('caja.col_nota') }}</center></th>
+            <th><center>{{ __('caja.col_precio') }}</center></th>
+            <th><center>{{ __('caja.col_usuario') }}</center></th>
+            <th><center>{{ __('caja.col_caja') }}</center></th>
+            <th><center>{{ __('caja.col_fecha') }}</center></th>         
 								</tr>
            </thead>
            <tbody >
@@ -212,18 +212,18 @@ tr{
         <br>
         <table  >
           <thead >
-          	<tr><td colspan="10"><center> <h3>HISTORIAL DE INGRESOS</h3></center></td></tr>
+          	<tr><td colspan="10"><center> <h3>{{ __('caja.historial_de_ingresos') }}</h3></center></td></tr>
           <tr>
-            <th><center>Id</center></th>  
-            <th><center>Fecha</center></th>
-            <th><center>Concepto</center></th>
-            <th><center>Descripción</center></th>
-            <th><center>Tipo</center></th>   
-            <th><center>Cliente</center></th>   
-            <th><center>Monto</center></th>   
-            <th><center>Sucursal</center></th>    
-            <th><center>Caja</center></th>    
-            <th><center>Usuario</center></th>     
+            <th><center>{{ __('caja.col_id') }}</center></th>  
+            <th><center>{{ __('caja.col_fecha') }}</center></th>
+            <th><center>{{ __('caja.col_concepto') }}</center></th>
+            <th><center>{{ __('caja.col_descripcion') }}</center></th>
+            <th><center>{{ __('caja.col_tipo') }}</center></th>   
+            <th><center>{{ __('caja.col_cliente') }}</center></th>   
+            <th><center>{{ __('caja.col_monto') }}</center></th>   
+            <th><center>{{ __('caja.col_sucursal') }}</center></th>    
+            <th><center>{{ __('caja.col_caja') }}</center></th>    
+            <th><center>{{ __('caja.col_usuario') }}</center></th>     
 								</tr>
            </thead>
            <tbody >

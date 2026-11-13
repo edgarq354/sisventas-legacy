@@ -108,11 +108,11 @@
 			success: function(data) {
 				alertify.success(":" + data);
 				window.location.href = window.location.href;
-				$("#" + divresul + "").html("Asignacion de Taxi completado");
+				$("#" + divresul + "").html(@json(__('nota_compra.asignacion_completado')));
 			},
 			//si ha ocurrido un error
 			error: function(data) {
-				alertify.error("ha ocurrido un error:" + data);
+				alertify.error(@json(__('nota_compra.ha_ocurrido_error')) + data);
 
 			}
 		});
@@ -133,7 +133,7 @@ $message = Session::get('message');
 @if($message=='store')
 <div class="alert alert-success alert-dismissible" role="alert">
 	<button type="button" class="close" data-dismiss="alert" arial-label="Close"><span aria-hidden="true">$times;</span></button>
-	Pago registrado con Exito.
+	{{ __('nota_compra.pago_registrado') }}
 </div>
 @endif
 <div class="dash">
@@ -141,56 +141,56 @@ $message = Session::get('message');
 	<div class="dash-hero" style="margin-bottom:14px;">
 		<div class="dash-hero__icon"><i class="fa fa-truck"></i></div>
 		<div>
-			<h3 class="dash-hero__title">Notas de compra</h3>
-			<p class="dash-hero__sub">Últimos movimientos</p>
+			<h3 class="dash-hero__title">{{ __('nota_compra.titulo_notas_compra') }}</h3>
+			<p class="dash-hero__sub">{{ __('nota_compra.ultimos_movimientos') }}</p>
 		</div>
 	</div>
 
 	<div class="nc-actions">
 		@if(!empty($caja_abierta))
-			<a href="{!! URL::to('nota_compra/create') !!}" class="nc-btn nc-btn--nueva"><i class="fa fa-plus"></i> Nueva compra</a>
+			<a href="{!! URL::to('nota_compra/create') !!}" class="nc-btn nc-btn--nueva"><i class="fa fa-plus"></i> {{ __('nota_compra.nueva_compra') }}</a>
 		@else
-			<span class="nc-btn nc-btn--nueva" style="opacity:.5;cursor:not-allowed;" title="Abra una caja primero"><i class="fa fa-plus"></i> Nueva compra</span>
+			<span class="nc-btn nc-btn--nueva" style="opacity:.5;cursor:not-allowed;" title="{{ __('nota_compra.abra_caja_primero') }}"><i class="fa fa-plus"></i> {{ __('nota_compra.nueva_compra') }}</span>
 		@endif
-		<a href="{!! URL::to('nota_compra_historial/'.date('Y-m-d').'/'.date('Y-m-d')) !!}" class="nc-btn nc-btn--hist"><i class="fa fa-history"></i> Historial</a>
-		<a href="{!! URL::to('nota_compra_historial_por_producto/'.date('Y-m-d').'/'.date('Y-m-d').'/0') !!}" class="nc-btn nc-btn--prod"><i class="fa fa-cube"></i> Por producto</a>
+		<a href="{!! URL::to('nota_compra_historial/'.date('Y-m-d').'/'.date('Y-m-d')) !!}" class="nc-btn nc-btn--hist"><i class="fa fa-history"></i> {{ __('nota_compra.historial') }}</a>
+		<a href="{!! URL::to('nota_compra_historial_por_producto/'.date('Y-m-d').'/'.date('Y-m-d').'/0') !!}" class="nc-btn nc-btn--prod"><i class="fa fa-cube"></i> {{ __('nota_compra.por_producto') }}</a>
 	</div>
 
 	@if(empty($caja_abierta))
 		<div style="display:flex;align-items:center;gap:10px;background:#fdecea;border:1px solid #f5c6c2;color:#a12b21;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:13px;font-weight:600;">
 			<i class="fa fa-exclamation-triangle"></i>
-			No tienes una caja abierta. Ábrela para poder registrar compras.
-			<a href="{!! URL::to('caja') !!}" class="btn btn-danger btn-xs" style="margin-left:auto;border-radius:8px;font-weight:700;"><i class="fa fa-inbox"></i> Ir a caja</a>
+			{{ __('nota_compra.sin_caja_abierta_aviso') }}
+			<a href="{!! URL::to('caja') !!}" class="btn btn-danger btn-xs" style="margin-left:auto;border-radius:8px;font-weight:700;"><i class="fa fa-inbox"></i> {{ __('nota_compra.ir_a_caja') }}</a>
 		</div>
 	@endif
 
 	<div class="dash-card">
-		<div class="dash-card__head"><i class="fa fa-list"></i> Compras registradas</div>
+		<div class="dash-card__head"><i class="fa fa-list"></i> {{ __('nota_compra.compras_registradas') }}</div>
 		<div class="dash-card__body dash-card__body--flush">
 			<div class="table-responsive" style="overflow-x:auto;">
 				<table class="table table-striped table-hover" style="background:white;margin:0;" id="tabla_sin_imprimir">
 
 					<thead>
 							<th>
-								<center>Id</center>
+								<center>{{ __('nota_compra.col_id') }}</center>
 							</th> 
 							<th>
-								<center>Fecha</center>
+								<center>{{ __('nota_compra.col_fecha') }}</center>
 							</th>
 							<th>
-								<cente>Proveedor</center>
+								<center>{{ __('nota_compra.col_proveedor') }}</center>
 							</th>
 							<th>
-								<cente>Comprador</center>
+								<center>{{ __('nota_compra.col_comprador') }}</center>
 							</th>
 							<th>
-								<center>Monto Total</center>
+								<center>{{ __('nota_compra.col_monto_total') }}</center>
 							</th>
 							<th>
-								<center>Usuario</center>
+								<center>{{ __('nota_compra.col_usuario') }}</center>
 							</th>
 							<th>
-								<center>Estado</center>
+								<center>{{ __('nota_compra.col_estado') }}</center>
 							</th>
 							<th>
 								<center>. . .</center>
@@ -209,29 +209,29 @@ $message = Session::get('message');
 								<td>{{ $pago->usuario}}</td>
 								<td>
 									@if($pago->estado=='Procesado')
-									 <span class="badge  btn-success">{{$pago->estado}}</span>
+									 <span class="badge  btn-success">{{ __('estados.'.$pago->estado) }}</span>
 									 @elseif($pago->estado=='Por pagar')
-									 <span class="badge  btn-warning">{{$pago->estado}}</span> 
+									 <span class="badge  btn-warning">{{ __('estados.'.$pago->estado) }}</span> 
 									 @else
-									 <span class="badge  btn-danger">{{$pago->estado}}</span>
+									 <span class="badge  btn-danger">{{ __('estados.'.$pago->estado) }}</span>
 									 @endif
 								</td>
 
 								<td>
 									<div class="btn-group">
 										<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-											Opción <span class="caret"></span>
+											{{ __('nota_compra.opcion') }} <span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu" role="menu">
 											<li>
-												<a class='fa fa-eye' data-toggle="modal" data-target="#ModalVenta" onclick="cargarNotaVenta({{$pago->id}});"> Ver detalle</a>
+												<a class='fa fa-eye' data-toggle="modal" data-target="#ModalVenta" onclick="cargarNotaVenta({{$pago->id}});"> {{ __('nota_compra.ver_detalle') }}</a>
 											</li>
 											<li>
-												<a class=' fa fa-print' href='nota_compra_imprimir/{{$pago->id}}' aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Imprimir"> Imprimir</a>
+												<a class=' fa fa-print' href='nota_compra_imprimir/{{$pago->id}}' aria-hidden="true" data-toggle="tooltip" data-placement="top" title="{{ __('nota_compra.imprimir') }}"> {{ __('nota_compra.imprimir') }}</a>
 											</li> 
 											@if($pago->estado=='Por pagar')
 											<li>
-												<a class='' href="" data-toggle="modal" data-target="#ModalEstado"  onclick="cargarNotaActualizarEstado({{$pago->id}})" aria-hidden="true"><i class="fa-spin fa fa-refresh "></i> Act. pagado</a>
+												<a class='' href="" data-toggle="modal" data-target="#ModalEstado"  onclick="cargarNotaActualizarEstado({{$pago->id}})" aria-hidden="true"><i class="fa-spin fa fa-refresh "></i> {{ __('nota_compra.act_pagado') }}</a>
 											</li>
 											@endif
 										</ul>
@@ -259,7 +259,7 @@ $message = Session::get('message');
 		<div class="modal-content">
 
 			<div class="modal-header" style="background: #d4463e; color: white">
-				<h3 class="modal-title">COMPRA : <label id="idNotaVenta"></label></h3>
+				<h3 class="modal-title">{{ __('nota_compra.modal_compra_titulo') }} <label id="idNotaVenta"></label></h3>
 			</div>
 
 
@@ -269,12 +269,12 @@ $message = Session::get('message');
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
 					<div style="margin: 15px;">
-						<label>Proveedor:</label><br>
+						<label>{{ __('nota_compra.proveedor_label') }}</label><br>
 						<input type="text" id="proveedor" class="form-control" readonly="" />
 					</div>
 
 					<div style="margin: 15px;">
-						<label>Comprador:</label><br>
+						<label>{{ __('nota_compra.comprador_label') }}</label><br>
 						<input type="text" id="comprador" class="form-control" readonly="" />
 					</div>
 
@@ -284,24 +284,24 @@ $message = Session::get('message');
 
 
 						<div class="form-group">
-							<label>NIT/CI:</label><br>
+							<label>{{ __('nota_compra.nit_ci_label') }}</label><br>
 							<input type="decimal" class="form-control" id="ciNit" readonly="" />
 						</div>
 
 						<div class="form-group">
-							<label>Fecha:</label><br>
+							<label>{{ __('nota_compra.fecha_label') }}</label><br>
 							<input type="decimal" class="form-control" id="fecha" readonly="" />
 						</div>
 					</div>
 
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
 						<div class="form-group">
-							<label>Monto Total:</label><br>
+							<label>{{ __('nota_compra.monto_total_label') }}</label><br>
 							<input type="decimal" class="form-control" id="montoTotal" readonly="">
 						</div>
 
 						<div class="form-group">
-							<label>Usuario:</label><br>
+							<label>{{ __('nota_compra.usuario_label') }}</label><br>
 							<input type="text" class="form-control" id="usuario" readonly="">
 						</div>
 					</div>
@@ -313,13 +313,13 @@ $message = Session::get('message');
 					<thead>
 
 						<th>
-							<center>Producto</center>
+							<center>{{ __('nota_compra.col_producto') }}</center>
 						</th>
 						<th>
-							<center>Cantidad</center>
+							<center>{{ __('nota_compra.col_cantidad') }}</center>
 						</th> 
 						<th>
-							<center>Total</center>
+							<center>{{ __('nota_compra.col_total') }}</center>
 						</th>
 					</thead>
 					<tbody align="center" id="body_detalle">
@@ -331,7 +331,7 @@ $message = Session::get('message');
 
 			<div class="modal-footer">
 				<button data-dismiss="modal" class="btn btn-warning form-control">
-					<i class="fa fa-close" aria-hidden="true"></i> CERRAR</button>
+					<i class="fa fa-close" aria-hidden="true"></i> {{ __('nota_compra.cerrar') }}</button>
 			</div>
 		</div>
 	</div>
@@ -344,7 +344,7 @@ $message = Session::get('message');
 		<div class="modal-content">
 
 			<div class="modal-header" style="background: #d4463e; color: white">
-				<h3 class="modal-title">Cancelar la Venta </h3>
+				<h3 class="modal-title">{{ __('nota_compra.cancelar_venta_titulo') }} </h3>
 			</div>
 
 
@@ -354,7 +354,7 @@ $message = Session::get('message');
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<input type="hidden" id="idNotaVentaCancelar">
 					<center>
-						<h3>Al cancelar la venta, se regresaran al inventario los productos comprados.</h3>
+						<h3>{{ __('nota_compra.cancelar_venta_aviso') }}</h3>
 					</center>
 
 				</div>
@@ -365,9 +365,9 @@ $message = Session::get('message');
 
 			<div class="modal-footer">
 				<button data-dismiss="modal" class="btn btn-warning " onclick="cancelarNota();">
-					<i class="fa fa-save" aria-hidden="true"></i> ACEPTAR</button>
+					<i class="fa fa-save" aria-hidden="true"></i> {{ __('nota_compra.aceptar') }}</button>
 				<button data-dismiss="modal" class="btn btn-danger ">
-					<i class="fa fa-save" aria-hidden="true"></i> CERRAR</button>
+					<i class="fa fa-save" aria-hidden="true"></i> {{ __('nota_compra.cerrar') }}</button>
 			</div>
 		</div>
 	</div>
@@ -383,7 +383,7 @@ $message = Session::get('message');
         <form action="{{ url('actualizar_estado_nota_compra') }}" method="POST" enctype="multipart/form-data" onkeypress="if(event.keyCode == 13) event.returnValue = false;">
     	@csrf
         <div class="modal-header" style="background: #3984ca; color: white">
-          <h3 class="modal-title">ACTUALIZAR ESTADO DE LA COMPRA  </h3>
+          <h3 class="modal-title">{{ __('nota_compra.actualizar_estado_compra_titulo') }}</h3>
         </div>    
         <div class="modal-body">
        
@@ -392,10 +392,10 @@ $message = Session::get('message');
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 " > 
               <input type="hidden" name="id_nota_compra" id='idNotaActualizarEstado'  /> 
               <div class="form-group">
-              <label>ESTADO:</label><br>
+              <label>{{ __('nota_compra.estado_label_mayus') }}</label><br>
               <select name="estado"  class="form-control">
-                <option value="Por cobrar"> Pro cobrar</option>
-                <option value="Procesado"> Procesado</option>
+                <option value="Por cobrar"> {{ __('nota_compra.opt_por_cobrar') }}</option>
+                <option value="Procesado"> {{ __('nota_compra.opt_procesado') }}</option>
               </select>
               </div>
             </div>
@@ -407,7 +407,7 @@ $message = Session::get('message');
 				id="btn_actualizar"
 				onclick="btn_esconder()"
 				>
-				ACTUALIZAR
+				{{ __('nota_compra.actualizar') }}
 				</button>
             </form>
             

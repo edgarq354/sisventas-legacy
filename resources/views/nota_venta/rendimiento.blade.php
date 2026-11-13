@@ -17,12 +17,12 @@
     <div class="dash-hero">
         <div class="dash-hero__icon"><i class="fa fa-line-chart"></i></div>
         <div>
-            <h3 class="dash-hero__title">Rendimiento de ventas</h3>
-            <p class="dash-hero__sub">Ganancias, ventas y cancelaciones por mes</p>
+            <h3 class="dash-hero__title">{{ __('rendimiento.titulo') }}</h3>
+            <p class="dash-hero__sub">{{ __('rendimiento.subtitulo') }}</p>
         </div>
         <div class="dash-hero__spacer"></div>
         <span class="dash-card__extra" style="color:#fff;">
-            Año
+            {{ __('rendimiento.anio') }}
             <select class="selectpicker" id="anio" onchange="buscar_por_anio();" style="border:none;border-radius:8px;padding:3px 10px;color:#3a2c24;">
                 @for($y = (int)date('Y'); $y >= (int)date('Y') - 6; $y--)
                     <option value="{{ $y }}" {{ $y == (int)date('Y') ? 'selected' : '' }}>{{ $y }}</option>
@@ -36,41 +36,41 @@
             <div class="dash-stat__row">
                 <div>
                     <div class="dash-stat__value" id="stat_ganancia">Bs 0.00</div>
-                    <div class="dash-stat__label">Ganancia del año</div>
+                    <div class="dash-stat__label">{{ __('rendimiento.ganancia_del_anio') }}</div>
                 </div>
                 <div class="dash-stat__icon"><i class="fa fa-money"></i></div>
             </div>
-            <span class="dash-stat__foot">Ventas procesadas + QR</span>
+            <span class="dash-stat__foot">{{ __('rendimiento.ventas_procesadas_qr') }}</span>
         </div>
         <div class="dash-stat dash-stat--month">
             <div class="dash-stat__row">
                 <div>
                     <div class="dash-stat__value" id="stat_ventas">0</div>
-                    <div class="dash-stat__label">Ventas realizadas</div>
+                    <div class="dash-stat__label">{{ __('rendimiento.ventas_realizadas') }}</div>
                 </div>
                 <div class="dash-stat__icon"><i class="fa fa-check"></i></div>
             </div>
-            <span class="dash-stat__foot">En el año seleccionado</span>
+            <span class="dash-stat__foot">{{ __('rendimiento.en_anio_seleccionado') }}</span>
         </div>
         <div class="dash-stat dash-stat--caja">
             <div class="dash-stat__row">
                 <div>
                     <div class="dash-stat__value" id="stat_canceladas">0</div>
-                    <div class="dash-stat__label">Ventas canceladas</div>
+                    <div class="dash-stat__label">{{ __('rendimiento.ventas_canceladas') }}</div>
                 </div>
                 <div class="dash-stat__icon"><i class="fa fa-times"></i></div>
             </div>
-            <span class="dash-stat__foot">En el año seleccionado</span>
+            <span class="dash-stat__foot">{{ __('rendimiento.en_anio_seleccionado') }}</span>
         </div>
     </div>
 
     <div class="dash-card">
-        <div class="dash-card__head"><i class="fa fa-area-chart"></i> Ganancias mensuales</div>
+        <div class="dash-card__head"><i class="fa fa-area-chart"></i> {{ __('rendimiento.ganancias_mensuales') }}</div>
         <div class="dash-card__body">
             <div id="estadistica_pedido_anio" class="dash-chart"></div>
             <div class="table-responsive" style="overflow-x:auto;margin-top:6px;">
                 <table class="dash-table" id="tabla_meses" style="font-size:12.5px;">
-                    <thead><tr><th>Mes</th><th style="text-align:right;">Ventas (Bs)</th><th style="text-align:center;">Nº ventas</th><th style="text-align:right;">Canceladas (Bs)</th></tr></thead>
+                    <thead><tr><th>{{ __('rendimiento.col_mes') }}</th><th style="text-align:right;">{{ __('rendimiento.col_ventas_bs') }}</th><th style="text-align:center;">{{ __('rendimiento.col_n_ventas') }}</th><th style="text-align:right;">{{ __('rendimiento.col_canceladas_bs') }}</th></tr></thead>
                     <tbody></tbody>
                     <tfoot></tfoot>
                 </table>
@@ -79,7 +79,7 @@
     </div>
 
     <div class="dash-card" style="max-width:460px;">
-        <div class="dash-card__head"><i class="fa fa-pie-chart"></i> Ventas vs canceladas</div>
+        <div class="dash-card__head"><i class="fa fa-pie-chart"></i> {{ __('rendimiento.ventas_vs_canceladas') }}</div>
         <div class="dash-card__body" style="text-align:center;">
             <canvas id="myChart" style="max-height:280px;"></canvas>
         </div>
@@ -99,7 +99,7 @@ window.onload = function () { buscar_por_anio(); };
 function buscar_por_anio() {
     var anio = $("#anio").val();
     $.get('get_venta_estadistica_anio/' + anio, function (response) {
-        var meses = ['', 'Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+        var meses = @json(explode(',', __('rendimiento.meses_completos')));
         var fecha = [], monto_venta = [], monto_cancelado = [];
         var monto_total = 0, cantidad_venta = 0, cantidad_cancelaciones = 0;
 
@@ -118,8 +118,8 @@ function buscar_por_anio() {
                 '</td><td style="text-align:center;">' + parseInt(response[i].cantidad_venta) +
                 '</td><td style="text-align:right;color:#c62828;">' + fmt(response[i].monto_cancelado) + '</td></tr>';
         }
-        $('#tabla_meses tbody').html(filas || '<tr><td colspan="4" class="dash-empty">Sin datos en el año seleccionado</td></tr>');
-        $('#tabla_meses tfoot').html('<tr style="font-weight:800;background:#fbf7f3;"><td>TOTAL</td><td style="text-align:right;color:#2e7d32;">Bs ' + fmt(monto_total) +
+        $('#tabla_meses tbody').html(filas || '<tr><td colspan="4" class="dash-empty">' + @json(__('rendimiento.sin_datos_anio')) + '</td></tr>');
+        $('#tabla_meses tfoot').html('<tr style="font-weight:800;background:#fbf7f3;"><td>' + @json(__('rendimiento.total_mayus')) + '</td><td style="text-align:right;color:#2e7d32;">Bs ' + fmt(monto_total) +
             '</td><td style="text-align:center;">' + cantidad_venta + '</td><td style="text-align:right;color:#c62828;">Bs ' + fmt(totC_monto) + '</td></tr>');
 
         Highcharts.chart('estadistica_pedido_anio', {
@@ -132,8 +132,8 @@ function buscar_por_anio() {
             legend: { align: 'right', verticalAlign: 'top' },
             plotOptions: { areaspline: { fillOpacity: 0.15, marker: { enabled: false } } },
             series: [
-                { name: 'Ventas', data: monto_venta },
-                { name: 'Canceladas', data: monto_cancelado }
+                { name: @json(__('rendimiento.serie_ventas')), data: monto_venta },
+                { name: @json(__('rendimiento.serie_canceladas')), data: monto_cancelado }
             ]
         });
 
@@ -152,7 +152,7 @@ function buscar_por_anio() {
                     data: [cantidad_venta, cantidad_cancelaciones],
                     backgroundColor: ['#2e7d32', '#c62828']
                 }],
-                labels: ['Ventas', 'Canceladas']
+                labels: [@json(__('rendimiento.serie_ventas')), @json(__('rendimiento.serie_canceladas'))]
             },
             options: { responsive: true, legend: { position: 'bottom' } }
         });

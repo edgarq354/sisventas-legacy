@@ -43,7 +43,7 @@ function imprimir() {
 
 </head>
 <div align="right" style="height: 10px;">
-   {{date("j - F - Y, g:i a")}}
+   {{ fecha_hora_impresion() }}
   </div><br>
 <body onload="imprimir();">
 
@@ -56,10 +56,10 @@ function imprimir() {
     <td style="width: 80%; border: 0px solid white;">
       <center>
       <font size="3" style="font-weight: bold;">TIENDA {{$empresa[0]->razon_social}} </font><br>
-      Telefono: {{$empresa[0]->whatsapp}}<br>
-      Dirección: {{$empresa[0]->direccion}}<br>
+      {{ __('producto.telefono_label') }} {{$empresa[0]->whatsapp}}<br>
+      {{ __('producto.direccion_label') }} {{$empresa[0]->direccion}}<br>
 
-      <h2>GASTOS # {{$gasto[0]->id}}</h2></center>
+      <h2>{{ __('gasto.gastos_numero', ['id' => $gasto[0]->id]) }}</h2></center>
     </td>
     <td style="width: 10%; border: 0px solid white;">
 
@@ -71,27 +71,27 @@ function imprimir() {
 
 <table >
   <tr >
-    <td class="sin_borde" style="width:80px;">NOMBRE:</td>
+    <td class="sin_borde" style="width:80px;">{{ __('gasto.nombre_mayus_dp') }}</td>
     <td class="sin_borde">{{$empleado[0]->nombre}} {{$empleado[0]->paterno}} {{$empleado[0]->materno}}</td>
   </tr>
   <tr>
-    <td class="sin_borde">CARGO:</td>
+    <td class="sin_borde">{{ __('gasto.cargo_mayus_dp') }}</td>
     <td class="sin_borde">{{$empleado[0]->cargo}}</td>
   </tr>
   <tr>
-    <td class="sin_borde">SUELDO:</td>
+    <td class="sin_borde">{{ __('gasto.sueldo_mayus_dp') }}</td>
     <td class="sin_borde"><B>{{$gasto[0]->precio_gasto}} Bs</B></td>
   </tr>
   <tr>
-    <td class="sin_borde">DETALLE:</td>
+    <td class="sin_borde">{{ __('gasto.detalle_mayus_dp') }}</td>
     <td class="sin_borde"><i>"{{$gasto[0]->detalle}}"</i></td>
   </tr>
   <tr>
-    <td class="sin_borde">FECHA:</td>
+    <td class="sin_borde">{{ __('gasto.fecha_mayus_dp') }}</td>
     <td class="sin_borde">{{$gasto[0]->fecha}}</td>
   </tr>
   <tr>
-    <td class="sin_borde">USUARIO:</td>
+    <td class="sin_borde">{{ __('gasto.usuario_mayus_dp') }}</td>
     <td class="sin_borde">{{$gasto[0]->usuario}}</td>
   </tr>
  </table>

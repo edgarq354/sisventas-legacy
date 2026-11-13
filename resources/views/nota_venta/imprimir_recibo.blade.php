@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
  <meta charset="UTF-8">
-    <title>RECIBO</title>
+    <title>{{ __('nota_venta.titulo_recibo') }}</title>
  <!--link href="css/reporte.css" type="text/css" rel="stylesheet"  -->
 
  <style type="text/css">
@@ -68,7 +68,7 @@
       </td>
       <td style="width:80%;"></td>
       <td align="left" style="width:100%; font-weight:bold;">
-        NIT
+        {{ __('nota_venta.nit_mayus') }}
       </td>
       <td align="left" style="width:100%;">
         {{$empresa[0]->nit}}
@@ -80,7 +80,7 @@
       </td>
       <td ></td>
       <td align="left" style="width:100%; font-weight:bold;">
-        RECIBO N°
+        {{ __('nota_venta.recibo_n') }}
       </td>
       <td align="left"  >
         {{$nota_venta[0]->id}}
@@ -88,14 +88,14 @@
     </tr>
     <tr>
       <td align="center" colspan="2" style="width:150%;vertical-align:top">
-      No. Punto de Venta {{$sucursal[0]->codigo_punto_venta}}<br>
+      {{ __('nota_venta.no_punto_venta', ['codigo' => $sucursal[0]->codigo_punto_venta]) }}<br>
       {{$sucursal[0]->direccion}}<br>
-      Teléfono: {{$sucursal[0]->telefono}}<br>
+      {{ __('nota_venta.telefono_dp') }} {{$sucursal[0]->telefono}}<br>
       {{$sucursal[0]->municipio}}
       </td>
       <td style="width:100%;"></td>
       <td style="font-weight:bold; vertical-align:top;">
-        USER:
+        {{ __('nota_venta.user_dp') }}
       </td>
       <td align="left" style="vertical-align:top">
         {{$nota_venta[0]->usuario}}
@@ -104,21 +104,21 @@
     <tr>
       <td  colspan='5'>
     <center>
-      <font style='font-size: 18px; font-weight:bold;' >NOTA DE VENTA</font> <BR>
+      <font style='font-size: 18px; font-weight:bold;' >{{ __('nota_venta.nota_de_venta_mayus') }}</font> <BR>
 
     </center>
       </td>
     </tr>
     <tr>
     <td>
-      <b> Fecha: </b>
+      <b> {{ __('nota_venta.fecha_dp') }} </b>
       </td>
       <td>
         {{$nota_venta[0]->fecha}}
       </td>  
       <td></td>
       <td align="right">
-        <b>NIT/CI/CEX: </b>
+        <b>{{ __('nota_venta.nit_ci_cex_dp2') }} </b>
       </td>
       <td>
         {{$nota_venta[0]->ci_nit}}
@@ -126,13 +126,13 @@
     </tr>
     <tr>
     <td>
-      <b>Nombre/Razón Social:</b>
+      <b>{{ __('nota_venta.nombre_razon_social_dp') }}</b>
       </td>
       <td colspan="2">
         {{$nota_venta[0]->razon_social}}
       </td>
       <td align="right">
-        <b>Cod. Cliente:</b>
+        <b>{{ __('nota_venta.cod_cliente_dp') }}</b>
       </td>
       <td>
         {{$nota_venta[0]->id_cliente}}
@@ -142,12 +142,12 @@
 
 <table>
 			<tr>
-            <th><center>CÓDIGO<br>PRODUCTO / SERVICIO</center></th>
-          	<th><center>CANTIDAD</center></th>
-						<th><center>DESCRIPCIÓN </center></th>
-						<th><center>PRECIO UNITARIO</center></th>
-						<th><center>DESCUENTO</center></th>
-						<th><center>SUBTOTAL</center></th>
+            <th><center>{!! __('nota_venta.col_codigo_producto_servicio') !!}</center></th>
+          	<th><center>{{ __('nota_venta.col_cantidad_mayus') }}</center></th>
+						<th><center>{{ __('nota_venta.col_descripcion_mayus') }} </center></th>
+						<th><center>{{ __('nota_venta.col_precio_unitario_mayus') }}</center></th>
+						<th><center>{{ __('nota_venta.col_descuento_mayus') }}</center></th>
+						<th><center>{{ __('nota_venta.col_subtotal_mayus') }}</center></th>
 			</tr>
 
         @foreach($detalle_venta as $dv)
@@ -162,28 +162,28 @@
         @endforeach
 
 					<tr>
-            <td rowspan="4" colspan="3" ><b>Son: {{$numeroLetra}} </b></td>
-						<td align="right" colspan="2" class='casillas'>SUBTOTAL Bs</td>
+            <td rowspan="4" colspan="3" ><b>{{ __('nota_venta.son_label', ['monto' => $numeroLetra]) }} </b></td>
+						<td align="right" colspan="2" class='casillas'>{{ __('nota_venta.subtotal_bs') }}</td>
 						<td align="right" class='casillas'>  </td>
 					</tr>
           <tr>
-						<td align="right" colspan="2"  class='casillas'>DESCUENTO Bs</td>
+						<td align="right" colspan="2"  class='casillas'>{{ __('nota_venta.descuento_bs') }}</td>
 						<td align="right"  class='casillas'>  </td>
 					</tr>
           <tr>
-						<td align="right" colspan="2"  class='casillas'>TOTAL Bs</td>
+						<td align="right" colspan="2"  class='casillas'>{{ __('nota_venta.total_bs_mayus') }}</td>
 						<td align="right" class='casillas'>  </td>
 					</tr>
 
           <tr >
-						<td align="right" colspan="2" class='casillasSombra'><b>MONTO A PAGAR Bs</b></td>
+						<td align="right" colspan="2" class='casillasSombra'><b>{{ __('nota_venta.monto_a_pagar_bs') }}</b></td>
 						<td align="right" class='casillasSombra'>  {{$nota_venta[0]->monto_total}}</td>
 					</tr>
 
           <tr><td colspan="6" style="height: 20px;"></td></tr>
           <tr>
             <td colspan="5" align="center" >
-            GRACIAS POR CONFIAR EN NOSOTROS .!</td>
+            {{ __('nota_venta.gracias_por_confiar') }}</td>
             <td>
 
 @php

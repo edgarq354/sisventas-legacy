@@ -43,7 +43,7 @@ function imprimir() {
 
 </head>
 <div align="right" style="height: 10px;">
-   {{date("j - F - Y, g:i a")}}
+   {{ fecha_hora_impresion() }}
   </div><br>
 <body onload="imprimir();">
 
@@ -56,10 +56,10 @@ function imprimir() {
     <td style="width: 80%; border: 0px solid white;">
       <center>
       <font size="3" style="font-weight: bold;">{{$empresa[0]->razon_social}} </font><br>
-      Telefono: {{$empresa[0]->whatsapp}}<br>
-      Dirección: {{$empresa[0]->direccion}}<br>
+      {{ __('producto.telefono_label') }} {{$empresa[0]->whatsapp}}<br>
+      {{ __('producto.direccion_label') }} {{$empresa[0]->direccion}}<br>
 
-      <h2>LISTA DE CLIENTES</h2></center>
+      <h2>{{ __('cliente.lista_de_clientes') }}</h2></center>
     </td>
     <td style="width: 10%; border: 0px solid white;">
 
@@ -74,12 +74,12 @@ function imprimir() {
         <table  >
           <thead >
           <tr>
-            <th><center>CI/NIT</center></th>
-						<th><center>NOMBRE   </center></th>
-						<th><center>TELEFONO</center></th>
-						<th><center>CLIENTE</center></th>
-						<th><center>PROVEEDOR</center></th>
-						<th><center>EMPLEADO</center></th>
+            <th><center>{{ __('cliente.col_ci_nit_mayus') }}</center></th>
+						<th><center>{{ __('cliente.col_nombre_mayus') }}</center></th>
+						<th><center>{{ __('cliente.col_telefono_mayus') }}</center></th>
+						<th><center>{{ __('cliente.col_cliente_mayus') }}</center></th>
+						<th><center>{{ __('cliente.col_proveedor_mayus') }}</center></th>
+						<th><center>{{ __('cliente.col_empleado_mayus') }}</center></th>
           </tr>
            </thead>
            <tbody >
@@ -97,18 +97,18 @@ function imprimir() {
 
 						<td align="center">
 							@if($usr->tipo_c==1)
-							Cliente
+							{{ __('cliente.col_cliente_mayus') }}
 							@endif
 						</td>
 						<td align="center">
 							@if($usr->tipo_p==1)
-							Proveedor
+							{{ __('cliente.col_proveedor_mayus') }}
 							@endif
 						</td>
 						<td align="center">
 							@if($usr->tipo_e==1)
-							Empleado<br>
-              Ing. {{$usr->fecha_ingreso}}
+							{{ __('cliente.col_empleado_mayus') }}<br>
+              {{ __('cliente.ing_fecha', ['fecha' => $usr->fecha_ingreso]) }}
 							@endif
 						</td>
 

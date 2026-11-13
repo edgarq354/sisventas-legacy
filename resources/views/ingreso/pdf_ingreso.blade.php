@@ -1,6 +1,6 @@
 <head>
  <meta charset="UTF-8">
-    <title>LISTA DE INGRESOS</title>
+    <title>{{ __('ingreso.lista_de_ingresos') }}</title>
  <!--link href="css/reporte.css" type="text/css" rel="stylesheet"  -->
 
 <style type="text/css">
@@ -41,35 +41,35 @@ tr{
 
 </head>
 <div align="right" style="height: 10px;">
-   {{date("j - F - Y, g:i a")}}
+   {{ fecha_hora_impresion() }}
   </div>
 <body onload="window.print()">
 <div style="width: 100%">
-<center><font size="3">LISTA DE INGRESOS</font></center>
+<center><font size="3">{{ __('ingreso.lista_de_ingresos') }}</font></center>
 </div>
 <br>
 
 <?php $empresa=DB::select("SELECT *from empresa,users where empresa.id=users.id_empresa and empresa.id=".Auth::user()->id_empresa); ?>
 <br>
-Empresa:<b> {{$empresa[0]->razon_social}}.</b><br>
-Usuario:<b> {{Auth::user()->nombre}}.</b><br>
-Fecha: <b> {{$fecha_inicio}}.</b> entre <b> {{$fecha_fin}}.</b><br>
+{{ __('egreso.empresa_dp') }}<b> {{$empresa[0]->razon_social}}.</b><br>
+{{ __('egreso.usuario_dp') }}<b> {{Auth::user()->nombre}}.</b><br>
+{!! __('ingreso.fecha_entre', ['inicio' => $fecha_inicio, 'fin' => $fecha_fin]) !!}<br>
 <br>
 
 @if($id_usuario!='' && $id_usuario!='no')
 <?php $empresa=DB::select("SELECT usuario from users where id=".$id_usuario); ?>
-Reporte del usuario <b>{{$empresa[0]->usuario}}.</b>
+{!! __('ingreso.reporte_usuario', ['usuario' => $empresa[0]->usuario]) !!}
 @else
-Reporte de todos los usuarios.
+{{ __('ingreso.reporte_todos_usuarios') }}
 @endif
 <br>
 @if($id_cliente!='' && $id_cliente!='no')
 <?php $cliente=DB::select("SELECT nombre,ci_nit from cliente where id=".$id_cliente); ?>
-Reporte del cliente:<br>
-Nombre: <b>{{$cliente[0]->nombre}}.</b><br>
-Ci/Nit: <b>{{$cliente[0]->ci_nit}}.</b><br>
+{{ __('ingreso.reporte_cliente') }}<br>
+{{ __('ingreso.cliente_nombre_dp') }} <b>{{$cliente[0]->nombre}}.</b><br>
+{{ __('ingreso.ci_nit_dp') }} <b>{{$cliente[0]->ci_nit}}.</b><br>
 @else
-Reporte de todos los clientes.
+{{ __('ingreso.reporte_todos_clientes') }}
 @endif
 
 
@@ -79,16 +79,16 @@ Reporte de todos los clientes.
 
         <table  >
         <tr>
-            <th><center>Id</center></th>
-            <th><center>Fecha</center></th>
-            <th><center>Usuario</center></th>
-            <th><center>Observacion</center></th>
-            <th><center>Monto</center></th>
-            <th><center>Saldo</center></th>
-            <th><center>Tipo</center></th>
-            <th><center>Opcion</center></th>
-            <th><center>Pagador</center></th>
-            <th><center>Conductor/Cliente/Empresa</center></th>
+            <th><center>{{ __('ingreso.col_id') }}</center></th>
+            <th><center>{{ __('ingreso.col_fecha') }}</center></th>
+            <th><center>{{ __('ingreso.col_usuario') }}</center></th>
+            <th><center>{{ __('ingreso.col_observacion') }}</center></th>
+            <th><center>{{ __('ingreso.col_monto') }}</center></th>
+            <th><center>{{ __('ingreso.col_saldo') }}</center></th>
+            <th><center>{{ __('ingreso.col_tipo') }}</center></th>
+            <th><center>{{ __('ingreso.col_opcion') }}</center></th>
+            <th><center>{{ __('ingreso.col_pagador') }}</center></th>
+            <th><center>{{ __('ingreso.col_conductor_cliente_empresa') }}</center></th>
             
           </tr>         
           @foreach($ingreso as $usr)
@@ -101,11 +101,11 @@ Reporte de todos los clientes.
             <td>{{$usr->saldo}}</td>
             <td>{{$usr->tipo_ingreso}}</td>
             <td>@if($usr->opcion==1)
-              CONDUCTOR
+              {{ __('ingreso.conductor') }}
               @elseif($usr->opcion==2)
-              CORPORATIVO
+              {{ __('ingreso.corporativo') }}
               @elseif($usr->opcion==0)
-              CLIENTE
+              {{ __('ingreso.cliente') }}
               @endif
             </td>
             <td>{{$usr->nombre_pagador}}</td>
@@ -164,13 +164,13 @@ Reporte de todos los clientes.
 <br>
 <table  style="width:250px;">
   <tr style="background-color: #F8B712;">
-    <th>Detalle</th>
-    <th>Monto</th>
+    <th>{{ __('ingreso.col_detalle') }}</th>
+    <th>{{ __('ingreso.col_monto_simple') }}</th>
   </tr>
     
     <tr>
-      <td>Total de ingresos</td>
-      <td>{{$monto_total}} Bs</td>
+      <td>{{ __('ingreso.total_de_ingresos') }}</td>
+      <td>{{$monto_total}} {{ __('ingreso.bs') }}</td>
     </tr>
     
 </table >
