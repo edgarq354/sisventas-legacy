@@ -1,0 +1,31 @@
+<div class="modal fade" id="modal_finalizar" 
+     tabindex="-1" role="dialog" 
+     aria-labelledby="favoritesModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" 
+          data-dismiss="modal" 
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" >Registro de finalización del dia</h4>
+      </div>
+      <div class="modal-body">
+        {{Form::open(array('url' => 'asistencia/finalizar'))}}  
+        <div class="form-group">
+        {!!Form::label('conclusion','¿Alguna observación para concluir el dia?:')!!}
+        {!!Form::text('observacion',null,['class'=>'form-control','placeholder'=>'¿Alguna observación para concluir el dia?'])!!}
+      </div>
+
+      </div>
+      
+          <div class="modal-footer">
+
+            {!!Form::submit('REGISTRAR',['class'=>'btn btn-primary','id'=>'btn_actualizar','onclick'=>'btn_esconder()'])!!}
+            </form>
+            <button data-dismiss="modal"  class="btn btn-danger">CANCELAR</button>
+        </div>
+
+    </div>
+  </div>
+</div>
