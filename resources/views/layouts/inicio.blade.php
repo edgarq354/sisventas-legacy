@@ -37,23 +37,27 @@
 
 
     <script type="text/javascript">
+        var dtLanguage = @json(Lang::get('datatable'));
+        var dtImprimir = {{ json_encode(__('datatable.imprimir')) }};
+        var dtLocale = {{ json_encode(app()->getLocale()) }};
+
         $(document).ready(function() {
 
 
             $('#calendario1').datetimepicker({
                 viewMode: 'days',
                 format: 'YYYY-MM-DD',
-                locale: 'es'
+                locale: dtLocale
             });
             $('#calendario2').datetimepicker({
                 viewMode: 'days',
                 format: 'YYYY-MM-DD',
-                locale: 'es'
+                locale: dtLocale
             });
             $('#calendario3').datetimepicker({
                 viewMode: 'days',
                 format: 'YYYY-MM-DD',
-                locale: 'es'
+                locale: dtLocale
             });
 
 
@@ -67,34 +71,11 @@
 
                 buttons: [{
                         extend: 'print',
-                        text: 'Imprimir'
+                        text: dtImprimir
                     },
 
                 ],
-                "language": {
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-                },
+                "language": dtLanguage,
                 "initComplete": function () {
                     $(this.api().table().container()).find('.dataTables_filter input')
                         .attr({ autocomplete: 'off', autocorrect: 'off', autocapitalize: 'off', spellcheck: 'false', name: 'dt_s_' + Math.random().toString(36).slice(2) });
@@ -115,34 +96,11 @@
 
                 buttons: [{
                         extend: 'print',
-                        text: 'Imprimir'
+                        text: dtImprimir
                     },
 
                 ],
-                "language": {
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-                },
+                "language": dtLanguage,
                 "initComplete": function () {
                     $(this.api().table().container()).find('.dataTables_filter input')
                         .attr({ autocomplete: 'off', autocorrect: 'off', autocapitalize: 'off', spellcheck: 'false', name: 'dt_s_' + Math.random().toString(36).slice(2) });
@@ -165,34 +123,11 @@
 
                 buttons: [{
                         extend: 'print',
-                        text: 'Imprimir'
+                        text: dtImprimir
                     },
 
                 ],
-                "language": {
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-                }
+                "language": dtLanguage
 
             });
 
@@ -210,34 +145,11 @@
 
                 buttons: [{
                         extend: 'print',
-                        text: 'Imprimir'
+                        text: dtImprimir
                     },
 
                 ],
-                "language": {
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-                }
+                "language": dtLanguage
 
             });
 
@@ -283,14 +195,14 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">SE</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg" style="color:white;">TIENDA</span>
+                <span class="logo-lg" style="color:white;">{{ __('menu.tienda') }}</span>
             </a>
 
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                    <span class="sr-only">Navegación</span>
+                    <span class="sr-only">{{ __('menu.navegacion') }}</span>
                 </a>
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
@@ -301,11 +213,11 @@
                             <a href="{!! URL::to('caja') !!}" style="padding-top:12px;padding-bottom:12px;">
                                 @if(!empty($caja_abierta))
                                     <span style="display:inline-flex;align-items:center;gap:6px;background:#2e7d32;color:#fff;font-weight:700;font-size:12px;padding:5px 12px;border-radius:999px;">
-                                        <i class="fa fa-circle" style="font-size:8px;"></i> Caja {{ $caja_abierta->caja }} abierta
+                                        <i class="fa fa-circle" style="font-size:8px;"></i> {{ __('caja.caja_abierta', ['caja' => $caja_abierta->caja]) }}
                                     </span>
                                 @else
                                     <span style="display:inline-flex;align-items:center;gap:6px;background:#c62828;color:#fff;font-weight:700;font-size:12px;padding:5px 12px;border-radius:999px;">
-                                        <i class="fa fa-circle" style="font-size:8px;"></i> Sin caja abierta
+                                        <i class="fa fa-circle" style="font-size:8px;"></i> {{ __('caja.sin_caja_abierta') }}
                                     </span>
                                 @endif
                             </a>
@@ -325,7 +237,7 @@
                         <li class="dropdown user user-menu">
 
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-placement="bottom"
-                            title="Mi Empresa">
+                            title="{{ __('menu.mi_empresa') }}">
                                 <!--small class="bg-yellow">Admin:</small-->
                                 @if (Auth::user()->privilegio == 0 || Auth::user()->privilegio == 10 || Auth::user()->privilegio == 11)
                                     <?php $empresa = DB::select('SELECT *from empresa,users where empresa.id=users.id_empresa and empresa.id=' . Auth::user()->id_empresa); ?>
@@ -360,8 +272,8 @@
 
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu" style="cursor: pointer;" data-toggle="tooltip"
-                            data-placement="bottom" title="Cerrar sesión">
-                            <a href="{!!URL::to('logout')!!}" ><i class="fa fa-power-off"></i> SALIR</a>
+                            data-placement="bottom" title="{{ __('menu.cerrar_sesion') }}">
+                            <a href="{!!URL::to('logout')!!}" ><i class="fa fa-power-off"></i> {{ __('menu.salir') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -853,7 +765,7 @@
             <div class="modal-content">
 
                 <div class="modal-header" style="background: #3c8dbc; color: white">
-                    <h3 class="modal-title">PERMISOS PARA INGRESAR A EMPRESAS</h3>
+                    <h3 class="modal-title">{{ __('menu.permisos_empresas') }}</h3>
                 </div>
 
 
@@ -862,7 +774,7 @@
 
                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            Acceso a la lista de empresa:<br>
+                            {{ __('menu.acceso_lista_empresa') }}<br>
                             <input type="password" id="contraseniaEmpresa" placeholder="password"
                                 class="form-control" value="">
                         </div>
@@ -872,7 +784,7 @@
 
                     <div class="modal-footer">
                         <button data-dismiss="modal" class="btn btn-success" onclick="verificarAcceso();">OK</button>
-                        <button data-dismiss="modal" class="btn btn-danger">CANCELAR</button>
+                        <button data-dismiss="modal" class="btn btn-danger">{{ __('menu.cancelar') }}</button>
                     </div>
                 </div>
             </div>

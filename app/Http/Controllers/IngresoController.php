@@ -71,13 +71,13 @@ class IngresoController extends Controller
             
 
               DB::commit();     
-            Session::flash('message','SE REGISTRO CORRECTAMENTE');
-            return Redirect::to('/ingreso'); 
-            
+            Session::flash('message', __('ingreso.registrado_correctamente'));
+            return Redirect::to('/ingreso');
+
       }catch (Exception $e) {
           DB::rollback();
-          return redirect('/ingreso/create')->with("message-error","ERROR INTENTE NUEVAMENTE".$e);      
-      }   
+          return redirect('/ingreso/create')->with("message-error", __('ingreso.error_intente_nuevamente').$e);
+      }
     }
 
     public function show()
@@ -226,24 +226,24 @@ try{
           ->whereRaw('id='.$id_ingreso) 
           ->update(['estado'=>'Cancelado',
         'id_usuario_cancelo'=>Auth::user()->id]);
-          $mensaje="Cancelado el ingreso Correctamente";
+          $mensaje=__('ingreso.cancelado_correctamente');
           $ok=1;
         }else{
-          $mensaje="Caja Cerrada, No se puede cancelar porque la caja ya esta cerrada";
+          $mensaje=__('ingreso.caja_cerrada_no_cancelar');
         }
-        DB::commit(); 
+        DB::commit();
        self::registrar_bitacora('cancelar_ingreso',$id_ingreso);
-       
+
        if($ok==1){
-        return redirect('/ingreso')->with("message","SE CANCELO CORRECTAMENTE"); 
+        return redirect('/ingreso')->with("message", $mensaje);
        }else{
-        return redirect('/ingreso')->with("message-error","ERROR,".$mensaje);
+        return redirect('/ingreso')->with("message-error", $mensaje);
        }
-       
+
     } catch (Exception $e) {
-      DB::rollback(); 
+      DB::rollback();
       self::registrar_bitacora('cancelar_ingreso',$e);
-      return redirect('/ingreso')->with("message-error","ERROR,".$mensaje);    
+      return redirect('/ingreso')->with("message-error", $mensaje);
     }
  
 }

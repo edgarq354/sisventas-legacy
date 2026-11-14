@@ -82,7 +82,7 @@ class EgresoController extends Controller
 
 
               DB::commit();
-            Session::flash('message','SE REGISTRO CORRECTAMENTE');
+            Session::flash('message', __('egreso.registrado_correctamente'));
 
 
 
@@ -93,7 +93,7 @@ class EgresoController extends Controller
 
       }catch (Exception $e) {
           DB::rollback();
-          return redirect('/egreso/create')->with("message-error","ERROR INTENTE NUEVAMENTE");
+          return redirect('/egreso/create')->with("message-error", __('egreso.error_intente_nuevamente'));
       }
     }
 
@@ -107,12 +107,12 @@ class EgresoController extends Controller
 
 
               DB::commit();
-            Session::flash('message','SE REGISTRO CORRECTAMENTE');
+            Session::flash('message', __('egreso.registrado_correctamente'));
             return Redirect::to('/egreso');
 
       }catch (Exception $e) {
           DB::rollback();
-          return redirect('/egreso/create')->with("message-error","ERROR INTENTE NUEVAMENTE");
+          return redirect('/egreso/create')->with("message-error", __('egreso.error_intente_nuevamente'));
       }
     }
 

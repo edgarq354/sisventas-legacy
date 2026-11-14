@@ -41,4 +41,9 @@ return [
     'ventas_mes' => ':mes Sales',
     'ver_ventas' => 'View sales',
     'ver_clientes' => 'View customers',
+
+    // flash messages
+    'actualizado_recibo' => 'Successfully updated. Start: :inicio End: :fin',
+    'ya_tiene_ajuste_anio' => 'You already have a settings record for this year.',
+    'error_intente_nuevamente' => 'An error occurred, please try again.',
 ];

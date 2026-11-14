@@ -10,8 +10,7 @@
 
 @php
     $message   = Session::get('message');
-    $meses_es  = ['','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-    $hoy_texto = $meses_es[(int)date('n')].' '.date('Y');
+    $hoy_texto = now()->locale(app()->getLocale())->translatedFormat('F Y');
 @endphp
 
 @if($message=='store')

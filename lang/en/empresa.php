@@ -83,4 +83,25 @@ return [
 
     'cancelar' => 'Cancel',
     'guardar_cambios' => 'Save changes',
+
+    // flash messages
+    'empresa_creada' => 'Company created successfully.',
+    'empresa_actualizada' => 'Company updated successfully.',
+    'administrador_actualizado' => 'Admin updated successfully.',
+    'administrativo_actualizado' => 'Staff member updated successfully.',
+    'contrasenia_modificada' => 'Password changed successfully.',
+    'administrador_modificado' => 'Admin changed successfully.',
+    'ya_existe_usuario' => 'That user already exists, please try again.',
+
+    // empresa/index (superadmin company list)
+    'listado_titulo' => 'COMPANIES',
+    'registrar_mayus' => 'REGISTER',
+    'col_id' => 'ID',
+    'col_logo' => 'LOGO',
+    'col_nit' => 'TAX ID',
+    'col_razon_social' => 'BUSINESS NAME',
+    'col_administrador' => 'ADMIN',
+    'col_estado' => 'STATUS',
+    'col_deuda' => 'DEBT',
+    'col_opcion' => 'OPTION',
 ];

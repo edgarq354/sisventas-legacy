@@ -116,7 +116,7 @@ function imprimir() {
   </tr>
   <tr>
     <td align="left"> 
-      <b style="font-size: 20px; margin:0px; padding:0px;"> {{ __('nota_venta.ticket_numero_tipo', ['numero' => $nota_venta[0]->numero_ticket]) }}</b>   <b style="font-size: 18px;">, {{$nota_venta[0]->tipo}}</b> 
+      <b style="font-size: 20px; margin:0px; padding:0px;"> {{ __('nota_venta.ticket_numero_tipo', ['numero' => $nota_venta[0]->numero_ticket]) }}</b>   <b style="font-size: 18px;">, {{ tipo_venta_label($nota_venta[0]->tipo) }}</b>
        <br>
       
     </td>

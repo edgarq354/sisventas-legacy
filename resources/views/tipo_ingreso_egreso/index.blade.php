@@ -3,7 +3,6 @@
 @include('alerts.success')
 @include('alerts.request')
 @include('alerts.errors')
-@include('usuario.modal')
 	
 		
 	<div class="row">	

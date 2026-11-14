@@ -94,4 +94,8 @@ return [
     'col_monto_simple' => 'Amount',
     'total_de_ingresos' => 'Total income',
     'bs' => 'Bs',
+    'registrado_correctamente' => 'Successfully registered.',
+    'error_intente_nuevamente' => 'An error occurred, please try again.',
+    'cancelado_correctamente' => 'Income cancelled successfully.',
+    'caja_cerrada_no_cancelar' => 'Closed register: this cannot be cancelled because the register is already closed.',
 ];

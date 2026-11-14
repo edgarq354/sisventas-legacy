@@ -201,11 +201,11 @@ class AsistenciaController extends Controller {
                     ]);
               
                  DB::commit(); 
-                  Session::flash('message','SE REGISTRO CORRECTAMENTE.');    
+                  Session::flash('message', __('asistencia.registrado_correctamente'));    
                 }
                 else
                 {
-                  Session::flash('message-error','YA TIENE UN INGRESO REGISTRADO, PORFAVOR FINALICE');  
+                  Session::flash('message-error', __('asistencia.ya_tiene_ingreso'));  
                 }
 
 
@@ -220,11 +220,11 @@ class AsistenciaController extends Controller {
                   ->where('id',$id_asistencia)
                   ->update(['fecha_salida' => date("Y-m-d H:i:s") ]);
                   DB::commit(); 
-                Session::flash('message','SE REGISTRO CORRECTAMENTE');
+                Session::flash('message', __('asistencia.registrado_correctamente'));
                  }
                  else
                  {
-                    Session::flash('message-error','NO TIENE NINGUN INGRESO REGISTRADO, PORFAVOR REGISTRE SU ASISTENCIA');  
+                    Session::flash('message-error', __('asistencia.no_tiene_ingreso'));  
                  }
              }
             
@@ -253,7 +253,7 @@ class AsistenciaController extends Controller {
                   DB::beginTransaction();
                   DB::table('asistencia')->where('id_usuario', Auth::user()->id)->where('id',$id_asistencia)->update(['observaciones'=>$request['observacion'],'fecha_salida' => date("Y-m-d H:i:s") ]);
                   DB::commit(); 
-                Session::flash('message','SE REGISTRO CORRECTAMENTE');
+                Session::flash('message', __('asistencia.registrado_correctamente'));
 
 
 
@@ -291,7 +291,7 @@ $usuario=DB::select("SELECT a.*,ad.nombre as 'usuario',a.observaciones,e.razon_s
                  }
                  else
                  {
-                    Session::flash('message-error','NO TIENE NINGUN INGRESO REGISTRADO, PORFAVOR REGISTRE SU ASISTENCIA');  
+                    Session::flash('message-error', __('asistencia.no_tiene_ingreso'));  
                  }
             
             

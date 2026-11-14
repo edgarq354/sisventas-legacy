@@ -41,4 +41,9 @@ return [
     'ventas_mes' => 'Ventas :mes',
     'ver_ventas' => 'Ver ventas',
     'ver_clientes' => 'Ver clientes',
+
+    // flash messages
+    'actualizado_recibo' => 'Se actualizó correctamente. I: :inicio F: :fin',
+    'ya_tiene_ajuste_anio' => 'Ya tiene un ajuste de este año.',
+    'error_intente_nuevamente' => 'Ocurrió un error, intente nuevamente.',
 ];

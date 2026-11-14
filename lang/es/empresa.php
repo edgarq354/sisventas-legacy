@@ -83,4 +83,25 @@ return [
 
     'cancelar' => 'Cancelar',
     'guardar_cambios' => 'Guardar cambios',
+
+    // flash messages
+    'empresa_creada' => 'Empresa creado correctamente.',
+    'empresa_actualizada' => 'Empresa actualizada correctamente.',
+    'administrador_actualizado' => 'Administrador actualizado correctamente.',
+    'administrativo_actualizado' => 'Administrativo actualizado correctamente.',
+    'contrasenia_modificada' => 'Contraseña modificada.',
+    'administrador_modificado' => 'Administrador modificado.',
+    'ya_existe_usuario' => 'Ya existe ese usuario, intente nuevamente.',
+
+    // empresa/index (lista de empresas, superadmin)
+    'listado_titulo' => 'EMPRESAS',
+    'registrar_mayus' => 'REGISTRAR',
+    'col_id' => 'ID',
+    'col_logo' => 'LOGO',
+    'col_nit' => 'NIT',
+    'col_razon_social' => 'RAZON SOCIAL',
+    'col_administrador' => 'ADMINISTRADOR',
+    'col_estado' => 'ESTADO',
+    'col_deuda' => 'DEUDA',
+    'col_opcion' => 'OPCION',
 ];

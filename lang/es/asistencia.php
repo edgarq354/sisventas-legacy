@@ -56,4 +56,7 @@ return [
     'hora_salida_dp' => 'Hora de salida:',
     'empresa_dp' => 'Empresa:',
     'observaciones_dp2' => 'Obsercaciones:',
+    'registrado_correctamente' => 'Se registró correctamente.',
+    'ya_tiene_ingreso' => 'Ya tiene un ingreso registrado, por favor finalice.',
+    'no_tiene_ingreso' => 'No tiene ningún ingreso registrado, por favor registre su asistencia.',
 ];

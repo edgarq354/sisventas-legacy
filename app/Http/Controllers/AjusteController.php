@@ -65,24 +65,7 @@ class AjusteController extends Controller
             $monto_caja=$ing->monto_total;
           }
 
-          $mes="";
-          switch ($numero_mes) {
-            case 1: $mes="ENERO"; break;
-            case 2: $mes="FEBRERO"; break;
-            case 3: $mes="MARZO"; break;
-            case 4: $mes="ABRIL"; break;
-            case 5: $mes="MAYO"; break;
-            case 6: $mes="JUNIO"; break;
-            case 7: $mes="JULIO"; break;
-            case 8: $mes="AGOSTO"; break;
-            case 9: $mes="SEPTIEMBRE"; break;
-            case 10: $mes="OCTUBRE"; break;
-            case 11: $mes="NOVIEMBRE"; break;
-            case 12: $mes="DICIEMBRE"; break;
-          }
-        
-
-          
+          $mes = nombre_mes((int) $numero_mes);
 
         return view('inicio.index_normal',[
         'producto'=>$producto,
@@ -155,24 +138,7 @@ class AjusteController extends Controller
             $monto_caja=$ing->monto_total;
           }
 
-          $mes="";
-          switch ($numero_mes) {
-            case 1: $mes="ENERO"; break;
-            case 2: $mes="FEBRERO"; break;
-            case 3: $mes="MARZO"; break;
-            case 4: $mes="ABRIL"; break;
-            case 5: $mes="MAYO"; break;
-            case 6: $mes="JUNIO"; break;
-            case 7: $mes="JULIO"; break;
-            case 8: $mes="AGOSTO"; break;
-            case 9: $mes="SEPTIEMBRE"; break;
-            case 10: $mes="OCTUBRE"; break;
-            case 11: $mes="NOVIEMBRE"; break;
-            case 12: $mes="DICIEMBRE"; break;
-          }
-        
-
-          
+          $mes = nombre_mes((int) $numero_mes);
 
         return view('ajuste.index',[
         'producto'=>$producto,
@@ -221,7 +187,7 @@ class AjusteController extends Controller
     	  
 
 
-            Session::flash('message','SE ACTUALIZO CORRECTAMENTE. I:'.$Request['inicio_recibo']." F:".$Request['fin_recibo']);
+            Session::flash('message', __('ajuste.actualizado_recibo', ['inicio' => $Request['inicio_recibo'], 'fin' => $Request['fin_recibo']]));
             return Redirect::to('/ajuste');          
     }
     public function create()
@@ -230,51 +196,6 @@ class AjusteController extends Controller
       ->orderBy('anio','desc')
       ->paginate(3);
        return view('ajuste.create',["ajuste"=>$ajuste]);
-    }
-    public function devolucion_de_pago(Request $request)
-    {
-    	return "Devolucion de pago";
-    }
-     public function editar_pago($ci)
-    {
-    	 $conductor = DB::select("SELECT * FROM conductor where conductor.ci=".$ci);
-       return view('ajuste.pago_de_conductor.edit',compact('conductor',$conductor));
-    }
-	public function ajuste_pago_conductor(Request $request)
-    {
-    	 if(Auth::user()->privilegio==1){
-            $buscar_conductor=DB::select("SELECT * FROM conductor");
-            $conductor=DB::table('conductor')->orderby('id_empresa')->get();            
-    } else {
-        $buscar_conductor=DB::select("SELECT c.*,v.codigo_empresa FROM conductor c,vehiculo v 
-          where v.placa=c.ci and c.id_empresa=".Auth::user()->id_empresa);          
-        $conductor=DB::table('conductor')->select('*')->where('conductor.id_empresa', 
-          Auth::user()->id_empresa)->orderby('nombre')->get();
-    }
-    return view('ajuste.pago_de_conductor.index',["conductor"=>$conductor],compact('buscar_conductor',$buscar_conductor));
-    	
-    }
-
-    public function Actualizar_Conductor_Pago(Request $request){
-      if(Auth::user()->privilegio>=0){
-    	try {
-    	 DB::beginTransaction();
-                DB::table('conductor')->where('ci', $request['ci'])->update([
-                  'tipo_de_pago' => $request['tipo_de_pago'], 
-                  'monto_frecuencia' => $request['monto_frecuencia'],
-                  'fecha_inicio_pago'=> $request['fecha_inicio_pago'],
-                  'fecha_fin_pago'=> $request['fecha_fin_pago']]);
-           DB::commit();    
-            Session::flash('message','ACTUALIZADO CORRECTAMENTE');
-            return Redirect::to('/ajuste_pago_conductor');          
-        } catch (Exception $e) {
-          DB::rollback();
-         return redirect('/editar_pago/'.$request['ci'])->with("message-error","ERROR INTENTE NUEVAMENTE");
-        }  
-        }
-        else{
-        	 return redirect('/editar_pago/'.$request['ci'])->with("message-error","ERROR INTENTE NUEVAMENTE");
-        }            
     }
 
     public function store(Request $Request){
@@ -418,17 +339,17 @@ class AjusteController extends Controller
 
 
      			 DB::commit();     
-            Session::flash('message','AJUSTE CREADO CORRECTAMENTE');
-            return redirect::to('/ajuste'); 
+            Session::flash('message', __('ajuste.ajuste_registrado'));
+            return redirect::to('/ajuste');
  		}
  		else
  		{
-            Session::flash('message-error','YA TIENE UN AJUSTE DE ESTE AÑO.');
-            return redirect::to('/ajuste'); 
+            Session::flash('message-error', __('ajuste.ya_tiene_ajuste_anio'));
+            return redirect::to('/ajuste');
  		}
  		} catch (Exception $e) {
           DB::rollback();
-          return redirect('/ajuste')->with("message-error","ERROR INTENTE NUEVAMENTE");      
+          return redirect('/ajuste')->with("message-error", __('ajuste.error_intente_nuevamente'));
         }
    
     }

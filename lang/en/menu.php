@@ -30,4 +30,12 @@ return [
     'sucursales' => 'BRANCHES',
     'copia_de_seguridad' => 'BACKUP',
     'empresa' => 'COMPANY',
+    'navegacion' => 'Navigation',
+    'mi_empresa' => 'My Company',
+    'cerrar_sesion' => 'Log out',
+    'salir' => 'LOGOUT',
+    'tienda' => 'STORE',
+    'permisos_empresas' => 'PERMISSIONS TO ACCESS COMPANIES',
+    'acceso_lista_empresa' => 'Access to company list:',
+    'cancelar' => 'CANCEL',
 ];

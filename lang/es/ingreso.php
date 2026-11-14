@@ -94,4 +94,8 @@ return [
     'col_monto_simple' => 'Monto',
     'total_de_ingresos' => 'Total de ingresos',
     'bs' => 'Bs',
+    'registrado_correctamente' => 'Se registró correctamente.',
+    'error_intente_nuevamente' => 'Ocurrió un error, intente nuevamente.',
+    'cancelado_correctamente' => 'Cancelado el ingreso correctamente.',
+    'caja_cerrada_no_cancelar' => 'Caja cerrada, no se puede cancelar porque la caja ya está cerrada.',
 ];

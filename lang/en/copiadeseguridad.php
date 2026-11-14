@@ -8,4 +8,6 @@ return [
     'col_nombre' => 'NAME',
     'col_tamanio' => 'SIZE',
     'descargar' => 'Download',
+    'exitosamente' => 'Backup created successfully',
+    'descargar_mayus' => 'DOWNLOAD',
 ];

@@ -19,6 +19,46 @@ if (!function_exists('fecha_larga')) {
     }
 }
 
+if (!function_exists('nombre_mes')) {
+    /**
+     * Nombre del mes (1-12) localizado según el idioma de la empresa.
+     */
+    function nombre_mes(int $numero, bool $mayusculas = true): string
+    {
+        if ($numero < 1 || $numero > 12) {
+            return '';
+        }
+
+        $nombre = Carbon::create(null, $numero, 1)->locale(app()->getLocale())->translatedFormat('F');
+
+        return $mayusculas ? mb_strtoupper($nombre) : $nombre;
+    }
+}
+
+if (!function_exists('tipo_venta_label')) {
+    /**
+     * Traduce la modalidad de venta guardada en BD ("LLEVAR", "AUTO", "PEDIDO",
+     * "MESA 5") a su etiqueta localizada, sin tocar el valor almacenado.
+     */
+    function tipo_venta_label(?string $tipo): string
+    {
+        if ($tipo === null || $tipo === '') {
+            return '';
+        }
+
+        if (str_starts_with($tipo, 'MESA ')) {
+            return __('nota_venta.mesa') . ' ' . substr($tipo, 5);
+        }
+
+        return match ($tipo) {
+            'LLEVAR' => __('nota_venta.llevar'),
+            'AUTO' => __('nota_venta.auto'),
+            'PEDIDO' => __('nota_venta.pedido'),
+            default => $tipo,
+        };
+    }
+}
+
 if (!function_exists('fecha_hora_impresion')) {
     /**
      * Fecha/hora "generado el" para pies de ticket, localizada por idioma.

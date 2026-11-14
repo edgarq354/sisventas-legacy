@@ -90,4 +90,6 @@ return [
     'col_detalle' => 'Detail',
     'col_monto_simple' => 'Amount',
     'total_de_egresos' => 'Total expenses',
+    'registrado_correctamente' => 'Successfully registered.',
+    'error_intente_nuevamente' => 'An error occurred, please try again.',
 ];

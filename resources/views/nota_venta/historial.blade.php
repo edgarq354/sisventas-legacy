@@ -199,7 +199,7 @@ $message=Session::get('message');
                                 <td>{{ $pago->fecha }}</td>
                                 <td>{{ $pago->razon_social }}</td>
                                 <td class="num">{{ number_format((float)$pago->monto_total, 2) }}</td>
-                                <td>{{ $pago->tipo }}</td>
+                                <td>{{ tipo_venta_label($pago->tipo) }}</td>
                                 <td>{{ $pago->usuario }}</td>
                                 <td style="text-align:center;">
                                     @if($pago->estado=='Procesado')<span class="badge btn-success">{{ __('estados.'.$pago->estado) }}</span>

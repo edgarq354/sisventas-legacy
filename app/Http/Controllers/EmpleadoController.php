@@ -36,13 +36,13 @@ class EmpleadoController extends Controller
       		DB::beginTransaction();
             DB::table('empleado')->insert(['ci' => $request['ci'],'nombre' => $request['nombre'], 'paterno' =>$request['paterno'],'materno'=>$request['materno'],'fecha_nacimiento'=>$request['fecha_nacimiento'],'expedido'=>$request['expedido'],'celular'=>$request['celular'],'garante'=>$request['garante'],'direccion'=>$request['direccion'],'id_empresa'=>Auth::user()->id_empresa]); 
               DB::commit();     
-            Session::flash('message','SE REGISTRO CORRECTAMENTE');
-            return Redirect::to('/empleado'); 
-            
+            Session::flash('message', __('empleado.registrado_correctamente'));
+            return Redirect::to('/empleado');
+
 	      }catch (Exception $e) {
 	          DB::rollback();
-	          return redirect('/empleado')->with("message-error","ERROR INTENTE NUEVAMENTE");      
-	      }   
+	          return redirect('/empleado')->with("message-error", __('empleado.error_intente_nuevamente'));
+	      }
 
     }
 }

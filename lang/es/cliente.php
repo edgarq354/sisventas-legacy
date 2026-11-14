@@ -97,4 +97,13 @@ return [
     'col_estado' => 'Estado',
     'alta' => 'ALTA',
     'baja' => 'BAJA',
+
+    // flash messages
+    'registrado_correctamente' => 'Se registró correctamente.',
+    'actualizado_correctamente' => 'Actualizado correctamente.',
+    'se_dio_de_baja' => 'Se dio de baja.',
+    'se_dio_de_alta' => 'Se dio de alta.',
+    'no_se_pudo_dar_baja' => 'No se pudo realizar la baja.',
+    'no_se_pudo_dar_alta' => 'No se pudo realizar la alta.',
+    'error_intente_nuevamente' => 'Ocurrió un error, intente nuevamente.',
 ];

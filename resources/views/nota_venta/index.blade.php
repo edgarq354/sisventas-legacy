@@ -200,7 +200,7 @@ $fechaFinal=date('Y-m-d');
 						<td>{{ $pago->fecha}}</td>  
 						<td>{{ $pago->razon_social}} </td> 
 						<td>{{ $pago->monto_total}}  </td>
-						<td>{{ $pago->tipo}}</td>
+						<td>{{ tipo_venta_label($pago->tipo) }}</td>
 						<td>{{ $pago->usuario}}</td>
 						<td>
 							@if($pago->estado=='Procesado')

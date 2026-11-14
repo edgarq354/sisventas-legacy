@@ -56,4 +56,7 @@ return [
     'hora_salida_dp' => 'Clock-out time:',
     'empresa_dp' => 'Company:',
     'observaciones_dp2' => 'Notes:',
+    'registrado_correctamente' => 'Successfully registered.',
+    'ya_tiene_ingreso' => 'You already have a clock-in registered, please clock out first.',
+    'no_tiene_ingreso' => 'You have no clock-in registered, please clock in first.',
 ];

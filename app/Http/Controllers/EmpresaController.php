@@ -74,238 +74,6 @@ class EmpresaController extends Controller {
         }
     }
 
-        public function historial_pedidos_empresa_2(Request $Request )
-    {
-
-        $fecha_inicio=$Request['fecha_inicio'];
-        $fecha_fin=$Request['fecha_fin'];
-        $id_empresa=$Request['id_empresa'];
-        $estado=$Request['estado_opcion'];
-        if($estado==1){
-            //BUSCAR TODOS LOS PEDIDOS.
-        $consulta="SELECT pedido.id, conductor.ci,conductor.expedido,
-         CONCAT(conductor.nombre,' ',conductor.paterno,' ',conductor.materno)as conductor,
-         vehiculo.placa,vehiculo.marca, CONCAT(usuario.nombre,' ',usuario.apellido) as usuario, vehiculo.codigo_empresa,pedido.tipo_pedido_empresa,pedido.id_empresa_cliente,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,pedido.latitud,pedido.longitud,
-         pedido.detalle_cancelo_usuario,pedido.detalle_cancelo_conductor,pedido.direccion,pedido.clase_vehiculo,pedido.estado,pedido.estado_pago_empresa,
-         pedido.calificacion_conductor,pedido.calificacion_vehiculo
-           from pedido,vehiculo,conductor,usuario
-         WHERE pedido.id_vehiculo=vehiculo.placa AND pedido.id_conductor=conductor.ci AND usuario.id=pedido.id_usuario  AND pedido.id_empresa_cliente=".$id_empresa." AND
-         date(pedido.fecha_pedido) >='".$fecha_inicio."' AND date(pedido.fecha_pedido) <='".$fecha_fin."' order by pedido.id desc";
-        }else if($estado==2){
-            //BUSCAR TODOS LOS PEDIDOS COMPLETADOS
-            $consulta="SELECT pedido.id, conductor.ci,conductor.expedido,
-         CONCAT(conductor.nombre,' ',conductor.paterno,' ',conductor.materno)as conductor,
-         vehiculo.placa,vehiculo.marca, CONCAT(usuario.nombre,' ',usuario.apellido) as usuario, vehiculo.codigo_empresa,pedido.tipo_pedido_empresa,pedido.id_empresa_cliente,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,pedido.latitud,pedido.longitud,
-         pedido.detalle_cancelo_usuario,pedido.detalle_cancelo_conductor,pedido.direccion,pedido.clase_vehiculo,pedido.estado,pedido.estado_pago_empresa,
-          pedido.calificacion_conductor,pedido.calificacion_vehiculo
-            from pedido,vehiculo,conductor,usuario
-         WHERE pedido.estado=2 and pedido.id_vehiculo=vehiculo.placa AND pedido.id_conductor=conductor.ci AND usuario.id=pedido.id_usuario  AND pedido.id_empresa_cliente=".$id_empresa." AND
-         date(pedido.fecha_pedido) >='".$fecha_inicio."' AND date(pedido.fecha_pedido) <='".$fecha_fin."' order by pedido.id desc";
-
-        }else if($estado==3){
-            //BUSCAR TODOS LOS PEDIDOS CANCELADOS
-
-            $consulta="SELECT pedido.id, conductor.ci,conductor.expedido,
-         CONCAT(conductor.nombre,' ',conductor.paterno,' ',conductor.materno)as conductor,
-         vehiculo.placa,vehiculo.marca, CONCAT(usuario.nombre,' ',usuario.apellido) as usuario, vehiculo.codigo_empresa,pedido.tipo_pedido_empresa,pedido.id_empresa_cliente,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,pedido.latitud,pedido.longitud,
-         pedido.detalle_cancelo_usuario,pedido.detalle_cancelo_conductor,pedido.direccion,pedido.clase_vehiculo,pedido.estado,pedido.estado_pago_empresa,
-          pedido.calificacion_conductor,pedido.calificacion_vehiculo
-            from pedido,vehiculo,conductor,usuario
-         WHERE pedido.estado>=5 and pedido.id_vehiculo=vehiculo.placa AND pedido.id_conductor=conductor.ci AND usuario.id=pedido.id_usuario  AND pedido.id_empresa_cliente=".$id_empresa." AND
-         date(pedido.fecha_pedido) >='".$fecha_inicio."' AND date(pedido.fecha_pedido) <='".$fecha_fin."' order by pedido.id desc";
-
-        }else if($estado==4){
-            //BUSCAR TODOS LOS PEDIDOS CON DEUDA  INCLUIDO LOS CANCELADOS.
-            $consulta="SELECT pedido.id, conductor.ci,conductor.expedido,
-         CONCAT(conductor.nombre,' ',conductor.paterno,' ',conductor.materno)as conductor,
-         vehiculo.placa,vehiculo.marca, CONCAT(usuario.nombre,' ',usuario.apellido) as usuario, vehiculo.codigo_empresa,pedido.tipo_pedido_empresa,pedido.id_empresa_cliente,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,pedido.latitud,pedido.longitud,
-         pedido.detalle_cancelo_usuario,pedido.detalle_cancelo_conductor,pedido.direccion,pedido.clase_vehiculo,pedido.estado,pedido.estado_pago_empresa,
-          pedido.calificacion_conductor,pedido.calificacion_vehiculo
-            from pedido,vehiculo,conductor,usuario
-         WHERE pedido.estado_pago_empresa=0 and pedido.id_vehiculo=vehiculo.placa AND pedido.id_conductor=conductor.ci AND usuario.id=pedido.id_usuario  AND pedido.id_empresa_cliente=".$id_empresa." AND
-         date(pedido.fecha_pedido) >='".$fecha_inicio."' AND date(pedido.fecha_pedido) <='".$fecha_fin."' order by pedido.id desc";
-
-        }else if($estado==5){
-            //BUSCAR TODOS TODOS LOS PEDIDOS CON DEUDA PERO SIN LOS CANCELADOS
-            $consulta="SELECT pedido.id, conductor.ci,conductor.expedido,
-         CONCAT(conductor.nombre,' ',conductor.paterno,' ',conductor.materno)as conductor,
-         vehiculo.placa,vehiculo.marca, CONCAT(usuario.nombre,' ',usuario.apellido) as usuario, vehiculo.codigo_empresa,pedido.tipo_pedido_empresa,pedido.id_empresa_cliente,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,pedido.latitud,pedido.longitud,
-         pedido.detalle_cancelo_usuario,pedido.detalle_cancelo_conductor,pedido.direccion,pedido.clase_vehiculo,pedido.estado,pedido.estado_pago_empresa,
-          pedido.calificacion_conductor,pedido.calificacion_vehiculo
-            from pedido,vehiculo,conductor,usuario
-         WHERE  pedido.estado_pago_empresa=0 and pedido.estado=2 and pedido.id_vehiculo=vehiculo.placa AND pedido.id_conductor=conductor.ci AND usuario.id=pedido.id_usuario  AND pedido.id_empresa_cliente=".$id_empresa." AND
-         date(pedido.fecha_pedido) >='".$fecha_inicio."' AND date(pedido.fecha_pedido) <='".$fecha_fin."' order by pedido.id desc";
-
-        }else if($estado==6){
-            //BUSCA TODOS LOS PEDIDOS PAGADOS
-            $consulta="SELECT pedido.id, conductor.ci,conductor.expedido,
-         CONCAT(conductor.nombre,' ',conductor.paterno,' ',conductor.materno)as conductor,
-         vehiculo.placa,vehiculo.marca, CONCAT(usuario.nombre,' ',usuario.apellido) as usuario, vehiculo.codigo_empresa,pedido.tipo_pedido_empresa,pedido.id_empresa_cliente,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,pedido.latitud,pedido.longitud,
-         pedido.detalle_cancelo_usuario,pedido.detalle_cancelo_conductor,pedido.direccion,pedido.clase_vehiculo,pedido.estado,pedido.estado_pago_empresa,
-          pedido.calificacion_conductor,pedido.calificacion_vehiculo
-            from pedido,vehiculo,conductor,usuario
-         WHERE pedido.estado_pago_empresa=1 and  pedido.id_vehiculo=vehiculo.placa AND pedido.id_conductor=conductor.ci AND usuario.id=pedido.id_usuario  AND pedido.id_empresa_cliente=".$id_empresa." AND
-         date(pedido.fecha_pedido) >='".$fecha_inicio."' AND date(pedido.fecha_pedido) <='".$fecha_fin."' order by pedido.id desc";
-
-        }
-
-
-    $pedidos = DB::select($consulta);
-
-      $administrador=DB::select("SELECT u.*,e.razon_social,e.id from usuario u, empresa e where e.id_administrador=u.id and e.id='".$id_empresa."'");
-     $fechas = DB::select("SELECT date('".$fecha_inicio."') as fecha_inicio, date('".$fecha_fin."') as fecha_fin");
-      //
-
-
-        return view('empresa.cliente.historial_pedidos_empresa',["fechas"=>$fechas,'pedidos'=>$pedidos,'administrador'=>$administrador,'estado'=>$estado,'otra'=>1]);
-    }
-
-    function historial_pedidos_empresa($id_empresa)
-    {
-    $pedidos = DB::select("SELECT pedido.id, conductor.ci,conductor.expedido,
-         CONCAT(conductor.nombre,' ',conductor.paterno,' ',conductor.materno)as conductor,
-         vehiculo.placa,vehiculo.marca, CONCAT(usuario.nombre,' ',usuario.apellido) as usuario, vehiculo.codigo_empresa,pedido.tipo_pedido_empresa,pedido.id_empresa_cliente,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,pedido.latitud,pedido.longitud,
-         pedido.detalle_cancelo_usuario,pedido.detalle_cancelo_conductor,pedido.direccion,pedido.clase_vehiculo,pedido.estado,pedido.estado_pago_empresa,
-          pedido.calificacion_conductor,pedido.calificacion_vehiculo
-            from pedido,vehiculo,conductor,usuario
-         WHERE pedido.id_vehiculo=vehiculo.placa AND pedido.id_conductor=conductor.ci AND usuario.id=pedido.id_usuario  AND pedido.id_empresa_cliente=".$id_empresa." AND date(pedido.fecha_pedido) >= date( DATE_SUB(curdate(), INTERVAL + 29 DAY)) AND date(pedido.fecha_pedido) =date(now())  order by pedido.id desc");
-      $administrador=DB::select("SELECT u.*,e.razon_social,e.id from usuario u, empresa e where e.id_administrador=u.id and e.id='".$id_empresa."'");
-      $fechas = DB::select("SELECT date(DATE_SUB(curdate(), INTERVAL + 29 DAY)) as fecha_inicio, date(now()) as fecha_fin");
-      $estado=1;
-
-       return view('empresa.cliente.historial_pedidos_empresa',["fechas"=>$fechas,'pedidos'=>$pedidos,'administrador'=>$administrador,'estado'=>$estado,'otra'=>0]);
-    }
-
-
-
-
-   public function get_historial_pedidos_excel($fecha_inicio,$fecha_fin,$estado,$id_empresa){
-   //DATA
-        if($estado==1){
-            //BUSCAR TODOS LOS PEDIDOS.
-        $consulta="SELECT pedido.id, conductor.ci,conductor.expedido,
-         CONCAT(conductor.nombre,' ',conductor.paterno,' ',conductor.materno)as conductor,vehiculo.codigo_empresa,pedido.tipo_pedido_empresa,pedido.id_empresa_cliente,
-         vehiculo.placa,vehiculo.marca, CONCAT(usuario.nombre,' ',usuario.apellido) as usuario,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,pedido.latitud,pedido.longitud,
-         pedido.detalle_cancelo_usuario,pedido.detalle_cancelo_conductor,pedido.direccion,pedido.clase_vehiculo,pedido.estado,pedido.estado_pago_empresa,
-          pedido.calificacion_conductor,pedido.calificacion_vehiculo
-            from pedido,vehiculo,conductor,usuario
-         WHERE pedido.id_vehiculo=vehiculo.placa AND pedido.id_conductor=conductor.ci AND usuario.id=pedido.id_usuario  AND pedido.id_empresa_cliente=".$id_empresa." AND
-         date(pedido.fecha_pedido) >='".$fecha_inicio."' AND date(pedido.fecha_pedido) <='".$fecha_fin."' order by pedido.id asc";
-        }else if($estado==2){
-            //BUSCAR TODOS LOS PEDIDOS COMPLETADOS
-            $consulta="SELECT pedido.id, conductor.ci,conductor.expedido,
-         CONCAT(conductor.nombre,' ',conductor.paterno,' ',conductor.materno)as conductor,
-         vehiculo.placa,vehiculo.marca, CONCAT(usuario.nombre,' ',usuario.apellido) as usuario, vehiculo.codigo_empresa,pedido.tipo_pedido_empresa,pedido.id_empresa_cliente,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,pedido.latitud,pedido.longitud,
-         pedido.detalle_cancelo_usuario,pedido.detalle_cancelo_conductor,pedido.direccion,pedido.clase_vehiculo,pedido.estado,pedido.estado_pago_empresa,
-          pedido.calificacion_conductor,pedido.calificacion_vehiculo
-            from pedido,vehiculo,conductor,usuario
-         WHERE pedido.estado=2 and pedido.id_vehiculo=vehiculo.placa AND pedido.id_conductor=conductor.ci AND usuario.id=pedido.id_usuario  AND pedido.id_empresa_cliente=".$id_empresa." AND
-         date(pedido.fecha_pedido) >='".$fecha_inicio."' AND date(pedido.fecha_pedido) <='".$fecha_fin."' order by pedido.id asc";
-
-        }else if($estado==3){
-            //BUSCAR TODOS LOS PEDIDOS CANCELADOS
-
-            $consulta="SELECT pedido.id, conductor.ci,conductor.expedido,
-         CONCAT(conductor.nombre,' ',conductor.paterno,' ',conductor.materno)as conductor,vehiculo.codigo_empresa,pedido.tipo_pedido_empresa,pedido.id_empresa_cliente,
-         vehiculo.placa,vehiculo.marca, CONCAT(usuario.nombre,' ',usuario.apellido) as usuario,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,pedido.latitud,pedido.longitud,
-         pedido.detalle_cancelo_usuario,pedido.detalle_cancelo_conductor,pedido.direccion,pedido.clase_vehiculo,pedido.estado,pedido.estado_pago_empresa,
-          pedido.calificacion_conductor,pedido.calificacion_vehiculo
-            from pedido,vehiculo,conductor,usuario
-         WHERE pedido.estado>=5 and pedido.id_vehiculo=vehiculo.placa AND pedido.id_conductor=conductor.ci AND usuario.id=pedido.id_usuario  AND pedido.id_empresa_cliente=".$id_empresa." AND
-         date(pedido.fecha_pedido) >='".$fecha_inicio."' AND date(pedido.fecha_pedido) <='".$fecha_fin."' order by pedido.id asc";
-
-        }else if($estado==4){
-            //BUSCAR TODOS LOS PEDIDOS CON DEUDA  INCLUIDO LOS CANCELADOS.
-            $consulta="SELECT pedido.id, conductor.ci,conductor.expedido,
-         CONCAT(conductor.nombre,' ',conductor.paterno,' ',conductor.materno)as conductor,vehiculo.codigo_empresa,pedido.tipo_pedido_empresa,pedido.id_empresa_cliente,
-         vehiculo.placa,vehiculo.marca, CONCAT(usuario.nombre,' ',usuario.apellido) as usuario,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,pedido.latitud,pedido.longitud,
-         pedido.detalle_cancelo_usuario,pedido.detalle_cancelo_conductor,pedido.direccion,pedido.clase_vehiculo,pedido.estado,pedido.estado_pago_empresa,
-          pedido.calificacion_conductor,pedido.calificacion_vehiculo
-            from pedido,vehiculo,conductor,usuario
-         WHERE pedido.estado_pago_empresa=0 and pedido.id_vehiculo=vehiculo.placa AND pedido.id_conductor=conductor.ci AND usuario.id=pedido.id_usuario  AND pedido.id_empresa_cliente=".$id_empresa." AND
-         date(pedido.fecha_pedido) >='".$fecha_inicio."' AND date(pedido.fecha_pedido) <='".$fecha_fin."' order by pedido.id asc";
-
-        }else if($estado==5){
-            //BUSCAR TODOS TODOS LOS PEDIDOS CON DEUDA PERO SIN LOS CANCELADOS
-            $consulta="SELECT pedido.id, conductor.ci,conductor.expedido,
-         CONCAT(conductor.nombre,' ',conductor.paterno,' ',conductor.materno)as conductor,vehiculo.codigo_empresa,pedido.tipo_pedido_empresa,pedido.id_empresa_cliente,
-         vehiculo.placa,vehiculo.marca, CONCAT(usuario.nombre,' ',usuario.apellido) as usuario,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,pedido.latitud,pedido.longitud,
-         pedido.detalle_cancelo_usuario,pedido.detalle_cancelo_conductor,pedido.direccion,pedido.clase_vehiculo,pedido.estado,pedido.estado_pago_empresa,
-          pedido.calificacion_conductor,pedido.calificacion_vehiculo
-            from pedido,vehiculo,conductor,usuario
-         WHERE  pedido.estado_pago_empresa=0 and pedido.estado=2 and pedido.id_vehiculo=vehiculo.placa AND pedido.id_conductor=conductor.ci AND usuario.id=pedido.id_usuario  AND pedido.id_empresa_cliente=".$id_empresa." AND
-         date(pedido.fecha_pedido) >='".$fecha_inicio."' AND date(pedido.fecha_pedido) <='".$fecha_fin."' order by pedido.id asc";
-
-        }else if($estado==6){
-            //BUSCA TODOS LOS PEDIDOS PAGADOS
-            $consulta="SELECT pedido.id, conductor.ci,conductor.expedido,
-         CONCAT(conductor.nombre,' ',conductor.paterno,' ',conductor.materno)as conductor,vehiculo.codigo_empresa,pedido.tipo_pedido_empresa,pedido.id_empresa_cliente,
-         vehiculo.placa,vehiculo.marca, CONCAT(usuario.nombre,' ',usuario.apellido) as usuario,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,pedido.latitud,pedido.longitud,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,
-         pedido.detalle_cancelo_usuario,pedido.detalle_cancelo_conductor,pedido.direccion,pedido.clase_vehiculo,pedido.estado,pedido.estado_pago_empresa,
-            pedido.calificacion_conductor,pedido.calificacion_vehiculo
-           from pedido,vehiculo,conductor,usuario
-         WHERE pedido.estado_pago_empresa=1 and  pedido.id_vehiculo=vehiculo.placa AND pedido.id_conductor=conductor.ci AND usuario.id=pedido.id_usuario  AND pedido.id_empresa_cliente=".$id_empresa." AND
-         date(pedido.fecha_pedido) >='".$fecha_inicio."' AND date(pedido.fecha_pedido) <='".$fecha_fin."' order by pedido.id asc";
-
-        }
-
-
-    $pedidos = DB::select($consulta);
-
-     Excel::create('Lista de dueda de empresa',function($excel)use ($pedidos,$fecha_inicio,$fecha_fin){
-      $excel->sheet('Servicios', function($sheet)use ($pedidos,$fecha_inicio,$fecha_fin){
-
-
-  //HEADER
-        $sheet->mergeCells('A1:H1');
-        $sheet->mergeCells('A2:H2');
-        $sheet->mergeCells('A3:H3');
-
-        $sheet->row(1,['LISTADO']);
-        $sheet->row(2,['FECHA DE INICIO: '.$fecha_inicio]);
-        $sheet->row(3,['FECHA FIN: '.$fecha_fin]);
-        $sheet->row(4,['NRO','FECHA','MOVIL','CONDUCTOR','USUARIO','REFERENCIA','MONTO']);
-
-$sumatoria=0;
-          foreach($pedidos as $pago){
-          $row=[];
-          $row[0]=$pago->id;
-          $row[1]=$pago->fecha_pedido;
-          $row[2]=$pago->codigo_empresa;
-          $row[3]=$pago->conductor;
-          $row[4]=$pago->usuario;
-          $row[5]=$pago->direccion;
-          $row[6]=$pago->monto_empresa;
-          $sheet->appendRow($row);
-          $sumatoria+=$pago->monto_empresa;
-        }
-        $row=[];
-        $row[0]="";
-          $row[1]="";
-          $row[2]="";
-          $row[3]="";
-          $row[4]="";
-          $row[5]="TOTAL";
-          $row[6]=$sumatoria;
-          $sheet->appendRow($row);
-
-              });
-             })->export('xls');
-    }
 
 
 
@@ -408,7 +176,7 @@ $sumatoria=0;
 
                 DB::commit();
 
-                Session::flash('message', 'EMPRESA CREADO CORRECTAMENTE');
+                Session::flash('message', __('empresa.empresa_creada'));
                 return Redirect::to('/empresa');
 
 
@@ -533,7 +301,7 @@ $sumatoria=0;
 
 
 
-        Session::flash('message', 'EMPRESA ACTUALIZADA CORRECTAMENTE');
+        Session::flash('message', __('empresa.empresa_actualizada'));
 
             return Redirect::to('/empresa');
     }
@@ -1020,15 +788,15 @@ $sumatoria=0;
         $verificar = DB::select('SELECT count(*) count,empresa.id from empresa where empresa.usuario="' . $request->usuario . '"');
         if ($verificar[0]->count == 0) {
             DB::table('empresa')->where('id', $request['id_empresa'])->update(['razon_social'=>$request['razon_social'], 'usuario' => $request['usuario'] ]);
-            Session::flash('message', 'ADMINISTRADOR ACTUALIZADO CORRECTAMENTE');
+            Session::flash('message', __('empresa.administrador_actualizado'));
             return Redirect::to('/');
         } else {
             if ($request->usuario == $request->usuario_aux) {
                 DB::table('empresa')->where('id', $request['id_empresa'])->update(['razon_social'=>$request['razon_social'], 'usuario' => $request['usuario'] ]);
-                Session::flash('message', 'ADMINISTRADOR ACTUALIZADO CORRECTAMENTE');
+                Session::flash('message', __('empresa.administrador_actualizado'));
                 return Redirect::to('/');
             } else {
-                Session::flash('message-error', 'YA EXISTE ESE USUARIO, INTENTE NUEVAMENTE');
+                Session::flash('message-error', __('empresa.ya_existe_usuario'));
                 return Redirect::to('/');
             }
         }
@@ -1038,15 +806,15 @@ $sumatoria=0;
         $verificar = DB::select('SELECT count(*) count,empresa.nit from empresa where empresa.usuario="' . $request->usuario . '"');
         if ($verificar[0]->count == 0) {
             DB::table('empresa')->where('nit', $request['id_empresa'])->update(['nombre' => $request['nombre'],'nit'=>$request['nit'], 'direccion' => $request['direccion'], 'telefono' => $request['telefono'], 'celular' => $request['celular'], 'usuario' => $request['usuario'] ]);
-            Session::flash('message', 'ADMINISTRATIVO ACTUALIZADO CORRECTAMENTE');
+            Session::flash('message', __('empresa.administrativo_actualizado'));
             return Redirect::to('/administrativos');
         } else {
             if ($request->usuario == $request->usuario_aux) {
                 DB::table('empresa')->where('nit', $request['id_empresa'])->update(['nombre' => $request['nombre'],'nit'=>$request['nit'], 'direccion' => $request['direccion'], 'telefono' => $request['telefono'], 'celular' => $request['celular'], 'usuario' => $request['usuario'] ]);
-                Session::flash('message', 'ADMINISTRATIVO ACTUALIZADO CORRECTAMENTE');
+                Session::flash('message', __('empresa.administrativo_actualizado'));
                 return Redirect::to('/administrativos');
             } else {
-                Session::flash('message-error', 'YA EXISTE ESE USUARIO, INTENTE NUEVAMENTE');
+                Session::flash('message-error', __('empresa.ya_existe_usuario'));
                 return Redirect::to('/administrativos');
             }
         }
@@ -1177,7 +945,7 @@ $sumatoria=0;
 ]);
 
 
-        Session::flash('message', 'EMPRESA ACTUALIZADA CORRECTAMENTE');
+        Session::flash('message', __('empresa.empresa_actualizada'));
         if (Auth::user()->privilegio == 0) {
             return Redirect::to('/empresa/'.Auth::user()->id_empresa.'/edit');
         }else{
@@ -1216,7 +984,7 @@ $sumatoria=0;
 
  function Cambiar_Password(CambiarPasswordRequest $request) {
         DB::table('users')->where('id', $request['id_usuario'])->update(['password' => Hash::make($request['password'])]);
-        Session::flash('message', 'CONTRASEÑA MODIFICADA');
+        Session::flash('message', __('empresa.contrasenia_modificada'));
         switch ($request['privilegio']) {
             case '1':
                 return Redirect::to('/administrador');
@@ -1260,13 +1028,13 @@ $sumatoria=0;
                 $sw_notificacion=send($tokens,$mPushNotification);
                 //fin de envio de notificacion
 
-        Session::flash('message', 'ADMINISTRADOR MODIFICADO');
+        Session::flash('message', __('empresa.administrador_modificado'));
          return Redirect::to('/empresa');
     }
 
 function Cambiar_Password_empresa(CambiarPasswordRequest $request) {
         DB::table('users')->where('id', $request['id_usuario'])->update(['password' => Hash::make($request['password'])]);
-        Session::flash('message', 'CONTRASEÑA MODIFICADA');
+        Session::flash('message', __('empresa.contrasenia_modificada'));
         switch ($request['privilegio']) {
             case '0':
                 return Redirect::to('/usuarios/empresa');
@@ -1320,19 +1088,6 @@ function Cambiar_Password_empresa(CambiarPasswordRequest $request) {
         } else {
                return view('errors.404');
         }
-    }
-    //MUESTRA LA PLANTILLA DE HISTORIAL DE CARRERA
-    public function historial_pedido_empresa($id, $fecha_inicio, $fecha_fin, $estado){
-        $empresa = DB::select("SELECT pedido.id, conductor.ci,conductor.expedido,
-         CONCAT(conductor.nombre,' ',conductor.paterno,' ',conductor.materno)as conductor,
-         vehiculo.placa,vehiculo.marca, CONCAT(usuario.nombre,' ',usuario.apellido) as usuario,
-         date_format(pedido.fecha_pedido,'%d-%m-%Y %h:%i %p')as fecha_pedido,pedido.direccion,pedido.monto_total,pedido.monto_empresa,pedido.monto_conductor,
-         pedido.detalle_cancelo_usuario,pedido.detalle_cancelo_conductor,pedido.direccion,pedido.clase_vehiculo,pedido.estado,
-         pedido.calificacion_conductor,pedido.calificacion_vehiculo
-           from pedido,vehiculo,conductor,usuario
-         WHERE pedido.id_vehiculo=vehiculo.placa AND pedido.id_conductor=conductor.ci AND usuario.id=pedido.id_usuario  AND pedido.id_empresa_cliente=".$id." AND
-         pedido.fecha_pedido BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."',INTERVAL -1 DAY) order by pedido.fecha_pedido");
-       return response($empresa);
     }
 
     public function ubicacion_empresa()

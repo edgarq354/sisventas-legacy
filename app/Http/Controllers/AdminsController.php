@@ -95,7 +95,7 @@ class AdminsController extends Controller
                     'privilegio' => 0,
                     'id_empresa' => Auth::user()->id_empresa/*,'id_empleado'=>$request['id_empleado']*/
                 ]);
-                Session::flash('message', 'ADMINISTRADOR DE EMPRESA SE HA CREADO CORRECTAMENTE');
+                Session::flash('message', __('admins.administrador_empresa_creado'));
                 return Redirect::to('/usuarios/empresa');
             } else if ($request['privilegio'] == 3) {
 
@@ -110,7 +110,7 @@ class AdminsController extends Controller
                         }
                     }
                 } catch (Exception $e) {
-                    return redirect('usuarios/crear_usuario')->with("message-error", "ERROR INTENTE NUEVAMENTE");
+                    return redirect('usuarios/crear_usuario')->with("message-error", __('admins.error_intente_nuevamente'));
                 }
 
                 if ($cantidad > 0) {
@@ -161,20 +161,20 @@ class AdminsController extends Controller
 
 
                         DB::commit();
-                        Session::flash('message', 'CREADO CORRECTAMENTE');
+                        Session::flash('message', __('admins.creado_correctamente'));
                         return Redirect::to('/usuarios/empresa');
                     } catch (Exception $e) {
                         DB::rollback();
-                        return redirect('usuarios/crear_usuario')->with("message-error", "ERROR INTENTE NUEVAMENTE");
+                        return redirect('usuarios/crear_usuario')->with("message-error", __('admins.error_intente_nuevamente'));
                     }
                 } else {
-                    return redirect('usuarios/crear_usuario')->with("message-error", "PORFAVOR REGISTRE PERMISOS");
+                    return redirect('usuarios/crear_usuario')->with("message-error", __('admins.porfavor_registre_permisos'));
                 }
             } else {
-                return redirect('usuarios/crear_usuario')->with("message-error", "ERROR INTENTE NUEVAMENTE");
+                return redirect('usuarios/crear_usuario')->with("message-error", __('admins.error_intente_nuevamente'));
             }
         } else {
-            return redirect('usuarios/crear_usuario')->with("message-error", "LA CUENTA '" . $request['usuario'] . "' YA EXISTE.");
+            return redirect('usuarios/crear_usuario')->with("message-error", __('admins.cuenta_ya_existe', ['usuario' => $request['usuario']]));
         }
     }
 
@@ -189,7 +189,7 @@ class AdminsController extends Controller
             'id_empresa' => $request['id_empresa'],
             'id_empleado' => '0'
         ]);
-        Session::flash('message', 'USUARIO CREADO CORRECTAMENTE');
+        Session::flash('message', __('admins.usuario_creado'));
         return Redirect::to('/usuarios');
     }
 
@@ -274,18 +274,18 @@ class AdminsController extends Controller
                     //fin de la suma de acceso.
 
                     DB::commit();
-                    Session::flash('message', 'ACTUALIZADO CORRECTAMENTE');
+                    Session::flash('message', __('admins.actualizado_correctamente'));
 
                 } else if ($request['privilegio'] == 0) {
-                    Session::flash('message', 'ACTUALIZADO CORRECTAMENTE');
+                    Session::flash('message', __('admins.actualizado_correctamente'));
                 }else {
                     DB::rollback();
-                    Session::flash('message', "PORFAVOR REGISTRE PERMISOS");
+                    Session::flash('message', __('admins.porfavor_registre_permisos'));
                 }
                 return Redirect::to('/usuarios/empresa');
             } catch (Exception $e) {
                 DB::rollback();
-                return redirect('usuarios/empresa')->with("message-error", "ERROR INTENTE NUEVAMENTE");
+                return redirect('usuarios/empresa')->with("message-error", __('admins.error_intente_nuevamente'));
             }
         } else {
 
@@ -329,15 +329,15 @@ class AdminsController extends Controller
                         }
 
                         DB::commit();
-                        Session::flash('message', 'ACTUALIZADO CORRECTAMENTE');
+                        Session::flash('message', __('admins.actualizado_correctamente'));
                         return Redirect::to('/usuarios/empresa');
                     } else {
                         DB::rollback();
-                        return redirect('/usuarios/empresa')->with("message-error", "PORFAVOR REGISTRE PERMISOS");
+                        return redirect('/usuarios/empresa')->with("message-error", __('admins.porfavor_registre_permisos'));
                     }
                 } catch (Exception $e) {
                     DB::rollback();
-                    return redirect('usuarios/empresa')->with("message-error", "ERROR INTENTE NUEVAMENTE");
+                    return redirect('usuarios/empresa')->with("message-error", __('admins.error_intente_nuevamente'));
                 }
                 //FIN DEL REGISTRO DE PERMISOS DE ACCESO.
 
@@ -345,7 +345,7 @@ class AdminsController extends Controller
 
 
             } else {
-                Session::flash('message-error', 'YA EXISTE EL USUARIO "' . $request['usuario'] . '", VERIFIQUE POR FAVOR.');
+                Session::flash('message-error', __('admins.usuario_ya_existe', ['usuario' => $request['usuario']]));
                 return Redirect::to('/usuarios/actualizar_usuarios_empresa/' . $request['id_usuario']);
             }
         }
@@ -355,16 +355,16 @@ class AdminsController extends Controller
     {
         if ($request['usuario'] == $request['usuario_aux']) {
             DB::table('users')->where('id', $request['id_user'])->update(['usuario' => $request['usuario'], 'nombre' => $request['nombre']]);
-            Session::flash('message', 'ACTUALIZADO CORRECTAMENTE.');
+            Session::flash('message', __('admins.actualizado_correctamente'));
             return Redirect::to('/administrativos');
         } else {
             $verificar = DB::select('SELECT count(*)as contador FROM users where users.usuario="' . $request['usuario'] . '"');
             if ($verificar[0]->contador == 0) {
                 DB::table('users')->where('id', $request['id_user'])->update(['usuario' => $request['usuario'], 'nombre' => $request['nombre']]);
-                Session::flash('message', 'ACTUALIZADO CORRECTAMENTE.');
+                Session::flash('message', __('admins.actualizado_correctamente'));
                 return Redirect::to('/administrativos');
             } else {
-                Session::flash('message-error', 'YA EXISTE EL USUARIO "' . $request['usuario'] . '", VERIFIQUE POR FAVOR.');
+                Session::flash('message-error', __('admins.usuario_ya_existe', ['usuario' => $request['usuario']]));
                 return Redirect::to('/administrativos');
             }
         }
@@ -374,16 +374,16 @@ class AdminsController extends Controller
     {
         if ($request['usuario'] == $request['usuario_aux']) {
             DB::table('users')->where('id', $request['id_user'])->update(['usuario' => $request['usuario'], 'nombre' => $request['nombre']]);
-            Session::flash('message', 'ACTUALIZADO CORRECTAMENTE.');
+            Session::flash('message', __('admins.actualizado_correctamente'));
             return Redirect::to('/administrador');
         } else {
             $verificar = DB::select('SELECT count(*)as contador FROM users where users.usuario="' . $request['usuario'] . '"');
             if ($verificar[0]->contador == 0) {
                 DB::table('users')->where('id', $request['id_user'])->update(['usuario' => $request['usuario'], 'nombre' => $request['nombre']]);
-                Session::flash('message', 'ACTUALIZADO CORRECTAMENTE.');
+                Session::flash('message', __('admins.actualizado_correctamente'));
                 return Redirect::to('/administrador');
             } else {
-                Session::flash('message-error', 'YA EXISTE EL USUARIO "' . $request['usuario'] . '", VERIFIQUE POR FAVOR.');
+                Session::flash('message-error', __('admins.usuario_ya_existe', ['usuario' => $request['usuario']]));
                 return Redirect::to('/administrador');
             }
         }

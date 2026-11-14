@@ -83,4 +83,14 @@ return [
     'col_nombre_mayus' => 'NAME',
     'col_usuario_mayus' => 'USER',
     'col_tipo' => 'TYPE',
+
+    // flash messages
+    'administrador_empresa_creado' => 'Company admin created successfully.',
+    'usuario_creado' => 'User created successfully.',
+    'creado_correctamente' => 'Successfully created.',
+    'actualizado_correctamente' => 'Successfully updated.',
+    'porfavor_registre_permisos' => 'Please register the permissions.',
+    'error_intente_nuevamente' => 'An error occurred, please try again.',
+    'cuenta_ya_existe' => 'The account \':usuario\' already exists.',
+    'usuario_ya_existe' => 'The user \':usuario\' already exists, please check.',
 ];

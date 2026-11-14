@@ -30,4 +30,12 @@ return [
     'sucursales' => 'SUCURSALES',
     'copia_de_seguridad' => 'COPIA DE SEGURIDAD',
     'empresa' => 'EMPRESA',
+    'navegacion' => 'Navegación',
+    'mi_empresa' => 'Mi Empresa',
+    'cerrar_sesion' => 'Cerrar sesión',
+    'salir' => 'SALIR',
+    'tienda' => 'TIENDA',
+    'permisos_empresas' => 'PERMISOS PARA INGRESAR A EMPRESAS',
+    'acceso_lista_empresa' => 'Acceso a la lista de empresa:',
+    'cancelar' => 'CANCELAR',
 ];

@@ -27,4 +27,6 @@ return [
     'col_fecha_nacimiento' => 'DATE OF BIRTH',
     'col_opcion' => 'OPTION',
     'ver_todos' => 'VIEW ALL',
+    'registrado_correctamente' => 'Successfully registered.',
+    'error_intente_nuevamente' => 'An error occurred, please try again.',
 ];

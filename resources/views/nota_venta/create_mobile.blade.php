@@ -624,8 +624,8 @@ function buscarNit(){
 					<td style="padding-left: 8px;" >
 						<label>{{ __('nota_venta.modalidad_dp') }}</label> <br>
 						<select name="tipo" style="width: 100%; padding: 5px;" >
-							<option value="LLEVAR" selected="">LLEVAR</option>
-							<option value="AUTO"> AUTO</option>
+							<option value="LLEVAR" selected="">{{ __('nota_venta.llevar') }}</option>
+							<option value="AUTO"> {{ __('nota_venta.auto') }}</option>
 							<option value="MESA 1"> {{ __('nota_venta.mesa') }} 1</option>
 							<option value="MESA 2"> {{ __('nota_venta.mesa') }} 2</option>
 							<option value="MESA 3"> {{ __('nota_venta.mesa') }} 3</option>

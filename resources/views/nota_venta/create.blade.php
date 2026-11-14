@@ -721,9 +721,9 @@ $(document).ready(function() {
                         <div class="nv-field">
                             <label>{{ __('nota_venta.modalidad_field') }}</label>
                             <select name="tipo">
-                                <option value="LLEVAR" selected>LLEVAR</option>
-                                <option value="AUTO">AUTO</option>
-                                @for($m=1;$m<=30;$m++)<option value="MESA {{ $m }}">MESA {{ $m }}</option>@endfor
+                                <option value="LLEVAR" selected>{{ __('nota_venta.llevar') }}</option>
+                                <option value="AUTO">{{ __('nota_venta.auto') }}</option>
+                                @for($m=1;$m<=30;$m++)<option value="MESA {{ $m }}">{{ __('nota_venta.mesa') }} {{ $m }}</option>@endfor
                             </select>
                         </div>
                         <div class="nv-field">

@@ -80,13 +80,13 @@ class ClienteController extends Controller
         }
 
               DB::commit();
-            Session::flash('message','SE REGISTRO CORRECTAMENTE');
+            Session::flash('message', __('cliente.registrado_correctamente'));
             return Redirect::to('/cliente');
 
       }catch (Exception $e) {
           DB::rollback();
           self::registrar_bitacora('Registrar Cliente',$e);
-          return redirect('/cliente/create')->with("message-error","ERROR INTENTE NUEVAMENTE");
+          return redirect('/cliente/create')->with("message-error", __('cliente.error_intente_nuevamente'));
       }
     }
     public function show()
@@ -142,7 +142,7 @@ class ClienteController extends Controller
              ]);
         }
 
-        Session::flash('message','ACTUALIZADO CORRECTAMENTE');
+        Session::flash('message', __('cliente.actualizado_correctamente'));
             return Redirect::to('/cliente');
     }
 
@@ -156,11 +156,11 @@ class ClienteController extends Controller
                 try{
                 DB::table('cliente')->where('id', $request['id_personal'])->update(['estado' => '6','fecha_retiro'=>date('Y-m-j H-m-00')]);
                 DB::table('historial_baja_alta')->insert(['descripcion' =>$request['descripcion'],'id_personal'=>$request['id_personal'],'id_login'=>Auth::user()->id, 'fecha' => $request['fecha'],'tipo'=>'0']);
-                Session::flash('message','SE DIO DE BAJA');
+                Session::flash('message', __('cliente.se_dio_de_baja'));
                 }
                 catch(Exception $e)
                 {
-                   Session::flash('message-error','NO SE PUEDO REALIZAR LA BAJA EL VEHICULO');
+                   Session::flash('message-error', __('cliente.no_se_pudo_dar_baja'));
                 }
                 return Redirect::to('/cliente');
    }
@@ -169,11 +169,11 @@ class ClienteController extends Controller
             try{
                 DB::table('cliente')->where('id', $request['id_personal'])->update(['estado' => '1','fecha_retiro'=>date('Y-m-j H-m-00')]);
                DB::table('historial_baja_alta')->insert(['descripcion' =>$request['descripcion'],'id_personal'=>$request['id_personal'],'id_login'=>Auth::user()->id, 'fecha' => $request['fecha'],'tipo'=>'1']);
-                Session::flash('message','SE DIO DE ALTA');
+                Session::flash('message', __('cliente.se_dio_de_alta'));
                 }
                 catch(Exception $e)
                 {
-                   Session::flash('message-error','NO SE PUEDO REALIZAR LA ALTA EL VEHICULO');
+                   Session::flash('message-error', __('cliente.no_se_pudo_dar_alta'));
                 }
 
              return Redirect::to('/cliente');

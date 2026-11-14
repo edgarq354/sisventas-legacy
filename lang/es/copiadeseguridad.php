@@ -8,4 +8,6 @@ return [
     'col_nombre' => 'NOMBRE',
     'col_tamanio' => 'TAMAÑO',
     'descargar' => 'Descargar',
+    'exitosamente' => 'Copia de seguridad exitosamente',
+    'descargar_mayus' => 'DESCARGAR',
 ];

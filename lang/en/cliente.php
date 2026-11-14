@@ -97,4 +97,13 @@ return [
     'col_estado' => 'Status',
     'alta' => 'ACTIVE',
     'baja' => 'INACTIVE',
+
+    // flash messages
+    'registrado_correctamente' => 'Successfully registered.',
+    'actualizado_correctamente' => 'Successfully updated.',
+    'se_dio_de_baja' => 'Deactivated successfully.',
+    'se_dio_de_alta' => 'Activated successfully.',
+    'no_se_pudo_dar_baja' => 'Could not complete the deactivation.',
+    'no_se_pudo_dar_alta' => 'Could not complete the activation.',
+    'error_intente_nuevamente' => 'An error occurred, please try again.',
 ];

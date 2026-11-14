@@ -18,40 +18,40 @@
 			<div class="table-responsive" style="overflow-x:inherit">	
 
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-			<font size="6">EMPRESAS</font>
+			<font size="6">{{ __('empresa.listado_titulo') }}</font>
 		</div>
 
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-		   
+
 		</div>
 
-       
+
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 			<div class="pull-right">
-				 
+
 				@if(Auth::user()->privilegio != 2)
-					<a class="btn btn-success" href="{!!URL::to('empresa/create')!!}">REGISTRAR</a> 					
+					<a class="btn btn-success" href="{!!URL::to('empresa/create')!!}">{{ __('empresa.registrar_mayus') }}</a>
 				@endif
 			</div>
 		</div>
 <div class="panel-body">
 				<table class="table table-striped table-bordered table-condensed table-hover" style="background: white" id="myTable">
 					<thead>
-						<th><center>ID</center></th>
-						<th><center>LOGO</center></th>
-						<th><center>NIT</center></th>
-						<th><center>RAZON SOCIAL</center></th>
-						<th><center>ADMINISTRADOR</center></th>
-						<th><center>ESTADO</center></th>
-						<th><center>DEUDA</center></th>
-						<th><center>OPCION</center></th>
+						<th><center>{{ __('empresa.col_id') }}</center></th>
+						<th><center>{{ __('empresa.col_logo') }}</center></th>
+						<th><center>{{ __('empresa.col_nit') }}</center></th>
+						<th><center>{{ __('empresa.col_razon_social') }}</center></th>
+						<th><center>{{ __('empresa.col_administrador') }}</center></th>
+						<th><center>{{ __('empresa.col_estado') }}</center></th>
+						<th><center>{{ __('empresa.col_deuda') }}</center></th>
+						<th><center>{{ __('empresa.col_opcion') }}</center></th>
 					</thead>
 					<tbody align="center" id="body_empresa">					
 					@foreach($empresa as $user)
 					<tr>
 						<td>{{ $user->id}}</td>	
 						<td>
-							<img src="{{ !empty($user->direccion_logo) ? $user->direccion_logo : asset('images/empresa_default.svg') }}" title="LOGO" width="90px" height="90px" class="img-thumbnail" onerror="this.onerror=null;this.src='{{ asset('images/empresa_default.svg') }}';">
+							<img src="{{ !empty($user->direccion_logo) ? $user->direccion_logo : asset('images/empresa_default.svg') }}" title="{{ __('empresa.col_logo') }}" width="90px" height="90px" class="img-thumbnail" onerror="this.onerror=null;this.src='{{ asset('images/empresa_default.svg') }}';">
 
 						</td>
 								
