@@ -8,22 +8,22 @@
           data-dismiss="modal" 
           aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" >Registro de finalización del dia</h4>
+        <h4 class="modal-title" >{{ __('asistencia.registro_finalizacion_dia') }}</h4>
       </div>
       <div class="modal-body">
         {{Form::open(array('url' => 'asistencia/finalizar'))}}  
         <div class="form-group">
-        {!!Form::label('conclusion','¿Alguna observación para concluir el dia?:')!!}
-        {!!Form::text('observacion',null,['class'=>'form-control','placeholder'=>'¿Alguna observación para concluir el dia?'])!!}
+        {!!Form::label('conclusion',__('asistencia.pregunta_observacion'))!!}
+        {!!Form::text('observacion',null,['class'=>'form-control','placeholder'=>__('asistencia.placeholder_observacion')])!!}
       </div>
 
       </div>
       
           <div class="modal-footer">
 
-            {!!Form::submit('REGISTRAR',['class'=>'btn btn-primary','id'=>'btn_actualizar','onclick'=>'btn_esconder()'])!!}
+            {!!Form::submit(__('asistencia.registrar'),['class'=>'btn btn-primary','id'=>'btn_actualizar','onclick'=>'btn_esconder()'])!!}
             </form>
-            <button data-dismiss="modal"  class="btn btn-danger">CANCELAR</button>
+            <button data-dismiss="modal"  class="btn btn-danger">{{ __('asistencia.cancelar') }}</button>
         </div>
 
     </div>

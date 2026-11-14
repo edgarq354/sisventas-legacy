@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <title>HISTORIAL DE VENTA</title>
+    <title>{{ __('admins.historial_de_venta_titulo') }}</title>
     <!--link href="css/reporte.css" type="text/css" rel="stylesheet"  -->
     <style type="text/css">
         table {
@@ -42,7 +42,7 @@
 
 </head>
 <div align="right" style="height: 10px;">
-    {{ date('j - F - Y, g:i a') }}
+    {{ fecha_hora_impresion() }}
 </div><br>
 
 <body>
@@ -58,10 +58,10 @@
                     <center>
                         <font size="3" style="font-weight: bold;">{{ $empresa[0]->razon_social }} </font>
                         <br>
-                        Telefono: {{ $empresa[0]->whatsapp }}<br>
-                        Dirección: {{ $empresa[0]->direccion }}<br>
+                        {{ __('producto.telefono_label') }} {{ $empresa[0]->whatsapp }}<br>
+                        {{ __('producto.direccion_label') }} {{ $empresa[0]->direccion }}<br>
 
-                        <h2>LISTA DE USUARIOS</h2>
+                        <h2>{{ __('admins.lista_de_usuarios') }}</h2>
                     </center>
                 </td>
                 <td style="width: 10%; border: 0px solid white;">
@@ -75,13 +75,13 @@
         <thead>
             <tr>
                 <th>
-                    <center>NOMBRE</center>
+                    <center>{{ __('admins.col_nombre_mayus') }}</center>
                 </th>
                 <th>
-                    <center>USUARIO</center>
+                    <center>{{ __('admins.col_usuario_mayus') }}</center>
                 </th>
                 <th>
-                    <center>TIPO</center>
+                    <center>{{ __('admins.col_tipo') }}</center>
                 </th>
             </tr>
         </thead>
@@ -95,9 +95,9 @@
                         <?php
                         $tipo = '';
                         if ($user->privilegio == 0) {
-                            $tipo = 'ADMINISTRADOR';
+                            $tipo = __('admins.administrador');
                         } elseif ($user->privilegio == 3) {
-                            $tipo = 'NORMAL';
+                            $tipo = __('admins.normal');
                         }
                         echo $tipo; ?></td>
                 </tr>

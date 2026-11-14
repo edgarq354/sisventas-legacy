@@ -1,0 +1,86 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'usuarios_de_la_empresa' => 'Company users',
+    'usuarios_registrados' => ':count users registered',
+    'agregar_usuario' => 'Add user',
+    'imprimir' => 'Print',
+    'roles_de_usuario' => 'User roles',
+    'col_nombre' => 'Name',
+    'col_usuario' => 'User',
+    'col_rol' => 'Role',
+    'col_opciones' => 'Options',
+    'administrador' => 'ADMINISTRATOR',
+    'normal' => 'REGULAR',
+    'editar' => 'Edit',
+    'historial_de_sesiones' => 'Session history',
+    'contrasena' => 'Password',
+
+    // create/edit
+    'registrar_usuario' => 'REGISTER USER',
+    'actualizar_usuario' => 'UPDATE USER',
+    'nombre_label' => 'Name:',
+    'placeholder_nombre' => 'Enter the name',
+    'usuario_label' => 'User:',
+    'placeholder_usuario' => 'Enter the username',
+    'contrasena_label' => 'Password:',
+    'placeholder_contrasena' => 'Enter the password',
+    'rol_label' => 'Role:',
+    'guardar' => 'SAVE',
+    'cancelar' => 'CANCEL',
+
+    // opcion_salir
+    'cerrar_sesion_titulo' => 'Log Out',
+    'confirmar_salir' => 'Are you sure you want to log out?',
+    'si' => 'Yes',
+    'no' => 'No',
+    'desea_cerrar_sesion' => 'Do you want to log out?',
+    'si_mayus' => 'YES',
+
+    // create
+    'registrar_usuario_h3' => 'Register user',
+    'datos_acceso_permisos' => 'Access and permission details',
+    'datos_del_usuario' => 'User details',
+    'empleado_label' => 'Employee',
+    'buscar_el_empleado' => 'Search employee…',
+    'nuevo' => 'New',
+    'nombre_corto' => 'Name',
+    'placeholder_nombre_corto' => 'Name',
+    'usuario_corto' => 'User',
+    'placeholder_usuario_acceso' => 'Login username',
+    'contrasena_corto' => 'Password',
+    'placeholder_contrasena_corto' => 'Password',
+    'tipo_de_usuario' => 'User type',
+    'sucursal_label' => 'Branch',
+    'buscar_puntos' => 'Search…',
+    'accesos_modulos' => 'Module access',
+    'col_modulo' => 'Module',
+    'col_acceso' => 'Access',
+    'actualizar_usuario_h3' => 'Update user',
+    'empleado_opcional' => 'Employee',
+    'opcional' => '(optional)',
+    'sin_cambios' => '— No changes —',
+    'permisos_por_modulo' => 'Module permissions',
+
+    // modal_usuario
+    'cambiar_contrasena_titulo' => 'CHANGE PASSWORD',
+    'empresa_label' => 'COMPANY:',
+    'nueva_contrasena_label' => 'New Password:',
+    'placeholder_nueva_contrasena' => 'Enter your new password',
+    'actualizar_mayus' => 'UPDATE',
+    'cancelar_mayus' => 'CANCEL',
+    'historial_inicio_sesion_titulo' => 'LOGIN HISTORY',
+    'ocultar' => 'HIDE',
+    'col_fecha' => 'DATE',
+    'col_ip' => 'IP',
+    'col_detalle' => 'DETAIL',
+
+    // usuario_imprimir
+    'historial_de_venta_titulo' => 'SALES HISTORY',
+    'lista_de_usuarios' => 'USER LIST',
+    'col_nombre_mayus' => 'NAME',
+    'col_usuario_mayus' => 'USER',
+    'col_tipo' => 'TYPE',
+];

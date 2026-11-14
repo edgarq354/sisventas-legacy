@@ -5,7 +5,7 @@
     <div class="modal-content">
 
       <div class="modal-header" style="background: #3c8dbc; color: white">
-        <h3 class="modal-title"><b>CAMBIAR CONTRASEÑA</b></h3>
+        <h3 class="modal-title"><b>{{ __('admins.cambiar_contrasena_titulo') }}</b></h3>
       </div>
       <div class="modal-body">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -17,11 +17,11 @@
             <input type="hidden" name="id_empresa" id="id_empresa">
             <input type="hidden" name="privilegio" id="privilegio">
 
-            <label>EMPRESA:</label> <font id="empresa" size="4"></font>
+            <label>{{ __('admins.empresa_label') }}</label> <font id="empresa" size="4"></font>
 
             <div class="form-group">
-                <label for="password">Nueva Contraseña:</label>
-                <input type="text" name="password" id="password" class="form-control" placeholder="Ingrese su nueva contraseña" value="{{ old('password') }}">
+                <label for="password">{{ __('admins.nueva_contrasena_label') }}</label>
+                <input type="text" name="password" id="password" class="form-control" placeholder="{{ __('admins.placeholder_nueva_contrasena') }}" value="{{ old('password') }}">
             </div>
         </div>
         </div>
@@ -29,10 +29,10 @@
         <div class="modal-footer">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-            <button type="submit" class="btn btn-primary" id="btn_actualizar" onclick="btn_esconder()">ACTUALIZAR</button>
+            <button type="submit" class="btn btn-primary" id="btn_actualizar" onclick="btn_esconder()">{{ __('admins.actualizar_mayus') }}</button>
             </form>
 
-            <button data-dismiss="modal" class="btn btn-danger">CANCELAR</button>
+            <button data-dismiss="modal" class="btn btn-danger">{{ __('admins.cancelar_mayus') }}</button>
         </div>
         </div>
 
@@ -47,8 +47,8 @@
     <div class="modal-content">
 
       <div class="modal-header" style="background: #3c8dbc; color: white">
-        <h3 class="modal-title"><b>HISTORIAL DE INICIO DE SESION</b></h3>
-          <button data-dismiss="modal"  class="btn btn-danger">OCUTAR</button>
+        <h3 class="modal-title"><b>{{ __('admins.historial_inicio_sesion_titulo') }}</b></h3>
+          <button data-dismiss="modal"  class="btn btn-danger">{{ __('admins.ocultar') }}</button>
 
       </div>
       <div class="modal-body" style="width: 100%;">
@@ -59,9 +59,9 @@
             <table class="table table-striped table-bordered" style="background: white">
           <thead>
             <tr>
-            <th style="width: 170px;"><center>FECHA</center></th>
-            <th><center>IP</center></th>
-            <th><center>DETALLE</center></th>
+            <th style="width: 170px;"><center>{{ __('admins.col_fecha') }}</center></th>
+            <th><center>{{ __('admins.col_ip') }}</center></th>
+            <th><center>{{ __('admins.col_detalle') }}</center></th>
           </tr>
           </thead>
           <tbody align="center" id="body_usuario_historial_inicio">
@@ -71,7 +71,7 @@
       </div>
       <div class="modal-footer">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <button data-dismiss="modal"  class="btn btn-danger">OCUTAR</button>
+          <button data-dismiss="modal"  class="btn btn-danger">{{ __('admins.ocultar') }}</button>
        </div>
       </div>
     </div>

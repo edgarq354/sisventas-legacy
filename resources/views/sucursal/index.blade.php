@@ -50,7 +50,7 @@
 
 
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <font size="6">SUCURSALES </font>
+                <font size="6">{{ __('sucursal.titulo_sucursales') }}</font>
             </div>
 
 
@@ -59,13 +59,13 @@
             </div>
 
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                <a class='btn btn-primary form-control' href='sucursal_imprimir'><i class="fa fa-print"></i> Imprimir</a>
+                <a class='btn btn-primary form-control' href='sucursal_imprimir'><i class="fa fa-print"></i> {{ __('sucursal.imprimir') }}</a>
             </div>
 
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                 <div class="pull-right">
                     <a class='btn btn-success' data-toggle="modal" data-target="#ModalCrearNuevo"> <i
-                            class="fa fa-plus"></i> Agregar</a>
+                            class="fa fa-plus"></i> {{ __('sucursal.agregar') }}</a>
                 </div>
             </div>
 
@@ -78,25 +78,25 @@
                     id="tabla_sin_imprimir">
                     <thead>
                         <th>
-                            <center>CODIGO</center>
+                            <center>{{ __('sucursal.col_codigo') }}</center>
                         </th>
                         <th>
-                            <center>NOMBRE</center>
+                            <center>{{ __('sucursal.col_nombre') }}</center>
                         </th>
                         <th>
-                            <center>MUNICIPIO</center>
+                            <center>{{ __('sucursal.col_municipio') }}</center>
                         </th>
                         <th>
-                            <center>DIRECCIÓN</center>
+                            <center>{{ __('sucursal.col_direccion') }}</center>
                         </th>
                         <th>
-                            <center>TELEFONO</center>
+                            <center>{{ __('sucursal.col_telefono') }}</center>
                         </th>
                         <th>
-                            <center>CUIS </center>
+                            <center>{{ __('sucursal.col_cuis') }}</center>
                         </th>
                         <th>
-                            <center>C. P. VENTA</center>
+                            <center>{{ __('sucursal.col_cp_venta') }}</center>
                         </th>
                         <th>
                             <center>...</center>
@@ -141,7 +141,7 @@
             <div class="modal-content">
 
                 <div class="modal-header" style="background: #3c8dbc; color: white">
-                    <h3 class="modal-title">REGISTRAR UN NUEVO SUCURSAL</h3>
+                    <h3 class="modal-title">{{ __('sucursal.registrar_nuevo_sucursal') }}</h3>
                 </div>
 
 
@@ -153,23 +153,23 @@
                         <div class="col-lg-7 col-md-8 col-sm-10 col-xs-12">
 
                             <div class="form-group">
-                                Codigo:<br>
-                                <input type="text" name="codigo" placeholder="Ingrese el codigo" class="form-control">
+                                {{ __('sucursal.codigo_dp') }}<br>
+                                <input type="text" name="codigo" placeholder="{{ __('sucursal.placeholder_codigo') }}" class="form-control">
                             </div>
                             <div class="form-group">
-                                Nombre:<br>
-                                <input type="text" name="nombre" placeholder="Ingrese el nombre" class="form-control">
+                                {{ __('sucursal.nombre_dp') }}<br>
+                                <input type="text" name="nombre" placeholder="{{ __('sucursal.placeholder_nombre') }}" class="form-control">
                             </div>
 
                             <div class="form-group">
-                                Municipio:<br>
-                                <input type="text" name="municipio" placeholder="Ingrese el municipio"
+                                {{ __('sucursal.municipio_dp') }}<br>
+                                <input type="text" name="municipio" placeholder="{{ __('sucursal.placeholder_municipio') }}"
                                     class="form-control">
                             </div>
 
                             <div class="form-group">
-                                Dirección:<br>
-                                <input type="text" name="direccion" placeholder="Ingrese la dirección"
+                                {{ __('sucursal.direccion_dp') }}<br>
+                                <input type="text" name="direccion" placeholder="{{ __('sucursal.placeholder_direccion') }}"
                                     class="form-control">
                             </div>
 
@@ -181,19 +181,19 @@
                         <div class="col-lg-5 col-md-8 col-sm-10 col-xs-12 ">
 
                             <div class="form-group">
-                                Telefono:<br>
-                                <input type="number" name="telefono" placeholder="Ingrese el Telefono "
+                                {{ __('sucursal.telefono_dp') }}<br>
+                                <input type="number" name="telefono" placeholder="{{ __('sucursal.placeholder_telefono') }}"
                                     class="form-control">
                             </div>
 
                             <div class="form-group">
-                                Cuis:<br>
-                                <input type="text" name="cuis" placeholder="Ingrese el Cuis " class="form-control">
+                                {{ __('sucursal.cuis_dp') }}<br>
+                                <input type="text" name="cuis" placeholder="{{ __('sucursal.placeholder_cuis') }}" class="form-control">
                             </div>
 
                             <div class="form-group">
-                                Codigo Punto Venta:<br>
-                                <input type="number" name="codigo_punto_venta" placeholder="Ingrese Codigo Punto Venta"
+                                {{ __('sucursal.codigo_punto_venta_dp') }}<br>
+                                <input type="number" name="codigo_punto_venta" placeholder="{{ __('sucursal.placeholder_codigo_punto_venta') }}"
                                     class="form-control">
                             </div>
 
@@ -203,12 +203,12 @@
 
                 <div class="modal-footer">
 
-                    <button type="submit" class="btn btn-primary" onclick="btn_esconder()">REGISTRAR</button>
+                    <button type="submit" class="btn btn-primary" onclick="btn_esconder()">{{ __('sucursal.registrar') }}</button>
 
                     </form>
 
                     <!--button class="btn btn-primary"  onclick="crearalimento()" id="btnregistrar">REGISTRAR</button-->
-                    <button data-dismiss="modal" class="btn btn-danger">CANCELAR</button>
+                    <button data-dismiss="modal" class="btn btn-danger">{{ __('sucursal.cancelar') }}</button>
                 </div>
             </div>
         </div>
@@ -227,7 +227,7 @@
             <div class="modal-content">
 
                 <div class="modal-header" style="background: #3c8dbc; color: white">
-                    <h3 class="modal-title">ACTUALIZAR SUCURSAL</h3>
+                    <h3 class="modal-title">{{ __('sucursal.actualizar_sucursal_titulo') }}</h3>
                 </div>
 
 
@@ -242,25 +242,25 @@
                             <input type="hidden" name='id_sucursal' id="id_sucursal_actualizar" value="" />
 
                             <div class="form-group">
-                                Codigo:<br>
-                                <input type="text" name="codigo" placeholder="Ingrese el codigo" class="form-control"
+                                {{ __('sucursal.codigo_dp') }}<br>
+                                <input type="text" name="codigo" placeholder="{{ __('sucursal.placeholder_codigo') }}" class="form-control"
                                     id="codigo_actualizar">
                             </div>
                             <div class="form-group">
-                                Nombre:<br>
-                                <input type="text" name="nombre" placeholder="Ingrese el nombre"
+                                {{ __('sucursal.nombre_dp') }}<br>
+                                <input type="text" name="nombre" placeholder="{{ __('sucursal.placeholder_nombre') }}"
                                     class="form-control" id="nombre_actualizar">
                             </div>
 
                             <div class="form-group">
-                                Municipio:<br>
-                                <input type="text" name="municipio" placeholder="Ingrese el municipio"
+                                {{ __('sucursal.municipio_dp') }}<br>
+                                <input type="text" name="municipio" placeholder="{{ __('sucursal.placeholder_municipio') }}"
                                     class="form-control" id="municipio_actualizar">
                             </div>
 
                             <div class="form-group">
-                                Dirección:<br>
-                                <input type="text" name="direccion" placeholder="Ingrese la dirección"
+                                {{ __('sucursal.direccion_dp') }}<br>
+                                <input type="text" name="direccion" placeholder="{{ __('sucursal.placeholder_direccion') }}"
                                     class="form-control" id="direccion_actualizar">
                             </div>
                         </div>
@@ -270,20 +270,20 @@
                         <div class="col-lg-5 col-md-8 col-sm-10 col-xs-12 ">
 
                             <div class="form-group">
-                                Telefono:<br>
-                                <input type="number" name="telefono" placeholder="Ingrese el Telefono "
+                                {{ __('sucursal.telefono_dp') }}<br>
+                                <input type="number" name="telefono" placeholder="{{ __('sucursal.placeholder_telefono') }}"
                                     class="form-control" id="telefono_actualizar">
                             </div>
 
                             <div class="form-group">
-                                Cuis:<br>
-                                <input type="text" name="cuis" placeholder="Ingrese el Cuis " class="form-control"
+                                {{ __('sucursal.cuis_dp') }}<br>
+                                <input type="text" name="cuis" placeholder="{{ __('sucursal.placeholder_cuis') }}" class="form-control"
                                     id="cuis_actualizar">
                             </div>
 
                             <div class="form-group">
-                                Codigo Punto Venta:<br>
-                                <input type="number" name="codigo_punto_venta" placeholder="Ingrese Codigo Punto Venta"
+                                {{ __('sucursal.codigo_punto_venta_dp') }}<br>
+                                <input type="number" name="codigo_punto_venta" placeholder="{{ __('sucursal.placeholder_codigo_punto_venta') }}"
                                     class="form-control" id="codigo_punto_venta_actualizar">
                             </div>
 
@@ -301,11 +301,11 @@
                             id="btn_registrar"
                             class="btn btn-primary"
                             onclick="btn_esconder(this)">
-                            ACTUALIZAR
+                            {{ __('sucursal.actualizar') }}
                         </button>
                         </form>
 
-                        <button data-dismiss="modal" class="btn btn-danger">CANCELAR</button>
+                        <button data-dismiss="modal" class="btn btn-danger">{{ __('sucursal.cancelar') }}</button>
                     </div>
                 </div>
             </div>

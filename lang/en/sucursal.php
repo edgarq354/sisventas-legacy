@@ -1,0 +1,36 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'titulo_sucursales' => 'BRANCHES ',
+    'imprimir' => 'Print',
+    'agregar' => 'Add',
+    'col_codigo' => 'CODE',
+    'col_nombre' => 'NAME',
+    'col_municipio' => 'MUNICIPALITY',
+    'col_direccion' => 'ADDRESS',
+    'col_telefono' => 'PHONE',
+    'col_cuis' => 'CUIS ',
+    'col_cp_venta' => 'POS CODE',
+    'registrar_nuevo_sucursal' => 'REGISTER A NEW BRANCH',
+    'codigo_dp' => 'Code:',
+    'placeholder_codigo' => 'Enter the code',
+    'nombre_dp' => 'Name:',
+    'placeholder_nombre' => 'Enter the name',
+    'municipio_dp' => 'Municipality:',
+    'placeholder_municipio' => 'Enter the municipality',
+    'direccion_dp' => 'Address:',
+    'placeholder_direccion' => 'Enter the address',
+    'telefono_dp' => 'Phone:',
+    'placeholder_telefono' => 'Enter the phone ',
+    'cuis_dp' => 'Cuis:',
+    'placeholder_cuis' => 'Enter the Cuis ',
+    'codigo_punto_venta_dp' => 'Point of Sale Code:',
+    'placeholder_codigo_punto_venta' => 'Enter the Point of Sale Code',
+    'registrar' => 'REGISTER',
+    'cancelar' => 'CANCEL',
+    'actualizar_sucursal_titulo' => 'UPDATE BRANCH',
+    'actualizar' => 'UPDATE',
+    'lista_de_sucursales' => 'BRANCH LIST',
+];

@@ -43,7 +43,7 @@
 
 </head>
 <div align="right" style="height: 10px;">
-    {{ date('j - F - Y, g:i a') }}
+    {{ fecha_hora_impresion() }}
 </div><br>
 
 <body>
@@ -57,12 +57,12 @@
                 </td>
                 <td style="width: 80%; border: 0px solid white;">
                     <center>
-                        <font size="3" style="font-weight: bold;">TIENDA {{ $empresa[0]->razon_social }} </font>
+                        <font size="3" style="font-weight: bold;">{{ __('producto.tienda') }} {{ $empresa[0]->razon_social }} </font>
                         <br>
-                        Telefono: {{ $empresa[0]->whatsapp }}<br>
-                        Dirección: {{ $empresa[0]->direccion }}<br>
+                        {{ __('producto.telefono_label') }} {{ $empresa[0]->whatsapp }}<br>
+                        {{ __('producto.direccion_label') }} {{ $empresa[0]->direccion }}<br>
 
-                        <h2>LISTA DE SUCURSALES</h2>
+                        <h2>{{ __('sucursal.lista_de_sucursales') }}</h2>
                     </center>
                 </td>
                 <td style="width: 10%; border: 0px solid white;">
@@ -79,25 +79,25 @@
         <thead>
             <tr>
                 <th>
-                    <center>CODIGO</center>
+                    <center>{{ __('sucursal.col_codigo') }}</center>
                 </th>
                 <th>
-                    <center>NOMBRE</center>
+                    <center>{{ __('sucursal.col_nombre') }}</center>
                 </th>
                 <th>
-                    <center>MUNICIPIO</center>
+                    <center>{{ __('sucursal.col_municipio') }}</center>
                 </th>
                 <th>
-                    <center>DIRECCIÓN</center>
+                    <center>{{ __('sucursal.col_direccion') }}</center>
                 </th>
                 <th>
-                    <center>TELEFONO</center>
+                    <center>{{ __('sucursal.col_telefono') }}</center>
                 </th>
                 <th>
-                    <center>CUIS </center>
+                    <center>{{ __('sucursal.col_cuis') }}</center>
                 </th>
                 <th>
-                    <center>C. P. VENTA</center>
+                    <center>{{ __('sucursal.col_cp_venta') }}</center>
                 </th>
             </tr>
         </thead>

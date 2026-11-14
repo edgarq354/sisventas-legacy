@@ -109,7 +109,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
 
-            <h3> Lista de copia de seguridad</h3>
+            <h3> {{ __('copiadeseguridad.titulo') }}</h3>
 
             <hr style="height: 1px; background-color: black;">
 
@@ -123,10 +123,10 @@
                         id="myTable">
                         <thead>
                             <th>
-                                <center>ID</center>
+                                <center>{{ __('copiadeseguridad.col_id') }}</center>
                             </th>
-                            <th>NOMBRE</th>
-                            <th>TAMAÑO</th>
+                            <th>{{ __('copiadeseguridad.col_nombre') }}</th>
+                            <th>{{ __('copiadeseguridad.col_tamanio') }}</th>
                             <th>
                                 <center>...</center>
                             </th>
@@ -148,7 +148,7 @@
                                     </td>
 
                                     <td>
-                                        <a href="respaldos/{{ $fila['Nombre'] }}" download>Descargar</a>
+                                        <a href="respaldos/{{ $fila['Nombre'] }}" download>{{ __('copiadeseguridad.descargar') }}</a>
                                     </td>
                                 </tr>
                             @endforeach

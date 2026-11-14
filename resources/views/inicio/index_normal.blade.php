@@ -17,7 +17,7 @@
 @if($message=='store')
 <div class="alert alert-success alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
-    Ajuste registrado con éxito.
+    {{ __('ajuste.ajuste_registrado') }}
 </div>
 @endif
 
@@ -26,12 +26,12 @@
     <div class="dash-hero">
         <div class="dash-hero__icon"><i class="fa fa-cutlery"></i></div>
         <div>
-            <h3 class="dash-hero__title">Hola, {{ Auth::user()->nombre }}</h3>
+            <h3 class="dash-hero__title">{{ __('ajuste.hola', ['nombre' => Auth::user()->nombre]) }}</h3>
             <p class="dash-hero__sub">{{ $hoy_texto }}</p>
         </div>
         <div class="dash-hero__spacer"></div>
         <a href="{{ URL::to('nota_venta/create') }}" class="btn btn-warning" style="font-weight:700;border-radius:10px;">
-            <i class="fa fa-plus"></i> Nueva venta
+            <i class="fa fa-plus"></i> {{ __('ajuste.nueva_venta') }}
         </a>
     </div>
 
@@ -40,42 +40,42 @@
             <div class="dash-stat__row">
                 <div>
                     <div class="dash-stat__value">Bs {{ number_format((float)$monto_caja, 2) }}</div>
-                    <div class="dash-stat__label">Monto en caja</div>
+                    <div class="dash-stat__label">{{ __('ajuste.monto_en_caja') }}</div>
                 </div>
                 <div class="dash-stat__icon"><i class="fa fa-inbox"></i></div>
             </div>
-            <a href="{{ URL::to('caja') }}" class="dash-stat__foot">Ir a caja <i class="fa fa-arrow-right"></i></a>
+            <a href="{{ URL::to('caja') }}" class="dash-stat__foot">{{ __('ajuste.ir_a_caja') }} <i class="fa fa-arrow-right"></i></a>
         </div>
 
         <div class="dash-stat dash-stat--month">
             <div class="dash-stat__row">
                 <div>
                     <div class="dash-stat__value">Bs {{ number_format((float)$monto_total_mes, 2) }}</div>
-                    <div class="dash-stat__label">Ventas {{ $mes }}</div>
+                    <div class="dash-stat__label">{{ __('ajuste.ventas_mes', ['mes' => $mes]) }}</div>
                 </div>
                 <div class="dash-stat__icon"><i class="fa fa-calendar"></i></div>
             </div>
-            <a href="{{ URL::to('nota_venta') }}" class="dash-stat__foot">Ver ventas <i class="fa fa-arrow-right"></i></a>
+            <a href="{{ URL::to('nota_venta') }}" class="dash-stat__foot">{{ __('ajuste.ver_ventas') }} <i class="fa fa-arrow-right"></i></a>
         </div>
 
         <div class="dash-stat dash-stat--info">
             <div class="dash-stat__row">
                 <div>
                     <div class="dash-stat__value">{{ count($producto) }}</div>
-                    <div class="dash-stat__label">Productos con stock bajo</div>
+                    <div class="dash-stat__label">{{ __('ajuste.productos_stock_bajo') }}</div>
                 </div>
                 <div class="dash-stat__icon"><i class="fa fa-cubes"></i></div>
             </div>
-            <a href="{{ URL::to('cliente') }}" class="dash-stat__foot">Ver clientes <i class="fa fa-arrow-right"></i></a>
+            <a href="{{ URL::to('cliente') }}" class="dash-stat__foot">{{ __('ajuste.ver_clientes') }} <i class="fa fa-arrow-right"></i></a>
         </div>
     </div>
 
     <div class="dash-grid-2">
         <div class="dash-card">
-            <div class="dash-card__head"><i class="fa fa-exclamation-triangle"></i> Alerta de stock</div>
+            <div class="dash-card__head"><i class="fa fa-exclamation-triangle"></i> {{ __('ajuste.alerta_de_stock') }}</div>
             <div class="dash-card__body dash-card__body--flush">
                 <table class="dash-table">
-                    <thead><tr><th>Producto</th><th style="text-align:right;">Cantidad</th></tr></thead>
+                    <thead><tr><th>{{ __('ajuste.col_producto') }}</th><th style="text-align:right;">{{ __('nota_venta.col_cantidad') }}</th></tr></thead>
                     <tbody>
                     @forelse($producto as $usr)
                         <tr>
@@ -86,7 +86,7 @@
                             <td style="text-align:right;"><span class="dash-pill dash-pill--red">{{ $usr->peso }}</span></td>
                         </tr>
                     @empty
-                        <tr><td colspan="2" class="dash-empty">Sin productos en alerta 🎉</td></tr>
+                        <tr><td colspan="2" class="dash-empty">{{ __('ajuste.sin_productos_alerta') }}</td></tr>
                     @endforelse
                     </tbody>
                 </table>
@@ -95,7 +95,7 @@
 
         <div class="dash-card">
             <div class="dash-card__head">
-                <i class="fa fa-bar-chart"></i> Ganancias mensuales
+                <i class="fa fa-bar-chart"></i> {{ __('ajuste.ganancias_mensuales') }}
                 <span class="dash-card__extra">{{ date('Y') }}</span>
             </div>
             <div class="dash-card__body">
@@ -105,13 +105,13 @@
     </div>
 
     <div class="dash-card">
-        <div class="dash-card__head"><i class="fa fa-th-large"></i> Accesos rápidos</div>
+        <div class="dash-card__head"><i class="fa fa-th-large"></i> {{ __('ajuste.accesos_rapidos') }}</div>
         <div class="dash-card__body">
             <div class="dash-quick">
-                <a href="{{ URL::to('nota_venta/create') }}"><i class="fa fa-plus-circle"></i><span>Nueva venta</span></a>
-                <a href="{{ URL::to('nota_venta') }}"><i class="fa fa-file-text-o"></i><span>Notas de venta</span></a>
-                <a href="{{ URL::to('caja') }}"><i class="fa fa-inbox"></i><span>Caja</span></a>
-                <a href="{{ URL::to('cliente') }}"><i class="fa fa-users"></i><span>Clientes</span></a>
+                <a href="{{ URL::to('nota_venta/create') }}"><i class="fa fa-plus-circle"></i><span>{{ __('ajuste.nueva_venta') }}</span></a>
+                <a href="{{ URL::to('nota_venta') }}"><i class="fa fa-file-text-o"></i><span>{{ __('ajuste.notas_de_venta') }}</span></a>
+                <a href="{{ URL::to('caja') }}"><i class="fa fa-inbox"></i><span>{{ __('ajuste.caja') }}</span></a>
+                <a href="{{ URL::to('cliente') }}"><i class="fa fa-users"></i><span>{{ __('ajuste.clientes') }}</span></a>
             </div>
         </div>
     </div>
@@ -130,7 +130,7 @@ window.onload = function () { buscar_por_anio(); };
 function buscar_por_anio() {
     var anio = $("#anio").val();
     $.get('get_venta_estadistica_anio/' + anio, function (response) {
-        var meses = ['', 'Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+        var meses = @json(explode(',', __('rendimiento.meses_completos')));
         var fecha = [], monto_venta = [], monto_cancelado = [];
         var cantidad_venta = 0, cantidad_cancelaciones = 0;
 
@@ -152,8 +152,8 @@ function buscar_por_anio() {
             legend: { align: 'right', verticalAlign: 'top' },
             plotOptions: { areaspline: { fillOpacity: 0.15, marker: { enabled: false } } },
             series: [
-                { name: 'Ventas', data: monto_venta },
-                { name: 'Canceladas', data: monto_cancelado }
+                { name: @json(__('rendimiento.serie_ventas')), data: monto_venta },
+                { name: @json(__('rendimiento.serie_canceladas')), data: monto_cancelado }
             ]
         });
 

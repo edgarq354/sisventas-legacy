@@ -1,0 +1,33 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'inicio' => 'HOME',
+    'compras' => 'PURCHASES',
+    'nueva_compra' => 'NEW PURCHASE',
+    'lista_de_compras' => 'PURCHASE LIST',
+    'ventas' => 'SALES',
+    'nueva_venta' => 'NEW SALE',
+    'lista_de_ventas' => 'SALES LIST',
+    'rendimiento' => 'PERFORMANCE',
+    'almacen' => 'WAREHOUSE',
+    'inventario' => 'INVENTORY',
+    'producto' => 'PRODUCT',
+    'productos' => 'PRODUCTS',
+    'categoria' => 'CATEGORY',
+    'cobranzas' => 'COLLECTIONS',
+    'caja' => 'REGISTER',
+    'gastos' => 'EXPENSES',
+    'ingreso' => 'INCOME',
+    'clientes' => 'CUSTOMERS',
+    'usuarios' => 'USERS',
+    'usuario' => 'USER',
+    'rol_de_usuario' => 'USER ROLE',
+    'asistencia' => 'ATTENDANCE',
+    'ajuste' => 'SETTINGS',
+    'perfil_de_empresa' => 'COMPANY PROFILE',
+    'sucursales' => 'BRANCHES',
+    'copia_de_seguridad' => 'BACKUP',
+    'empresa' => 'COMPANY',
+];

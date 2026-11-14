@@ -388,7 +388,7 @@
                         <li class="treeview">
                             <a href="{!! URL::to('ajuste') !!}">
                                 <i class="fa fa-home" aria-hidden="true"></i>
-                                <span>INICIO</span>
+                                <span>{{ __('menu.inicio') }}</span>
                             </a>
                         </li>
 
@@ -397,20 +397,20 @@
                         <li class="treeview">
                             <a href="">
                                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                <span>COMPRAS</span>
+                                <span>{{ __('menu.compras') }}</span>
                             </a>
                             <ul class="treeview-menu menu-open">
 
 
                                 <li>
                                     <a href="{!! URL::to('nota_compra/create') !!}">
-                                        <i class="fa fa-plus-circle" aria-hidden="true"></i><span>NUEVA COMPRA</span>
+                                        <i class="fa fa-plus-circle" aria-hidden="true"></i><span>{{ __('menu.nueva_compra') }}</span>
                                     </a>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{!! URL::to('nota_compra') !!}">
-                                        <i class="fa fa-reorder" aria-hidden="true"></i><span>LISTA DE COMPRAS</span>
+                                        <i class="fa fa-reorder" aria-hidden="true"></i><span>{{ __('menu.lista_de_compras') }}</span>
                                     </a>
                                 </li>
                                 <li>
@@ -423,22 +423,22 @@
                         <li class="treeview">
                             <a href="">
                                 <i class="fa fa-line-chart"></i>
-                                <span>VENTAS</span>
+                                <span>{{ __('menu.ventas') }}</span>
                             </a>
                             <ul class="treeview-menu menu-open">
                                 <li>
                                     <a href="{!! URL::to('nota_venta/create') !!}">
-                                        <i class="fa fa-money" aria-hidden="true"></i><span>NUEVA VENTA</span>
+                                        <i class="fa fa-money" aria-hidden="true"></i><span>{{ __('menu.nueva_venta') }}</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{!! URL::to('nota_venta') !!}">
-                                        <i class="fa fa-reorder" aria-hidden="true"></i><span>LISTA DE VENTAS</span>
+                                        <i class="fa fa-reorder" aria-hidden="true"></i><span>{{ __('menu.lista_de_ventas') }}</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{!!URL::to('nota_venta_rendimiento')!!}">
-                                        <i class="fa fa-line-chart" aria-hidden="true"></i><span>RENDIMIENTO</span>
+                                        <i class="fa fa-line-chart" aria-hidden="true"></i><span>{{ __('menu.rendimiento') }}</span>
                                     </a>
                                 </li>
 
@@ -450,23 +450,23 @@
                         <li class="treeview">
                             <a href="">
                                 <i class="fa fa-cubes" aria-hidden="true"></i>
-                                <span>ALMACEN</span>
+                                <span>{{ __('menu.almacen') }}</span>
                             </a>
                             <ul class="treeview-menu menu-open">
                                 <li>
                                     <a href="{!! URL::to('inventario') !!}">
-                                        <i class="fa fa-list" aria-hidden="true"></i><span>INVENTARIO</span>
+                                        <i class="fa fa-list" aria-hidden="true"></i><span>{{ __('menu.inventario') }}</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{!! URL::to('producto') !!}">
-                                        <i class="fa fa-cube" aria-hidden="true"></i><span>PRODUCTO</span> </a>
+                                        <i class="fa fa-cube" aria-hidden="true"></i><span>{{ __('menu.producto') }}</span> </a>
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="{!! URL::to('tipo_producto') !!}">
-                                        <i class="fa fa-th-large" aria-hidden="true"></i><span>CATEGORIA</span>
+                                        <i class="fa fa-th-large" aria-hidden="true"></i><span>{{ __('menu.categoria') }}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -474,30 +474,30 @@
 
 			<li class="treeview">
                             <a href="{!! URL::to('cobranzas') !!}">
-                                <i class="fa fa-money" aria-hidden="true"></i><span>COBRANZAS</span>
+                                <i class="fa fa-money" aria-hidden="true"></i><span>{{ __('menu.cobranzas') }}</span>
                             </a>
                         </li>
 
                         <li class="treeview">
                             <a href="">
                                 <i class="fa fa-dollar" aria-hidden="true"></i>
-                                <span>CAJA</span>
+                                <span>{{ __('menu.caja') }}</span>
                             </a>
                             <ul class="treeview-menu menu-open">
 
                                 <li>
                                     <a href="{!! URL::to('caja') !!}">
-                                        <i class="fa fa-cube" aria-hidden="true"></i><span>CAJA</span> </a>
+                                        <i class="fa fa-cube" aria-hidden="true"></i><span>{{ __('menu.caja') }}</span> </a>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{!! URL::to('gasto') !!}">
-                                        <i class="fa fa-list" aria-hidden="true"></i><span>GASTOS</span>
+                                        <i class="fa fa-list" aria-hidden="true"></i><span>{{ __('menu.gastos') }}</span>
                                     </a>
                                 </li>
                                 <li class="treeview">
                                     <a href="{!! URL::to('ingreso') !!}">
-                                        <i class="fa fa-arrow-down" aria-hidden="true"></i><span>INGRESO</span>
+                                        <i class="fa fa-arrow-down" aria-hidden="true"></i><span>{{ __('menu.ingreso') }}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -507,24 +507,24 @@
                         <li class="treeview">
                             <a href="{!! URL::to('cliente') !!}">
                                 <i class="fa fa-user" aria-hidden="true"></i>
-                                <span>CLIENTES</span>
+                                <span>{{ __('menu.clientes') }}</span>
                             </a>
                         </li>
                         <li class="treeview">
                             <a href="">
                                 <i class="fa fa-users" aria-hidden="true"></i>
-                                <span>USUARIOS</span>
+                                <span>{{ __('menu.usuarios') }}</span>
                             </a>
                             <ul class="treeview-menu menu-open">
 
                                 <li>
                                     <a href="{!! URL::to('usuarios/empresa') !!}">
-                                        <i class="fa fa-user" aria-hidden="true"></i><span>ROL DE USUARIO</span> </a>
+                                        <i class="fa fa-user" aria-hidden="true"></i><span>{{ __('menu.rol_de_usuario') }}</span> </a>
                                     </a>
                                 </li>
                                 <li hidden>
                                     <a href="{!! URL::to('asistencia') !!}">
-                                        <i class="fa fa-clock-o" aria-hidden="true"></i><span>ASISTENCIA</span>
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i><span>{{ __('menu.asistencia') }}</span>
                                     </a>
                                 </li>
                                 <li>
@@ -539,24 +539,23 @@
                         <li class="treeview">
                             <a href="">
                                 <i class="fa fa-cog" aria-hidden="true"></i>
-                                <span>AJUSTE</span>
+                                <span>{{ __('menu.ajuste') }}</span>
                             </a>
                             <ul class="treeview-menu menu-open">
 
                                 <li>
                                     <a href="{!! URL::to('empresa/' . Auth::user()->id_empresa . '/edit') !!}">
-                                        <i class="fa fa-building" aria-hidden="true"></i><span>PERFIL DE
-                                            EMPRESA</span> </a>
+                                        <i class="fa fa-building" aria-hidden="true"></i><span>{{ __('menu.perfil_de_empresa') }}</span> </a>
                                 </li>
                                 <li>
                                     <a href="{!! URL::to('sucursal') !!}">
-                                        <i class="fa fa-home" aria-hidden="true"></i><span>SUCURSALES</span> </a>
+                                        <i class="fa fa-home" aria-hidden="true"></i><span>{{ __('menu.sucursales') }}</span> </a>
                                 </li>
                         </li>
                         <li class="treeview">
                             <a href="{!! URL::to('copiadeseguridad') !!}">
                                 <i class="fa fa-key" aria-hidden="true"></i>
-                                <span>COPIA DE SEGURIDAD</span>
+                                <span>{{ __('menu.copia_de_seguridad') }}</span>
                             </a>
 
                         </li>
@@ -573,7 +572,7 @@
                 <li class="treeview">
                             <a href="{!! URL::to('empresa') !!}">
                                 <i class="fa fa-user" aria-hidden="true"></i>
-                                <span>EMPRESA</span>
+                                <span>{{ __('menu.empresa') }}</span>
                             </a>
                         </li>
                 @endif
@@ -596,7 +595,7 @@
                             <li class="treeview">
                                 <a href="{!! URL::to('inicio') !!}">
                                     <i class="fa fa-home" aria-hidden="true"></i>
-                                    <span>INICIO</span>
+                                    <span>{{ __('menu.inicio') }}</span>
                                 </a>
                             </li>
                         @endif
@@ -605,7 +604,7 @@
                             <li class="treeview">
                                 <a href="{!! URL::to('ajuste') !!}">
                                     <i class="fa fa-home" aria-hidden="true"></i>
-                                    <span>INICIO</span>
+                                    <span>{{ __('menu.inicio') }}</span>
                                 </a>
                             </li>
                         @endif
@@ -616,21 +615,19 @@
                             <li class="treeview">
                                 <a href="">
                                     <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                    <span>COMPRAS</span>
+                                    <span>{{ __('menu.compras') }}</span>
                                 </a>
                                 <ul class="treeview-menu menu-open">
 
 
                                     <li>
                                         <a href="{!! URL::to('nota_compra/create') !!}">
-                                            <i class="fa fa-plus-circle" aria-hidden="true"></i><span>NUEVA
-                                                COMPRA</span> </a>
+                                            <i class="fa fa-plus-circle" aria-hidden="true"></i><span>{{ __('menu.nueva_compra') }}</span> </a>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{!! URL::to('nota_compra') !!}">
-                                            <i class="fa fa-reorder" aria-hidden="true"></i><span>LISTA DE
-                                                COMPRAS</span>
+                                            <i class="fa fa-reorder" aria-hidden="true"></i><span>{{ __('menu.lista_de_compras') }}</span>
                                         </a>
                                     </li>
                                     <li>
@@ -643,18 +640,17 @@
                             <li class="treeview">
                                 <a href="">
                                     <i class="fa fa-line-chart"></i>
-                                    <span>VENTAS</span>
+                                    <span>{{ __('menu.ventas') }}</span>
                                 </a>
                                 <ul class="treeview-menu menu-open">
                                     <li>
                                         <a href="{!! URL::to('nota_venta/create') !!}">
-                                            <i class="fa fa-money" aria-hidden="true"></i><span>NUEVA VENTA</span>
+                                            <i class="fa fa-money" aria-hidden="true"></i><span>{{ __('menu.nueva_venta') }}</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{!! URL::to('nota_venta') !!}">
-                                            <i class="fa fa-reorder" aria-hidden="true"></i><span>LISTA DE
-                                                VENTAS</span>
+                                            <i class="fa fa-reorder" aria-hidden="true"></i><span>{{ __('menu.lista_de_ventas') }}</span>
                                         </a>
                                     </li>
 
@@ -665,23 +661,23 @@
                             <li class="treeview">
                                 <a href="">
                                     <i class="fa fa-cubes" aria-hidden="true"></i>
-                                    <span>ALMACEN</span>
+                                    <span>{{ __('menu.almacen') }}</span>
                                 </a>
                                 <ul class="treeview-menu menu-open">
 
                                     <li>
                                         <a href="{!! URL::to('inventario') !!}">
-                                            <i class="fa fa-cube" aria-hidden="true"></i><span>INVENTARIO</span> </a>
+                                            <i class="fa fa-cube" aria-hidden="true"></i><span>{{ __('menu.inventario') }}</span> </a>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{!! URL::to('producto') !!}">
-                                            <i class="fa fa-list" aria-hidden="true"></i><span>PRODUCTOS</span>
+                                            <i class="fa fa-list" aria-hidden="true"></i><span>{{ __('menu.productos') }}</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{!! URL::to('tipo_producto') !!}">
-                                            <i class="fa fa-th-large" aria-hidden="true"></i><span>CATEGORIA</span>
+                                            <i class="fa fa-th-large" aria-hidden="true"></i><span>{{ __('menu.categoria') }}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -690,28 +686,28 @@
                         @if ($ac->modulo == 'COBRANZAS')
                         <li class="treeview">
                             <a href="{!! URL::to('cobranzas') !!}">
-                                <i class="fa fa-money" aria-hidden="true"></i><span>COBRANZAS</span>
+                                <i class="fa fa-money" aria-hidden="true"></i><span>{{ __('menu.cobranzas') }}</span>
                             </a>
                         </li>
                         @endif
-                        @if ($ac->modulo == 'CAJA') 
+                        @if ($ac->modulo == 'CAJA')
                             <li>
                                     <a href="{!! URL::to('caja') !!}">
-                                        <i class="fa fa-cube" aria-hidden="true"></i><span>CAJA</span> </a>
+                                        <i class="fa fa-cube" aria-hidden="true"></i><span>{{ __('menu.caja') }}</span> </a>
                                     </a>
                                 </li>
                         @endif
-                        @if ($ac->modulo == 'GASTOS')  
+                        @if ($ac->modulo == 'GASTOS')
                                 <li>
                                     <a href="{!! URL::to('gasto') !!}">
-                                        <i class="fa fa-list" aria-hidden="true"></i><span>GASTOS</span>
+                                        <i class="fa fa-list" aria-hidden="true"></i><span>{{ __('menu.gastos') }}</span>
                                     </a>
-                                </li> 
+                                </li>
                         @endif
-                        @if ($ac->modulo == 'INGRESO') 
+                        @if ($ac->modulo == 'INGRESO')
                                 <li class="treeview">
                                     <a href="{!! URL::to('ingreso') !!}">
-                                        <i class="fa fa-arrow-down" aria-hidden="true"></i><span>INGRESO</span>
+                                        <i class="fa fa-arrow-down" aria-hidden="true"></i><span>{{ __('menu.ingreso') }}</span>
                                     </a>
                                 </li>
                         @endif
@@ -719,14 +715,14 @@
                             <li class="treeview">
                                 <a href="{!! URL::to('cliente') !!}">
                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                    <span>CLIENTES</span>
+                                    <span>{{ __('menu.clientes') }}</span>
                                 </a>
                             </li>
                         @endif
                          @if ($ac->modulo == 'ASISTENCIA')
                         <li>
                                         <a href="{!! URL::to('asistencia') !!}">
-                                            <i class="fa fa-clock-o" aria-hidden="true"></i><span>ASISTENCIA</span>
+                                            <i class="fa fa-clock-o" aria-hidden="true"></i><span>{{ __('menu.asistencia') }}</span>
                                         </a>
                                     </li>
                           @endif
@@ -734,18 +730,18 @@
                             <li class="treeview">
                                 <a href="">
                                     <i class="fa fa-users" aria-hidden="true"></i>
-                                    <span>USUARIOS</span>
+                                    <span>{{ __('menu.usuarios') }}</span>
                                 </a>
                                 <ul class="treeview-menu menu-open">
 
                                     <li>
                                         <a href="{!! URL::to('usuarios/empresa') !!}">
-                                            <i class="fa fa-user" aria-hidden="true"></i><span>USUARIO</span> </a>
+                                            <i class="fa fa-user" aria-hidden="true"></i><span>{{ __('menu.usuario') }}</span> </a>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{!! URL::to('asistencia') !!}">
-                                            <i class="fa fa-clock-o" aria-hidden="true"></i><span>ASISTENCIA</span>
+                                            <i class="fa fa-clock-o" aria-hidden="true"></i><span>{{ __('menu.asistencia') }}</span>
                                         </a>
                                     </li>
                                     <li>
@@ -757,14 +753,13 @@
                             <li class="treeview">
                                 <a href="">
                                     <i class="fa fa-cog" aria-hidden="true"></i>
-                                    <span>AJUSTE</span>
+                                    <span>{{ __('menu.ajuste') }}</span>
                                 </a>
                                 <ul class="treeview-menu menu-open">
 
                                     <li>
                                         <a href="{!! URL::to('empresa/' . Auth::user()->id_empresa . '/edit') !!}">
-                                            <i class="fa fa-building" aria-hidden="true"></i><span>PERFIL DE
-                                                EMPRESA</span> </a>
+                                            <i class="fa fa-building" aria-hidden="true"></i><span>{{ __('menu.perfil_de_empresa') }}</span> </a>
                                         </a>
                                     </li>
 

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
  <meta charset="UTF-8">
-    <title>RECIBO DE PAGO DE FRECUENCIA</title>
+    <title>{{ __('asistencia.titulo_respaldo') }}</title>
  <!--link href="css/reporte.css" type="text/css" rel="stylesheet"  -->
 
 <style type="text/css">
@@ -42,12 +42,12 @@ tr{
   
 </head>
 <div align="right" style="height: 10px;">
-   {{date("j - F - Y, g:i a")}}
+   {{ fecha_hora_impresion() }}
   </div>
 <body>
 
 <div style="width: 100%;height: 0%;">
-<center><font size="3">RESPALDO DEL USUARIO</font></center>
+<center><font size="3">{{ __('asistencia.titulo_respaldo') }}</font></center>
 </div>
 
 <table style=" border-collapse:none;">
@@ -61,17 +61,17 @@ tr{
              
             @endforeach
     #{{$usu->id}} <br>
-    Nombre: {{$usu->usuario}} 
+    {{ __('asistencia.nombre_dp') }} {{$usu->usuario}} 
   </td>
   </tr>   
-  <TR><td style="border: 0px solid #000;">Hora de ingreso: {{$usu->fecha_ingreso}}
+  <TR><td style="border: 0px solid #000;">{{ __('asistencia.hora_ingreso_dp') }} {{$usu->fecha_ingreso}}
 </td>
 </TR>
 <TR>
-  <td style="border: 0px solid #000;">Hora de salida: {{$usu->fecha_salida}}</td>
+  <td style="border: 0px solid #000;">{{ __('asistencia.hora_salida_dp') }} {{$usu->fecha_salida}}</td>
 </tr>
 <tr>
- <TD style="border: 0px solid #000;"> Empresa:{{$usu->razon_social}}
+ <TD style="border: 0px solid #000;"> {{ __('asistencia.empresa_dp') }}{{$usu->razon_social}}
 </TD>
 </tr>
 </table>
@@ -84,7 +84,7 @@ tr{
  
 
 
-Obsercaciones:
+{{ __('asistencia.observaciones_dp2') }}
 @foreach($usuario as $usu)
              {{$usu->observaciones}} 
             @endforeach

@@ -1,0 +1,36 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'titulo_sucursales' => 'SUCURSALES ',
+    'imprimir' => 'Imprimir',
+    'agregar' => 'Agregar',
+    'col_codigo' => 'CODIGO',
+    'col_nombre' => 'NOMBRE',
+    'col_municipio' => 'MUNICIPIO',
+    'col_direccion' => 'DIRECCIÓN',
+    'col_telefono' => 'TELEFONO',
+    'col_cuis' => 'CUIS ',
+    'col_cp_venta' => 'C. P. VENTA',
+    'registrar_nuevo_sucursal' => 'REGISTRAR UN NUEVO SUCURSAL',
+    'codigo_dp' => 'Codigo:',
+    'placeholder_codigo' => 'Ingrese el codigo',
+    'nombre_dp' => 'Nombre:',
+    'placeholder_nombre' => 'Ingrese el nombre',
+    'municipio_dp' => 'Municipio:',
+    'placeholder_municipio' => 'Ingrese el municipio',
+    'direccion_dp' => 'Dirección:',
+    'placeholder_direccion' => 'Ingrese la dirección',
+    'telefono_dp' => 'Telefono:',
+    'placeholder_telefono' => 'Ingrese el Telefono ',
+    'cuis_dp' => 'Cuis:',
+    'placeholder_cuis' => 'Ingrese el Cuis ',
+    'codigo_punto_venta_dp' => 'Codigo Punto Venta:',
+    'placeholder_codigo_punto_venta' => 'Ingrese Codigo Punto Venta',
+    'registrar' => 'REGISTRAR',
+    'cancelar' => 'CANCELAR',
+    'actualizar_sucursal_titulo' => 'ACTUALIZAR SUCURSAL',
+    'actualizar' => 'ACTUALIZAR',
+    'lista_de_sucursales' => 'LISTA DE SUCURSALES',
+];

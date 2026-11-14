@@ -34,31 +34,31 @@
     <div class="dash-hero" style="margin-bottom:14px;">
         <div class="dash-hero__icon"><i class="fa fa-users"></i></div>
         <div>
-            <h3 class="dash-hero__title">Usuarios de la empresa</h3>
-            <p class="dash-hero__sub">{{ count($usuarios) }} usuarios registrados</p>
+            <h3 class="dash-hero__title">{{ __('admins.usuarios_de_la_empresa') }}</h3>
+            <p class="dash-hero__sub">{{ __('admins.usuarios_registrados', ['count' => count($usuarios)]) }}</p>
         </div>
     </div>
 
     <div class="ue-actions">
-        <a class="ue-btn ue-btn--add" href="{!! URL::to('usuarios/crear_usuario') !!}"><i class="fa fa-plus"></i> Agregar usuario</a>
-        <a class="ue-btn ue-btn--print" href="usuario_imprimir" target="_blank"><i class="fa fa-print"></i> Imprimir</a>
+        <a class="ue-btn ue-btn--add" href="{!! URL::to('usuarios/crear_usuario') !!}"><i class="fa fa-plus"></i> {{ __('admins.agregar_usuario') }}</a>
+        <a class="ue-btn ue-btn--print" href="usuario_imprimir" target="_blank"><i class="fa fa-print"></i> {{ __('admins.imprimir') }}</a>
     </div>
 
     <div class="dash-card">
-        <div class="dash-card__head"><i class="fa fa-list"></i> Roles de usuario</div>
+        <div class="dash-card__head"><i class="fa fa-list"></i> {{ __('admins.roles_de_usuario') }}</div>
         <div class="dash-card__body dash-card__body--flush">
             <div class="table-responsive" style="overflow-x:auto;">
                 <table class="table table-striped table-hover" id="tabla_sin_imprimir" style="background:white;margin:0;">
                     <thead>
-                        <th>Nombre</th>
-                        <th>Usuario</th>
-                        <th>Rol</th>
-                        <th style="text-align:right;">Opciones</th>
+                        <th>{{ __('admins.col_nombre') }}</th>
+                        <th>{{ __('admins.col_usuario') }}</th>
+                        <th>{{ __('admins.col_rol') }}</th>
+                        <th style="text-align:right;">{{ __('admins.col_opciones') }}</th>
                     </thead>
                     <tbody id="body_usuario">
                         @foreach($usuarios as $user)
                             @php
-                                $tipo = $user->privilegio == 0 ? 'ADMINISTRADOR' : ($user->privilegio == 3 ? 'NORMAL' : '—');
+                                $tipo = $user->privilegio == 0 ? __('admins.administrador') : ($user->privilegio == 3 ? __('admins.normal') : '—');
                             @endphp
                             <tr>
                                 <td><b>{{ $user->nombre }}</b></td>
@@ -67,9 +67,9 @@
                                     <span class="ue-rol {{ $user->privilegio == 0 ? 'ue-rol--admin' : 'ue-rol--normal' }}">{{ $tipo }}</span>
                                 </td>
                                 <td style="text-align:right;white-space:nowrap;">
-                                    <a class='btn btn-primary' href='actualizar_usuarios_empresa/{{ $user->id }}' title="Editar"><i class="fa fa-pencil"></i></a>
-                                    <button class="btn btn-warning" data-toggle="modal" data-target="#historial_inicio_sesion" onclick="Cargar_historial_inicio_sesion_empresa({{ $user->id }})" title="Historial de sesiones"><i class="fa fa-history"></i></button>
-                                    <button class="btn btn-default" data-toggle="modal" data-target="#ModalContraseña_usuario" onclick="Cargar_Admin_Usuario({{ $user->id }},{{ $user->id_empresa }},{{ $user->privilegio }},'')"><i class="fa fa-key"></i> Contraseña</button>
+                                    <a class='btn btn-primary' href='actualizar_usuarios_empresa/{{ $user->id }}' title="{{ __('admins.editar') }}"><i class="fa fa-pencil"></i></a>
+                                    <button class="btn btn-warning" data-toggle="modal" data-target="#historial_inicio_sesion" onclick="Cargar_historial_inicio_sesion_empresa({{ $user->id }})" title="{{ __('admins.historial_de_sesiones') }}"><i class="fa fa-history"></i></button>
+                                    <button class="btn btn-default" data-toggle="modal" data-target="#ModalContraseña_usuario" onclick="Cargar_Admin_Usuario({{ $user->id }},{{ $user->id_empresa }},{{ $user->privilegio }},'')"><i class="fa fa-key"></i> {{ __('admins.contrasena') }}</button>
                                 </td>
                             </tr>
                         @endforeach

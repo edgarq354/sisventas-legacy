@@ -49,7 +49,7 @@
         <div class="dash-hero" style="margin-bottom:14px;">
             <div class="dash-hero__icon"><i class="fa fa-user"></i></div>
             <div>
-                <h3 class="dash-hero__title">Actualizar usuario</h3>
+                <h3 class="dash-hero__title">{{ __('admins.actualizar_usuario_h3') }}</h3>
                 <p class="dash-hero__sub">{{ $user->nombre }} &middot; {{ $user->usuario }}</p>
             </div>
         </div>
@@ -62,37 +62,37 @@
             <input type="hidden" name="usuario_aux" id="usuario_aux" value="{{ $user->usuario }}">
 
             <div class="dash-card dash-card--overflow">
-                <div class="dash-card__head"><i class="fa fa-id-card-o"></i> Datos del usuario</div>
+                <div class="dash-card__head"><i class="fa fa-id-card-o"></i> {{ __('admins.datos_del_usuario') }}</div>
                 <div class="dash-card__body">
                     <div class="u-grid">
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
+                            <label for="nombre">{{ __('admins.nombre_corto') }}</label>
                             <input type="text" name="nombre" id="nombre" class="form-control" maxlength="100" value="{{ old('nombre', $user->nombre) }}">
                         </div>
                         <div class="form-group">
-                            <label for="usuario">Usuario</label>
+                            <label for="usuario">{{ __('admins.usuario_corto') }}</label>
                             <input type="text" name="usuario" id="usuario" class="form-control" maxlength="15" value="{{ old('usuario', $user->usuario) }}" autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="privilegio">Tipo de usuario</label>
+                            <label for="privilegio">{{ __('admins.tipo_de_usuario') }}</label>
                             <select name="privilegio" id="privilegio" class="form-control" onchange="seleccionar()">
-                                <option value="0" {{ old('privilegio', $user->privilegio) == 0 ? 'selected' : '' }}>ADMINISTRADOR</option>
-                                <option value="3" {{ old('privilegio', $user->privilegio) == 3 ? 'selected' : '' }}>NORMAL</option>
+                                <option value="0" {{ old('privilegio', $user->privilegio) == 0 ? 'selected' : '' }}>{{ __('admins.administrador') }}</option>
+                                <option value="3" {{ old('privilegio', $user->privilegio) == 3 ? 'selected' : '' }}>{{ __('admins.normal') }}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="id_sucursal">Sucursal</label>
+                            <label for="id_sucursal">{{ __('admins.sucursal_label') }}</label>
                             <select name="id_sucursal" id="id_sucursal" class="form-control selectpicker" data-live-search="true">
-                                <option value="">Buscar…</option>
+                                <option value="">{{ __('admins.buscar_puntos') }}</option>
                                 @foreach ($sucursal as $mov)
                                     <option value="{{ $mov->id }}" {{ (old('id_sucursal', $user->id_sucursal) == $mov->id) ? 'selected' : '' }}>{{ $mov->nombre }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="id_empleado">Empleado <span style="text-transform:none;color:#b8a99b;font-weight:600;">(opcional)</span></label>
+                            <label for="id_empleado">{{ __('admins.empleado_opcional') }} <span style="text-transform:none;color:#b8a99b;font-weight:600;">{{ __('admins.opcional') }}</span></label>
                             <select name="id_empleado" id="id_empleado" class="form-control selectpicker text-uppercase" data-live-search="true">
-                                <option value="">— Sin cambios —</option>
+                                <option value="">{{ __('admins.sin_cambios') }}</option>
                                 @foreach ($empleado as $mov)
                                     <option value="{{ $mov->id }}" {{ (string) old('id_empleado', $user->id_empleado) === (string) $mov->id ? 'selected' : '' }}>
                                         {{ $mov->nombre }} {{ $mov->paterno }} {{ $mov->materno }}
@@ -105,10 +105,10 @@
             </div>
 
             <div class="dash-card" id="div_permiso" @if ($user->privilegio == 0) hidden="" @endif>
-                <div class="dash-card__head"><i class="fa fa-key"></i> Permisos por módulo</div>
+                <div class="dash-card__head"><i class="fa fa-key"></i> {{ __('admins.permisos_por_modulo') }}</div>
                 <div class="dash-card__body dash-card__body--flush">
                     <table class="table" id="tabla_permisos" style="margin:0;background:#fff;">
-                        <thead><tr><th style="text-align:left;">Módulo</th><th style="text-align:center;width:90px;">Acceso</th></tr></thead>
+                        <thead><tr><th style="text-align:left;">{{ __('admins.col_modulo') }}</th><th style="text-align:center;width:90px;">{{ __('admins.col_acceso') }}</th></tr></thead>
                         <tbody>
                             @foreach ($acceso as $ac)
                                 @php
@@ -133,8 +133,8 @@
             </div>
 
             <div class="u-actions">
-                <a href="{!! URL::to('usuarios/empresa') !!}" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</a>
-                <button type="submit" class="btn btn-primary" id="btn_registrar" onclick="btn_esconder()"><i class="fa fa-save"></i> Actualizar</button>
+                <a href="{!! URL::to('usuarios/empresa') !!}" class="btn btn-danger"><i class="fa fa-times"></i> {{ __('admins.cancelar') }}</a>
+                <button type="submit" class="btn btn-primary" id="btn_registrar" onclick="btn_esconder()"><i class="fa fa-save"></i> {{ __('admins.actualizar_usuario') }}</button>
             </div>
         </form>
 

@@ -11,11 +11,11 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
  
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                    <font size="6">COBRANZAS</font>
+                    <font size="6">{{ __('cobranzas.titulo_cobranzas') }}</font>
                 </div>
                 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" align="right">
-                    <a class='btn btn-primary' href='cobranzas_imprimir' target="_blank"><i class="fa fa-print"></i> Imprimir</a>
+                    <a class='btn btn-primary' href='cobranzas_imprimir' target="_blank"><i class="fa fa-print"></i> {{ __('cobranzas.imprimir') }}</a>
                      
                 </div>
 
@@ -26,38 +26,38 @@
                     style="background: white">
                     <thead>
                         <th>
-                            <center>ID</center>
+                            <center>{{ __('cobranzas.col_id') }}</center>
                         </th>
                         <th>
-                            <center>USUARIO</center>
+                            <center>{{ __('cobranzas.col_usuario') }}</center>
                         </th> 
                         <th>
-                            <center>CLIENTE / PROVEEDOR</center>
+                            <center>{{ __('cobranzas.col_cliente_proveedor') }}</center>
                         </th> 
                         <th>
-                            <center>MONTO TOTAL</center>
+                            <center>{{ __('cobranzas.col_monto_total') }}</center>
                         </th>
                         <th>
-                            <center>MONTO PAGADO</center>
+                            <center>{{ __('cobranzas.col_monto_pagado') }}</center>
                         </th>
                         <th>
-                            <center>ESTADO</center>
+                            <center>{{ __('cobranzas.col_estado') }}</center>
                         </th>
                         <th>
-                            <center>TIPO</center>
+                            <center>{{ __('cobranzas.col_tipo') }}</center>
                         </th>
                         <th>
-                            <center>ID NOTA DE VENTA</center>
+                            <center>{{ __('cobranzas.col_id_nota_venta') }}</center>
                         </th>
                         <th>
-                            <center>ID NOTA DE COMPRA</center>
+                            <center>{{ __('cobranzas.col_id_nota_compra') }}</center>
                         </th>
                         <th>
-                            <center>FECHA</center>
+                            <center>{{ __('cobranzas.col_fecha') }}</center>
                         </th>
                         
                         <th>
-                            <center>OPCION</center>
+                            <center>{{ __('cobranzas.col_opcion') }}</center>
                         </th>
 
                     </thead>
@@ -72,9 +72,9 @@
                                 <td>{{ $item->monto_total }}</td>
                                 <td>{{ $item->monto_pagado }}</td>
                                 <td>@if($item->monto_pagado>=$item->monto_total)
-                                    <span class="badge  btn-success">PAGADO</span>
+                                    <span class="badge  btn-success">{{ __('cobranzas.pagado') }}</span>
                                     @else
-                                    <span class="badge  btn-warning">PENDIENTE</span>
+                                    <span class="badge  btn-warning">{{ __('cobranzas.pendiente') }}</span>
                                     @endif
                                 </td>
                                 <td>{{ $item->tipo }}<br>
@@ -89,18 +89,18 @@
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary dropdown-toggle"
                                             data-toggle="dropdown" aria-expanded="false">
-                                            Opción <span class="caret"></span>
+                                            {{ __('cobranzas.opcion') }} <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
                                             <li>
                                                 <a  href='detalle_cobranza/{{ $item->id }}/edit'
                                                     aria-hidden="true" data-toggle="tooltip" data-placement="top"
-                                                    title="Ver"><i class='fa fa-eye' aria-hidden="true"></i> Ver</a>
+                                                    title="{{ __('cobranzas.ver') }}"><i class='fa fa-eye' aria-hidden="true"></i> {{ __('cobranzas.ver') }}</a>
                                             </li>
                                           
                                                 <li>
                                                     <a  href="{!!URL::to('cobranza_detalle_imprimir_pequenio',[ 'id_cobranza' => $item->id])!!}" target="_blank"
-                                                        > <i class='fa fa-print' aria-hidden="true"></i> Imprimir</a>
+                                                        > <i class='fa fa-print' aria-hidden="true"></i> {{ __('cobranzas.imprimir') }}</a>
                                                 </li> 
                                                 
 

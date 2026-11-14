@@ -37,22 +37,22 @@ console.log(texto);
         <input type="hidden" id="listaCliente" value="{{json_encode($cliente)}}">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
             <div class="panel panel-info">
-                <div class="panel-heading"> <label> DETALLE PAGOS:    </label>
-                    <a class='btn btn-primary' href="{!!URL::to('cobranza_detalle_imprimir_pequenio',[ 'id_cobranza' => $cobranzas[0]->id])!!}" target="_blank"><i class="fa fa-print"></i> Imprimir</a>
+                <div class="panel-heading"> <label> {{ __('detalle_cobranza.detalle_pagos') }}    </label>
+                    <a class='btn btn-primary' href="{!!URL::to('cobranza_detalle_imprimir_pequenio',[ 'id_cobranza' => $cobranzas[0]->id])!!}" target="_blank"><i class="fa fa-print"></i> {{ __('detalle_cobranza.imprimir') }}</a>
                             </div>
                 <div class="panel-body">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                            CI/NIT: <label>{{$cobranzas[0]->ci_nit}}</label>  <br>
-                            Nombre: <label>{{$cobranzas[0]->razon_social}}</label>
+                            {{ __('detalle_cobranza.ci_nit_dp') }} <label>{{$cobranzas[0]->ci_nit}}</label>  <br>
+                            {{ __('detalle_cobranza.nombre_dp') }} <label>{{$cobranzas[0]->razon_social}}</label>
                     </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                Monto Total: <label>{{$cobranzas[0]->monto_total}}</label>  <br>
-                                Monto Pagado: <label>{{$cobranzas[0]->monto_pagado}}</label>
+                                {{ __('detalle_cobranza.monto_total_dp') }} <label>{{$cobranzas[0]->monto_total}}</label>  <br>
+                                {{ __('detalle_cobranza.monto_pagado_dp') }} <label>{{$cobranzas[0]->monto_pagado}}</label>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                Fecha: <label>{{$cobranzas[0]->fecha_registro}}</label> <br>
-                                Tipo: <label>{{$cobranzas[0]->tipo}}</label>
+                                {{ __('detalle_cobranza.fecha_dp') }} <label>{{$cobranzas[0]->fecha_registro}}</label> <br>
+                                {{ __('detalle_cobranza.tipo_dp') }} <label>{{$cobranzas[0]->tipo}}</label>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             @if($cobranzas[0]->id_nota_compra!=null)
@@ -60,9 +60,9 @@ console.log(texto);
                             <a class='btn btn-primary' href="{!!URL::to('nota_compra_imprimir',[ 'id' => $cobranzas[0]->id_nota_compra])!!}" target="_blank">
                                 <i class="fa fa-link"></i> </a>
                                 @if($cobranzas[0]->monto_pagado>=$cobranzas[0]->monto_total)
-                                    <span class="badge  btn-success">Pagado</span>
+                                    <span class="badge  btn-success">{{ __('detalle_cobranza.pagado') }}</span>
                                     @else
-                                    <span class="badge  btn-warning">Pendiente</span>
+                                    <span class="badge  btn-warning">{{ __('detalle_cobranza.pendiente') }}</span>
                                     @endif
                             @endif
                             @if($cobranzas[0]->id_nota_venta!=null)
@@ -71,9 +71,9 @@ console.log(texto);
                                 <i class="fa fa-link"></i> </a>
 
                                 @if($cobranzas[0]->monto_pagado >= $cobranzas[0]->monto_total)
-                                    <span class="badge  btn-success">PAGADO</span>
+                                    <span class="badge  btn-success">{{ __('detalle_cobranza.pagado_mayus') }}</span>
                                     @else
-                                    <span class="badge  btn-warning">PENDIENTE</span>
+                                    <span class="badge  btn-warning">{{ __('detalle_cobranza.pendiente_mayus') }}</span>
                                     @endif
                             @endif
 
@@ -96,28 +96,28 @@ console.log(texto);
                     style="background: white">
                     <thead>
                         <th>
-                            <center>ID</center>
+                            <center>{{ __('detalle_cobranza.col_id') }}</center>
                         </th>
                         <th>
-                            <center>USUARIO</center>
+                            <center>{{ __('detalle_cobranza.col_usuario') }}</center>
                         </th>
                         <th>
-                            <center>DETALLE</center>
+                            <center>{{ __('detalle_cobranza.col_detalle') }}</center>
                         </th>
                         <th>
-                            <center>MONTO</center>
+                            <center>{{ __('detalle_cobranza.col_monto') }}</center>
                         </th>
                         <th>
-                            <center>FORMA DE PAGO</center>
+                            <center>{{ __('detalle_cobranza.col_forma_pago') }}</center>
                         </th>
                         <th>
-                            <center>CLIENTE</center>
+                            <center>{{ __('detalle_cobranza.col_cliente') }}</center>
                         </th>
                         <th>
-                            <center>CAJA</center>
+                            <center>{{ __('detalle_cobranza.col_caja') }}</center>
                         </th>
                         <th>
-                            <center>FECHA</center>
+                            <center>{{ __('detalle_cobranza.col_fecha') }}</center>
                         </th>
 
                         <th>
@@ -140,7 +140,7 @@ console.log(texto);
                                 <td>
                                     <a   target="_blank" href='../../detalle_cobranza_imprimir_pequenio/{{ $item->id }}/{{ $item->id_cobranza }}'
                                         class="btn btn-primary"
-                                        title="Ver"><i class='fa fa-print' aria-hidden="true"></i> </a>
+                                        title="{{ __('detalle_cobranza.ver') }}"><i class='fa fa-print' aria-hidden="true"></i> </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -160,7 +160,7 @@ console.log(texto);
 
            <div class=" panel panel-primary">
                  <div class="panel-heading">
-                    <label>Registrar Detalle Pago:</label><br>
+                    <label>{{ __('detalle_cobranza.registrar_detalle_pago') }}</label><br>
                  </div>
 
                  <div class="panel-body">
@@ -169,10 +169,10 @@ console.log(texto);
                  <input hidden name="estado_cobranza" value="{{$cobranzas[0]->estado}}"/>
 
                    <div class="form-group">
-                    <label for="ciNit">NIT/CI/CEX:</label><br>
+                    <label for="ciNit">{{ __('detalle_cobranza.nit_ci_cex') }}</label><br>
                     <input id="ciNit" name="numero_documento" style="border: 3px solid #f39c12;" value="" type="number" class="form-control" onchange="buscarNit();" />
 
-                    <label for="nombreCliente" style="margin-top: 10px; display: block;">Razon Social / Nombre del Cliente :</label><br>
+                    <label for="nombreCliente" style="margin-top: 10px; display: block;">{{ __('detalle_cobranza.razon_social_nombre_cliente') }}</label><br>
                     <input id="nombreCliente" name="razon_social" value="" class="form-control" />
                    </div>
 
@@ -180,24 +180,24 @@ console.log(texto);
                 <table class="form-group" style="width: 100%;">
                     <tr hidden>
                         <td>
-                        <label for="efectivoPago">Efectivo Pago (Bs):</label> <br>
+                        <label for="efectivoPago">{{ __('detalle_cobranza.efectivo_pago_bs') }}</label> <br>
                         <input id="efectivoPago" name="efectivo_pago" value="0" type="number" class="form-control" onchange="calcularCambio();" min="0" step="0.01" />
                         </td>
                         <td style="padding-left: 8px;">
-                        <label for="efectivoCambio">Efectivo Cambio (Bs):</label> <br>
+                        <label for="efectivoCambio">{{ __('detalle_cobranza.efectivo_cambio_bs') }}</label> <br>
                         <input id="efectivoCambio" value="0" type="number" class="form-control" readonly style="font-size: 25px" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                        <label for="monto_total">Monto (Bs):</label> <br>
+                        <label for="monto_total">{{ __('detalle_cobranza.monto_bs') }}</label> <br>
                         <input
                             id="monto_total"
                             name="monto"
                             type="number"
                             value="0"
                             class="form-control"
-                            placeholder="Monto Total"
+                            placeholder="{{ __('detalle_cobranza.placeholder_monto_total') }}"
                             maxlength="10"
                             style="font-weight:bold;font-size: 25px;"
                             onchange="calcularCambio();"
@@ -206,7 +206,7 @@ console.log(texto);
                         />
                         </td>
                         <td style="padding-left: 10px;">
-                        <label for="estado">Estado :</label> <br>
+                        <label for="estado">{{ __('detalle_cobranza.estado_label') }}</label> <br>
                         <select name="estado" id="estado" style="width: 100%; padding: 5px;">
                             <option value="Procesado" selected>Procesado</option>
                             <option value="Qr">Qr</option>
@@ -217,12 +217,12 @@ console.log(texto);
                     </table>
 
                     <div class="form-group">
-                    <label for="detalle">Detalle:</label>
+                    <label for="detalle">{{ __('detalle_cobranza.detalle_label') }}</label>
                     <textarea
                         id="detalle"
                         name="detalle"
                         class="form-control"
-                        placeholder="Ingrese el detalle"
+                        placeholder="{{ __('detalle_cobranza.placeholder_detalle') }}"
                         style="height:100px;"
                     ></textarea>
                     </div>
@@ -238,7 +238,7 @@ console.log(texto);
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                     <button type="submit" class="btn btn-success form-control"    >
-                        <i class="fa fa-money" aria-hidden="true"></i> GUARDAR PAGO
+                        <i class="fa fa-money" aria-hidden="true"></i> {{ __('detalle_cobranza.guardar_pago') }}
                     </button>
                  </form>
 

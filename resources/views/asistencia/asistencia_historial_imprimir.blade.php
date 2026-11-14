@@ -42,7 +42,7 @@ function imprimir() {
 
 </head>
 <div align="right" style="height: 10px;">
-   {{date("j - F - Y, g:i a")}}
+   {{ fecha_hora_impresion() }}
   </div><br>
 <body onload="imprimir();">
 
@@ -55,11 +55,11 @@ function imprimir() {
     <td style="width: 80%; border: 0px solid white;">
       <center>
       <font size="3" style="font-weight: bold;">{{$empresa[0]->razon_social}} </font><br>
-      Telefono: {{$empresa[0]->whatsapp}}<br>
-      Dirección: {{$empresa[0]->direccion}}<br>
+      {{ __('producto.telefono_label') }} {{$empresa[0]->whatsapp}}<br>
+      {{ __('producto.direccion_label') }} {{$empresa[0]->direccion}}<br>
 
       <br>
-      <div><center><b> HISTORIAL DE ASISTENCIA</b> <br>( Del {{$fechaInicio}} al {{$fechaFinal}} )</p> </center></div>
+      <div><center><b> {{ __('asistencia.historial_de_asistencia_mayus') }}</b> <br>{{ __('asistencia.del_al', ['desde' => $fechaInicio, 'hasta' => $fechaFinal]) }}</p> </center></div>
      <br>
     </td>
     <td style="width: 10%; border: 0px solid white;">
@@ -75,11 +75,11 @@ function imprimir() {
         <table  >
           <thead >
           <tr>
-            <th><center>FECHA</center></th>
-						<th><center>NOMBRE</center></th>
-						<th><center>HORA DE INGRESO</center></th>
-						<th><center>HORA DE SALIDA</center></th>
-						<th><center>OBSERVACIONES</center></th>  
+            <th><center>{{ __('asistencia.col_fecha') }}</center></th>
+						<th><center>{{ __('asistencia.col_nombre') }}</center></th>
+						<th><center>{{ __('asistencia.col_hora_ingreso') }}</center></th>
+						<th><center>{{ __('asistencia.col_hora_salida') }}</center></th>
+						<th><center>{{ __('asistencia.col_observaciones') }}</center></th>  
           </tr>
            </thead>
            <tbody >

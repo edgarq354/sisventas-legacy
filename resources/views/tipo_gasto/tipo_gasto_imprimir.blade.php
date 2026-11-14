@@ -39,7 +39,7 @@ tr{
 
 </head>
 <div align="right" style="height: 10px;">
-   {{date("j - F - Y, g:i a")}}
+   {{ fecha_hora_impresion() }}
   </div><br>
 <body  >
 
@@ -51,11 +51,11 @@ tr{
     </td>
     <td style="width: 80%; border: 0px solid white;">
       <center>
-      <font size="3" style="font-weight: bold;">TIENDA {{$empresa[0]->razon_social}} </font><br>
-      Telefono: {{$empresa[0]->whatsapp}}<br>
-      Dirección: {{$empresa[0]->direccion}}<br>
+      <font size="3" style="font-weight: bold;">{{ __('producto.tienda') }} {{$empresa[0]->razon_social}} </font><br>
+      {{ __('producto.telefono_label') }} {{$empresa[0]->whatsapp}}<br>
+      {{ __('producto.direccion_label') }} {{$empresa[0]->direccion}}<br>
 
-      <h2>LISTA DE TIPO DE GASTO</h2></center>
+      <h2>{{ __('tipo_gasto.lista_de_tipo_de_gasto') }}</h2></center>
     </td>
     <td style="width: 10%; border: 0px solid white;">
 
@@ -70,9 +70,9 @@ tr{
         <table  >
           <thead >
           <tr>
-            <th><center>ID</center></th>
-            <th><center>NOMBRE</center></th>
-            <th><center>ESTADO</center></th>
+            <th><center>{{ __('tipo_gasto.col_id_mayus') }}</center></th>
+            <th><center>{{ __('tipo_gasto.col_nombre_mayus') }}</center></th>
+            <th><center>{{ __('tipo_gasto.col_estado_mayus') }}</center></th>
           </tr>
            </thead>
            <tbody >
@@ -81,9 +81,9 @@ tr{
              <td style="width: 10%;"  align="center">{{ $usr->id}}</td>
             <td>{{ $usr->nombre}}</td>
             <td style="width: 15%;" align="center">@if($usr->estado==1)
-              ACTIVO
+              {{ __('tipo_gasto.activo_mayus') }}
               @else
-              INACTIVO
+              {{ __('tipo_gasto.inactivo_mayus') }}
               @endif
             </td>
 

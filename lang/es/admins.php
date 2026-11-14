@@ -1,0 +1,86 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'usuarios_de_la_empresa' => 'Usuarios de la empresa',
+    'usuarios_registrados' => ':count usuarios registrados',
+    'agregar_usuario' => 'Agregar usuario',
+    'imprimir' => 'Imprimir',
+    'roles_de_usuario' => 'Roles de usuario',
+    'col_nombre' => 'Nombre',
+    'col_usuario' => 'Usuario',
+    'col_rol' => 'Rol',
+    'col_opciones' => 'Opciones',
+    'administrador' => 'ADMINISTRADOR',
+    'normal' => 'NORMAL',
+    'editar' => 'Editar',
+    'historial_de_sesiones' => 'Historial de sesiones',
+    'contrasena' => 'Contraseña',
+
+    // create/edit
+    'registrar_usuario' => 'REGISTRAR USUARIO',
+    'actualizar_usuario' => 'ACTUALIZAR USUARIO',
+    'nombre_label' => 'Nombre:',
+    'placeholder_nombre' => 'Ingrese el nombre',
+    'usuario_label' => 'Usuario:',
+    'placeholder_usuario' => 'Ingrese el usuario',
+    'contrasena_label' => 'Contraseña:',
+    'placeholder_contrasena' => 'Ingrese la contraseña',
+    'rol_label' => 'Rol:',
+    'guardar' => 'GUARDAR',
+    'cancelar' => 'CANCELAR',
+
+    // opcion_salir
+    'cerrar_sesion_titulo' => 'Cerrar Sesión',
+    'confirmar_salir' => '¿Está seguro que desea cerrar sesión?',
+    'si' => 'Si',
+    'no' => 'No',
+    'desea_cerrar_sesion' => '¿Desea cerrar sesión?',
+    'si_mayus' => 'SI',
+
+    // create
+    'registrar_usuario_h3' => 'Registrar usuario',
+    'datos_acceso_permisos' => 'Datos de acceso y permisos',
+    'datos_del_usuario' => 'Datos del usuario',
+    'empleado_label' => 'Empleado',
+    'buscar_el_empleado' => 'Buscar el empleado…',
+    'nuevo' => 'Nuevo',
+    'nombre_corto' => 'Nombre',
+    'placeholder_nombre_corto' => 'Nombre',
+    'usuario_corto' => 'Usuario',
+    'placeholder_usuario_acceso' => 'Usuario de acceso',
+    'contrasena_corto' => 'Contraseña',
+    'placeholder_contrasena_corto' => 'Contraseña',
+    'tipo_de_usuario' => 'Tipo de usuario',
+    'sucursal_label' => 'Sucursal',
+    'buscar_puntos' => 'Buscar…',
+    'accesos_modulos' => 'Accesos a módulos',
+    'col_modulo' => 'Módulo',
+    'col_acceso' => 'Acceso',
+    'actualizar_usuario_h3' => 'Actualizar usuario',
+    'empleado_opcional' => 'Empleado',
+    'opcional' => '(opcional)',
+    'sin_cambios' => '— Sin cambios —',
+    'permisos_por_modulo' => 'Permisos por módulo',
+
+    // modal_usuario
+    'cambiar_contrasena_titulo' => 'CAMBIAR CONTRASEÑA',
+    'empresa_label' => 'EMPRESA:',
+    'nueva_contrasena_label' => 'Nueva Contraseña:',
+    'placeholder_nueva_contrasena' => 'Ingrese su nueva contraseña',
+    'actualizar_mayus' => 'ACTUALIZAR',
+    'cancelar_mayus' => 'CANCELAR',
+    'historial_inicio_sesion_titulo' => 'HISTORIAL DE INICIO DE SESION',
+    'ocultar' => 'OCULTAR',
+    'col_fecha' => 'FECHA',
+    'col_ip' => 'IP',
+    'col_detalle' => 'DETALLE',
+
+    // usuario_imprimir
+    'historial_de_venta_titulo' => 'HISTORIAL DE VENTA',
+    'lista_de_usuarios' => 'LISTA DE USUARIOS',
+    'col_nombre_mayus' => 'NOMBRE',
+    'col_usuario_mayus' => 'USUARIO',
+    'col_tipo' => 'TIPO',
+];

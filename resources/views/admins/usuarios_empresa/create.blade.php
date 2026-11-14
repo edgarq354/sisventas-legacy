@@ -52,8 +52,8 @@
         <div class="dash-hero" style="margin-bottom:14px;">
             <div class="dash-hero__icon"><i class="fa fa-user-plus"></i></div>
             <div>
-                <h3 class="dash-hero__title">Registrar usuario</h3>
-                <p class="dash-hero__sub">Datos de acceso y permisos</p>
+                <h3 class="dash-hero__title">{{ __('admins.registrar_usuario_h3') }}</h3>
+                <p class="dash-hero__sub">{{ __('admins.datos_acceso_permisos') }}</p>
             </div>
         </div>
 
@@ -61,47 +61,47 @@
             @csrf
 
             <div class="dash-card dash-card--overflow">
-                <div class="dash-card__head"><i class="fa fa-id-card-o"></i> Datos del usuario</div>
+                <div class="dash-card__head"><i class="fa fa-id-card-o"></i> {{ __('admins.datos_del_usuario') }}</div>
                 <div class="dash-card__body">
                     <div class="form-group">
-                        <label>Empleado</label>
+                        <label>{{ __('admins.empleado_label') }}</label>
                         <div class="input-group">
                             <select name="id_empleado" id="idEmpleado" onchange="buscarNombre();" class="form-control selectpicker" data-live-search="true">
-                                <option value="">Buscar el empleado…</option>
+                                <option value="">{{ __('admins.buscar_el_empleado') }}</option>
                                 @foreach ($cliente as $mov)
                                     <option value="{{ $mov->id }}">{{ $mov->nombre }} {{ $mov->paterno }} {{ $mov->materno }}</option>
                                 @endforeach
                             </select>
                             <span class="input-group-btn">
-                                <a href="{{ url('cliente') }}"><button class="btn btn-success" type="button" style="height:38px;"><i class="fa fa-plus"></i> Nuevo</button></a>
+                                <a href="{{ url('cliente') }}"><button class="btn btn-success" type="button" style="height:38px;"><i class="fa fa-plus"></i> {{ __('admins.nuevo') }}</button></a>
                             </span>
                         </div>
                     </div>
 
                     <div class="u-grid">
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" maxlength="100" value="{{ old('nombre') }}">
+                            <label for="nombre">{{ __('admins.nombre_corto') }}</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="{{ __('admins.placeholder_nombre_corto') }}" maxlength="100" value="{{ old('nombre') }}">
                         </div>
                         <div class="form-group">
-                            <label for="usuario">Usuario</label>
-                            <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuario de acceso" maxlength="15" value="{{ old('usuario') }}" autocomplete="off">
+                            <label for="usuario">{{ __('admins.usuario_corto') }}</label>
+                            <input type="text" name="usuario" id="usuario" class="form-control" placeholder="{{ __('admins.placeholder_usuario_acceso') }}" maxlength="15" value="{{ old('usuario') }}" autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="password">Contraseña</label>
-                            <input type="text" name="password" id="password" class="form-control" placeholder="Contraseña" maxlength="15" value="{{ old('password') }}" autocomplete="new-password">
+                            <label for="password">{{ __('admins.contrasena_corto') }}</label>
+                            <input type="text" name="password" id="password" class="form-control" placeholder="{{ __('admins.placeholder_contrasena_corto') }}" maxlength="15" value="{{ old('password') }}" autocomplete="new-password">
                         </div>
                         <div class="form-group">
-                            <label for="privilegio">Tipo de usuario</label>
+                            <label for="privilegio">{{ __('admins.tipo_de_usuario') }}</label>
                             <select name="privilegio" id="privilegio" class="form-control" onchange="seleccionar()">
-                                <option value="0" {{ old('privilegio') == '0' ? 'selected' : '' }}>ADMINISTRADOR</option>
-                                <option value="3" {{ old('privilegio') == '3' ? 'selected' : '' }}>NORMAL</option>
+                                <option value="0" {{ old('privilegio') == '0' ? 'selected' : '' }}>{{ __('admins.administrador') }}</option>
+                                <option value="3" {{ old('privilegio') == '3' ? 'selected' : '' }}>{{ __('admins.normal') }}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Sucursal</label>
+                            <label>{{ __('admins.sucursal_label') }}</label>
                             <select name="id_sucursal" class="form-control selectpicker" data-live-search="true">
-                                <option value="">Buscar…</option>
+                                <option value="">{{ __('admins.buscar_puntos') }}</option>
                                 @foreach ($sucursal as $mov)
                                     <option value="{{ $mov->id }}">{{ $mov->nombre }}</option>
                                 @endforeach
@@ -112,10 +112,10 @@
             </div>
 
             <div class="dash-card" id="div_permiso" hidden="">
-                <div class="dash-card__head"><i class="fa fa-key"></i> Accesos a módulos</div>
+                <div class="dash-card__head"><i class="fa fa-key"></i> {{ __('admins.accesos_modulos') }}</div>
                 <div class="dash-card__body dash-card__body--flush">
                     <table class="table" id="tabla_permisos" style="margin:0;background:#fff;">
-                        <thead><tr><th style="text-align:left;">Módulo</th><th style="text-align:center;width:90px;">Acceso</th></tr></thead>
+                        <thead><tr><th style="text-align:left;">{{ __('admins.col_modulo') }}</th><th style="text-align:center;width:90px;">{{ __('admins.col_acceso') }}</th></tr></thead>
                         <tbody>
                             @foreach ($acceso as $ac)
                                 <tr>
@@ -133,8 +133,8 @@
             </div>
 
             <div class="u-actions">
-                <a href="{!! URL::to('usuarios/empresa') !!}" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</a>
-                <button type="submit" class="btn btn-success" id="btn_registrar" onclick="btn_esconder()"><i class="fa fa-save"></i> Registrar</button>
+                <a href="{!! URL::to('usuarios/empresa') !!}" class="btn btn-danger"><i class="fa fa-times"></i> {{ __('admins.cancelar') }}</a>
+                <button type="submit" class="btn btn-success" id="btn_registrar" onclick="btn_esconder()"><i class="fa fa-save"></i> {{ __('admins.registrar_usuario') }}</button>
             </div>
         </form>
 

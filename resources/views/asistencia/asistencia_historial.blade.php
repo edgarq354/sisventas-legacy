@@ -29,16 +29,16 @@
 			<div class=" panel panel-danger  ">
 
 				<div class="panel-heading">
-					<h3>HISTORIAL DE ASISTENCIA</h3>
-					 Fecha de Inicio:
+					<h3>{{ __('asistencia.historial_de_asistencia_mayus') }}</h3>
+					 {{ __('asistencia.fecha_de_inicio_dp') }}
 					<input type="text"  value="{{$fechaInicio}}"  id='calendario1' onmouseover ="buscarEnlace();">
-					Fecha Final:
+					{{ __('asistencia.fecha_final_dp') }}
 					<input type="text"  value="{{$fechaFinal}}"  id='calendario2' onmouseover ="buscarEnlace();">
 					 
 					<div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
 						<select name="id_empleado" id="id_empleado" class="form-control selectpicker" onchange ="buscarEnlace();"
 							data-live-search="true">
-							<option value="0"> Todos los empleados </option>
+							<option value="0"> {{ __('asistencia.todos_los_empleados') }} </option>
 							@foreach ($usuario as $mov)
 								<option value="{{ $mov->id }}" 
 									@if ($id_empleado == $mov->id) selected="" @endif>{{ $mov->nombre }}
@@ -48,9 +48,9 @@
 					</div>
 
 				  <a class="btn btn-warning"  href="../../../asistencia_historial/{{$fechaInicio}}/{{$fechaInicio}}/0" id="buscar" onmouseover ="buscarEnlace();">
-				  	<i class="fa fa-search"></i> Buscar </a> 
+				  	<i class="fa fa-search"></i> {{ __('asistencia.buscar') }} </a> 
 				  	<a class="btn btn-primary"  href="../../../asistencia_historial_imprimir/{{$fechaInicio}}/{{$fechaInicio}}/0" id="imprimir" onmouseover ="buscarEnlace();">
-				  	<i class="fa fa-print"></i> Imprimir </a>
+				  	<i class="fa fa-print"></i> {{ __('asistencia.imprimir') }} </a>
 			  	</div>
 			</div>
   
@@ -65,11 +65,11 @@
 			<div class="panel-body">
 				<table class="table table-striped table-bordered table-condensed table-hover" style="background: white" id="tabla_sin_imprimir">
 					<thead>
-						<th><center>FECHA</center></th>
-						<th><center>NOMBRE</center></th>
-						<th><center>HORA DE INGRESO</center></th>
-						<th><center>HORA DE SALIDA</center></th>
-						<th><center>OBSERVACIONES</center></th>  
+						<th><center>{{ __('asistencia.col_fecha') }}</center></th>
+						<th><center>{{ __('asistencia.col_nombre') }}</center></th>
+						<th><center>{{ __('asistencia.col_hora_ingreso') }}</center></th>
+						<th><center>{{ __('asistencia.col_hora_salida') }}</center></th>
+						<th><center>{{ __('asistencia.col_observaciones') }}</center></th>  
 					</thead>
 
 					<tbody align="center" id="body_conductor">					
