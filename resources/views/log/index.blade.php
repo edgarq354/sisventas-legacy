@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> Systems EliSoft</title>
+    <title>{{ config('app.name', 'SisVentas') }} | Login</title>
     <link rel="shortcut icon" href="images/icono.png">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -117,19 +117,20 @@ setTimeout('pepitojimenez()',1000);
 
      <!-- /.login-logo -->
       <div class="login-box-body" style=" background:rgba(98,2,2,0.6); padding-top: 2px; ">
-        <center><b> <h1><font  style="font-family: Monospace;  margin-top: -15px; color: #fff;  font-style: normal;" >Iniciar Sesion</font></h1></b></center>
+        <center><b> <h1><font  style="font-family: Monospace;  margin-top: -15px; color: #fff;  font-style: normal;" >Login</font></h1></b></center>
        <form action="{{ route('login.store') }}" method="POST">
           @csrf
           <!-- campos del formulario -->
-       <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token">
           <div class="form-group has-feedback">
             <input type="text"
             name="usuario"
             id="usuario"
             class="form-control"
-            placeholder="Usuario"
+            placeholder="Username"
+            aria-label="Username"
+            autocomplete="username"
             maxlength="100"
-            onkeyup="Copiar_Contra()"
+            autofocus
             value="{{ old('usuario') }}">
 
             <i class="fa fa-user form-control-feedback"></i>
@@ -138,10 +139,10 @@ setTimeout('pepitojimenez()',1000);
 
 
   <div class="input-group">
-      <input  type="password" name="password" id="password" placeholder="Contraseña" class="form-control text-uppercase"   maxlength="30"/>
+      <input  type="password" name="password" id="password" placeholder="Password" aria-label="Password" autocomplete="current-password" class="form-control text-uppercase"   maxlength="30"/>
 
       <span class="input-group-btn">
-        <button class="btn btn-warning " onclick="ver_pass()" type="button"> <i class="fa fa-eye" aria-hidden="true"></i></button>
+        <button class="btn btn-warning " onclick="ver_pass()" type="button" aria-label="Show or hide password" title="Show or hide password"> <i class="fa fa-eye" aria-hidden="true"></i></button>
       </span>
     </div>
 
@@ -153,7 +154,7 @@ setTimeout('pepitojimenez()',1000);
 
           <div class="form-group col-xs-12 pull-right" hidden="">
             <!-- Rounded switch -->
-           <font style="color: #fff;">Registrar asistencia</font>
+           <font style="color: #fff;">Register attendance</font>
               <label class="switch">
                 <input type="checkbox" name="asistencia" value="1">
                 <div class="slider round"></div>
@@ -166,7 +167,7 @@ setTimeout('pepitojimenez()',1000);
           <h2> <div id="contenedor"></div></h2>
           </div>
             <div class="col-xs-12 pull-right">
-            <input type="submit" name="btn_ingresar" onclick="ocultar();"  style="width: 100%; font-size: 20px;" value="Iniciar sesión"  class=" btn btn-warning" />
+            <input type="submit" id="btn_ingresar" name="btn_ingresar" onclick="ocultar();"  style="width: 100%; font-size: 20px;" value="Login"  class=" btn btn-warning" />
 
             </div><!-- /.col -->
           </div>

@@ -34,11 +34,9 @@ Route::get('/', [LoginController::class, 'index'])->name('inicio_todo');
 
 Auth::routes();
 
-// Redireccionar siempre /login a / (y darle el nombre 'login' que espera el
-// middleware 'auth' al redirigir invitados: si no, lanza "Route [login] not defined").
-Route::get('/login', function () {
-    return redirect('/');
-})->name('login');
+// Mostrar el login personalizado también en /login, con el nombre 'login'
+// que espera el middleware 'auth' al redirigir invitados.
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 Route::get('/home', [App\Http\Controllers\AjusteController::class, 'index'])->middleware('auth')->name('home');
 //Route::get('/ajuste', [AjusteController::class, 'index'])->middleware('auth');
