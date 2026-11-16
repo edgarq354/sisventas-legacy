@@ -122,6 +122,7 @@ setTimeout('pepitojimenez()',1000);
           @csrf
           <!-- campos del formulario -->
           <div class="form-group has-feedback">
+            <div class="input-group">
             <input type="text"
             name="usuario"
             id="usuario"
@@ -133,16 +134,19 @@ setTimeout('pepitojimenez()',1000);
             autofocus
             value="{{ old('usuario') }}">
 
-            <i class="fa fa-user form-control-feedback"></i>
+            <span class="input-group-btn">
+              <button class="btn btn-warning" type="button" tabindex="-1" style="cursor: default; min-width: 42px; text-align: center;" aria-hidden="true"><i class="fa fa-user"></i></button>
+            </span>
+            </div>
           </div>
           <div class="form-group has-feedback">
 
 
   <div class="input-group">
-      <input  type="password" name="password" id="password" placeholder="Password" aria-label="Password" autocomplete="current-password" class="form-control text-uppercase"   maxlength="30"/>
+      <input  type="password" name="password" id="password" placeholder="Password" aria-label="Password" autocomplete="current-password" class="form-control"   maxlength="30"/>
 
       <span class="input-group-btn">
-        <button class="btn btn-warning " onclick="ver_pass()" type="button" aria-label="Show or hide password" title="Show or hide password"> <i class="fa fa-eye" aria-hidden="true"></i></button>
+        <button class="btn btn-warning" onclick="ver_pass()" type="button" aria-label="Show or hide password" title="Show or hide password" style="min-width: 42px; text-align: center;"><i class="fa fa-eye" aria-hidden="true"></i></button>
       </span>
     </div>
 
