@@ -213,6 +213,7 @@ Route::prefix('producto/{id}')->group(function () {
 });
 Route::post('actualizar_producto', [ProductoController::class, 'actualizar_producto']);
 Route::get('get_producto_por_id/{id_producto}', [ProductoController::class, 'get_producto_por_id']);
+Route::get('get_lista_producto/{id_lugar}', [ProductoController::class, 'get_lista_producto']);
 Route::get('inventario', [ProductoController::class, 'inventario']);
 Route::get('inventario_imprimir', [ProductoController::class, 'inventario_imprimir']);
 Route::get('rptMinimos', [ProductoController::class, 'ProductosMinimos']);
